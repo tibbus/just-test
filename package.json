@@ -4,6 +4,7 @@
   "description": "social investment platform",
   "main": "index.js",
   "scripts": {
+    "build": "gulp",
     "start": "node index.js"
   },
   "repository": {
