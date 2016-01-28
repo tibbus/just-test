@@ -1,0 +1,15 @@
+{
+  "name": "socialinvestment",
+  "version": "1.0.0",
+  "description": "social investment platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/socialinvestment.git"
+  },
+  "author": "Tiberiu Popescu",
+  "license": "ISC"
+}
