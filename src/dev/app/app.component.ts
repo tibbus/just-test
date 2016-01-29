@@ -1,11 +1,13 @@
 ﻿import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {PageOne} from './PageOne.component';
-import {PageTwo} from './PageTwo.component';
+import {Home} from './home.component';
+import {PageOne} from './pageOne.component';
+import {PageTwo} from './pageTwo.component';
 
 @Component({
     selector: 'my-app',
-    template: `<h1>{{ sayHello }}</h1>  
+    template: `<h1>{{ sayHello }}</h1>
+               <a [routerLink]="['Home']">Home</a>  
                <a [routerLink]="['Page1']">Page1</a>
                <a [routerLink]="['Page2']">Page2</a>
                <router-outlet></router-outlet>
@@ -13,7 +15,8 @@ import {PageTwo} from './PageTwo.component';
     directives: [ROUTER_DIRECTIVES]
 })
 
-@RouteConfig([
+    @RouteConfig([
+        { path: '/', name: 'Home', component: Home },
         { path: '/page1', name: 'Page1', component: PageOne },
         { path: '/page2', name: 'Page2', component: PageTwo }
 ])
