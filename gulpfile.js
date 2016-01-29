@@ -4,7 +4,7 @@ var tsProject = ts.createProject('tsconfig.json');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('default', function () {
-    var tsResult = tsProject.src() // instead of gulp.src(...) 
+    var tsResult = gulp.src('src/dev/**/*')
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject));
 
