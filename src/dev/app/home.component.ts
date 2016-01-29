@@ -1,7 +1,8 @@
 ﻿import {Component} from 'angular2/core';
 
 @Component({
-    template: `<h2>Home Page Content !</h2>    
+    selector: 'home-component',
+    template: `<h2>Home Page Content !</h2>  
              `
 })
 
