@@ -6,5 +6,5 @@
              `
 })
 
-export class Home {
+export class HomePage {
 }

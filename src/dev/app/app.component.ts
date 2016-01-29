@@ -1,9 +1,9 @@
 ﻿import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {Home} from './home.component';
-import {PageOne} from './pageOne.component';
-import {PageTwo} from './pageTwo.component';
-import {ErrorPage} from './errorPage.component';
+import {HomePage} from './pages/homePage.component';
+import {OnePage} from './pages/onePage.component';
+import {TwoPage} from './pages/twoPage.component';
+import {ErrorPage} from './pages/errorPage.component';
 
 @Component({
     selector: 'my-app',
@@ -17,9 +17,9 @@ import {ErrorPage} from './errorPage.component';
 })
 
     @RouteConfig([
-        { path: '/', name: 'Home', component: Home },
-        { path: '/page1', name: 'Page1', component: PageOne },
-        { path: '/page2', name: 'Page2', component: PageTwo },
+        { path: '/', name: 'Home', component: HomePage },
+        { path: '/page1', name: 'Page1', component: OnePage },
+        { path: '/page2', name: 'Page2', component: TwoPage },
         { path: '/*allRoutes', name: 'Error', component: ErrorPage }
 ])
 

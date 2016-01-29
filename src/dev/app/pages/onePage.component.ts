@@ -6,6 +6,6 @@
              `
 })
 
-export class PageOne {
+export class OnePage {
     public pageNumber: string = "One";
 }
