@@ -3,6 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Home} from './home.component';
 import {PageOne} from './pageOne.component';
 import {PageTwo} from './pageTwo.component';
+import {ErrorPage} from './errorPage.component';
 
 @Component({
     selector: 'my-app',
@@ -18,7 +19,8 @@ import {PageTwo} from './pageTwo.component';
     @RouteConfig([
         { path: '/', name: 'Home', component: Home },
         { path: '/page1', name: 'Page1', component: PageOne },
-        { path: '/page2', name: 'Page2', component: PageTwo }
+        { path: '/page2', name: 'Page2', component: PageTwo },
+        { path: '/*allRoutes', name: 'Error', component: ErrorPage }
 ])
 
 export class AppComponent {
