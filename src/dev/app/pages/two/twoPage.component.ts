@@ -2,8 +2,7 @@
 
 @Component({
     selector: 'page-two-component',
-    template: `<h2>Page {{ pageNumber }} Content !</h2>    
-             `
+    template: `<h2>Page {{ pageNumber }} Content !</h2>`
 })
 
 export class TwoPage {
