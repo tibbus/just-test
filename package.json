@@ -27,6 +27,7 @@
     "gulp-typescript": "^2.10.0",
     "typescript": "^1.7.3",
     "express": "4.13.3",
-    "gulp-sass": "^2.2.0"
+    "gulp-sass": "^2.2.0",
+    "bootstrap-sass": "^3.3.6"
   }
 }
