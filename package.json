@@ -1,15 +1,15 @@
 {
-  "name": "socialinvestment",
+  "name": "carApp",
   "version": "1.0.0",
-  "description": "social investment platform",
+  "description": "car platform",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "postinstall": "gulp default"
+    "postinstall": "gulp all"
   },
   "repository": {
     "type": "git",
-    "url": "https://git.heroku.com/socialinvestment.git"
+    "url": "https://git.heroku.com/mycarbio.git"
   },
   "author": "Tiberiu Popescu",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.10.0",
     "typescript": "^1.7.3",
-    "express": "4.13.3"
+    "express": "4.13.3",
+    "gulp-sass": "^2.2.0"
   }
 }

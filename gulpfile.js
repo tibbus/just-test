@@ -2,8 +2,9 @@ var gulp = require('gulp');
 var ts = require('gulp-typescript');
 var tsProject = ts.createProject('tsconfig.json');
 var sourcemaps = require('gulp-sourcemaps');
+var sass = require('gulp-sass');
 
-gulp.task('default', function () {
+gulp.task('ts', function () {
     var tsResult = gulp.src('src/dev/**/*')
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject));
@@ -13,6 +14,15 @@ gulp.task('default', function () {
             .pipe(gulp.dest('src/dist/'));
 });
 
-gulp.task('watch', ['default'], function () {
-    gulp.watch('src/dev/**/*', ['default']);
+gulp.task('watch', ['ts', 'sass'], function () {
+    gulp.watch('src/dev/**/*.ts', ['ts']);
+    gulp.watch('src/dev/**/*.scss', ['sass']);
 });
+
+gulp.task('sass', function () {
+    return gulp.src('src/dev/**/*.scss')
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest('./src/dist'));
+});
+
+gulp.task('all', ['ts', 'sass']);
