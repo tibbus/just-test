@@ -38,4 +38,7 @@ gulp.task('fonts', function () {
     });
 });
 
-gulp.task('all', ['ts', 'sass', 'fonts']);
+gulp.task('all', ['ts', 'sass'], function () {
+    // dist folder does not exists, therefore run the `fonts` task after the `ts` one
+    gulp.start('fonts');
+});
