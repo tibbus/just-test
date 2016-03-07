@@ -1,10 +1,11 @@
 ﻿import {Component} from 'angular2/core';
 
 @Component({
-    selector: 'top-bar',
-    templateUrl: 'src/dev/app/topBar/topBar.component.html'
+    selector: 'content',
+    styleUrls: ['src/dist/app/content/content.component.css'],
+    templateUrl: 'src/dev/app/content/content.component.html'
 })
 
-export class AppComponent {
+export class ContentComponent {
     public sayHello: string = "Hello there !";
 }

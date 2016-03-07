@@ -1,13 +1,27 @@
 .wrapper {
     width: 100%;
-    height: calc(100% - 80px);
+    height: calc(100% - 100px);
 }
 
 left-bar {
     padding: 0 15px;
+    margin: 10px;
     width: 250px;
     height: 100%;
     background: #FFFBFB;
     display: block;
     float: left;
+}
+
+.content-wrapper {
+    float: left;
+    width: calc(100% - 270px);
+    height: 100%;
+}
+
+content {
+    display: block;
+    width: 900px;
+    height: 100%;
+    margin: 10px auto;
 }
