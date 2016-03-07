@@ -2,7 +2,7 @@
 
 @Component({
     selector: 'top-bar',
-    styles: [`.search {width: 350px}`],
+    styleUrls: ['src/dist/app/topBar/topBar.component.css'],
     templateUrl: 'src/dev/app/topBar/topBar.component.html'
 })
 
