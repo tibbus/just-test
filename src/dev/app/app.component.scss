@@ -1,9 +1,13 @@
+header {
+    display: block;
+}
+
 .wrapper {
     width: 100%;
     height: calc(100% - 100px);
 }
 
-left-bar {
+sidebar {
     padding: 0 15px;
     margin: 10px;
     width: 250px;

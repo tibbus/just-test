@@ -1,12 +1,12 @@
 ﻿import {Component} from 'angular2/core';
 
 @Component({
-    selector: 'left-bar',
-    styleUrls: ['src/dist/app/leftBar/leftBar.component.css'],
-    templateUrl: 'src/dev/app/leftBar/leftBar.component.html'
+    selector: 'sidebar',
+    styleUrls: ['src/dist/app/sidebar/sidebar.component.css'],
+    templateUrl: 'src/dev/app/sidebar/sidebar.component.html'
 })
 
-export class LeftBarComponent {
+export class SidebarComponent {
     private sayHello: string = "Hello there !";
     private cars: string[] = ['All Cars', 'McLaren MP4-12C', 'Aston Martin DB9', 'Audi Q7'];
     private docs: string[] = ['My Documents', 'Shared Folder', 'Public Library'];
