@@ -2,13 +2,13 @@
     width: 100%;
 }
 
-.btn {
-   margin: 10px 1px !important;
+.btn-group-vertical .btn {
+   margin: 10px 1px;
    text-transform: none;
 }
 
-.btn.selected {
-    background: #009688 !important;
+.btn.selected, .btn.selected:focus {
+    background: #009688;
     color: #ffffff;
 }
 
