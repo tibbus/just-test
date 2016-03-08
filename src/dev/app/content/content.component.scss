@@ -1,20 +1,21 @@
-﻿.status {
+﻿status {
     width: 100%;
-    //border: 2px solid lightgrey;
+    display: block;
     height: 115px;
     background-color: #ffffff;
 }
 
-.wall {
+wall {
     width: 720px;
     min-height: calc(100% - 120px);
     background-color: #ffffff;
     //border: 2px solid lightgrey;
     margin-top: 15px;
     float: left;
+    padding: 10px;
 }
 
-.timeline {
+timeline {
     margin-left: 15px;
     width: 164px;
     min-height: calc(100% - 120px);
@@ -22,16 +23,4 @@
     //border: 2px solid lightgrey;
     margin-top: 15px;
     float: left;
-}
-
-.status-text {
-    text-align: center;
-    margin-top: 18px;
-    font-size: 16px;
-}
-
-.btn {
-    text-transform: none;
-    color: #6B80D0;
-    text-decoration:underline;
 }

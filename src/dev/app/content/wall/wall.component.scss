@@ -1,0 +1,24 @@
+﻿.post-img {
+    height: 75px;
+    float: left;
+
+    img {
+        height: 100%;
+    }
+}
+
+.post-text {
+    float: left;
+    padding: 0 10px 10px 10px;
+    width: 430px;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.topics {
+    float: left;
+    width: 180px;
+    height: 170px;
+    border: solid 1px lightgrey;
+    margin-left: 20px;
+}
