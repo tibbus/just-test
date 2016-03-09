@@ -21,4 +21,64 @@
     height: 170px;
     border: solid 1px lightgrey;
     margin-left: 20px;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.car-img {
+    float: left;
+    height: 110px;
+    padding: 5px;
+
+    img {
+        height: 100%;
+    }
+}
+
+.clear {
+    clear: left;
+}
+
+.car-img:first-of-type {
+    border: 5px solid red;
+}
+
+.post {
+    float: left;
+}
+
+.social {
+    float: left;
+    clear: left;
+    margin-top: 20px;
+
+    a {
+        padding: 5px;
+        font-weight: 500;
+        font-size: 16px;
+    }
+}
+
+.line {
+    width: 100%;
+    border: solid 1px #F0EDED;
+    float: left;
+    margin-top: 10px;
+}
+
+.comment-wrapper {
+    float: left;
+    margin-top: 25px;
+
+    .comment-text {
+        width: 632px;
+        float: left;
+        padding: 0 10px 10px 10px;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .post-img{
+        height: 60px;
+    }
 }
