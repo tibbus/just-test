@@ -12,3 +12,14 @@
 .btn-group {
     border-bottom: solid 1px #EDEDED;
 }
+.glyphicon {
+    position: absolute;
+    top: 7px;
+    font-size: 20px;
+    left: 8px;
+
+    &-facetime-video, &-upload {
+        left: 0;
+    }
+}
+
