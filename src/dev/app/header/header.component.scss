@@ -10,7 +10,21 @@
     font-size: 21px;
 }
 
-/*.glyphicon-search:hover {
-    font-size: 21px;
-    transition: 0.1s;
-}*/
+.profile-img {
+    width: 40px;
+    float: left;
+    margin-top: 6px;
+
+    img {
+        width: 100%;
+    }
+}
+
+.dropdown {
+    margin-left: 13px;
+
+    a.dropdown-toggle {
+        float: left;
+        padding-left: 5px;
+    }
+}
