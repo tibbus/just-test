@@ -2,8 +2,8 @@
 
 @Component({
     selector: 'sidebar',
-    styleUrls: ['src/dist/app/sidebar/sidebar.component.css'],
-    templateUrl: 'src/dev/app/sidebar/sidebar.component.html'
+    styleUrls: ['src/dist/app/views/sidebar/sidebar.component.css'],
+    templateUrl: 'src/dev/app/views/sidebar/sidebar.component.html'
 })
 
 export class SidebarComponent {

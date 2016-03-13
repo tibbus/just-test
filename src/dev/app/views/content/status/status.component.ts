@@ -2,8 +2,8 @@
 
 @Component({
     selector: 'status',
-    styleUrls: ['src/dist/app/content/status/status.component.css'],
-    templateUrl: 'src/dev/app/content/status/status.component.html'
+    styleUrls: ['src/dist/app/views/content/status/status.component.css'],
+    templateUrl: 'src/dev/app/views/content/status/status.component.html'
 })
 
 export class StatusComponent {

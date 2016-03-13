@@ -2,8 +2,8 @@
 
 @Component({
     selector: 'wall',
-    styleUrls: ['src/dist/app/content/wall/wall.component.css'],
-    templateUrl: 'src/dev/app/content/wall/wall.component.html'
+    styleUrls: ['src/dist/app/views/content/wall/wall.component.css'],
+    templateUrl: 'src/dev/app/views/content/wall/wall.component.html'
 })
 
 export class WallComponent {

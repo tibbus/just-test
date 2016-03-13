@@ -4,8 +4,8 @@ import {WallComponent} from './wall/wall.component';
 
 @Component({
     selector: 'content',
-    styleUrls: ['src/dist/app/content/content.component.css'],
-    templateUrl: 'src/dev/app/content/content.component.html',
+    styleUrls: ['src/dist/app/views/content/content.component.css'],
+    templateUrl: 'src/dev/app/views/content/content.component.html',
     directives: [StatusComponent, WallComponent]
 })
 

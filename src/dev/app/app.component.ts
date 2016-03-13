@@ -1,8 +1,8 @@
 ﻿import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {HeaderComponent} from './header/header.component';
-import {SidebarComponent} from './sidebar/sidebar.component';
-import {ContentComponent} from './content/content.component';
+import {HeaderComponent} from './views/header/header.component';
+import {SidebarComponent} from './views/sidebar/sidebar.component';
+import {ContentComponent} from './views/content/content.component';
 
 // TODO add jQuery to typings
 // ingore ts lint erros
