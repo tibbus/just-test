@@ -1,5 +1,6 @@
 import {Injectable}     from 'angular2/core';
 import {Http} from 'angular2/http';
+import {Profile} from './profile';
 
 @Injectable()
 export class ProfileService {
@@ -8,9 +9,10 @@ export class ProfileService {
     private _url: string = 'http://amilatestapi.azurewebsites.net/api/v1/user/1';  // URL to web api
 
     getProfile() {
-        return this.http.get(this._url)
+        return this.http
+            .get(this._url)
             .toPromise()
-            .then(res => res.json(), this.handleError)
+            .then(res => <Profile>res.json(), this.handleError)
             .then(data => { console.log(data); return data; }); // eyeball results in the console
     }
 

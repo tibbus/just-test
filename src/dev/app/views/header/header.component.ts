@@ -1,6 +1,7 @@
 ﻿import {Component} from 'angular2/core';
 import {HTTP_PROVIDERS}    from 'angular2/http';
 import {ProfileService} from '../../profile/profile.service';
+import {Profile} from '../../profile/profile';
 
 @Component({
     selector: 'header',
@@ -12,18 +13,17 @@ import {ProfileService} from '../../profile/profile.service';
 export class HeaderComponent {
     constructor(private _profileService: ProfileService) { }    
 
-    public profile: any;
-    public errorMessage: any;   
-    public name: string; 
+    public profile: Profile; 
+    public name: string;
+    public errorMessage: string;   
 
     getProfile() {
         this._profileService.getProfile()
-            .then(
-            profile => {
+            .then(profile => {
                 this.profile = profile;
                 this.name = this.profile.Name;
             },
-            error => this.errorMessage = <any>error);
+            error => this.errorMessage = <string>error);
     }
 
     ngOnInit() {

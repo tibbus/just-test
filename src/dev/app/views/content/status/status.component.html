@@ -3,11 +3,11 @@
         <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
         <span>Update Status</span>
     </a>
-    <a class="btn " data-toggle="modal" data-target="#myModal">
+    <a class="btn " data-toggle="modal" data-target="#myModal" (click)="onMenuClick('videoModal')">
         <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
         <span>Add Photos/Videos</span>
     </a>
-    <a class="btn " data-toggle="modal" data-target="#myModal">
+    <a class="btn " data-toggle="modal" data-target="#myModal" (click)="onMenuClick('milestoneModal')">
         <span class="glyphicon glyphicon-road" aria-hidden="true"></span>
         <span>Add Milestone</span>
     </a>
@@ -22,3 +22,6 @@
 </div>
 
 <p class="status-text"><strong>Can't wait to meet up with the McLaren Crew tommorw morning!</strong></p>
+
+<video-modal *ngIf="modalName == 'videoModal'"></video-modal>
+<milestone-modal *ngIf="modalName == 'milestoneModal'"></milestone-modal>
