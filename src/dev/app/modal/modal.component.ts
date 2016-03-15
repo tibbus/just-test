@@ -11,7 +11,9 @@ declare const $: any;
 })
 
 export abstract class ModalComponent {
-    constructor(private _modalService: ModalService) {}  
+    title: string = 'Default Title !';
+
+    constructor(private _modalService: ModalService) { }  
 
     ngOnInit() {
         $('#myModal').on('hidden.bs.modal', (e) => {
