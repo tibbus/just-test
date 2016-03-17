@@ -40,3 +40,16 @@ $logo: 90px;
 .navbar-form {
      margin-left: calc((100% + #{$sidebar} - #{$content} - #{$logo})/2);
 }
+
+li:hover {
+    background-color: #009184;
+}
+
+.form-group.is-focused .form-control {
+        background-image: linear-gradient(#DBFFFC, #D8FFFB), linear-gradient(#D2D2D2, #D2D2D2);
+}
+
+.navbar .navbar-form .form-control {
+    border-radius: 5px;
+    padding-left: 5px;
+}
