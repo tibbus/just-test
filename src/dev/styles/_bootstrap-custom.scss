@@ -5,7 +5,8 @@
  */
 
 // Core variables and mixins
-@import "bootstrap/variables";
+// overwritten variables
+@import "variables";
 @import "bootstrap/mixins";
 
 // Reset and dependencies
