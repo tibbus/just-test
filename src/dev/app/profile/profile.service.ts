@@ -6,7 +6,7 @@ import {Profile} from './profile';
 export class ProfileService {
     constructor(private http: Http) { }
 
-    private _url: string = 'http://amilatestapi.azurewebsites.net/api/v1/user/1';  // URL to web api
+    private _url: string = 'http://amilatestapi-prod.azurewebsites.net/api/v1/user/1';  // URL to web api
 
     getProfile() {
         return this.http
