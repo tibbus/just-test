@@ -1,6 +1,10 @@
 ﻿import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, Router, Location} from 'angular2/router';
 
+// TODO add jQuery to typings
+// ingore ts lint erros
+declare const _: any;
+
 @Component({
     selector: 'sidebar',
     styleUrls: ['src/dist/app/views/sidebar/sidebar.component.css'],
@@ -9,36 +13,57 @@ import {RouteConfig, ROUTER_DIRECTIVES, Router, Location} from 'angular2/router'
 })
 
 export class SidebarComponent {
-    constructor(private _router: Router, private _location: Location) {
-        this.selected = 'McLaren MP4-12C';
-    }
-
-    private sayHello: string = "Hello there !";
-    //private cars: string[] = ['All Cars', 'McLaren MP4-12C', 'Aston Martin DB9', 'Audi Q7'];
+    private selected: string;
     private cars: any[] = [
         { name: 'McLaren MP4-12C', route: 'mclaren' },
         { name: 'Aston Martin DB9', route: 'aston' },
         { name: 'Audi Q7', route: 'audi' }
     ];
-    //private docs: string[] = ['My Documents', 'Shared Folder', 'Public Library'];
     private docs: any[] = [
         { name: 'My Documents', route: 'Documents' },
-        { name: 'Shared Folder', route: 'SharedFolder' },
-        { name: 'Public Library', route: 'PublicLibrary' }
+        { name: 'Shared Folder', route: 'Folder' },
+        { name: 'Public Library', route: 'Library' }
     ];
-    private selected: string = this.cars[0];
 
-    ngOnInit() {
-        console.log(this._location.path());
+    constructor(private _router: Router, private _location: Location) { }
+
+    private ngOnInit() {
+        const path = this._location.path();
+        const currentRoute = this.getCurrentRoute(path);
+
+        this.selected = this.getCarByRoute(currentRoute);
     }
 
-    onSelect(item: string): void {
+    private onSelect(item: string) {
         this.selected = item;
     }
 
-    onCarSelect(item: any): void {
+    private onCarSelect(item: any) {
         this.selected = item.name;
 
         this._router.navigate(['Car', { id: item.route }]);
+    }
+
+    private getCarByRoute(route: string): string {
+        let itemName: string;
+        const allItems = this.cars.concat(this.docs);
+
+        _.each(allItems, (car) => {
+            if (route === car.route.toLowerCase()) {
+                itemName = car.name
+            }
+        })
+
+        if (route === 'cars') {
+            return 'All Cars';
+        } else {
+            return itemName;
+        }
+    }
+
+    private getCurrentRoute(path: string): string {
+        const formattedArray = path.split('/');
+
+        return _.last(formattedArray);
     }
 }

@@ -20,8 +20,8 @@ declare const $: any;
         { path: '/cars', name: 'Cars', component: AllCarsComponent },
         { path: '/car/:id', name: 'Car', component: CarComponent },
         { path: '/documents', name: 'Documents', component: AllCarsComponent },
-        { path: '/sharedfolder', name: 'SharedFolder', component: AllCarsComponent },
-        { path: '/publiclibrary', name: 'PublicLibrary', component: AllCarsComponent },
+        { path: '/folder', name: 'Folder', component: AllCarsComponent },
+        { path: '/library', name: 'Library', component: AllCarsComponent },
         { path: '/', name: 'HomePage', redirectTo: ['Car', { id: 'mclaren' }] }
 ])
 
