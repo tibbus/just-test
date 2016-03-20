@@ -1,4 +1,4 @@
-﻿import {Component} from 'angular2/core';
+﻿import {Component, ChangeDetectorRef} from 'angular2/core';
 import {VideoModalComponent} from './videoModal/videoModal.component';
 import {MilestoneModalComponent} from './milestoneModal/milestoneModal.component';
 import {ModalService} from '../../../../modal/modal.service';
@@ -14,10 +14,12 @@ import {ModalService} from '../../../../modal/modal.service';
 export class StatusComponent {
     modalName: string;
 
-    constructor(private _modalService: ModalService) {
+    constructor(private _modalService: ModalService, private ref: ChangeDetectorRef) {
         _modalService.modalName.subscribe(
             modalName => {
                 this.modalName = modalName;
+
+                this.ref.detectChanges();
             })
     }  
 
