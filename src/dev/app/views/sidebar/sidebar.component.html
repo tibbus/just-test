@@ -14,8 +14,7 @@
     <a href="javascript:void(0)" class="btn btn-raised" 
        *ngFor="#car of cars"
        [class.selected]="car.name === selected"
-       (click)="onSelect(car.name)"
-       [routerLink]="['Car']">
+       (click)="onCarSelect(car)">
         {{car.name}}
     </a>
 </div>

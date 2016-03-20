@@ -18,10 +18,11 @@ declare const $: any;
 
 @RouteConfig([
         { path: '/cars', name: 'Cars', component: AllCarsComponent },
-        { path: '/car', name: 'Car', component: CarComponent },
+        { path: '/car/:id', name: 'Car', component: CarComponent },
         { path: '/documents', name: 'Documents', component: AllCarsComponent },
         { path: '/sharedfolder', name: 'SharedFolder', component: AllCarsComponent },
-        { path: '/publiclibrary', name: 'PublicLibrary', component: AllCarsComponent }
+        { path: '/publiclibrary', name: 'PublicLibrary', component: AllCarsComponent },
+        { path: '/', name: 'HomePage', redirectTo: ['Car', { id: 'mclaren' }] }
 ])
 
 export class AppComponent {

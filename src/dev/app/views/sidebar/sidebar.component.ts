@@ -1,5 +1,5 @@
 ﻿import {Component} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteConfig, ROUTER_DIRECTIVES, Router, Location} from 'angular2/router';
 
 @Component({
     selector: 'sidebar',
@@ -9,6 +9,10 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 })
 
 export class SidebarComponent {
+    constructor(private _router: Router, private _location: Location) {
+        this.selected = 'McLaren MP4-12C';
+    }
+
     private sayHello: string = "Hello there !";
     //private cars: string[] = ['All Cars', 'McLaren MP4-12C', 'Aston Martin DB9', 'Audi Q7'];
     private cars: any[] = [
@@ -24,7 +28,17 @@ export class SidebarComponent {
     ];
     private selected: string = this.cars[0];
 
+    ngOnInit() {
+        console.log(this._location.path());
+    }
+
     onSelect(item: string): void {
         this.selected = item;
+    }
+
+    onCarSelect(item: any): void {
+        this.selected = item.name;
+
+        this._router.navigate(['Car', { id: item.route }]);
     }
 }
