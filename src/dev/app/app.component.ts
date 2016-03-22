@@ -5,10 +5,6 @@ import {SidebarComponent} from './views/sidebar/sidebar.component';
 import {AllCarsComponent} from './views/content/allCars/allCars.component';
 import {CarComponent} from './views/content/car/car.component';
 
-// TODO add jQuery to typings
-// ingore ts lint erros
-declare const $: any;
-
 @Component({
     selector: 'car-app',
     templateUrl: 'src/dev/app/app.component.html',
@@ -27,6 +23,6 @@ declare const $: any;
 
 export class AppComponent {
     ngAfterViewInit() {
-        $.material.init();
+        jQuery.material.init();
     }
 }
