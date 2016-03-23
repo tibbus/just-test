@@ -23,7 +23,7 @@ gulp.task('watch', ['ts', 'sass'], function() {
 
 gulp.task('sass', function() {
     return gulp.src('src/dev/**/*.scss')
-      .pipe(sass({ includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/'] })
+      .pipe(sass({ includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/', 'src/dev/styles/'] })
       .on('error', sass.logError))
       .pipe(gulp.dest('./src/dist'));
 });

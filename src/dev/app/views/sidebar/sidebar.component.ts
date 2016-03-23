@@ -1,5 +1,5 @@
 ﻿import {Component} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES, Router, Location} from 'angular2/router';
+import {ROUTER_DIRECTIVES, Router, Location} from 'angular2/router';
 
 // TODO add jQuery to typings
 // ingore ts lint erros

@@ -2,12 +2,14 @@
 import {HTTP_PROVIDERS}    from 'angular2/http';
 import {ProfileService} from '../../profile/profile.service';
 import {Profile} from '../../profile/profile';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'header',
     styleUrls: ['src/dist/app/views/header/header.component.css'],
     templateUrl: 'src/dev/app/views/header/header.component.html',
-    providers: [HTTP_PROVIDERS, ProfileService]
+    providers: [HTTP_PROVIDERS, ProfileService],
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class HeaderComponent {

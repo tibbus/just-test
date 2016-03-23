@@ -4,6 +4,7 @@ import {HeaderComponent} from './views/header/header.component';
 import {SidebarComponent} from './views/sidebar/sidebar.component';
 import {AllCarsComponent} from './views/content/allCars/allCars.component';
 import {CarComponent} from './views/content/car/car.component';
+import {ProfileComponent} from './views/content/profile/profile.component';
 
 @Component({
     selector: 'car-app',
@@ -13,12 +14,14 @@ import {CarComponent} from './views/content/car/car.component';
 })
 
 @RouteConfig([
+        // Default Route
+        { path: '/', name: 'HomePage', redirectTo: ['Car', { id: 'mclaren' }] },
         { path: '/cars', name: 'Cars', component: AllCarsComponent },
         { path: '/car/:id', name: 'Car', component: CarComponent },
         { path: '/documents', name: 'Documents', component: AllCarsComponent },
         { path: '/folder', name: 'Folder', component: AllCarsComponent },
         { path: '/library', name: 'Library', component: AllCarsComponent },
-        { path: '/', name: 'HomePage', redirectTo: ['Car', { id: 'mclaren' }] }
+        { path: '/profile', name: 'Profile', component: ProfileComponent }      
 ])
 
 export class AppComponent {
