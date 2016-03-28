@@ -14,7 +14,6 @@ export class ProfileService {
             .get(this._url)
             .map(res => <Profile>res.json())
             .do(data => console.log(data)) // eyeball results in the console
-            .catch(this.handleError);
     }
 
     setProfile(profile: Profile) {
@@ -24,6 +23,7 @@ export class ProfileService {
         //    console.log('setting')
 
         return this.http.put(this._url, 'strigyfied json')
+            .delay(2000)
             .map((res) => {
                 console.log(res);
                 <Profile>res.json()
@@ -67,6 +67,7 @@ export class ProfileService {
         //});
     }
 
+    // Error handle inside the component
     private handleError(error: Response) {
         // in a real world app, we may send the error to some remote logging infrastructure
         // instead of just logging it to the console

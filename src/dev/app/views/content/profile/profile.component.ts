@@ -13,14 +13,15 @@ import {Profile} from '../../../profile/profile';
 export class ProfileComponent {
     constructor(private _profileService: ProfileService) { }
 
-    public profile: Profile = { Id: null};
+    public profile: Profile;
     public name: string;
     public errorMessage: string;
     private loading: boolean;
 
     getProfile() {
         this._profileService.getProfile()
-            .debounceTime(2000)
+            // TODO : testing delay, to be removed
+            .delay(3000)
             .subscribe(
             profile => {
                 this.profile = profile;
@@ -29,16 +30,13 @@ export class ProfileComponent {
     }
 
     saveProfile() {
-        console.log('save Profile');
+        this.errorMessage = null;
         this.loading = true;
 
         this._profileService.setProfile(this.profile)
-            .debounceTime(2000)
             .subscribe(
             profile => {
                 this.loading = false;
-
-                console.log('success');
             },
             error => this.handleError(error));
     }
@@ -48,8 +46,11 @@ export class ProfileComponent {
     }
 
     private handleError(error: Response) {
-        this.loading = false;
+    // TODO : testing delay, to be removed
+        setTimeout(() => {
+            this.loading = false;
 
-        this.errorMessage = error.text() || 'Server error';
+            this.errorMessage = error.text() || 'Server error, please try again !';
+        }, 3000);
     }
 }

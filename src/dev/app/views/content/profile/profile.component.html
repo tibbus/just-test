@@ -1,51 +1,71 @@
 <h1>Edit Profile</h1>
 
-<div class="form-group label-floating" [class.is-empty]="profile.Name == null">
-    <label for="i5i" class="control-label">Firstname Lastname</label>
-    <input type="text" class="form-control" id="i5i" [(ngModel)]="profile.Name">
-    <span class="help-block">Please enter your name</span>
-    <span class="material-input"></span>
+<div *ngIf="!profile" class="profile-loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    <span class="text">Loading Profile</span>
 </div>
 
-<div class="form-group label-floating" [class.is-empty]="profile.Email == null">
-    <label for="i5i" class="control-label">Email address</label>
-    <input type="email" class="form-control" [(ngModel)]="profile.Email">
-    <span class="help-block">Please enter a valid email address</span>
-    <span class="material-input"></span>
+
+<div *ngIf="profile" class="form-wrapper">
+    <div class="form-group label-floating" [class.is-empty]="profile.Name == null">
+        <label for="i5i" class="control-label">Firstname Lastname</label>
+        <input type="text" class="form-control" id="i5i" [(ngModel)]="profile.Name">
+        <span class="help-block">Please enter your name</span>
+        <span class="material-input"></span>
+    </div>
+
+    <div class="form-group label-floating" [class.is-empty]="profile.Email == null">
+        <label for="i5i" class="control-label">Email address</label>
+        <input type="email" class="form-control" [(ngModel)]="profile.Email">
+        <span class="help-block">Please enter a valid email address</span>
+        <span class="material-input"></span>
+    </div>
+
+    <div class="form-group label-floating" [class.is-empty]="profile.MobileNumber == null">
+        <label for="i5i" class="control-label">Phone Number</label>
+        <input type="text" class="form-control" [(ngModel)]="profile.MobileNumber">
+        <span class="help-block">Please enter a valid phone number</span>
+        <span class="material-input"></span>
+    </div>
+
+    <div class="form-group label-floating" [class.is-empty]="profile.Town == null">
+        <label for="i5i" class="control-label">Town</label>
+        <input type="text" class="form-control" [(ngModel)]="profile.Town">
+        <span class="help-block">Please enter your Town</span>
+        <span class="material-input"></span>
+    </div>
+
+    <div class="form-group label-floating" [class.is-empty]="profile.PostCode == null">
+        <label for="i5i" class="control-label">Post Code</label>
+        <input type="text" class="form-control" [(ngModel)]="profile.PostCode">
+        <span class="help-block">Please enter a valid post code</span>
+        <span class="material-input"></span>
+    </div>
+
+    <div class="form-group label-floating" [class.is-empty]="profile.Line1 == null">
+        <label for="i5i" class="control-label">Address Line1</label>
+        <input type="text" class="form-control" [(ngModel)]="profile.Line1">
+        <span class="help-block">Please enter your address</span>
+        <span class="material-input"></span>
+    </div>
+
+    <div class="form-group label-floating" [class.is-empty]="profile.Line2 == null">
+        <label for="i5i" class="control-label">Address Line2</label>
+        <input type="text" class="form-control" [(ngModel)]="profile.Line2">
+        <span class="help-block">Please enter your address</span>
+        <span class="material-input"></span>
+    </div>
+
+    <div class="save-area">
+        <a class="btn btn-raised btn-success"
+           (click)="saveProfile()"
+           [class.disabled]="loading">
+            <span class="save-text">Save</span>
+            <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        </a>
+
+        <span style="color:red">{{errorMessage}}</span>
+    </div>
 </div>
 
-<div class="form-group label-floating" [class.is-empty]="profile.MobileNumber == null">
-    <label for="i5i" class="control-label">Phone Number</label>
-    <input type="text" class="form-control" [(ngModel)]="profile.MobileNumber">
-    <span class="help-block">Please enter a valid phone number</span>
-    <span class="material-input"></span>
-</div>
-
-<div class="form-group label-floating" [class.is-empty]="profile.Town == null">
-    <label for="i5i" class="control-label">Town</label>
-    <input type="text" class="form-control" [(ngModel)]="profile.Town">
-    <span class="help-block">Please enter your Town</span>
-    <span class="material-input"></span>
-</div>
-
-<div class="form-group label-floating" [class.is-empty]="profile.PostCode == null">
-    <label for="i5i" class="control-label">Post Code</label>
-    <input type="text" class="form-control" [(ngModel)]="profile.PostCode">
-    <span class="help-block">Please enter a valid post code</span>
-    <span class="material-input"></span>
-</div>
-
-<div class="form-group label-floating" [class.is-empty]="profile.Line1 == null">
-    <label for="i5i" class="control-label">Address</label>
-    <input type="text" class="form-control" [(ngModel)]="profile.Line1">
-    <span class="help-block">Please enter your address</span>
-    <span class="material-input"></span>
-</div>
-
- <a href="javascript:void(0)" class="btn btn-raised btn-success" (click)="saveProfile()">
-    <span class="save-text">Save</span>
-     <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
- </a>
-
-<span style="color:red">{{errorMessage}}</span>
 
