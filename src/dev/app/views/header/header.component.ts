@@ -21,11 +21,12 @@ export class HeaderComponent {
 
     getProfile() {
         this._profileService.getProfile()
-            .then(profile => {
-                this.profile = profile;
-                this.name = this.profile.Name;
-            },
-            error => this.errorMessage = <string>error);
+            .subscribe(
+                profile => {
+                    this.profile = profile;
+                    this.name = this.profile.Name;
+                },
+                error => this.errorMessage = <any>error);
     }
 
     ngOnInit() {
