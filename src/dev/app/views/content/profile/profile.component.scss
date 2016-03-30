@@ -18,34 +18,3 @@ h1 {
 a .glyphicon {
     margin-left: 10px;
 }
-
-.glyphicon-refresh-animate {
-    animation: spinw 1s infinite linear;
-}
-
-@keyframes spin {
-    from { transform: scale(1) rotate(0deg);}
-    to { transform: scale(1) rotate(360deg);}
-}
-  
-@-webkit-keyframes spinw {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
-}
-
-@-moz-keyframes spinm {
-    from { -moz-transform: rotate(0deg);}
-    to { -moz-transform: rotate(360deg);}
-}
-
-.profile-loading {
-    .glyphicon {
-        font-size: 40px;
-    }
-
-    .text {
-        margin-left: 30px;
-        font-size: 20px;
-        color: grey;
-    }
-}

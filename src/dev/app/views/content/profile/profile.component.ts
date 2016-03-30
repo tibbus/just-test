@@ -2,28 +2,36 @@
 import {HTTP_PROVIDERS, Response}    from 'angular2/http';
 import {ProfileService} from '../../../profile/profile.service';
 import {Profile} from '../../../profile/profile';
+import {LoadingComponent} from '../../../common/loading/loading.component';
+import {ErrorComponent} from '../../../common/error/error.component';
 
 @Component({
     selector: 'profile',
     styleUrls: ['src/dist/app/views/content/profile/profile.component.css'],
     templateUrl: 'src/dev/app/views/content/profile/profile.component.html',
-    providers: [HTTP_PROVIDERS, ProfileService]
+    providers: [HTTP_PROVIDERS, ProfileService],
+    directives: [LoadingComponent, ErrorComponent]
 })
 
 export class ProfileComponent {
     constructor(private _profileService: ProfileService) { }
 
-    public profile: Profile;
-    public name: string;
+    private profile: Profile;
     public errorMessage: string;
     private loading: boolean;
+    private profileLoading: boolean;
 
     getProfile() {
+        this.errorMessage = null;
+        this.profileLoading = true;
+
         this._profileService.getProfile()
             // TODO : testing delay, to be removed
-            .delay(3000)
+            //.delay(3000)
             .subscribe(
             profile => {
+                this.profileLoading = false;
+
                 this.profile = profile;
             },
             error => this.handleError(error));
@@ -49,6 +57,7 @@ export class ProfileComponent {
     // TODO : testing delay, to be removed
         setTimeout(() => {
             this.loading = false;
+            this.profileLoading = false;
 
             this.errorMessage = error.text() || 'Server error, please try again !';
         }, 3000);

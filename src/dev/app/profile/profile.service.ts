@@ -23,7 +23,6 @@ export class ProfileService {
         //    console.log('setting')
 
         return this.http.put(this._url, 'strigyfied json')
-            .delay(2000)
             .map((res) => {
                 console.log(res);
                 <Profile>res.json()

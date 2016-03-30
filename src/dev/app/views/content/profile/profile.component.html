@@ -1,10 +1,6 @@
 <h1>Edit Profile</h1>
 
-<div *ngIf="!profile" class="profile-loading">
-    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-    <span class="text">Loading Profile</span>
-</div>
-
+<loading *ngIf="profileLoading"></loading>
 
 <div *ngIf="profile" class="form-wrapper">
     <div class="form-group label-floating" [class.is-empty]="!profile.Name">
@@ -63,9 +59,7 @@
             <span class="save-text">Save</span>
             <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
         </a>
-
-        <span style="color:red">{{errorMessage}}</span>
     </div>
 </div>
 
-
+<error [errorMessage]="errorMessage"></error>
