@@ -17,53 +17,16 @@ export class ProfileService {
     }
 
     setProfile(profile: Profile) {
-        //let body = JSON.stringify(profile);
-        //let headers = new Headers({ 'Content-Type': 'application/json');
-        //let options = new RequestOptions({ headers: headers });
-        //    console.log('setting')
+        let body = JSON.stringify(profile);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
 
-        return this.http.put(this._url, 'strigyfied json')
+        return this.http.put(this._url, body, options)
             .map((res) => {
                 console.log(res);
                 <Profile>res.json()
             })
-            .do(data => console.log(data)) // eyeball results in the console
-            //.subscribe((data) => {
-            //    console.log(data);
-            //}, error => this.handleError(error));
-        //jQuery.ajax({
-        //    type: "PUT",
-        //    crossDomain: true,
-        //    url: this._url,
-        //    data: profile
-        //});
-
-        //jQuery.ajax({
-        //    type: "GET",
-        //    url: 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1'
-        //});
-        //console.log(jQuery);
-
-        //jQuery.ajax({
-        //    type: "PUT",
-        //    url: 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1',
-        //    data: {
-        //        "Id": 1,
-        //        "Title": "Mr",
-        //        "Name": "Testaa aaaaaaaaaaaa",
-        //        "Email": "test.us1@emaissssl.com",
-        //        "MobileNumber": "09876543",
-        //        "HomeNumber": "01234567",
-        //        "Line1": "1",
-        //        "Line2": "Accom Road",
-        //        "Town": "Newcastle upon Tyne",
-        //        "PostCode": "NE1 2NN",
-        //        "Country": "UK",
-        //        "UserType": "Personal",
-        //        "CreatedDate": "2016-03-23T23:28:52",
-        //        "UpdatedDate": "2016-03-23T23:50:56"
-        //    }
-        //});
+            .do(data => console.log(data))
     }
 
     // Error handle inside the component

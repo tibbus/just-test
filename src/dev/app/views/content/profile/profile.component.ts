@@ -42,6 +42,8 @@ export class ProfileComponent {
         this.loading = true;
 
         this._profileService.setProfile(this.profile)
+            // TODO : testing delay, to be removed
+            .delay(2000)
             .subscribe(
             profile => {
                 this.loading = false;
