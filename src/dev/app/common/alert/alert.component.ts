@@ -11,7 +11,7 @@ export class AlertComponent {
     @Input() isError: boolean;
     @Input() isSuccess: boolean;
 
-    public typeMessage: string;
+    typeMessage: string;
 
     ngOnChanges() {
         if (this.isError) {

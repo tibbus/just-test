@@ -1,11 +1,11 @@
 ﻿import {Component} from 'angular2/core';
 import {ContentComponent} from './content/content.component';
-import {ModalComponent} from '../../../../../modal/modal.component';
-import {ModalService} from '../../../../../modal/modal.service';
+import {ModalComponent} from '../../../../../common/modal/modal.component';
+import {ModalService} from '../../../../../common/modal/modal.service';
 
 @Component({
     selector: 'video-modal',
-    templateUrl: 'src/dev/app/modal/modal.component.html',
+    templateUrl: 'src/dev/app/common/modal/modal.component.html',
     directives: [ContentComponent]
 })
 

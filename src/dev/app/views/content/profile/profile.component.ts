@@ -1,7 +1,7 @@
 ﻿import {Component} from 'angular2/core';
 import {HTTP_PROVIDERS, Response}    from 'angular2/http';
-import {ProfileService} from '../../../profile/profile.service';
-import {Profile} from '../../../profile/profile';
+import {ProfileService} from '../../../services/profile/profile.service';
+import {Profile} from '../../../services/profile/profile';
 import {LoadingComponent} from '../../../common/loading/loading.component';
 import {AlertComponent} from '../../../common/alert/alert.component';
 
@@ -16,11 +16,11 @@ import {AlertComponent} from '../../../common/alert/alert.component';
 export class ProfileComponent {
     constructor(private _profileService: ProfileService) { }
 
-    private profile: Profile;
-    public message: string;
-    private loading: boolean;
-    private profileLoading: boolean;
-    public requestState: boolean;
+    profile: Profile;
+    message: string;
+    loading: boolean;
+    profileLoading: boolean;
+    requestState: boolean;
 
     getProfile() {
         this.message = null;

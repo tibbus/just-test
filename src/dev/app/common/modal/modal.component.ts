@@ -7,7 +7,7 @@ declare const $: any;
 
 @Component({
     selector: 'video-modal',
-    templateUrl: 'src/dev/app/modal/modal.component.html'
+    templateUrl: 'src/dev/app/common/modal/common/modal.component.html'
 })
 
 export abstract class ModalComponent {

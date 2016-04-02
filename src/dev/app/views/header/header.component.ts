@@ -1,7 +1,7 @@
 ﻿import {Component} from 'angular2/core';
 import {HTTP_PROVIDERS}    from 'angular2/http';
-import {ProfileService} from '../../profile/profile.service';
-import {Profile} from '../../profile/profile';
+import {ProfileService} from '../../services/profile/profile.service';
+import {Profile} from '../../services/profile/profile';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({

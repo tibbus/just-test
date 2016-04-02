@@ -1,7 +1,7 @@
 ﻿import {Component, ChangeDetectorRef} from 'angular2/core';
 import {VideoModalComponent} from './videoModal/videoModal.component';
 import {MilestoneModalComponent} from './milestoneModal/milestoneModal.component';
-import {ModalService} from '../../../../modal/modal.service';
+import {ModalService} from '../../../../common/modal/modal.service';
 
 @Component({
     selector: 'status',
