@@ -1,0 +1,11 @@
+<div *ngIf="message" class="alert alert-dismissible"
+     [class.alert-success]="isSuccess"
+     [class.alert-danger]="isError">
+
+    <button type="button" class="close" data-dismiss="alert">&#215;</button>
+    <h4>{{typeMessage}} :</h4>
+
+    <p>
+        {{message}}
+    </p>
+</div>

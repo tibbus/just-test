@@ -7,7 +7,7 @@ import {Observable}       from 'rxjs/Observable';
 export class ProfileService {
     constructor(private http: Http) { }
 
-    private _url: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1';  // URL to web api
+    private _url: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1';
 
     getProfile() {
         return this.http
@@ -31,9 +31,6 @@ export class ProfileService {
 
     // Error handle inside the component
     private handleError(error: Response) {
-        // in a real world app, we may send the error to some remote logging infrastructure
-        // instead of just logging it to the console
-
         return Observable.throw(error.text() || 'Server error');
     }
 }

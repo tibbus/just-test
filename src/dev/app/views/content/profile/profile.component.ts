@@ -3,26 +3,27 @@ import {HTTP_PROVIDERS, Response}    from 'angular2/http';
 import {ProfileService} from '../../../profile/profile.service';
 import {Profile} from '../../../profile/profile';
 import {LoadingComponent} from '../../../common/loading/loading.component';
-import {ErrorComponent} from '../../../common/error/error.component';
+import {AlertComponent} from '../../../common/alert/alert.component';
 
 @Component({
     selector: 'profile',
     styleUrls: ['src/dist/app/views/content/profile/profile.component.css'],
     templateUrl: 'src/dev/app/views/content/profile/profile.component.html',
     providers: [HTTP_PROVIDERS, ProfileService],
-    directives: [LoadingComponent, ErrorComponent]
+    directives: [LoadingComponent, AlertComponent]
 })
 
 export class ProfileComponent {
     constructor(private _profileService: ProfileService) { }
 
     private profile: Profile;
-    public errorMessage: string;
+    public message: string;
     private loading: boolean;
     private profileLoading: boolean;
+    public requestState: boolean;
 
     getProfile() {
-        this.errorMessage = null;
+        this.message = null;
         this.profileLoading = true;
 
         this._profileService.getProfile()
@@ -38,15 +39,18 @@ export class ProfileComponent {
     }
 
     saveProfile() {
-        this.errorMessage = null;
+        this.message = null;
         this.loading = true;
 
         this._profileService.setProfile(this.profile)
             // TODO : testing delay, to be removed
-            .delay(2000)
+            //.delay(2000)
             .subscribe(
             profile => {
                 this.loading = false;
+
+                this.message = 'Profile saved !';
+                this.requestState = true;
             },
             error => this.handleError(error));
     }
@@ -60,8 +64,9 @@ export class ProfileComponent {
         setTimeout(() => {
             this.loading = false;
             this.profileLoading = false;
+            this.requestState = false;
 
-            this.errorMessage = error.text() || 'Server error, please try again !';
-        }, 3000);
+            this.message = error.text() || 'Server error, please try again !';
+        }, 3);
     }
 }
