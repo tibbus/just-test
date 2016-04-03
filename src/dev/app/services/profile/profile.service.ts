@@ -2,18 +2,46 @@ import {Injectable}     from 'angular2/core';
 import {Http, Response, Headers, RequestOptions} from 'angular2/http';
 import {Profile} from './profile';
 import {Observable}       from 'rxjs/Observable';
+import {ReplaySubject}    from 'rxjs/subject/ReplaySubject';
 
 @Injectable()
 export class ProfileService {
     constructor(private http: Http) { }
 
     private _url: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1';
+    private _profileObs = new ReplaySubject<Profile>(1);
+    private _profileData: Profile;
+    private _firstTimeRequest: boolean = true; 
 
-    getProfile() {
+    getProfileFromHttp() {
         return this.http
             .get(this._url)
             .map(res => <Profile>res.json())
-            .do(data => console.log(data)) // eyeball results in the console
+            .do(data => {
+                console.log(data);
+            });
+    }
+
+    getProfile(forceRefresh?: boolean) {
+        if (this._firstTimeRequest || forceRefresh) {
+            this.getProfileFromHttp().subscribe(
+                profile => {
+                    this._firstTimeRequest = false;
+
+                    this._profileObs.next(profile);
+
+                    this._profileData = profile;
+                },
+                error => {
+                    console.log(error);
+
+                    this._profileObs.error(error);
+                });
+        } else {
+            this._profileObs.next(this._profileData);
+        }
+
+        return this._profileObs;
     }
 
     setProfile(profile: Profile) {
@@ -27,10 +55,5 @@ export class ProfileService {
                 <Profile>res.json()
             })
             .do(data => console.log(data))
-    }
-
-    // Error handle inside the component
-    private handleError(error: Response) {
-        return Observable.throw(error.text() || 'Server error');
     }
 }

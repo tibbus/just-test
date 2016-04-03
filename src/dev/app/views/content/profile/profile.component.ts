@@ -9,7 +9,6 @@ import {AlertComponent} from '../../../common/alert/alert.component';
     selector: 'profile',
     styleUrls: ['src/dist/app/views/content/profile/profile.component.css'],
     templateUrl: 'src/dev/app/views/content/profile/profile.component.html',
-    providers: [HTTP_PROVIDERS, ProfileService],
     directives: [LoadingComponent, AlertComponent]
 })
 
