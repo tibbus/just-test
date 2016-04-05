@@ -1,22 +1,52 @@
 import {Injectable}     from 'angular2/core';
 import {Http, Response, Headers, RequestOptions} from 'angular2/http';
-import {Observable}       from 'rxjs/Observable';
+import {ReplaySubject}    from 'rxjs/subject/ReplaySubject';
+
+// TODO add lodash to typings
+// ingore ts lint erros
+declare const _: any;
 
 @Injectable()
-export class ProfileService {
+export class CarService {
     constructor(private http: Http) { }
 
-    private _url: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1/usercar/details=true';
+    private _url: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1/usercar/details=false';
+    private _carsObs = new ReplaySubject(1);
+    private _firstTimeRequest: boolean = true; 
 
-    getCars() {
+    private getCarsFromHttp() {
         return this.http
             .get(this._url)
-            .map(res => <any>res.json())
-            .do(data => console.log(data)) // eyeball results in the console
+            .map(res => res.json())
+            .do(data => {
+                console.log(data);
+            });
     }
 
-    // Error handle inside the component
-    private handleError(error: Response) {
-        return Observable.throw(error.text() || 'Server error');
+    getCars(forceRefresh?: boolean) {
+        if (this._firstTimeRequest || forceRefresh) {
+            this.getCarsFromHttp().subscribe(
+                cars => {
+                    this._firstTimeRequest = false;
+
+                    this._carsObs.next(cars);
+                },
+                error => {
+                    console.log(error);
+
+                    this._carsObs.error(error);
+                });
+        }
+
+        return this._carsObs.map(res => {
+            return _.map(res, (carObject) => {
+                const carName: string = _.get(carObject, 'UserCar.Car.Model');
+
+                return {
+                    name: carName,
+                    route: carName.replace(/ /g, '').toLocaleLowerCase()
+                }
+            });
+        });
     }
 }

@@ -10,10 +10,9 @@ export class ProfileService {
 
     private _url: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1';
     private _profileObs = new ReplaySubject<Profile>(1);
-    private _profileData: Profile;
     private _firstTimeRequest: boolean = true; 
 
-    getProfileFromHttp() {
+    private getProfileFromHttp() {
         return this.http
             .get(this._url)
             .map(res => <Profile>res.json())
@@ -29,16 +28,12 @@ export class ProfileService {
                     this._firstTimeRequest = false;
 
                     this._profileObs.next(profile);
-
-                    this._profileData = profile;
                 },
                 error => {
                     console.log(error);
 
                     this._profileObs.error(error);
                 });
-        } else {
-            this._profileObs.next(this._profileData);
         }
 
         return this._profileObs;
