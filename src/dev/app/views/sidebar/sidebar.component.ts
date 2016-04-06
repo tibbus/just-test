@@ -1,4 +1,4 @@
-﻿import {Component} from 'angular2/core';
+﻿import {Component, ChangeDetectorRef} from 'angular2/core';
 import {ROUTER_DIRECTIVES, Router, Location} from 'angular2/router';
 import {CarService} from '../../services/car/car.service';
 
@@ -16,11 +16,6 @@ declare const _: any;
 
 export class SidebarComponent {
     private selected: string;
-    //private cars: any[] = [
-    //    { name: 'McLaren MP4-12C', route: 'mclaren' },
-    //    { name: 'Aston Martin DB9', route: 'aston' },
-    //    { name: 'Audi Q7', route: 'audi' }
-    //];
     private cars: any[] = [];
     private docs: any[] = [
         { name: 'My Documents', route: 'Documents' },
@@ -31,11 +26,6 @@ export class SidebarComponent {
     constructor(private _router: Router, private _location: Location, private _carService: CarService) { }
 
     private ngOnInit() {
-        const path = this._location.path();
-        const currentRoute = this.getCurrentRoute(path);
-
-        this.selected = this.getCarByRoute(currentRoute);
-
         this.getCars();
     }
 
@@ -45,6 +35,8 @@ export class SidebarComponent {
 
     onCarSelect(item: any) {
         this.selected = item.name;
+
+        console.log(this._carService.getCarById(item.id));
 
         this._router.navigate(['Car', { id: item.route }]);
     }
@@ -73,13 +65,21 @@ export class SidebarComponent {
     }
 
     getCars() {
-        this._carService.getCars()
-            .subscribe(
-                cars => {
-                    console.log(cars);
-                    this.cars = cars;
-                },
-                error => this.handleError(error));
+        this._carService.getCars().subscribe(
+            cars => {
+                this.cars = cars;
+
+                this.updateSelectedCarMenu();
+            },
+            error => this.handleError(error)
+        );
+    }
+
+    updateSelectedCarMenu() {
+        const path = this._location.path();
+        const currentRoute = this.getCurrentRoute(path);
+
+        this.selected = this.getCarByRoute(currentRoute);
     }
 
     handleError(error: Error) {
