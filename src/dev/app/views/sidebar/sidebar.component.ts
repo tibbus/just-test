@@ -2,10 +2,6 @@
 import {ROUTER_DIRECTIVES, Router, Location} from 'angular2/router';
 import {CarService} from '../../services/car/car.service';
 
-// TODO add lodash to typings
-// ingore ts lint erros
-declare const _: any;
-
 @Component({
     selector: 'sidebar',
     styleUrls: ['src/dist/app/views/sidebar/sidebar.component.css'],

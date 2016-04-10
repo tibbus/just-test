@@ -1,5 +1,6 @@
 ///<reference path="../../node_modules/angular2/typings/browser.d.ts"/>
 /// <reference path="../../typings/jquery/jquery.d.ts" />
+/// <reference path="../../typings/lodash/lodash.d.ts" />
 /// <reference path="../../typings/bootstrap-material-design/bootstrap-material-design.d.ts" />
 
 import {bootstrap}        from 'angular2/platform/browser';

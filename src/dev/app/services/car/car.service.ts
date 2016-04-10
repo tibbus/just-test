@@ -2,10 +2,6 @@ import {Injectable}     from 'angular2/core';
 import {Http, Response, Headers, RequestOptions} from 'angular2/http';
 import {ReplaySubject}    from 'rxjs/subject/ReplaySubject';
 
-// TODO add lodash to typings
-// ingore ts lint erros
-declare const _: any;
-
 @Injectable()
 export class CarService {
     constructor(private http: Http) { }
@@ -42,9 +38,9 @@ export class CarService {
         }
 
         return this._carsObs.map(res => {
-            return _.map(res, (carObject) => {
-                const carName: string = _.get(carObject, 'UserCar.Car.Model');
-                const carId: string = _.get(carObject, 'UserCar.Car.Id');
+            return _.map(res, (carObject: any) => {
+                const carName: string = _.get(carObject, 'UserCar.Car.Model', '');
+                const carId: string = _.get(carObject, 'UserCar.Car.Id', '');
 
                 return {
                     name: carName,
@@ -56,7 +52,7 @@ export class CarService {
     }
 
     getCarById(id: string) {
-        const car = _.find(this._carObject, (item) => {
+        const car = _.find(this._carObject, (item: any) => {
             return item.UserCar.Id == id;
         });
 
