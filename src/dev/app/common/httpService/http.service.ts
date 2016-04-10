@@ -7,7 +7,7 @@ export abstract class HttpService {
 
     private _dataObs = new ReplaySubject(1);
     private _firstTimeRequest: boolean = true;
-    private _dataObject; 
+    public dataObject; 
 
     private getDataFromHttp() {
         return this._http
@@ -24,7 +24,7 @@ export abstract class HttpService {
                 data => {
                     this._firstTimeRequest = false;
 
-                    this._dataObject = data;
+                    this.dataObject = data;
 
                     this._dataObs.next(data);
                 },

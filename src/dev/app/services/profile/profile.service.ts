@@ -11,10 +11,6 @@ export class ProfileService extends HttpService{
         super(http, 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1');
     }
 
-    //private url: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1';
-    //private _profileObs = new ReplaySubject<Profile>(1);
-    //private _firstTimeRequest: boolean = true; 
-
     getProfile() {
         return this.getData();
     }
