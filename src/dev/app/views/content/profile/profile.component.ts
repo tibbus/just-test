@@ -29,7 +29,7 @@ export class ProfileComponent {
             // TODO : testing delay, to be removed
             //.delay(3000)
             .subscribe(
-            profile => {
+            (profile: Profile) => {
                 this.profileLoading = false;
 
                 this.profile = profile;

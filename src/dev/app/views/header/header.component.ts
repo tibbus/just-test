@@ -20,7 +20,7 @@ export class HeaderComponent {
     getProfile() {
         this._profileService.getProfile()
             .subscribe(
-                profile => {
+            (profile: Profile) => {
                     this.profile = profile;
                     this.name = this.profile.Name;
                 },
