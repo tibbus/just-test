@@ -1,13 +1,13 @@
 ﻿status {
     width: 100%;
     display: block;
-    height: 96px;
+    height: 120px;
     background-color: #ffffff;
 }
 
 wall {
     width: 720px;
-    min-height: calc(100% - 120px);
+    min-height: calc(100% - 141px);
     background-color: #ffffff;
     //border: 2px solid lightgrey;
     margin-top: 15px;
@@ -18,7 +18,7 @@ wall {
 timeline {
     margin-left: 15px;
     width: 164px;
-    min-height: calc(100% - 120px);
+    min-height: calc(100% - 141px);
     background-color: #ffffff;
     //border: 2px solid lightgrey;
     margin-top: 15px;

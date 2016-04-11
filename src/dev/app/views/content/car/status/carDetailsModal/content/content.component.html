@@ -38,5 +38,22 @@
             <td>Wheel Plan</td>
             <td>{{userCar.WheelPlan}}</td>
         </tr>
+
+        <tr class="active">
+            <td>CO2 Emission</td>
+            <td>{{userCar.CO2Emission}}</td>
+        </tr>
+        <tr>
+            <td>Weight</td>
+            <td>{{userCar.Weight}}</td>
+        </tr>
+        <tr class="active" *ngIf="userCar.Transmission">
+            <td>Transmission</td>
+            <td>{{userCar.Transmission}}</td>
+        </tr>
+        <tr *ngIf="userCar.SixMonthsTaxRate">
+            <td>SixMonths Tax Rate</td>
+            <td>{{userCar.SixMonthsTaxRate}}</td>
+        </tr>
     </tbody>
 </table>

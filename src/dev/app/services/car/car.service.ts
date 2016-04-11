@@ -6,7 +6,7 @@ import {HttpService} from './../../common/httpService/http.service';
 @Injectable()
 export class CarService extends HttpService {
     constructor(private http: Http) {
-        super(http, 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1/usercar/details=false');
+        super(http, 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1/usercar/details=true');
     }
 
     private _selectedCarId: string;
@@ -39,6 +39,15 @@ export class CarService extends HttpService {
     }
 
     get selectedCar(): any {
+        console.log(this.getCarById(this._selectedCarId))
         return this.getCarById(this._selectedCarId).UserCar;
+    }
+
+    get selectedCarMot(): any {
+        return this.getCarById(this._selectedCarId).MOT;
+    }
+
+    get selectedCarTax(): any {
+        return this.getCarById(this._selectedCarId).Tax;
     }
 }

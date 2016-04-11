@@ -1,6 +1,7 @@
 ﻿import {Component} from 'angular2/core';
 import {StatusComponent} from './status/status.component';
 import {WallComponent} from './wall/wall.component';
+import {CarService} from '../../../services/car/car.service';
 
 @Component({
     selector: 'content',
@@ -10,5 +11,16 @@ import {WallComponent} from './wall/wall.component';
 })
 
 export class CarComponent {
-    public sayHello: string = "Hello there !";
+    constructor(private _carService: CarService) { }
+
+    carLoaded: boolean = false;
+
+    ngAfterViewInit() {
+        this._carService.getCars().delay(150).subscribe(
+            (cars) => {
+                this.carLoaded = true;
+        });
+
+        jQuery.material.init();
+    }
 }
