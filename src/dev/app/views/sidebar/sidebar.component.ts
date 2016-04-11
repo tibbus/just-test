@@ -45,6 +45,9 @@ export class SidebarComponent {
         _.each(allItems, (car) => {
             if (route === car.route.toLowerCase()) {
                 itemName = car.name
+
+                // TODO : move this to correct place
+                this._carService.selectedCarId = car.id;
             }
         })
 
