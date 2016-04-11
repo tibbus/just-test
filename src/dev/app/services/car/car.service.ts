@@ -9,6 +9,8 @@ export class CarService extends HttpService {
         super(http, 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1/usercar/details=false');
     }
 
+    private _selectedCarId: string;
+
     getCars(forceRefresh?: boolean) {
         return this.getData().map(res => {
             return _.map(res, (carObject: any) => {
@@ -24,11 +26,19 @@ export class CarService extends HttpService {
         });
     }
 
-    getCarById(id: string) {
+    getCarById(id: string): any {
         const car = _.find(this.dataObject, (item: any) => {
             return item.UserCar.Id == id;
         });
 
         return car;
+    }
+
+    set selectedCarId(carId: string) {
+        this._selectedCarId = carId;
+    }
+
+    get selectedCar(): any {
+        return this.getCarById(this._selectedCarId).UserCar;
     }
 }

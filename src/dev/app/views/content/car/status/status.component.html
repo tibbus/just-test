@@ -22,6 +22,9 @@
 </div>
 
 <p class="status-text"><strong>Can't wait to meet up with the McLaren Crew tommorw morning!</strong></p>
+<div class="btn btn-raised btn-primary" data-toggle="modal" data-target="#myModal" (click)="onMenuClick('carDetailsModal')">Car Details</div>
+
 
 <video-modal *ngIf="modalName == 'videoModal'"></video-modal>
 <milestone-modal *ngIf="modalName == 'milestoneModal'"></milestone-modal>
+<car-details-modal *ngIf="modalName == 'carDetailsModal'"></car-details-modal>

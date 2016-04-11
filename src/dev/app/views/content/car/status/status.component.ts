@@ -1,13 +1,14 @@
 ﻿import {Component, ChangeDetectorRef} from 'angular2/core';
 import {VideoModalComponent} from './videoModal/videoModal.component';
 import {MilestoneModalComponent} from './milestoneModal/milestoneModal.component';
+import {CarDetailsModalComponent} from './carDetailsModal/carDetailsModal.component';
 import {ModalService} from '../../../../common/modal/modal.service';
 
 @Component({
     selector: 'status',
     styleUrls: ['src/dist/app/views/content/car/status/status.component.css'],
     templateUrl: 'src/dev/app/views/content/car/status/status.component.html',
-    directives: [VideoModalComponent, MilestoneModalComponent],
+    directives: [VideoModalComponent, MilestoneModalComponent, CarDetailsModalComponent],
     providers: [ModalService]
 })
 

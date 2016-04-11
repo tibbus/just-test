@@ -15,7 +15,8 @@ import {ProfileComponent} from './views/content/profile/profile.component';
 
 @RouteConfig([
         // Default Route
-        { path: '/', name: 'HomePage', redirectTo: ['Car', { id: '207shdi68' }] },
+        //{ path: '/', name: 'HomePage', redirectTo: ['Car', { id: '207shdi68' }] },
+        { path: '/', name: 'HomePage', redirectTo: ['Cars']},
         { path: '/cars', name: 'Cars', component: AllCarsComponent },
         { path: '/car/:id', name: 'Car', component: CarComponent },
         { path: '/documents', name: 'Documents', component: AllCarsComponent },

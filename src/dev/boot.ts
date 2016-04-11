@@ -8,6 +8,7 @@ import {AppComponent}     from './app/app.component';
 import {ROUTER_PROVIDERS} from 'angular2/router';
 import 'rxjs/Rx';
 import {ProfileService} from './app/services/profile/profile.service';
+import {CarService} from './app/services/car/car.service';
 import {HTTP_PROVIDERS}    from 'angular2/http';
 
-bootstrap(AppComponent, [ROUTER_PROVIDERS, HTTP_PROVIDERS, ProfileService]);
+bootstrap(AppComponent, [ROUTER_PROVIDERS, HTTP_PROVIDERS, ProfileService, CarService]);

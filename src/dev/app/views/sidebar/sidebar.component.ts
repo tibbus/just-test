@@ -6,8 +6,7 @@ import {CarService} from '../../services/car/car.service';
     selector: 'sidebar',
     styleUrls: ['src/dist/app/views/sidebar/sidebar.component.css'],
     templateUrl: 'src/dev/app/views/sidebar/sidebar.component.html',
-    directives: [ROUTER_DIRECTIVES],
-    providers: [CarService]
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class SidebarComponent {
@@ -33,6 +32,8 @@ export class SidebarComponent {
         this.selected = item.name;
 
         console.log(this._carService.getCarById(item.id));
+
+        this._carService.selectedCarId = item.id;
 
         this._router.navigate(['Car', { id: item.route }]);
     }
