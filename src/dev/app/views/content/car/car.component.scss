@@ -5,24 +5,15 @@
     background-color: #ffffff;
 }
 
-wall {
-    width: 720px;
-    min-height: calc(100% - 141px);
-    background-color: #ffffff;
-    //border: 2px solid lightgrey;
-    margin-top: 15px;
-    float: left;
-    padding: 10px;
-}
-
 timeline {
-    margin-left: 15px;
-    width: 164px;
-    min-height: calc(100% - 141px);
+    width: 90px;
     background-color: #ffffff;
-    //border: 2px solid lightgrey;
-    margin-top: 15px;
-    float: left;
+    position: fixed;
+    right: 0px;
+    top: 68px;
+    display: block;
+    height: 100%;
+    border: solid 2px #F3ECEC;
 
     .header {
         font-size: 16px;

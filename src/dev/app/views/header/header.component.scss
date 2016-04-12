@@ -1,4 +1,12 @@
-﻿.search {
+﻿:host {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 2;
+    display: block;
+}
+
+.search {
     width: 350px;
 }
 
@@ -29,17 +37,17 @@
     }
 }
 
-$content: 900px;
-$sidebar: 250px;
+$content: 762px;
+$sidebar: 192px;
 $logo: 90px;
-$padding: 15px;
+$padding: 25px;
 
 .navbar {
     min-width: $content + $sidebar + $padding;
 }
 
 .navbar-form {
-     margin-left: calc((100% + #{$sidebar} - #{$content} - #{$logo})/2);
+     margin-left: calc((100% + 50px - #{$content} - #{$logo})/2);
 }
 
 li:hover {

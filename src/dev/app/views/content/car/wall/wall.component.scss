@@ -1,4 +1,13 @@
-﻿.post-img {
+﻿:host {
+    width: 760px;
+    min-height: calc(100% - 141px);
+    background-color: #ffffff;
+    margin-top: 15px;
+    float: left;
+    padding: 10px;
+}
+
+.post-img {
     height: 75px;
     float: left;
 
@@ -87,4 +96,8 @@
     .post-img {
         height: 60px;
     }
+}
+
+.last {
+    margin-bottom: 40px;
 }

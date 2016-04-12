@@ -1,10 +1,25 @@
-﻿.left-buttons {
+﻿:host {
+    padding: 0 15px;
+    margin: 10px;
+    width: 192px;
+    height: 100%;
+    background: #FFFBFB;
+    display: block;
+    float: left;
+    position: fixed;
+    z-index: 2;
+    top: 60px;
+}
+
+.left-buttons {
     width: 100%;
 }
 
 .btn-group-vertical .btn {
-   margin: 10px 1px;
-   text-transform: none;
+    margin: 10px 1px;
+    text-transform: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .btn.selected, .btn.selected:focus {
@@ -23,6 +38,6 @@ h4 {
 }
 
 img {
-    margin-left: 30px;
+    margin-left: 3px;
     cursor: pointer;
 }
