@@ -6,13 +6,15 @@ import {CarDetailsModalComponent} from './carDetailsModal/carDetailsModal.compon
 import {TaxDetailsModalComponent} from './taxDetailsModal/taxDetailsModal.component';
 import {MotDetailsModalComponent} from './motDetailsModal/motDetailsModal.component';
 import {CarService} from '../../../../services/car/car.service';
+import {RegNumberPipe} from './regNumber.pipe';
 
 @Component({
     selector: 'status',
     styleUrls: ['src/dist/app/views/content/car/status/status.component.css'],
     templateUrl: 'src/dev/app/views/content/car/status/status.component.html',
     directives: [VideoModalComponent, MilestoneModalComponent, CarDetailsModalComponent, TaxDetailsModalComponent, MotDetailsModalComponent],
-    providers: [ModalService]
+    providers: [ModalService],
+    pipes: [RegNumberPipe]
 })
 
 export class StatusComponent {

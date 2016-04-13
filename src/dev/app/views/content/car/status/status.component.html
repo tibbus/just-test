@@ -24,7 +24,7 @@
 <p class="status-text"><strong>Can't wait to meet up with the McLaren Crew tommorw morning!</strong></p>
 
 <span class="make">{{carMake}}</span>
-<span class="label label-primary reg-number">{{carRegNumber}}</span>
+<span class="label label-primary reg-number">{{carRegNumber | regNumber}}</span>
 
 <div class="btn btn-info btn-raised details" data-toggle="modal" data-target="#myModal" (click)="onMenuClick('taxDetailsModal')">Tax details</div>
 <div class="btn btn-info btn-raised details" data-toggle="modal" data-target="#myModal" (click)="onMenuClick('motDetailsModal')">MOT details</div>

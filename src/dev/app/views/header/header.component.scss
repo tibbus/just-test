@@ -41,13 +41,14 @@ $content: 762px;
 $sidebar: 192px;
 $logo: 90px;
 $padding: 25px;
+$timeLine: 90px;
 
 .navbar {
-    min-width: $content + $sidebar + $padding;
+    min-width: $content + $sidebar + $padding + $timeLine;
 }
 
 .navbar-form {
-     margin-left: calc((100% + 50px - #{$content} - #{$logo})/2);
+     margin-left: calc((100% + #{$timeLine} - #{$content} - #{$logo})/2);
 }
 
 li:hover {
