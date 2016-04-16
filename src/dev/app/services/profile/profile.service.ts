@@ -8,7 +8,7 @@ import {HttpService} from './../../common/httpService/http.service';
 @Injectable()
 export class ProfileService extends HttpService{
     constructor(private http: Http) {
-        super(http, 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1');
+        super(http, '/user/1');
     }
 
     getProfile() {

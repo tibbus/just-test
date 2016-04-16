@@ -6,7 +6,7 @@ import {HttpService} from './../../common/httpService/http.service';
 @Injectable()
 export class CarService extends HttpService {
     constructor(private http: Http) {
-        super(http, 'http://amilatestapi-dev.azurewebsites.net/api/v1/user/1/usercar/details=true');
+        super(http, '/user/1/usercar/details=true');
     }
 
     private _selectedCarId: string;
