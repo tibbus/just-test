@@ -26,15 +26,14 @@ export class ProfileComponent {
         this.profileLoading = true;
 
         this._profileService.getProfile()
-            // TODO : testing delay, to be removed
-            //.delay(3000)
             .subscribe(
-            (profile: Profile) => {
-                this.profileLoading = false;
+                (profile: Profile) => {
+                    this.profileLoading = false;
 
-                this.profile = profile;
-            },
-            error => this.handleError(error));
+                    this.profile = profile;
+                },
+                error => this.handleError(error)
+             );
     }
 
     saveProfile() {
@@ -42,8 +41,6 @@ export class ProfileComponent {
         this.loading = true;
 
         this._profileService.setProfile(this.profile)
-            // TODO : testing delay, to be removed
-            //.delay(2000)
             .subscribe(
             profile => {
                 this.loading = false;
@@ -59,7 +56,6 @@ export class ProfileComponent {
     }
 
     private handleError(error: Response) {
-    // TODO : testing delay, to be removed
         setTimeout(() => {
             this.loading = false;
             this.profileLoading = false;
