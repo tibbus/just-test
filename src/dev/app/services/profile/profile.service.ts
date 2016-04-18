@@ -16,11 +16,12 @@ export class ProfileService extends HttpService{
     }
 
     setProfile(profile: Profile) {
-        let body = JSON.stringify(profile);
-        let headers = new Headers({ 'content-type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        const body = JSON.stringify(profile);
 
-        return this.http.put('http://amilatestapi-prod.azurewebsites.net/api/v1/user/1', body, options)
+        return this.http.request('/user/1', {
+                body: body,
+                method: 'PUT'
+            })
             .map((res) => {
                 console.log(res);
                 <Profile>res.json()
