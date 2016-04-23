@@ -26,7 +26,7 @@ import {ProfileComponent} from './views/content/profile/profile.component';
 ])
 
 export class AppComponent {
-    ngAfterViewInit() {
+    ngOnInit() {
         jQuery.material.init();
     }
 }

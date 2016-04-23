@@ -20,7 +20,5 @@ export class CarComponent {
             (cars) => {
                 this.carLoaded = true;
         });
-
-        jQuery.material.init();
     }
 }
