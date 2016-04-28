@@ -1,0 +1,14 @@
+﻿@import "mixins";
+
+h1 {
+    margin-top: 30px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+:host {
+    @include content-default;
+
+    padding: 30px 100px;
+}

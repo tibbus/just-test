@@ -5,6 +5,7 @@ import {SidebarComponent} from './views/sidebar/sidebar.component';
 import {AllCarsComponent} from './views/content/allCars/allCars.component';
 import {CarComponent} from './views/content/car/car.component';
 import {ProfileComponent} from './views/content/profile/profile.component';
+import {NotFoundComponent} from './views/content/notFound/notFound.component';
 
 @Component({
     selector: 'car-app',
@@ -14,15 +15,14 @@ import {ProfileComponent} from './views/content/profile/profile.component';
 })
 
 @RouteConfig([
-        // Default Route
-        //{ path: '/', name: 'HomePage', redirectTo: ['Car', { id: '207shdi68' }] },
         { path: '/', name: 'HomePage', redirectTo: ['Cars']},
         { path: '/cars', name: 'Cars', component: AllCarsComponent },
         { path: '/car/:id', name: 'Car', component: CarComponent },
         { path: '/documents', name: 'Documents', component: AllCarsComponent },
         { path: '/folder', name: 'Folder', component: AllCarsComponent },
         { path: '/library', name: 'Library', component: AllCarsComponent },
-        { path: '/profile', name: 'Profile', component: ProfileComponent }      
+        { path: '/profile', name: 'Profile', component: ProfileComponent },    
+        { path: '/*ErrorRoutes', name: 'NotFound', component: NotFoundComponent }
 ])
 
 export class AppComponent {

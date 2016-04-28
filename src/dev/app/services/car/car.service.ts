@@ -39,7 +39,10 @@ export class CarService extends HttpService {
     }
 
     get selectedCar(): any {
-        console.log(this.getCarById(this._selectedCarId))
+        if (!this.getCarById(this._selectedCarId)) {
+            return false;
+        }
+
         return this.getCarById(this._selectedCarId).UserCar;
     }
 
