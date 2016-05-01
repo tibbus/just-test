@@ -1,0 +1,19 @@
+﻿.left-buttons {
+    width: 100%;
+}
+
+.btn-group-vertical .btn {
+    margin: 10px 1px;
+    text-transform: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn.selected, .btn.selected:focus {
+    background: #009688;
+    color: #ffffff;
+}
+
+h4 {
+    color: grey;
+}

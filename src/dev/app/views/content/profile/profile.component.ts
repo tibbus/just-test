@@ -4,6 +4,7 @@ import {ProfileService} from '../../../services/profile/profile.service';
 import {Profile} from '../../../services/profile/profile';
 import {LoadingComponent} from '../../../common/loading/loading.component';
 import {AlertComponent} from '../../../common/alert/alert.component';
+import {SidebarService} from './../../sidebar/sidebar.service';
 
 @Component({
     selector: 'profile',
@@ -13,7 +14,7 @@ import {AlertComponent} from '../../../common/alert/alert.component';
 })
 
 export class ProfileComponent {
-    constructor(private _profileService: ProfileService) { }
+    constructor(private _profileService: ProfileService, private _sidebarService: SidebarService) { }
 
     profile: Profile;
     message: string;
@@ -52,6 +53,8 @@ export class ProfileComponent {
     }
 
     ngOnInit() {
+        this._sidebarService.unSelectMenus(); 
+
         this.getProfile();
     }
 

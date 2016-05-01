@@ -13,11 +13,13 @@ import {AppComponent} from './app/app.component';
 import {CustomRequestOptions} from './app/common/httpService/baseRequest';
 import {ProfileService} from './app/services/profile/profile.service';
 import {CarService} from './app/services/car/car.service';
+import {SidebarService} from './app/views/sidebar/sidebar.service';
 
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
     provide(RequestOptions, { useClass: CustomRequestOptions }),
     ProfileService,
-    CarService
+    CarService,
+    SidebarService
 ]);
