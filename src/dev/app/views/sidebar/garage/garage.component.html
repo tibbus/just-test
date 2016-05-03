@@ -4,11 +4,20 @@
 </h4>
 
 <div class="btn-group-vertical left-buttons">
-    <a href="javascript:void(0)" class="btn btn-raised" 
-       *ngFor="#car of cars"
-       [class.selected]="car.name === selected"
-       (click)="onCarSelect(car)">
-        {{car.name}}
-    </a>
+    <div class="menu-item"
+        *ngFor="#car of cars"
+    >
+        <a href="javascript:void(0)" class="btn btn-raised"
+           [class.selected]="car.name === selected"
+           (click)="onCarSelect(car)">
+            {{car.name}}
+        </a>
+        <div *ngIf="car.name === selected" class="sublinks-wrapper">
+            <a class="btn btn-link">Car details</a>
+            <a class="btn btn-link">MOT details</a>
+            <a class="btn btn-link">Tax details</a>
+        </div>
+    </div>
+
 </div>
 

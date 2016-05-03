@@ -1,12 +1,23 @@
-﻿.left-buttons {
+﻿.sublinks-wrapper {
+    background-color: #AEABAB;
+}
+
+.btn-link {
+    color: white;
+}
+
+a, .left-buttons {
     width: 100%;
 }
 
 .btn-group-vertical .btn {
-    margin: 10px 1px;
     text-transform: none;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.menu-item {
+    width: 100%;
 }
 
 .btn.selected, .btn.selected:focus {
