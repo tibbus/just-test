@@ -1,5 +1,12 @@
 ﻿.sublinks-wrapper {
     background-color: #AEABAB;
+    height: 0px;
+    transition: 0.2s;
+    overflow: hidden;
+}
+
+.active {
+    height: 100px;
 }
 
 .btn-link {

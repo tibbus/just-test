@@ -12,7 +12,9 @@
            (click)="onCarSelect(car)">
             {{car.name}}
         </a>
-        <div *ngIf="car.name === selected" class="sublinks-wrapper">
+        <div  
+              [class.active]="car.name === selected"
+             class="sublinks-wrapper">
             <a class="btn btn-link">Car details</a>
             <a class="btn btn-link">MOT details</a>
             <a class="btn btn-link">Tax details</a>
