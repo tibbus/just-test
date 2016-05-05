@@ -17,8 +17,10 @@ export class SidebarComponent {
         { name: 'Shared Folder', route: 'Folder' },
         { name: 'Public Library', route: 'Library' }
     ];
+    modalName: string;
 
-    constructor(private _router: Router, private _sidebarService: SidebarService) { }
+    constructor(private _router: Router, private _sidebarService: SidebarService) {
+    }
 
     ngOnInit() {
         this._sidebarService.unSelect$

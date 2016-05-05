@@ -1,4 +1,5 @@
 ﻿import {Component, ChangeDetectorRef} from 'angular2/core';
+import {ModalService} from './../../../common/modal/modal.service';
 import {ROUTER_DIRECTIVES, Router, Location} from 'angular2/router';
 import {CarService} from '../../../services/car/car.service';
 import {SidebarService} from './../sidebar.service';
@@ -14,7 +15,13 @@ export class GarageComponent {
     private selected: string;
     private cars: any[] = [];
 
-    constructor(private _router: Router, private _location: Location, private _carService: CarService, private _sidebarService: SidebarService) { }
+    constructor(
+        private _router: Router,
+        private _location: Location,
+        private _carService: CarService,
+        private _sidebarService: SidebarService,
+        private _modalService: ModalService
+    ) { }
 
     private ngOnInit() {
         this.getCars();
@@ -24,6 +31,11 @@ export class GarageComponent {
             () => {
                 this.selected = null;
             });
+    }
+
+    // sub menu car details
+    onMenuClick(modalName: string) {
+        this._modalService.setModalName(modalName);
     }
 
     // Navigate to the selected Car on menu Click

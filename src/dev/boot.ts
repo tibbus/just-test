@@ -2,6 +2,7 @@
 /// <reference path="../../typings/jquery/jquery.d.ts" />
 /// <reference path="../../typings/lodash/lodash.d.ts" />
 /// <reference path="../../typings/bootstrap-material-design/bootstrap-material-design.d.ts" />
+/// <reference path="../../typings/bootstrap/bootstrap.d.ts" />
 
 import 'rxjs/Rx';
 import {bootstrap} from 'angular2/platform/browser';
@@ -14,6 +15,7 @@ import {CustomRequestOptions} from './app/common/httpService/baseRequest';
 import {ProfileService} from './app/services/profile/profile.service';
 import {CarService} from './app/services/car/car.service';
 import {SidebarService} from './app/views/sidebar/sidebar.service';
+import {ModalService} from './app/common/modal/modal.service';
 
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
@@ -21,5 +23,6 @@ bootstrap(AppComponent, [
     provide(RequestOptions, { useClass: CustomRequestOptions }),
     ProfileService,
     CarService,
-    SidebarService
+    SidebarService,
+    ModalService
 ]);

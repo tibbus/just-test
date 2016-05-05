@@ -13,17 +13,20 @@ import {RegNumberPipe} from './regNumber.pipe';
     styleUrls: ['src/dist/app/views/content/car/status/status.component.css'],
     templateUrl: 'src/dev/app/views/content/car/status/status.component.html',
     directives: [VideoModalComponent, MilestoneModalComponent, CarDetailsModalComponent, TaxDetailsModalComponent, MotDetailsModalComponent],
-    providers: [ModalService],
     pipes: [RegNumberPipe]
 })
 
 export class StatusComponent {
     constructor(private _modalService: ModalService, private ref: ChangeDetectorRef, private _carService: CarService) {
+        // on modal open/close :
         _modalService.modalName.subscribe(
             modalName => {
                 this.modalName = modalName;
 
                 this.ref.detectChanges();
+
+                // open the modal
+                jQuery('#myModal').modal('show');
             })
     }  
 
