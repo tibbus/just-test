@@ -5,7 +5,7 @@
 
 <div class="btn-group-vertical left-buttons">
     <div class="menu-item"
-        *ngFor="#car of cars"
+        *ngFor="let car of cars"
     >
         <a href="javascript:void(0)" class="btn btn-raised"
            [class.selected]="car.name === selected"

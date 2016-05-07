@@ -1,7 +1,7 @@
-﻿import {Component} from 'angular2/core';
+﻿import {Component} from '@angular/core';
 import {ProfileService} from '../../services/profile/profile.service';
 import {Profile} from '../../services/profile/profile';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
 @Component({
     selector: 'header',

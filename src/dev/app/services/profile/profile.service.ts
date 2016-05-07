@@ -1,8 +1,8 @@
-import {Injectable}     from 'angular2/core';
-import {Http, Response, Headers, RequestOptions} from 'angular2/http';
+import {Injectable}     from '@angular/core';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Profile} from './profile';
 import {Observable}       from 'rxjs/Observable';
-import {ReplaySubject}    from 'rxjs/subject/ReplaySubject';
+import {ReplaySubject}    from 'rxjs/ReplaySubject';
 import {HttpService} from './../../common/httpService/http.service';
 
 @Injectable()

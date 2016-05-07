@@ -7,7 +7,7 @@
 
 <div class="btn-group-vertical left-buttons">
     <a href="javascript:void(0)" class="btn btn-raised"
-       *ngFor="#doc of docs"
+       *ngFor="let doc of docs"
        [class.selected]="doc.name === selected"
        (click)="onSelect(doc.name)"
        [routerLink]="[doc.route]"

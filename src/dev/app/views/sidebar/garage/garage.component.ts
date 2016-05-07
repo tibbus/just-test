@@ -1,6 +1,6 @@
-﻿import {Component, ChangeDetectorRef} from 'angular2/core';
+﻿import {Component, ChangeDetectorRef} from '@angular/core';
 import {ModalService} from './../../../common/modal/modal.service';
-import {ROUTER_DIRECTIVES, Router, Location} from 'angular2/router';
+import {ROUTER_DIRECTIVES, Router} from '@angular/router-deprecated';
 import {CarService} from '../../../services/car/car.service';
 import {SidebarService} from './../sidebar.service';
 
@@ -17,7 +17,6 @@ export class GarageComponent {
 
     constructor(
         private _router: Router,
-        private _location: Location,
         private _carService: CarService,
         private _sidebarService: SidebarService,
         private _modalService: ModalService
@@ -84,7 +83,7 @@ export class GarageComponent {
 
     // Update the selected Car in the menu when the URL change
     updateSelectedCarMenu() {
-        const path = this._location.path();
+        const path = window.location.pathname;
         const currentRoute = this.getCurrentRoute(path);
 
         this.selected = this.getCarByRoute(currentRoute);

@@ -1,8 +1,8 @@
-﻿import {Component} from 'angular2/core';
+﻿import {Component} from '@angular/core';
 import {StatusComponent} from './status/status.component';
 import {WallComponent} from './wall/wall.component';
 import {CarService} from '../../../services/car/car.service';
-import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
 @Component({
     selector: 'content',

@@ -1,12 +1,13 @@
-﻿import {Component, ChangeDetectorRef} from 'angular2/core';
-import {ModalService} from '../../../../common/modal/modal.service';
-import {VideoModalComponent} from './videoModal/videoModal.component';
-import {MilestoneModalComponent} from './milestoneModal/milestoneModal.component';
-import {CarDetailsModalComponent} from './carDetailsModal/carDetailsModal.component';
-import {TaxDetailsModalComponent} from './taxDetailsModal/taxDetailsModal.component';
-import {MotDetailsModalComponent} from './motDetailsModal/motDetailsModal.component';
-import {CarService} from '../../../../services/car/car.service';
-import {RegNumberPipe} from './regNumber.pipe';
+﻿import { Component, ChangeDetectorRef } from '@angular/core';
+import { ModalService } from '../../../../common/modal/modal.service';
+import { VideoModalComponent } from './videoModal/videoModal.component';
+import { MilestoneModalComponent } from './milestoneModal/milestoneModal.component';
+import { CarDetailsModalComponent } from './carDetailsModal/carDetailsModal.component';
+import { TaxDetailsModalComponent } from './taxDetailsModal/taxDetailsModal.component';
+import { MotDetailsModalComponent } from './motDetailsModal/motDetailsModal.component';
+import { CarService } from '../../../../services/car/car.service';
+import { RegNumberPipe } from './regNumber.pipe';
+import { Subscription }    from 'rxjs/Subscription';
 
 @Component({
     selector: 'status',
@@ -17,9 +18,11 @@ import {RegNumberPipe} from './regNumber.pipe';
 })
 
 export class StatusComponent {
-    constructor(private _modalService: ModalService, private ref: ChangeDetectorRef, private _carService: CarService) {
+    private modalSubscription: Subscription;
+
+    constructor(private modalService: ModalService, private ref: ChangeDetectorRef, private _carService: CarService) {
         // on modal open/close :
-        _modalService.modalName.subscribe(
+        this.modalSubscription = modalService.modalName.subscribe(
             modalName => {
                 this.modalName = modalName;
 
@@ -27,7 +30,11 @@ export class StatusComponent {
 
                 // open the modal
                 jQuery('#myModal').modal('show');
-            })
+            });
+    }
+    
+    ngOnDestroy() {
+        this.modalSubscription.unsubscribe();
     }  
 
     modalName: string;

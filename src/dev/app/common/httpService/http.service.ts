@@ -1,6 +1,6 @@
-import {Injectable}     from 'angular2/core';
-import {Http} from 'angular2/http';
-import {ReplaySubject}    from 'rxjs/subject/ReplaySubject';
+import {Injectable}     from '@angular/core';
+import {Http} from '@angular/http';
+import {ReplaySubject}    from 'rxjs/ReplaySubject';
 
 export abstract class HttpService {
     constructor(private _http: Http, public url: string) { }

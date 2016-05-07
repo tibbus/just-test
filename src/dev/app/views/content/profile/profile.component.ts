@@ -1,5 +1,5 @@
-﻿import {Component} from 'angular2/core';
-import {HTTP_PROVIDERS, Response}    from 'angular2/http';
+﻿import {Component} from '@angular/core';
+import {HTTP_PROVIDERS, Response}    from '@angular/http';
 import {ProfileService} from '../../../services/profile/profile.service';
 import {Profile} from '../../../services/profile/profile';
 import {LoadingComponent} from '../../../common/loading/loading.component';

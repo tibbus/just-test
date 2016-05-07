@@ -1,4 +1,4 @@
-import {BaseRequestOptions, RequestOptions, RequestOptionsArgs} from 'angular2/http';
+import {BaseRequestOptions, RequestOptions, RequestOptionsArgs} from '@angular/http';
 
 export class CustomRequestOptions extends BaseRequestOptions {
     
