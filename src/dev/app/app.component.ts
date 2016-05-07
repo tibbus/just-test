@@ -6,6 +6,7 @@ import {AllCarsComponent} from './views/content/allCars/allCars.component';
 import {CarComponent} from './views/content/car/car.component';
 import {ProfileComponent} from './views/content/profile/profile.component';
 import {NotFoundComponent} from './views/content/notFound/notFound.component';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'car-app',

@@ -10,7 +10,8 @@
     'app':                        'src/dist', // 'dist',
     'rxjs':                       'node_modules/rxjs',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
-    '@angular':                   'node_modules/@angular'
+    '@angular': 'node_modules/@angular',
+    'lodash': 'node_modules/lodash/lodash.js',
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -29,7 +30,7 @@
     '@angular/platform-browser-dynamic',
     '@angular/router-deprecated',
     '@angular/testing',
-    '@angular/upgrade',
+    '@angular/upgrade'
   ];
 
   // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }

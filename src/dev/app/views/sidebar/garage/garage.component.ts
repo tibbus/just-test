@@ -3,6 +3,7 @@ import {ModalService} from './../../../common/modal/modal.service';
 import {ROUTER_DIRECTIVES, Router} from '@angular/router-deprecated';
 import {CarService} from '../../../services/car/car.service';
 import {SidebarService} from './../sidebar.service';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'garage',

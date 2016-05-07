@@ -2,6 +2,7 @@ import {Injectable}     from '@angular/core';
 import {Http} from '@angular/http';
 import {ReplaySubject}    from 'rxjs/ReplaySubject';
 import {HttpService} from './../../common/httpService/http.service';
+import * as _ from 'lodash';
 
 @Injectable()
 export class CarService extends HttpService {
