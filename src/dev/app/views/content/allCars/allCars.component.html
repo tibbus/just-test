@@ -1,1 +1,10 @@
-<h1>Under construction !</h1>
+<h1>My cars</h1>
+
+<div *ngFor="let car of cars">
+    <div class="well">
+        <span>{{car.name}}</span> <span class="glyphicon glyphicon-trash remove"></span>
+    </div>
+        
+</div>
+
+<a href="javascript:void(0)" class="btn btn-info btn-lg btn-block btn-raised ">Add a new car</a>

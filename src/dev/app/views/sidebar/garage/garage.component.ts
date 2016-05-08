@@ -1,4 +1,4 @@
-﻿import {Component, ChangeDetectorRef} from '@angular/core';
+﻿import {Component, ChangeDetectorRef, OnInit} from '@angular/core';
 import {ModalService} from './../../../common/modal/modal.service';
 import {ROUTER_DIRECTIVES, Router} from '@angular/router-deprecated';
 import {CarService} from '../../../services/car/car.service';
@@ -12,7 +12,7 @@ import * as _ from 'lodash';
     directives: [ROUTER_DIRECTIVES]
 })
 
-export class GarageComponent {
+export class GarageComponent implements OnInit{
     private selected: string;
     private cars: any[] = [];
 
@@ -23,13 +23,18 @@ export class GarageComponent {
         private _modalService: ModalService
     ) { }
 
-    private ngOnInit() {
+    ngOnInit() {
         this.getCars();
+
+        if (window.location.pathname === '/garage') {
+            this.selected = 'garage';
+        }
 
         this._sidebarService.unSelect$
             .subscribe(
             () => {
                 this.selected = null;
+
             });
     }
 
@@ -47,6 +52,12 @@ export class GarageComponent {
         this._carService.selectedCarId = car.id;
 
         this._router.navigate(['Car', { id: car.route }]);
+    }
+
+    onGarageSelect() {
+        this._sidebarService.unSelectMenus();
+
+        this.selected = 'garage';
     }
 
     getCarByRoute(route: string): string {
@@ -76,7 +87,9 @@ export class GarageComponent {
                 this.cars = cars;
 
                 // Update the selected Car in the menu when the URL change
-                this.updateSelectedCarMenu();
+                if (window.location.pathname !== '/garage') {
+                    this.updateSelectedCarMenu();
+                }
             },
             error => this.handleError(error)
         );

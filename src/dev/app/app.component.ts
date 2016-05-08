@@ -16,12 +16,13 @@ import * as _ from 'lodash';
 })
 
 @RouteConfig([
-        { path: '/', name: 'HomePage', redirectTo: ['Cars']},
-        { path: '/cars', name: 'Cars', component: AllCarsComponent },
+        { path: '/', name: 'HomePage', redirectTo: ['Garage']},
+        { path: '/feed', name: 'Feed', component: NotFoundComponent },
+        { path: '/garage', name: 'Garage', component: AllCarsComponent },
         { path: '/car/:id', name: 'Car', component: CarComponent },
-        { path: '/documents', name: 'Documents', component: AllCarsComponent },
-        { path: '/folder', name: 'Folder', component: AllCarsComponent },
-        { path: '/library', name: 'Library', component: AllCarsComponent },
+        { path: '/documents', name: 'Documents', component: NotFoundComponent },
+        { path: '/folder', name: 'Folder', component: NotFoundComponent },
+        { path: '/library', name: 'Library', component: NotFoundComponent },
         { path: '/profile', name: 'Profile', component: ProfileComponent },    
         { path: '/*ErrorRoutes', name: 'NotFound', component: NotFoundComponent }
 ])

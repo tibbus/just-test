@@ -28,6 +28,10 @@ export class SidebarComponent {
                 () => {
                     this.selected = null;
             });
+
+        if (window.location.pathname === '/feed') {
+            this.selected = 'feed';
+        }
     }
 
     onSelect(item: string) {

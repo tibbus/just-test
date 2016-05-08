@@ -4,6 +4,11 @@
 </h4>
 
 <div class="btn-group-vertical left-buttons">
+
+    <a href="javascript:void(0)" class="btn btn-raised garage" [routerLink]="['Garage']" [class.selected]="selected === 'garage'" (click)="onGarageSelect()">
+        Garage
+    </a>
+
     <div class="menu-item"
         *ngFor="let car of cars"
     >

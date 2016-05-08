@@ -46,3 +46,15 @@ img {
     width: 115px;
     display: inline-block;
 }
+
+.my-feed {
+    left: 10px;
+    position: absolute;
+    color: green;
+}
+
+a.selected {
+    .my-feed {
+        color: #ffffff;
+    }
+}
