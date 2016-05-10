@@ -9,6 +9,7 @@ import { CarService } from '../../../services/car/car.service';
 
 export class AllCarsComponent implements OnInit {
     private cars: any;
+    regNumber: string;
 
     constructor(private carService: CarService) { }
 
@@ -23,6 +24,19 @@ export class AllCarsComponent implements OnInit {
             },
             error => this.handleError(error)
         );
+    }
+
+    onKey(value: string) {
+        this.regNumber = value;
+    }
+
+    onRegNumberSubmit() {
+        this.carService.addCar(this.regNumber)
+            .subscribe(
+                () => {
+                    console.log('request sent')
+                },
+                error => this.handleError(error));
     }
 
     handleError(error: Error) {

@@ -27,6 +27,15 @@ export class CarService extends HttpService {
         });
     }
 
+    addCar(regNumber: string) {
+        const apiUrl = `/user/1/usercar/registration/${regNumber}`;
+
+        return this.http.request(apiUrl, {
+            body: null,
+            method: 'POST'
+        });
+    }
+
     getCarById(id: string): any {
         const car = _.find(this.dataObject, (item: any) => {
             return item.UserCar.Id == id;

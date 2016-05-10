@@ -22,11 +22,14 @@ a .glyphicon {
 .remove {
     float: right;
     font-size: 25px;
-    /* color: red; */
     cursor: pointer;
 }
 
 .remove:hover {
     color: red;
     font-weight: bold;
+}
+
+.panel-info {
+    margin-top: 95px;
 }
