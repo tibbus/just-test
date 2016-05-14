@@ -1,8 +1,16 @@
-<h1>My cars</h1>
+<div>
+    <h1>My cars</h1>
+    <loading *ngIf="loading"></loading>
+</div>
 
 <div *ngFor="let car of cars">
     <div class="well">
-        <span>{{car.name}}</span> <span class="glyphicon glyphicon-trash remove"></span>
+        <span>{{car.name}}</span> 
+        <a class="btn glyphicon glyphicon-trash remove" 
+            (click)="clickRemove(car.id)"
+            [class.disabled]="loading"
+        >
+        </a>
     </div>
 
 </div>
@@ -15,12 +23,13 @@
         <div class="form-group label-floating">
             <div class="input-group">
                 <label class="control-label">Enter the Registration Number</label>
-                <input type="text" class="form-control" #box (keyup)="onKey(box.value)">
+                <input type="text" class="form-control" #box (keyup)="changeRegNumber(box.value)">
                 <p class="help-block">You need to enter a valid <code>Registration Number</code> in order to add a car.</p>
                 <span class="input-group-btn">
-                    <a class="btn btn-raised btn-success" (click)="onRegNumberSubmit()">
+                    <a class="btn btn-raised btn-success" 
+                       [class.disabled]="loading"
+                       (click)="clickAddCar()">
                         <span class="save-text">add</span>
-                        <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
                     </a>
                 </span>
             </div>

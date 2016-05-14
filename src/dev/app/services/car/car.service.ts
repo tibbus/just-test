@@ -14,14 +14,16 @@ export class CarService extends HttpService {
     private _selectedCarId: string;
 
     getCars(forceRefresh?: boolean) {
-        return this.getData().map(res => {
+        return this.getData(forceRefresh).map(res => {
             return _.map(res, (carObject: any) => {
-                const carName: string = _.get(carObject, 'CarInfo.Car.Model', null);
+                const carMake: string = _.get(carObject, 'CarInfo.Car.Make', null);
+                const carModel: string = _.get(carObject, 'CarInfo.Car.Model', null);
+                const carName: string = `${carMake} ${carModel}`;
                 const carId: string = carObject.Id;
 
                 return {
                     name: carName,
-                    route: carName.replace(/ /g, '').toLocaleLowerCase(),
+                    route: carName.replace(/ /g, '-').toLocaleLowerCase(),
                     id: carId
                 }
             });
@@ -34,6 +36,15 @@ export class CarService extends HttpService {
         return this.http.request(apiUrl, {
             body: null,
             method: 'POST'
+        });
+    }
+
+    removeCar(id: string) {
+        const apiUrl = `${this.apiService.userRemoveCar}${id}`;
+
+        return this.http.request(apiUrl, {
+            body: null,
+            method: 'DELETE'
         });
     }
 
