@@ -1,8 +1,10 @@
-﻿import {Component} from '@angular/core';
-import {StatusComponent} from './status/status.component';
-import {WallComponent} from './wall/wall.component';
-import {CarService} from '../../../services/car/car.service';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+﻿import { Component } from '@angular/core';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+
+import { StatusComponent } from './status/status.component';
+import { WallComponent } from './wall/wall.component';
+import { CarService } from '../../../services/index';
+
 
 @Component({
     selector: 'content',
@@ -12,15 +14,15 @@ import {Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 })
 
 export class CarComponent {
-    constructor(private _carService: CarService, private _router: Router) { }
+    constructor(private carService: CarService, private router: Router) { }
 
     carLoaded: boolean = false;
 
     ngOnInit() {
-        this._carService.getCars().delay(150).subscribe(
+        this.carService.getCars().delay(150).subscribe(
             (cars) => {
-                if (!this._carService.selectedCar) {
-                    this._router.navigate(['NotFound']);
+                if (!this.carService.selectedCar) {
+                    this.router.navigate(['NotFound']);
 
                     return;
                 }

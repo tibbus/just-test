@@ -1,13 +1,14 @@
-﻿import {Component, ChangeDetectorRef} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router} from '@angular/router-deprecated';
-import {GarageComponent} from './garage/garage.component';
-import {SidebarService} from './sidebar.service';
+﻿import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
+
+import { GarageMenuComponent } from './garageMenu/garageMenu.component';
+import { SidebarService } from '../../services/index';
 
 @Component({
     selector: 'sidebar',
     styleUrls: ['src/dist/app/views/sidebar/sidebar.component.css'],
     templateUrl: 'src/dev/app/views/sidebar/sidebar.component.html',
-    directives: [ROUTER_DIRECTIVES, GarageComponent]
+    directives: [ROUTER_DIRECTIVES, GarageMenuComponent]
 })
 
 export class SidebarComponent {

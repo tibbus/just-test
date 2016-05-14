@@ -1,7 +1,8 @@
-﻿import {Component} from '@angular/core';
-import {ProfileService} from '../../services/profile/profile.service';
-import {Profile} from '../../services/profile/profile';
-import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+﻿import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+
+import { ProfileService } from '../../services/profile/profile.service';
+import { Profile } from '../../services/profile/profile';
 
 @Component({
     selector: 'header',

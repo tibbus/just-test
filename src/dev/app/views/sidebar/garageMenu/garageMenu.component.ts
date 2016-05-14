@@ -1,18 +1,17 @@
-﻿import {Component, ChangeDetectorRef, OnInit} from '@angular/core';
-import {ModalService} from './../../../common/modal/modal.service';
-import {ROUTER_DIRECTIVES, Router} from '@angular/router-deprecated';
-import {CarService} from '../../../services/car/car.service';
-import {SidebarService} from './../sidebar.service';
+﻿import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
 import * as _ from 'lodash';
+
+import { CarService, SidebarService, ModalService } from '../../../services/index';
 
 @Component({
     selector: 'garage',
-    styleUrls: ['src/dist/app/views/sidebar/garage/garage.component.css'],
-    templateUrl: 'src/dev/app/views/sidebar/garage/garage.component.html',
+    styleUrls: ['src/dist/app/views/sidebar/garageMenu/garageMenu.component.css'],
+    templateUrl: 'src/dev/app/views/sidebar/garageMenu/garageMenu.component.html',
     directives: [ROUTER_DIRECTIVES]
 })
 
-export class GarageComponent implements OnInit{
+export class GarageMenuComponent implements OnInit{
     private selected: string;
     private cars: any[] = [];
 

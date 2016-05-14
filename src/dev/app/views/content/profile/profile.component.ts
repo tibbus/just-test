@@ -1,11 +1,10 @@
 ﻿import { Component } from '@angular/core';
-import { HTTP_PROVIDERS, Response }    from '@angular/http';
-import { ProfileService } from '../../../services/index';
+import { HTTP_PROVIDERS, Response } from '@angular/http';
+
+import { ProfileService, SidebarService, AlertService } from '../../../services/index';
 import { Profile } from '../../../services/profile/profile';
 import { LoadingComponent } from '../../../common/loading/loading.component';
 import { AlertComponent } from '../../../common/alert/alert.component';
-import { SidebarService } from './../../sidebar/sidebar.service';
-import { AlertService } from '../../../common/alert/alert.service';
 
 @Component({
     selector: 'profile',

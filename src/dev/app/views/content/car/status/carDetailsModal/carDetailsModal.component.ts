@@ -1,7 +1,7 @@
 ﻿import {Component} from '@angular/core';
 import {ContentComponent} from './content/content.component';
 import {ModalComponent} from '../../../../../common/modal/modal.component';
-import {ModalService} from '../../../../../common/modal/modal.service';
+import {ModalService} from '../../../../../services/index';
 
 @Component({
     selector: 'car-details-modal',

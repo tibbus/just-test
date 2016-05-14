@@ -1,13 +1,15 @@
 ﻿import { Component, ChangeDetectorRef } from '@angular/core';
-import { ModalService } from '../../../../common/modal/modal.service';
-import { VideoModalComponent } from './videoModal/videoModal.component';
-import { MilestoneModalComponent } from './milestoneModal/milestoneModal.component';
-import { CarDetailsModalComponent } from './carDetailsModal/carDetailsModal.component';
-import { TaxDetailsModalComponent } from './taxDetailsModal/taxDetailsModal.component';
-import { MotDetailsModalComponent } from './motDetailsModal/motDetailsModal.component';
-import { CarService } from '../../../../services/car/car.service';
-import { RegNumberPipe } from './regNumber.pipe';
 import { Subscription }    from 'rxjs/Subscription';
+
+import { ModalService, CarService } from '../../../../services/index';
+import {
+    VideoModalComponent,
+    MilestoneModalComponent,
+    CarDetailsModalComponent,
+    TaxDetailsModalComponent,
+    MotDetailsModalComponent,
+    RegNumberPipe
+} from './index';
 
 @Component({
     selector: 'status',

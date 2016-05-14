@@ -1,7 +1,8 @@
-﻿import {Component} from '@angular/core';
-import {ContentComponent} from './content/content.component';
-import {ModalComponent} from '../../../../../common/modal/modal.component';
-import {ModalService} from '../../../../../common/modal/modal.service';
+﻿import { Component } from '@angular/core';
+
+import { ContentComponent } from './content/content.component';
+import { ModalComponent } from '../../../../../common/modal/modal.component';
+import { ModalService } from '../../../../../services/index';
 
 @Component({
     selector: 'video-modal',
@@ -10,8 +11,8 @@ import {ModalService} from '../../../../../common/modal/modal.service';
 })
 
 export class VideoModalComponent extends ModalComponent {
-    constructor(private _modalservice: ModalService) {
-        super(_modalservice);
+    constructor(private modalservice: ModalService) {
+        super(modalservice);
 
         this.title = 'video Modal title';
     }

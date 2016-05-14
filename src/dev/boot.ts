@@ -5,18 +5,14 @@
 /// <reference path="../../typings/browser/ambient/es6-shim/index.d.ts" />
 
 import 'rxjs/Rx';
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {provide} from '@angular/core';
-import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
-import {HTTP_PROVIDERS, RequestOptions} from '@angular/http';
+import { bootstrap } from '@angular/platform-browser-dynamic';
+import { provide } from '@angular/core';
+import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { HTTP_PROVIDERS, RequestOptions } from '@angular/http';
 
-import {AppComponent} from './app/app.component';
-import {CustomRequestOptions} from './app/common/httpService/baseRequest';
-import {ProfileService} from './app/services/profile/profile.service';
-import {CarService} from './app/services/car/car.service';
-import {SidebarService} from './app/views/sidebar/sidebar.service';
-import {ModalService} from './app/common/modal/modal.service';
-import { ApiService } from './app/common/apiService/api.service';
+import { AppComponent } from './app/app.component';
+import { CustomRequestOptions } from './app/services/http/baseRequest';
+import { ApiService, CarService, ProfileService, SidebarService, ModalService } from './app/services/index';
 
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,

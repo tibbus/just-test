@@ -3,8 +3,8 @@ import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Profile} from './profile';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { HttpService } from './../../common/httpService/http.service';
-import { ApiService } from './../../common/apiService/api.service';
+import { HttpService } from '../http/http.service';
+import { ApiService } from '../api/api.service';
 
 @Injectable()
 export class ProfileService extends HttpService{

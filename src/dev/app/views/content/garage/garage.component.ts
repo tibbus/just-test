@@ -1,17 +1,17 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { CarService } from '../../../services/car/car.service';
+
+import { CarService, AlertService } from '../../../services/index';
 import { AlertComponent } from '../../../common/alert/alert.component';
-import { AlertService } from '../../../common/alert/alert.service';
 
 @Component({
     selector: 'all-cars',
-    styleUrls: ['src/dist/app/views/content/allCars/allCars.component.css'],
-    templateUrl: 'src/dev/app/views/content/allCars/allCars.component.html',
+    styleUrls: ['src/dist/app/views/content/garage/garage.component.css'],
+    templateUrl: 'src/dev/app/views/content/garage/garage.component.html',
     directives: [AlertComponent],
     providers: [AlertService]
 })
 
-export class AllCarsComponent implements OnInit {
+export class GarageComponent implements OnInit {
     private cars: any;
     regNumber: string;
     loading: boolean = false;

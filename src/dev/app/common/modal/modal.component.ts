@@ -1,5 +1,6 @@
-﻿import {Component} from '@angular/core';
-import {ModalService} from './modal.service';
+﻿import { Component } from '@angular/core';
+
+import { ModalService } from '../../services/index';
 
 @Component({
     selector: 'video-modal',

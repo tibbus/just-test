@@ -1,8 +1,8 @@
 import { Injectable }     from '@angular/core';
 import { Http } from '@angular/http';
 import { ReplaySubject }    from 'rxjs/ReplaySubject';
-import { HttpService } from './../../common/httpService/http.service';
-import { ApiService } from './../../common/apiService/api.service';
+import { HttpService } from '../http/http.service';
+import { ApiService } from '../api/api.service';
 import * as _ from 'lodash';
 
 @Injectable()
