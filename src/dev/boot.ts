@@ -16,6 +16,7 @@ import {ProfileService} from './app/services/profile/profile.service';
 import {CarService} from './app/services/car/car.service';
 import {SidebarService} from './app/views/sidebar/sidebar.service';
 import {ModalService} from './app/common/modal/modal.service';
+import { ApiService } from './app/common/apiService/api.service';
 
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
@@ -24,5 +25,6 @@ bootstrap(AppComponent, [
     ProfileService,
     CarService,
     SidebarService,
-    ModalService
+    ModalService,
+    ApiService
 ]);

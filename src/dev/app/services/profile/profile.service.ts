@@ -1,14 +1,15 @@
 import {Injectable}     from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Profile} from './profile';
-import {Observable}       from 'rxjs/Observable';
-import {ReplaySubject}    from 'rxjs/ReplaySubject';
-import {HttpService} from './../../common/httpService/http.service';
+import { Observable } from 'rxjs/Observable';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { HttpService } from './../../common/httpService/http.service';
+import { ApiService } from './../../common/apiService/api.service';
 
 @Injectable()
 export class ProfileService extends HttpService{
-    constructor(private http: Http) {
-        super(http, '/user/1');
+    constructor(private http: Http, private apiService: ApiService) {
+        super(http, apiService.profile);
     }
 
     getProfile() {
@@ -18,7 +19,7 @@ export class ProfileService extends HttpService{
     setProfile(profile: Profile) {
         const body = JSON.stringify(profile);
 
-        return this.http.request('/user/1', {
+        return this.http.request(this.apiService.profile, {
                 body: body,
                 method: 'PUT'
             })

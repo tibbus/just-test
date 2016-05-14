@@ -1,13 +1,14 @@
-import {Injectable}     from '@angular/core';
-import {Http} from '@angular/http';
-import {ReplaySubject}    from 'rxjs/ReplaySubject';
-import {HttpService} from './../../common/httpService/http.service';
+import { Injectable }     from '@angular/core';
+import { Http } from '@angular/http';
+import { ReplaySubject }    from 'rxjs/ReplaySubject';
+import { HttpService } from './../../common/httpService/http.service';
+import { ApiService } from './../../common/apiService/api.service';
 import * as _ from 'lodash';
 
 @Injectable()
 export class CarService extends HttpService {
-    constructor(private http: Http) {
-        super(http, '/user/1/usercar/details=true');
+    constructor(private http: Http, private apiService: ApiService) {
+        super(http, apiService.userCars);
     }
 
     private _selectedCarId: string;
@@ -15,8 +16,8 @@ export class CarService extends HttpService {
     getCars(forceRefresh?: boolean) {
         return this.getData().map(res => {
             return _.map(res, (carObject: any) => {
-                const carName: string = _.get(carObject, 'UserCar.Car.Model', '');
-                const carId: string = _.get(carObject, 'UserCar.Car.Id', '');
+                const carName: string = _.get(carObject, 'CarInfo.Car.Model', null);
+                const carId: string = carObject.Id;
 
                 return {
                     name: carName,
@@ -28,7 +29,7 @@ export class CarService extends HttpService {
     }
 
     addCar(regNumber: string) {
-        const apiUrl = `/user/1/usercar/registration/${regNumber}`;
+        const apiUrl = `${this.apiService.userRegisterCar}${regNumber}`;
 
         return this.http.request(apiUrl, {
             body: null,
@@ -38,7 +39,7 @@ export class CarService extends HttpService {
 
     getCarById(id: string): any {
         const car = _.find(this.dataObject, (item: any) => {
-            return item.UserCar.Id == id;
+            return item.Id == id;
         });
 
         return car;
@@ -50,7 +51,7 @@ export class CarService extends HttpService {
 
     get selectedCar(): any {
         if (this.getCarById(this._selectedCarId)) {
-            return this.getCarById(this._selectedCarId).UserCar;
+            return this.getCarById(this._selectedCarId).CarInfo;
         } else {
             return null;
         }

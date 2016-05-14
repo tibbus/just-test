@@ -1,4 +1,5 @@
-﻿import {Component, Input} from '@angular/core';
+﻿import { Component, Input, OnInit } from '@angular/core';
+import { AlertService } from './alert.service';
 
 @Component({
     selector: 'alert',
@@ -6,18 +7,31 @@
     styleUrls: ['src/dist/app/common/alert/alert.component.css']
 })
 
-export class AlertComponent {
+export class AlertComponent implements OnInit  {
     @Input() message: string;
-    @Input() isError: boolean;
-    @Input() isSuccess: boolean;
+    @Input() state: boolean;
 
     typeMessage: string;
 
+    constructor(private alertService: AlertService) { }
+
+    ngOnInit() {
+        this.alertService.message$.subscribe(
+            (message: string) => {
+                this.message = message;
+            });
+    }
+
     ngOnChanges() {
-        if (this.isError) {
-            this.typeMessage = 'Something gone wrong';
-        } else {
+        if (this.state) {
             this.typeMessage = 'Success';
+        } else {
+            this.typeMessage = 'Something gone wrong';
         }
+    }
+
+    // Close the alert:
+    onClickClose() {
+        this.alertService.setMessage(null);
     }
 }

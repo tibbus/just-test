@@ -4,7 +4,7 @@
     <div class="well">
         <span>{{car.name}}</span> <span class="glyphicon glyphicon-trash remove"></span>
     </div>
-        
+
 </div>
 
 <div class="panel panel-info">
@@ -18,13 +18,14 @@
                 <input type="text" class="form-control" #box (keyup)="onKey(box.value)">
                 <p class="help-block">You need to enter a valid <code>Registration Number</code> in order to add a car.</p>
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-fab btn-fab-mini" (click)="onRegNumberSubmit()">
-                        <i class="material-icons">send</i>
-                    </button>
+                    <a class="btn btn-raised btn-success" (click)="onRegNumberSubmit()">
+                        <span class="save-text">add</span>
+                        <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                    </a>
                 </span>
             </div>
         </div>
     </div>
 </div>
 
-
+<alert [message]="message" [state]="requestState"></alert>

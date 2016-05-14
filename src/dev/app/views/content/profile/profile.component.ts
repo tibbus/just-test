@@ -1,20 +1,22 @@
-﻿import {Component} from '@angular/core';
-import {HTTP_PROVIDERS, Response}    from '@angular/http';
-import {ProfileService} from '../../../services/index';
-import {Profile} from '../../../services/profile/profile';
-import {LoadingComponent} from '../../../common/loading/loading.component';
-import {AlertComponent} from '../../../common/alert/alert.component';
-import {SidebarService} from './../../sidebar/sidebar.service';
+﻿import { Component } from '@angular/core';
+import { HTTP_PROVIDERS, Response }    from '@angular/http';
+import { ProfileService } from '../../../services/index';
+import { Profile } from '../../../services/profile/profile';
+import { LoadingComponent } from '../../../common/loading/loading.component';
+import { AlertComponent } from '../../../common/alert/alert.component';
+import { SidebarService } from './../../sidebar/sidebar.service';
+import { AlertService } from '../../../common/alert/alert.service';
 
 @Component({
     selector: 'profile',
     styleUrls: ['src/dist/app/views/content/profile/profile.component.css'],
     templateUrl: 'src/dev/app/views/content/profile/profile.component.html',
-    directives: [LoadingComponent, AlertComponent]
+    directives: [LoadingComponent, AlertComponent],
+    providers: [AlertService]
 })
 
 export class ProfileComponent {
-    constructor(private _profileService: ProfileService, private _sidebarService: SidebarService) { }
+    constructor(private _profileService: ProfileService, private _sidebarService: SidebarService, private alertService: AlertService) { }
 
     profile: Profile;
     message: string;
@@ -23,7 +25,6 @@ export class ProfileComponent {
     requestState: boolean;
 
     getProfile() {
-        this.message = null;
         this.profileLoading = true;
 
         this._profileService.getProfile()
@@ -38,7 +39,6 @@ export class ProfileComponent {
     }
 
     saveProfile() {
-        this.message = null;
         this.loading = true;
 
         this._profileService.setProfile(this.profile)
@@ -46,7 +46,7 @@ export class ProfileComponent {
             profile => {
                 this.loading = false;
 
-                this.message = 'Profile saved !';
+                this.alertService.setMessage('Profile saved !');
                 this.requestState = true;
             },
             error => this.handleError(error));
@@ -54,6 +54,11 @@ export class ProfileComponent {
 
     ngOnInit() {
         this._sidebarService.unSelectMenus(); 
+
+        this.alertService.message$.subscribe(
+            (message: string) => {
+                this.message = message;
+            });
 
         this.getProfile();
     }
@@ -64,7 +69,7 @@ export class ProfileComponent {
             this.profileLoading = false;
             this.requestState = false;
 
-            this.message = error.text() || 'Server error, please try again !';
+            this.alertService.setMessage(error.text() || 'Server error, please try again !');
         }, 3);
     }
 }

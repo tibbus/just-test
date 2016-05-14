@@ -1,6 +1,6 @@
 [
   {
-    "UserCar": {
+    "CarInfo": {
       "Id": 1,
       "UserId": 1,
       "Car": {
@@ -116,7 +116,7 @@
     ]
   },
   {
-    "UserCar": {
+    "CarInfo": {
       "Id": 11,
       "UserId": 1,
       "Car": {
@@ -256,7 +256,7 @@
     ]
   },
   {
-    "UserCar": {
+    "CarInfo": {
       "Id": 21,
       "UserId": 1,
       "Car": {
