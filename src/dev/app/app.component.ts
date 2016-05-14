@@ -1,11 +1,14 @@
 ﻿import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+
 import { HeaderComponent } from './views/header/header.component';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
-import { GarageComponent } from './views/content/garage/garage.component';
-import { CarComponent } from './views/content/car/car.component';
-import { ProfileComponent } from './views/content/profile/profile.component';
-import { NotFoundComponent } from './views/content/notFound/notFound.component';
+import {
+    GarageComponent,
+    CarComponent,
+    ProfileComponent,
+    NotFoundComponent
+} from './views/+content/index';
 import * as _ from 'lodash';
 
 @Component({

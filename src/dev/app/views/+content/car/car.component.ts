@@ -8,8 +8,8 @@ import { CarService } from '../../../services/index';
 
 @Component({
     selector: 'content',
-    styleUrls: ['src/dist/app/views/content/car/car.component.css'],
-    templateUrl: 'src/dev/app/views/content/car/car.component.html',
+    styleUrls: ['src/dist/app/views/+content/car/car.component.css'],
+    templateUrl: 'src/dev/app/views/+content/car/car.component.html',
     directives: [StatusComponent, WallComponent, ROUTER_DIRECTIVES]
 })
 

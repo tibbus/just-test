@@ -13,8 +13,8 @@ import {
 
 @Component({
     selector: 'status',
-    styleUrls: ['src/dist/app/views/content/car/status/status.component.css'],
-    templateUrl: 'src/dev/app/views/content/car/status/status.component.html',
+    styleUrls: ['src/dist/app/views/+content/car/status/status.component.css'],
+    templateUrl: 'src/dev/app/views/+content/car/status/status.component.html',
     directives: [VideoModalComponent, MilestoneModalComponent, CarDetailsModalComponent, TaxDetailsModalComponent, MotDetailsModalComponent],
     pipes: [RegNumberPipe]
 })

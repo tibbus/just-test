@@ -3,15 +3,15 @@ import {CarService} from '../../../../../../services/car/car.service';
 
 @Component({
     selector: 'content',
-    templateUrl: 'src/dev/app/views/content/car/status/motDetailsModal/content/content.component.html',
+    templateUrl: 'src/dev/app/views/+content/car/status/taxDetailsModal/content/content.component.html',
 })
 
 export class ContentComponent {
     constructor(private _carService: CarService) { }
 
-    carMotList: any;
+    carTax: any;
 
     ngOnInit() {
-        this.carMotList = this._carService.selectedCarMot;
+        this.carTax = this._carService.selectedCarTax;
     }
 }

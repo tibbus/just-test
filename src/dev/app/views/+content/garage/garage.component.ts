@@ -6,8 +6,8 @@ import { LoadingComponent } from '../../../common/loading/loading.component';
 
 @Component({
     selector: 'all-cars',
-    styleUrls: ['src/dist/app/views/content/garage/garage.component.css'],
-    templateUrl: 'src/dev/app/views/content/garage/garage.component.html',
+    styleUrls: ['src/dist/app/views/+content/garage/garage.component.css'],
+    templateUrl: 'src/dev/app/views/+content/garage/garage.component.html',
     directives: [AlertComponent, LoadingComponent],
     providers: [AlertService]
 })
