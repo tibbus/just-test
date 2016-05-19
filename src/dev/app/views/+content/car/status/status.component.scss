@@ -1,9 +1,14 @@
 ﻿.status-text {
-    text-align: center;
-    font-size: 16px;
-    border-bottom: solid 1px #EDEDED;
-    padding-bottom: 10px;
+    width: 660px;
     margin: 0;
+    padding: 0;
+    text-align: center;
+    display: inline-block;
+}
+
+.status-text input {
+    text-align: center;
+    font-weight: bold;
 }
 
 .btn {
@@ -44,4 +49,20 @@
     margin-left: 30px;
     float: left;
     font-weight: bold;
+}
+
+.menu {
+    margin-bottom: 0;
+}
+
+.save {
+    display: inline-block;
+    padding: 4px 13px;
+    margin-left: 18px;
+}
+
+loading {
+    left: 220px;
+    position: relative;
+    top: -5px;
 }

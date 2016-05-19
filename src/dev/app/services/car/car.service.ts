@@ -68,6 +68,10 @@ export class CarService extends HttpService {
         }
     }
 
+    get userCarId(): string {
+        return this.getCarById(this._selectedCarId).CarInfo.Id;
+    }
+
     get selectedCarMot(): any {
         return this.getCarById(this._selectedCarId).MOT;
     }

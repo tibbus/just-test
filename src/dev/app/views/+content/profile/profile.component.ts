@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { HTTP_PROVIDERS, Response } from '@angular/http';
 
 import { ProfileService, SidebarService, AlertService } from '../../../services/index';
@@ -14,45 +14,17 @@ import { AlertComponent } from '../../../common/alert/alert.component';
     providers: [AlertService]
 })
 
-export class ProfileComponent {
-    constructor(private _profileService: ProfileService, private _sidebarService: SidebarService, private alertService: AlertService) { }
-
+export class ProfileComponent implements OnInit {
     profile: Profile;
     message: string;
     loading: boolean;
     profileLoading: boolean;
     requestState: boolean;
 
-    getProfile() {
-        this.profileLoading = true;
-
-        this._profileService.getProfile()
-            .subscribe(
-                (profile: Profile) => {
-                    this.profileLoading = false;
-
-                    this.profile = profile;
-                },
-                error => this.handleError(error)
-             );
-    }
-
-    saveProfile() {
-        this.loading = true;
-
-        this._profileService.setProfile(this.profile)
-            .subscribe(
-            profile => {
-                this.loading = false;
-
-                this.alertService.setMessage('Profile saved !');
-                this.requestState = true;
-            },
-            error => this.handleError(error));
-    }
+    constructor(private profileService: ProfileService, private sidebarService: SidebarService, private alertService: AlertService) { }
 
     ngOnInit() {
-        this._sidebarService.unSelectMenus(); 
+        this.sidebarService.unSelectMenus();
 
         this.alertService.message$.subscribe(
             (message: string) => {
@@ -62,8 +34,41 @@ export class ProfileComponent {
         this.getProfile();
     }
 
+    getProfile() {
+        // Start loading
+        this.profileLoading = true;
+
+        this.profileService.getProfile()
+            .subscribe(
+            (profile: Profile) => {
+                    // End loading
+                    this.profileLoading = false;
+
+                    this.profile = profile;
+                },
+                error => this.handleError(error)
+             );
+    }
+
+    saveProfile() {
+        // Start loading
+        this.loading = true;
+
+        this.profileService.setProfile(this.profile)
+            .subscribe(
+            profile => {
+                // End loading
+                this.loading = false;
+
+                this.alertService.setMessage('Profile saved !');
+                this.requestState = true;
+            },
+            error => this.handleError(error));
+    }
+
     private handleError(error: Response) {
         setTimeout(() => {
+            // End loading
             this.loading = false;
             this.profileLoading = false;
             this.requestState = false;

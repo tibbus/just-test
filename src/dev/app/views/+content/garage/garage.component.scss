@@ -38,6 +38,13 @@ a .glyphicon {
 loading {
     display: inline-block;
     margin-left: 50px;
-    top: 5px;
-    position: relative;
+    top: 28px;
+    position: absolute;
+}
+
+.well {
+    background: -webkit-linear-gradient(#fff, #D1D1D1); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#fff, #D1D1D1); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#fff, #D1D1D1); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#fff, #D1D1D1); /* Standard syntax */
 }
