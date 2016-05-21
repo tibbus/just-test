@@ -66,3 +66,45 @@ loading {
     position: relative;
     top: -5px;
 }
+
+.writer-img {
+    margin: 0;
+    margin-left: 10px;
+    height: 77px;
+    padding: 3px;
+    position: absolute;
+    border: solid 2px #E6E6E6;
+    border-radius: 4px;
+    margin-top: 3px;
+
+    img {
+        height: 100%;
+    }
+}
+
+.form-group {
+    margin: 0;
+    margin-top: 5px;
+    padding: 0;
+
+    textarea {
+        padding-left: 100px;
+    }
+}
+
+.help-block {
+    margin-left: 320px;
+}
+
+.post {
+    margin: 0;
+    padding: 5px 20px;
+    float: right;
+    margin-top: -3px;
+    margin-right: 10px;
+}
+
+.car-info {
+    float: left;
+    margin-top: -7px;
+}

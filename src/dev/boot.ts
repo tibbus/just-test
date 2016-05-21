@@ -9,10 +9,13 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { provide } from '@angular/core';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { HTTP_PROVIDERS, RequestOptions } from '@angular/http';
+import { enableProdMode } from '@angular/core';
 
 import { AppComponent } from './app/app.component';
 import { CustomRequestOptions } from './app/services/http/baseRequest';
 import { ApiService, CarService, ProfileService, SidebarService, ModalService } from './app/services/index';
+
+//enableProdMode();
 
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,

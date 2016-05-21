@@ -21,19 +21,27 @@
     </a>
 </div>
 
-
-<div class="form-group label-floating status-text">
-    <input class="form-control" id="focusedInput2" type="text" [(ngModel)]="currentStatus">
+<div class="writer-img" >
+    <img src="/src/assets/muj.JPG" />
 </div>
-<div class="btn btn-raised btn-success save" (click)="onClickSave()">save</div>
 
-<span class="make">{{carMake}}</span>
-<span class="label label-primary reg-number">{{carRegNumber | regNumber}}</span>
+<div class="form-group">
+    <div>
+        <textarea class="form-control" rows="3" id="textArea" placeholder="Write a post..."></textarea>
+        <span class="help-block">Post a new Status, Media, Event on your timeline.</span>
+    </div>
+</div>
 
-<loading *ngIf="loading"></loading>
+<div class="car-info">
+    <span class="make">{{carMake}}</span>
+    <span class="label label-primary reg-number">{{carRegNumber | regNumber}}</span>
+</div>
 
-<video-modal *ngIf="modalName == 'videoModal'"></video-modal>
-<milestone-modal *ngIf="modalName == 'milestoneModal'"></milestone-modal>
-<car-details-modal *ngIf="modalName == 'carDetailsModal'"></car-details-modal>
-<tax-details-modal *ngIf="modalName == 'taxDetailsModal'"></tax-details-modal>
-<mot-details-modal *ngIf="modalName == 'motDetailsModal'"></mot-details-modal>
+
+<div class="btn btn-raised btn-success post"
+   [class.disabled]="loading"
+   (click)="clickAddCar()">
+    <span class="save-text">Post</span>
+</div>
+
+
