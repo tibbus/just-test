@@ -1,5 +1,5 @@
 ﻿import { Component, ChangeDetectorRef } from '@angular/core';
-import { Subscription }    from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService, CarService, StatusService } from '../../../../services/index';
 import {
@@ -24,14 +24,16 @@ import { LoadingComponent } from '../../../../common/loading/loading.component';
         MotDetailsModalComponent,
         LoadingComponent
     ],
-    pipes: [RegNumberPipe],
-    providers: [StatusService]
+    pipes: [RegNumberPipe]
 })
 
 export class StatusComponent {
     private modalSubscription: Subscription;
     currentStatus: string;
-    loading: boolean = true;
+    loading: boolean = false;
+    modalName: string;
+    carMake: string;
+    carRegNumber: string;
 
     constructor(
         private modalService: ModalService,
@@ -55,37 +57,29 @@ export class StatusComponent {
         this.modalSubscription.unsubscribe();
     }  
 
-    modalName: string;
-    carMake: string;
-    carRegNumber: string;
-
     onMenuClick(modalName: string) {
         this.modalName = modalName;
     }
 
     ngOnInit() {
-        this.carMake = this._carService.selectedCar.Car.Make;
-        this.carRegNumber = this._carService.selectedCar.RegistrationNumber.toUpperCase();
-
-        this.loading = true;
-
-        this.statusService.getStatus().subscribe(
-            status => {
-                this.loading = false;
-
-                this.currentStatus = status.Description;
-                console.log(status);
-            },
-            error => this.handleError(error)
-        );
+        this.carMake = this._carService.selectedCar.car.make;
+        this.carRegNumber = this._carService.selectedCar.registrationNumber.toUpperCase();
     }
 
-    onClickSave() {
+    clickAddStatus() {
         this.loading = true;
+        console.log(this.currentStatus)
 
-        this.statusService.updateStatus(this.currentStatus).subscribe(
+        this.statusService.addStatus(this.currentStatus).delay(1000).subscribe(
             res => {
+                // clear the textarea
+                this.currentStatus = null;
+
+                console.log(res);
                 this.loading = false;
+
+                // update the status list (make a new server request in the service)
+                this.statusService.getStatuses(true);
             },
             error => this.handleError(error)
         );

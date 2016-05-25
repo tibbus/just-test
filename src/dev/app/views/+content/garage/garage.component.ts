@@ -13,7 +13,7 @@ import { LoadingComponent } from '../../../common/loading/loading.component';
 })
 
 export class GarageComponent implements OnInit {
-    private cars: any;
+    cars: any;
     regNumber: string;
     loading: boolean = false;
     requestState: boolean = false;

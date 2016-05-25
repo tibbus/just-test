@@ -23,7 +23,7 @@ export class HeaderComponent {
             .subscribe(
             (profile: Profile) => {
                     this.profile = profile;
-                    this.name = this.profile.Name;
+                    this.name = this.profile.name;
                 },
                 error => this.errorMessage = <any>error);
     }

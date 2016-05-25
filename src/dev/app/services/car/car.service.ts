@@ -16,10 +16,10 @@ export class CarService extends HttpService {
     getCars(forceRefresh?: boolean) {
         return this.getData(forceRefresh).map(res => {
             return _.map(res, (carObject: any) => {
-                const carMake: string = _.get(carObject, 'CarInfo.Car.Make', null);
-                const carModel: string = _.get(carObject, 'CarInfo.Car.Model', null);
+                const carMake: string = _.get(carObject, 'carInfo.car.make', null);
+                const carModel: string = _.get(carObject, 'carInfo.car.model', null);
                 const carName: string = `${carMake} ${carModel}`;
-                const carId: string = carObject.Id;
+                const carId: string = carObject.id;
 
                 return {
                     name: carName,
@@ -50,7 +50,7 @@ export class CarService extends HttpService {
 
     getCarById(id: string): any {
         const car = _.find(this.dataObject, (item: any) => {
-            return item.Id == id;
+            return item.id == id;
         });
 
         return car;
@@ -62,21 +62,21 @@ export class CarService extends HttpService {
 
     get selectedCar(): any {
         if (this.getCarById(this._selectedCarId)) {
-            return this.getCarById(this._selectedCarId).CarInfo;
+            return this.getCarById(this._selectedCarId).carInfo;
         } else {
             return null;
         }
     }
 
     get userCarId(): string {
-        return this.getCarById(this._selectedCarId).CarInfo.Id;
+        return this.getCarById(this._selectedCarId).carInfo.id;
     }
 
     get selectedCarMot(): any {
-        return this.getCarById(this._selectedCarId).MOT;
+        return this.getCarById(this._selectedCarId).mot;
     }
 
     get selectedCarTax(): any {
-        return this.getCarById(this._selectedCarId).Tax;
+        return this.getCarById(this._selectedCarId).tax;
     }
 }

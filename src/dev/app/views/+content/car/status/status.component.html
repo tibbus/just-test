@@ -1,22 +1,22 @@
 <div class="btn-group btn-group-justified menu">
     <a class="btn " data-toggle="modal" data-target="#myModal">
-        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+        <span class="glyphicon menu-glyphicon glyphicon-list-alt" aria-hidden="true"></span>
         <span>Update Status</span>
     </a>
     <a class="btn " data-toggle="modal" data-target="#myModal" (click)="onMenuClick('videoModal')">
-        <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
+        <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
         <span>Add Photos/Videos</span>
     </a>
     <a class="btn " data-toggle="modal" data-target="#myModal" (click)="onMenuClick('milestoneModal')">
-        <span class="glyphicon glyphicon-road" aria-hidden="true"></span>
+        <span class="glyphicon menu-glyphicon glyphicon-road" aria-hidden="true"></span>
         <span>Add Milestone</span>
     </a>
     <a class="btn " data-toggle="modal" data-target="#myModal">
-        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+        <span class="glyphicon menu-glyphicon glyphicon-question-sign" aria-hidden="true"></span>
         <span>Ask a Question</span>
     </a>
     <a class="btn " data-toggle="modal" data-target="#myModal">
-        <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
+        <span class="glyphicon menu-glyphicon glyphicon-open-file" aria-hidden="true"></span>
         <span>Upload Documents</span>
     </a>
 </div>
@@ -27,7 +27,7 @@
 
 <div class="form-group">
     <div>
-        <textarea class="form-control" rows="3" id="textArea" placeholder="Write a post..."></textarea>
+        <textarea class="form-control" rows="3" placeholder="Write a post..." [(ngModel)]="currentStatus"></textarea>
         <span class="help-block">Post a new Status, Media, Event on your timeline.</span>
     </div>
 </div>
@@ -40,8 +40,14 @@
 
 <div class="btn btn-raised btn-success post"
    [class.disabled]="loading"
-   (click)="clickAddCar()">
+   (click)="clickAddStatus()">
     <span class="save-text">Post</span>
+    <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 </div>
 
 
+<video-modal *ngIf="modalName == 'videoModal'"></video-modal>
+<milestone-modal *ngIf="modalName == 'milestoneModal'"></milestone-modal>
+<car-details-modal *ngIf="modalName == 'carDetailsModal'"></car-details-modal>
+<tax-details-modal *ngIf="modalName == 'taxDetailsModal'"></tax-details-modal>
+<mot-details-modal *ngIf="modalName == 'motDetailsModal'"></mot-details-modal>

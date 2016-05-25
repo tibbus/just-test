@@ -12,24 +12,36 @@ export class StatusService extends HttpService {
         super(http, `/car/${carService.userCarId}/status`);
     }
 
-    private currentStatusId: string;
+    private statuses: any[];
+    private _selectedStatusId: any;
 
-    getStatus(forceRefresh?: boolean) {
+    getStatuses(forceRefresh?: boolean) {
         return this.getData(forceRefresh).map((res: any[]) => {
-            const status = res[res.length - 1];
+            this.statuses = res;    
 
-            this.currentStatusId = status.Id;
+            return res;
+        });
+    }
 
-            return status;
+    addStatus(newStatus: string) {
+        const apiUrl = `/car/${this.carService.userCarId}/status`;
+        const body: any = {
+            description: newStatus,
+            topics: ["Suzuki"]
+        };
+
+        return this.http.request(apiUrl, {
+            body: JSON.stringify(body),
+            method: 'POST'
         });
     }
 
     updateStatus(newStatus: string) {
-        const apiUrl = `/car/${this.carService.userCarId}/status/${this.currentStatusId}`;
+        const apiUrl = `/car/${this.carService.userCarId}/status/${this.selectedStatusId}`;
         const body: any = {
-            Id: 1,
-            Description: newStatus,
-            Topics: ["Suzuki"]
+            id: 1,
+            description: newStatus,
+            topics: ["Suzuki"]
         };
 
         return this.http.request(apiUrl, {
@@ -38,12 +50,28 @@ export class StatusService extends HttpService {
         });
     }
 
-    removeStatus(id: string) {
-        const apiUrl = `/car/1/status/21`;
+    deleteStatus(statusId: string) {
+        const apiUrl = `/car/${this.carService.userCarId}/status/${statusId}`;
 
         return this.http.request(apiUrl, {
             body: null,
             method: 'DELETE'
         });
+    }
+
+    getStatusById(id: string) {
+        return _.find(this.statuses, { id: id });
+    }
+
+    set selectedStatusId(id) {
+        this._selectedStatusId = id;
+    }
+
+    get selectedStatusId() {
+        return this._selectedStatusId;
+    }
+
+    get selectedStatus() {
+        return this.getStatusById(this.selectedStatusId);
     }
 }

@@ -3,14 +3,15 @@ import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 import { StatusComponent } from './status/status.component';
 import { WallComponent } from './wall/wall.component';
-import { CarService } from '../../../services/index';
+import { CarService, StatusService } from '../../../services/index';
 
 
 @Component({
     selector: 'content',
     styleUrls: ['src/dist/app/views/+content/car/car.component.css'],
     templateUrl: 'src/dev/app/views/+content/car/car.component.html',
-    directives: [StatusComponent, WallComponent, ROUTER_DIRECTIVES]
+    directives: [StatusComponent, WallComponent, ROUTER_DIRECTIVES],
+    providers: [StatusService]
 })
 
 export class CarComponent {

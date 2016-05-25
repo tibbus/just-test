@@ -2,30 +2,30 @@
        *ngFor="let mot of carMotList">
     <thead>
         <tr>
-            <th>Tested on : {{mot.TestDate}}</th>
+            <th>Tested on : {{mot.testDate}}</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         <tr class="active">
             <td>Odo Meter Reading</td>
-            <td>{{mot.OdoMeterReading}}</td>
+            <td>{{mot.odoMeterReading}}</td>
         </tr>
         <tr>
             <td>Test Number</td>
-            <td>{{mot.TestNumber}}</td>
+            <td>{{mot.testNumber}}</td>
         </tr>
         <tr class="active">
             <td>Odo Meter Reading</td>
-            <td>{{mot.OdoMeterReading}}</td>
+            <td>{{mot.odoMeterReading}}</td>
         </tr>
         <tr>
             <td>Advisory Items</td>
-            <td>{{mot.AdvisoryItems.length}}</td>
+            <td>{{mot.advisoryItems.length}}</td>
         </tr>
         <tr *ngIf="mot.ExpiryDate">
             <td>Expiry Date</td>
-            <td>{{mot.ExpiryDate}}</td>
+            <td>{{mot.expiryDate}}</td>
         </tr>
     </tbody>
 </table>

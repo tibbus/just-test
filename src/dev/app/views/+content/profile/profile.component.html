@@ -3,51 +3,51 @@
 <loading *ngIf="profileLoading"></loading>
 
 <div *ngIf="profile" class="form-wrapper">
-    <div class="form-group label-floating" [class.is-empty]="!profile.Name">
+    <div class="form-group label-floating" [class.is-empty]="!profile.name">
         <label for="i5i" class="control-label">Firstname Lastname</label>
-        <input type="text" class="form-control" id="i5i" [(ngModel)]="profile.Name">
+        <input type="text" class="form-control" id="i5i" [(ngModel)]="profile.name">
         <span class="help-block">Please enter your name</span>
         <span class="material-input"></span>
     </div>
 
-    <div class="form-group label-floating" [class.is-empty]="!profile.Email">
+    <div class="form-group label-floating" [class.is-empty]="!profile.email">
         <label for="i5i" class="control-label">Email address</label>
-        <input type="email" class="form-control" [(ngModel)]="profile.Email">
+        <input type="email" class="form-control" [(ngModel)]="profile.email">
         <span class="help-block">Please enter a valid email address</span>
         <span class="material-input"></span>
     </div>
 
-    <div class="form-group label-floating" [class.is-empty]="!profile.MobileNumber">
+    <div class="form-group label-floating" [class.is-empty]="!profile.mobileNumber">
         <label for="i5i" class="control-label">Phone Number</label>
-        <input type="text" class="form-control" [(ngModel)]="profile.MobileNumber">
+        <input type="text" class="form-control" [(ngModel)]="profile.mobileNumber">
         <span class="help-block">Please enter a valid phone number</span>
         <span class="material-input"></span>
     </div>
 
-    <div class="form-group label-floating" [class.is-empty]="!profile.Town">
+    <div class="form-group label-floating" [class.is-empty]="!profile.town">
         <label for="i5i" class="control-label">Town</label>
-        <input type="text" class="form-control" [(ngModel)]="profile.Town">
+        <input type="text" class="form-control" [(ngModel)]="profile.town">
         <span class="help-block">Please enter your Town</span>
         <span class="material-input"></span>
     </div>
 
-    <div class="form-group label-floating" [class.is-empty]="!profile.PostCode">
+    <div class="form-group label-floating" [class.is-empty]="!profile.postCode">
         <label for="i5i" class="control-label">Post Code</label>
-        <input type="text" class="form-control" [(ngModel)]="profile.PostCode">
+        <input type="text" class="form-control" [(ngModel)]="profile.postCode">
         <span class="help-block">Please enter a valid post code</span>
         <span class="material-input"></span>
     </div>
 
-    <div class="form-group label-floating" [class.is-empty]="!profile.Line1">
+    <div class="form-group label-floating" [class.is-empty]="!profile.line1">
         <label for="i5i" class="control-label">Address Line1</label>
-        <input type="text" class="form-control" [(ngModel)]="profile.Line1">
+        <input type="text" class="form-control" [(ngModel)]="profile.line1">
         <span class="help-block">Please enter your address</span>
         <span class="material-input"></span>
     </div>
 
-    <div class="form-group label-floating" [class.is-empty]="!profile.Line2 ">
+    <div class="form-group label-floating" [class.is-empty]="!profile.line2 ">
         <label for="i5i" class="control-label">Address Line2</label>
-        <input type="text" class="form-control" [(ngModel)]="profile.Line2">
+        <input type="text" class="form-control" [(ngModel)]="profile.line2">
         <span class="help-block">Please enter your address</span>
         <span class="material-input"></span>
     </div>

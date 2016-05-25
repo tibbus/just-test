@@ -1,10 +1,10 @@
 export interface Profile {
-    Id: number,
-    Title?: string,
-    Name?: string,
-    Email?: string,
-    MobileNumber?: string,
-    HomeNumber?: string
+    id: number,
+    title?: string,
+    name?: string,
+    email?: string,
+    mobileNumber?: string,
+    homeNumber?: string
 }
 
 //{

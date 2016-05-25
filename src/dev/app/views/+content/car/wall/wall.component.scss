@@ -62,7 +62,7 @@
 .social {
     float: left;
     clear: left;
-    margin-top: 20px;
+    margin-top: 10px;
 
     a {
         padding: 5px;
@@ -86,7 +86,7 @@
     border-radius: 4px;
 
     .comment-text {
-        width: 630px;
+        width: 675px;
         float: left;
         padding: 0 10px 10px 10px;
         font-weight: 400;
@@ -98,6 +98,33 @@
     }
 }
 
-.last {
-    margin-bottom: 40px;
+.edit-menu {
+    margin-left: 187px;
+
+    a {
+        cursor: pointer;
+    }
+}
+
+.caret {
+    border-top: 6px dashed;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+}
+
+.loading-wrapper {
+    width: 50px;
+    float: left;
+    margin-left: 250px;
+    top: 5px;
+    position: relative;
+    height: 1px;
+
+    span {
+        font-size: 30px;
+    }
+}
+
+a {
+    cursor: pointer;
 }
