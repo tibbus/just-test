@@ -4,6 +4,7 @@ var tsProject = ts.createProject('tsconfig.json');
 var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
 var ncp = require('ncp').ncp;
+var autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('ts', function() {
     var tsResult = gulp.src('src/dev/**/*')
@@ -25,6 +26,13 @@ gulp.task('sass', function() {
     return gulp.src('src/dev/**/*.scss')
       .pipe(sass({ includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/', 'src/dev/styles/'] })
       .on('error', sass.logError))
+      .pipe(gulp.dest('./src/dist'));
+});
+
+// Use this task only if necessary (currently not needed)
+gulp.task('css', function () {
+    return gulp.src('src/dist/**/*.css')
+      .pipe(autoprefixer())
       .pipe(gulp.dest('./src/dist'));
 });
 
