@@ -1,12 +1,13 @@
-﻿import {Component} from '@angular/core';
-import {ContentComponent} from './content/content.component';
-import {ModalComponent} from '../../../../../common/modal/modal.component';
-import {ModalService} from '../../../../../services/index';
+﻿import { Component } from '@angular/core';
+
+import { MotDetailsModalContent } from './motDetailsModalContent.component';
+import { ModalComponent } from '../../../../common/modal/modal.component';
+import { ModalService } from '../../../../services/index';
 
 @Component({
     selector: 'mot-details-modal',
     templateUrl: 'src/dev/app/common/modal/modal.component.html',
-    directives: [ContentComponent]
+    directives: [MotDetailsModalContent]
 })
 
 export class MotDetailsModalComponent extends ModalComponent {

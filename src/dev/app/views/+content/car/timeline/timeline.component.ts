@@ -1,28 +1,32 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { StatusService, ModalService } from '../../../../services/index';
+import { StatusService, ModalService, TimelineService } from '../../../../services/index';
 import { LoadingComponent } from '../../../../common/loading/loading.component';
 import { EditModalComponent } from './editModal/editModal.component';
 
 @Component({
-    selector: 'wall',
-    styleUrls: ['src/dist/app/views/+content/car/wall/wall.component.css'],
-    templateUrl: 'src/dev/app/views/+content/car/wall/wall.component.html',
+    selector: 'timeline',
+    styleUrls: ['src/dist/app/views/+content/car/timeline/timeline.component.css'],
+    templateUrl: 'src/dev/app/views/+content/car/timeline/timeline.component.html',
     directives: [LoadingComponent, EditModalComponent],
     providers: [ModalService]
 })
 
-export class WallComponent implements OnInit {
+export class TimelineComponent implements OnInit {
     private modalSubscription: Subscription;
 
     statuses: any[];
     loading: string;
     modalName: string;
-    selectedStatusId: string;
-    selectedStatusText: string = 'aa';
+    selectedPostId: string;
 
-    constructor(private statusService: StatusService, private modalService: ModalService, private ref: ChangeDetectorRef) {
+    constructor(
+        private statusService: StatusService,
+        private modalService: ModalService,
+        private ref: ChangeDetectorRef,
+        private timelineService: TimelineService
+    ) {
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
             modalName => {
@@ -40,9 +44,11 @@ export class WallComponent implements OnInit {
     } 
 
     ngOnInit() {
-        this.statusService.getStatuses().subscribe(
-            statuses => {
-                this.statuses = statuses.reverse();
+        this.timelineService.getPosts().subscribe(
+            (statuses: any) => {
+                this.statuses = statuses.results.reverse().map(item => {
+                    return item.details;
+                });
             }
         )
     }
@@ -55,14 +61,14 @@ export class WallComponent implements OnInit {
                 this.loading = null;
 
                 // update the status list (make a new server request in the service)
-                this.statusService.getStatuses(true);
+                this.timelineService.getPosts(true);
             }
         )
     }
 
-    onClickEdit(statusId: string) {
-        this.selectedStatusId = statusId;
-        this.statusService.selectedStatusId = statusId;
+    onClickEdit(postId: string) {
+        this.selectedPostId = postId;
+        this.timelineService.selectedPostId = postId;
 
         this.modalService.setModalName('editModal');
     }

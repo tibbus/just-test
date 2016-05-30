@@ -13,7 +13,13 @@ import { enableProdMode } from '@angular/core';
 
 import { AppComponent } from './app/app.component';
 import { CustomRequestOptions } from './app/services/http/baseRequest';
-import { ApiService, CarService, ProfileService, SidebarService, ModalService, StatusService } from './app/services/index';
+import {
+    ApiService,
+    CarService,
+    ProfileService,
+    SidebarService,
+    ModalService
+} from './app/services/index';
 
 //enableProdMode();
 

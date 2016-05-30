@@ -32,6 +32,8 @@ import * as _ from 'lodash';
 
 export class AppComponent {
     ngOnInit() {
+       // window.location.href = 'http://google.com';
+
         jQuery.material.init();
     }
 }

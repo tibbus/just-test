@@ -1,13 +1,17 @@
 <div *ngIf="carLoaded">
-    <status></status>
+    <add-post></add-post>
 
-    <wall></wall>
+    <timeline></timeline>
 
-    <timeline>
+    <!--<timeline>
         <p class="header">Timeline</p>
         <a href="#" class="item">Today</a>
         <a href="#" class="item">March</a>
         <a href="#" class="item">February</a>
         <a href="#" class="item">January</a>
-    </timeline>
+    </timeline>-->
 </div>
+
+<car-details-modal *ngIf="modalName == 'carDetailsModal'"></car-details-modal>
+<tax-details-modal *ngIf="modalName == 'taxDetailsModal'"></tax-details-modal>
+<mot-details-modal *ngIf="modalName == 'motDetailsModal'"></mot-details-modal>

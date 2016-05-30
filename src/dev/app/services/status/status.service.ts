@@ -4,23 +4,13 @@ import { ReplaySubject }    from 'rxjs/ReplaySubject';
 import { HttpService } from '../http/http.service';
 import { ApiService } from '../api/api.service';
 import { CarService } from '../car/car.service';
+import { TimelineService } from '../timeline/timeline.service';
 import * as _ from 'lodash';
 
 @Injectable()
 export class StatusService extends HttpService {
-    constructor(private http: Http, private apiService: ApiService, private carService: CarService) {
+    constructor(private http: Http, private apiService: ApiService, private carService: CarService, private timelineService: TimelineService) {
         super(http, `/car/${carService.userCarId}/status`);
-    }
-
-    private statuses: any[];
-    private _selectedStatusId: any;
-
-    getStatuses(forceRefresh?: boolean) {
-        return this.getData(forceRefresh).map((res: any[]) => {
-            this.statuses = res;    
-
-            return res;
-        });
     }
 
     addStatus(newStatus: string) {
@@ -37,7 +27,7 @@ export class StatusService extends HttpService {
     }
 
     updateStatus(newStatus: string) {
-        const apiUrl = `/car/${this.carService.userCarId}/status/${this.selectedStatusId}`;
+        const apiUrl = `/car/${this.carService.userCarId}/status/${this.timelineService.selectedPostId}`;
         const body: any = {
             id: 1,
             description: newStatus,
@@ -57,21 +47,5 @@ export class StatusService extends HttpService {
             body: null,
             method: 'DELETE'
         });
-    }
-
-    getStatusById(id: string) {
-        return _.find(this.statuses, { id: id });
-    }
-
-    set selectedStatusId(id) {
-        this._selectedStatusId = id;
-    }
-
-    get selectedStatusId() {
-        return this._selectedStatusId;
-    }
-
-    get selectedStatus() {
-        return this.getStatusById(this.selectedStatusId);
     }
 }
