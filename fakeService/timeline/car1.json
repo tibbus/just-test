@@ -1,0 +1,108 @@
+{
+  "totalCount": 10,
+  "results": [
+    {
+      "type": "Status",
+      "details": {
+        "id": 1,
+        "carInfoId": 1,
+        "description": "sassssssssssssssssssssssss  new status new statussadasdasssss ",
+        "topics": [ "Suzuki" ],
+        "createdDate": "2016-05-25T19:04:20",
+        "updatedDate": "2016-05-25T22:01:06"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 61,
+        "carInfoId": 1,
+        "description": "create a new status !!  + update this status !  aaa22",
+        "topics": [ "Suzuki" ],
+        "createdDate": "2016-05-25T21:38:24",
+        "updatedDate": "2016-05-25T21:55:42"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 121,
+        "carInfoId": 1,
+        "description": "New status",
+        "topics": [ ],
+        "createdDate": "2016-05-26T18:07:45"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 141,
+        "carInfoId": 1,
+        "description": "Update this status ... !!!",
+        "topics": [ "Suzuki" ],
+        "createdDate": "2016-05-26T19:07:33",
+        "updatedDate": "2016-05-26T19:07:57"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 171,
+        "carInfoId": 1,
+        "description": "Pie & chips",
+        "topics": [ ],
+        "createdDate": "2016-05-26T20:57:36"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 181,
+        "carInfoId": 1,
+        "description": "Richard Hammond",
+        "topics": [ ],
+        "createdDate": "2016-05-26T22:19:28"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 191,
+        "carInfoId": 1,
+        "description": "Test refactoring",
+        "topics": [ ],
+        "createdDate": "2016-05-28T15:21:35"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 201,
+        "carInfoId": 1,
+        "description": "Test refactoring 2",
+        "topics": [ ],
+        "createdDate": "2016-05-28T15:27:26"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 211,
+        "carInfoId": 1,
+        "description": "Test refactoring 3",
+        "topics": [ ],
+        "createdDate": "2016-05-28T15:30:07"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 241,
+        "carInfoId": 1,
+        "description": "Test another refactoring",
+        "topics": [ ],
+        "createdDate": "2016-05-30T10:50:01"
+      }
+    }
+  ]
+}

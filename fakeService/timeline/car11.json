@@ -1,0 +1,55 @@
+{
+  "totalCount": 5,
+  "results": [
+    {
+      "type": "Status",
+      "details": {
+        "id": 31,
+        "carInfoId": 11,
+        "description": "test",
+        "topics": [ "Suzuki" ],
+        "createdDate": "2016-05-25T19:50:36"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 51,
+        "carInfoId": 11,
+        "description": "aaaa",
+        "topics": [ "Suzuki" ],
+        "createdDate": "2016-05-25T19:50:48"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 151,
+        "carInfoId": 11,
+        "description": "My car is awesome",
+        "topics": [ ],
+        "createdDate": "2016-05-26T19:22:51"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 161,
+        "carInfoId": 11,
+        "description": "new status",
+        "topics": [ "Suzuki" ],
+        "createdDate": "2016-05-26T19:27:14"
+      }
+    },
+    {
+      "type": "Status",
+      "details": {
+        "id": 221,
+        "carInfoId": 11,
+        "description": "test",
+        "topics": [ "Suzuki" ],
+        "createdDate": "2016-05-30T10:39:28"
+      }
+    }
+  ]
+}
