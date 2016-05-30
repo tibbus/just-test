@@ -1,10 +1,8 @@
 ﻿:host {
-    width: 760px;
+    width: 762px;
     min-height: calc(100% - 141px);
-    background-color: #ffffff;
     margin-top: 15px;
     float: left;
-    padding: 10px;
 }
 
 .post-img {
@@ -24,39 +22,10 @@
     font-size: 16px;
 }
 
-.topics {
-    float: left;
-    width: 170px;
-    height: 170px;
-    border: solid 1px lightgrey;
-    margin-left: 20px;
-    padding: 10px;
-    font-weight: 600;
-}
-
-.car-img {
-    float: left;
-    height: 110px;
-    padding: 5px;
-
-    img {
-        height: 100%;
-    }
-}
-
-.clear {
-    clear: left;
-}
-
-.car-img:first-of-type {
-    border: 5px solid red;
-}
-
 .post {
-    float: left;
-        background: #F2F2F2;
-    padding: 5px;
-    border-radius: 4px;
+    background: #ffffff;
+    padding: 0 8px;
+    margin-bottom: 20px;
 }
 
 .social {
@@ -80,8 +49,7 @@
 
 .comment-wrapper {
     float: left;
-    margin-top: 25px;
-    background: #F2F2F2;
+    margin-top: 9px;
     padding: 5px;
     border-radius: 4px;
 
