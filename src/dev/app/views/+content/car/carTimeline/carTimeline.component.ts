@@ -2,18 +2,9 @@
 import { Subscription } from 'rxjs/Subscription';
 
 import { StatusService, ModalService, TimelineService } from '../../../../services/index';
-import { LoadingComponent } from '../../../../common/loading/loading.component';
-import { EditModalComponent } from './editModal/editModal.component';
+import { TimelineComponent } from '../../../../common/timeline/timeline.component'; 
 
-@Component({
-    selector: 'timeline',
-    styleUrls: ['src/dist/app/views/+content/car/timeline/timeline.component.css'],
-    templateUrl: 'src/dev/app/views/+content/car/timeline/timeline.component.html',
-    directives: [LoadingComponent, EditModalComponent],
-    providers: [ModalService]
-})
-
-export class TimelineComponent implements OnInit {
+export class CarTimelineComponent extends TimelineComponent implements OnInit {
     private modalSubscription: Subscription;
 
     statuses: any[];
@@ -27,6 +18,8 @@ export class TimelineComponent implements OnInit {
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService
     ) {
+        super(statusService, modalService, ref, timelineService);
+
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
             modalName => {
@@ -41,7 +34,7 @@ export class TimelineComponent implements OnInit {
 
     ngOnDestroy() {
         this.modalSubscription.unsubscribe();
-    } 
+    }
 
     ngOnInit() {
         this.timelineService.getPosts().subscribe(

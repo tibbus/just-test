@@ -3,7 +3,7 @@ import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AddPostComponent } from './addPost/addPost.component';
-import { TimelineComponent } from './timeline/timeline.component';
+import { CarTimelineComponent } from './carTimeline/carTimeline.component';
 import { CarService, StatusService, ModalService, TimelineService } from '../../../services/index';
 import {
     CarDetailsModalComponent,
@@ -18,13 +18,13 @@ import {
     templateUrl: 'src/dev/app/views/+content/car/car.component.html',
     directives: [
         AddPostComponent,
-        TimelineComponent,
+        CarTimelineComponent,
         ROUTER_DIRECTIVES,
         CarDetailsModalComponent,
         TaxDetailsModalComponent,
         MotDetailsModalComponent
     ],
-    providers: [StatusService, TimelineService]
+    providers: [TimelineService, StatusService]
 })
 
 export class CarComponent implements OnInit, OnDestroy {

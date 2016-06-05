@@ -7,7 +7,8 @@ import {
     GarageComponent,
     CarComponent,
     ProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FeedComponent
 } from './views/+content/index';
 import * as _ from 'lodash';
 
@@ -20,7 +21,7 @@ import * as _ from 'lodash';
 
 @RouteConfig([
         { path: '/', name: 'HomePage', redirectTo: ['Garage']},
-        { path: '/feed', name: 'Feed', component: NotFoundComponent },
+        { path: '/feed', name: 'Feed', component: FeedComponent },
         { path: '/garage', name: 'Garage', component: GarageComponent },
         { path: '/car/:id', name: 'Car', component: CarComponent },
         { path: '/documents', name: 'Documents', component: NotFoundComponent },

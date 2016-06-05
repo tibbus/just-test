@@ -18,7 +18,9 @@ import {
     CarService,
     ProfileService,
     SidebarService,
-    ModalService
+    ModalService,
+    StatusService,
+    TimelineService
 } from './app/services/index';
 
 //enableProdMode();
@@ -31,5 +33,8 @@ bootstrap(AppComponent, [
     CarService,
     SidebarService,
     ModalService,
-    ApiService
+    ApiService,
+    StatusService,
+    TimelineService
+    
 ]);
