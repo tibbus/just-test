@@ -26,12 +26,16 @@
     background: #ffffff;
     padding: 0 8px;
     margin-bottom: 20px;
+    float: left;
+    border: solid 1px #EFECEC;
+    border-radius: 3px;
 }
 
 .social {
     float: left;
     clear: left;
-    margin-top: 10px;
+        margin-top: 7px;
+    margin-bottom: 7px;
 
     a {
         padding: 5px;
@@ -42,9 +46,10 @@
 
 .line {
     width: 100%;
-    border: solid 1px #F0EDED;
     float: left;
-    margin-top: 10px;
+    margin-top: 5px;
+    background: #EAEAEA;
+    height: 1px;
 }
 
 .comment-wrapper {
@@ -55,8 +60,9 @@
 
     .comment-text {
         width: 675px;
+        margin-top: 5px;
         float: left;
-        padding: 0 10px 10px 10px;
+        padding: 0 10px 0 10px;
         font-weight: 400;
         font-size: 16px;
     }
@@ -64,10 +70,23 @@
     .post-img {
         height: 60px;
     }
+
+    .username {
+        float: left;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .date {
+        color: #8A8A8A;
+        float: left;
+        margin-left: 15px;
+    }
 }
 
 .edit-menu {
-    margin-left: 187px;
+    margin: 0;
+    float: right;
 
     a {
         cursor: pointer;
@@ -95,4 +114,5 @@
 
 a {
     cursor: pointer;
+    text-decoration: none;
 }
