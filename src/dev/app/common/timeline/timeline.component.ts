@@ -4,13 +4,15 @@ import { Subscription } from 'rxjs/Subscription';
 import { StatusService, ModalService, TimelineService } from '../../services/index';
 import { LoadingComponent } from '../loading/loading.component';
 import { EditModalComponent } from './editModal/editModal.component';
+import { TimelineDatePipe } from './timelineDate.pipe';
 
 @Component({
     selector: 'timeline',
     styleUrls: ['src/dist/app/common/timeline/timeline.component.css'],
     templateUrl: 'src/dev/app/common/timeline/timeline.component.html',
     directives: [LoadingComponent, EditModalComponent],
-    providers: [ModalService]
+    providers: [ModalService],
+    pipes: [TimelineDatePipe]
 })
 
 export class TimelineComponent {

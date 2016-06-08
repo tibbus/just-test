@@ -44,6 +44,7 @@
     "systemjs": "0.19.27",
     "typescript": "1.8.10",
     "typings": "0.8.1",
-    "zone.js": "0.6.12"
+    "zone.js": "0.6.12",
+    "moment":  "*"
   }
 }
