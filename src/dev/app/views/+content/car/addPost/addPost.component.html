@@ -1,24 +1,6 @@
-<div class="btn-group btn-group-justified menu">
-    <a class="btn " data-toggle="modal" data-target="#myModal">
-        <span class="glyphicon menu-glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-        <span>Update Status</span>
-    </a>
-    <a class="btn " data-toggle="modal" data-target="#myModal" (click)="onMenuClick('videoModal')">
-        <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
-        <span>Add Photos/Videos</span>
-    </a>
-    <a class="btn " data-toggle="modal" data-target="#myModal" (click)="onMenuClick('milestoneModal')">
-        <span class="glyphicon menu-glyphicon glyphicon-road" aria-hidden="true"></span>
-        <span>Add Milestone</span>
-    </a>
-    <a class="btn " data-toggle="modal" data-target="#myModal">
-        <span class="glyphicon menu-glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-        <span>Ask a Question</span>
-    </a>
-    <a class="btn " data-toggle="modal" data-target="#myModal">
-        <span class="glyphicon menu-glyphicon glyphicon-open-file" aria-hidden="true"></span>
-        <span>Upload Documents</span>
-    </a>
+<div class="car-info">
+    <span class="make">{{carMake}}</span>
+    <span class="label label-primary reg-number">{{carRegNumber | regNumber}}</span>
 </div>
 
 <div class="writer-img" >
@@ -32,11 +14,10 @@
     </div>
 </div>
 
-<div class="car-info">
-    <span class="make">{{carMake}}</span>
-    <span class="label label-primary reg-number">{{carRegNumber | regNumber}}</span>
+<div class="btn btn-raised add-media" data-toggle="modal" data-target="#myModal" (click)="onMenuClick('videoModal')">
+    <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
+    <span class="add-media-text">Add media</span>
 </div>
-
 
 <div class="btn btn-raised btn-success post"
    [class.disabled]="loading"

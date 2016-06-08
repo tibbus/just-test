@@ -20,14 +20,9 @@
     border-bottom: solid 1px #EDEDED;
 }
 .menu-glyphicon {
-    position: absolute;
-    top: 7px;
-    font-size: 20px;
-    left: 8px;
-
-    &-facetime-video, &-open-file {
-        left: 0;
-    }
+    top: 4px;
+    font-size: 22px;
+    margin-right: 10px;
 }
 
 .details {
@@ -75,7 +70,7 @@ loading {
     position: absolute;
     border: solid 2px #E6E6E6;
     border-radius: 4px;
-    margin-top: 3px;
+    margin-top: 50px;
 
     img {
         height: 100%;
@@ -86,6 +81,11 @@ loading {
     margin: 0;
     margin-top: 5px;
     padding: 0;
+    float: left;
+    width: 100%;
+    clear: both;
+    border-top: solid 1px #D2D2D2;
+    padding-top: 10px;
 
     textarea {
         padding-left: 100px;
@@ -96,7 +96,7 @@ loading {
     margin-left: 320px;
 }
 
-.post {
+.post, .add-media {
     margin: 0;
     padding: 5px 20px;
     float: right;
@@ -104,7 +104,11 @@ loading {
     margin-right: 10px;
 }
 
+.add-media {
+    float: left;
+    padding: 2px 12px;
+}
+
 .car-info {
     float: left;
-    margin-top: -7px;
 }
