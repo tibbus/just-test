@@ -34,7 +34,5 @@ bootstrap(AppComponent, [
     SidebarService,
     ModalService,
     ApiService,
-    StatusService,
-    TimelineService
-    
+    TimelineService 
 ]);

@@ -1,16 +1,15 @@
-import {Injectable}     from '@angular/core';
-import {Subject}    from 'rxjs/Subject';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ModalService {
     constructor() { console.log('construction')}
-    // Observable string sources
+
     private _modalName = new Subject<string>();
     private _clickSave = new Subject<string>();
     private _closeModal = new Subject<string>();
     private _loading = new Subject<string>();
 
-    // Observable string streams
     modalName = this._modalName.asObservable();
     clickSave = this._clickSave.asObservable();
     closeModal = this._closeModal.asObservable();

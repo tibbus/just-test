@@ -1,5 +1,4 @@
-﻿import { Component, Input, OnInit } from '@angular/core';
-import { AlertService } from '../../services/alert/alert.service';
+﻿import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'alert',
@@ -7,20 +6,12 @@ import { AlertService } from '../../services/alert/alert.service';
     styleUrls: ['src/dist/app/common/alert/alert.component.css']
 })
 
-export class AlertComponent implements OnInit  {
+export class AlertComponent {
     @Input() message: string;
     @Input() state: boolean;
+    @Output() resetAlertMessage = new EventEmitter();
 
     typeMessage: string;
-
-    constructor(private alertService: AlertService) { }
-
-    ngOnInit() {
-        this.alertService.message$.subscribe(
-            (message: string) => {
-                this.message = message;
-            });
-    }
 
     ngOnChanges() {
         if (this.state) {
@@ -32,6 +23,6 @@ export class AlertComponent implements OnInit  {
 
     // Close the alert:
     onClickClose() {
-        this.alertService.setMessage(null);
+        this.resetAlertMessage.emit(null);
     }
 }

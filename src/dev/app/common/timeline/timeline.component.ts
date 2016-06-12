@@ -11,7 +11,7 @@ import { TimelineDatePipe } from './timelineDate.pipe';
     styleUrls: ['src/dist/app/common/timeline/timeline.component.css'],
     templateUrl: 'src/dev/app/common/timeline/timeline.component.html',
     directives: [LoadingComponent, EditModalComponent],
-    providers: [ModalService],
+    providers: [ModalService, StatusService],
     pipes: [TimelineDatePipe]
 })
 

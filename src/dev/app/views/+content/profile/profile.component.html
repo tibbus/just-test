@@ -62,4 +62,4 @@
     </div>
 </div>
 
-<alert [message]="message" [state]="requestState"></alert>
+<alert [message]="alertMessage" [state]="requestState" (resetAlertMessage)="resetAlertMessage($event)"></alert>

@@ -19,7 +19,7 @@ export class AddPostComponent {
     
     currentStatus: string;
     loading: boolean = false;
-    carMake: string;
+    carInfo: any;
     carRegNumber: string;
 
     constructor(
@@ -29,7 +29,7 @@ export class AddPostComponent {
     ) {}
 
     ngOnInit() {
-        this.carMake = this._carService.selectedCar.car.make;
+        this.carInfo = this._carService.selectedCar.car;
         this.carRegNumber = this._carService.selectedCar.registrationNumber.toUpperCase();
     }
 

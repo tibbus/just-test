@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { CarService, AlertService } from '../../../services/index';
+import { CarService } from '../../../services/index';
 import { AlertComponent } from '../../../common/alert/alert.component';
 import { LoadingComponent } from '../../../common/loading/loading.component';
 
@@ -8,8 +8,7 @@ import { LoadingComponent } from '../../../common/loading/loading.component';
     selector: 'all-cars',
     styleUrls: ['src/dist/app/views/+content/garage/garage.component.css'],
     templateUrl: 'src/dev/app/views/+content/garage/garage.component.html',
-    directives: [AlertComponent, LoadingComponent],
-    providers: [AlertService]
+    directives: [AlertComponent, LoadingComponent]
 })
 
 export class GarageComponent implements OnInit {
@@ -17,17 +16,12 @@ export class GarageComponent implements OnInit {
     regNumber: string;
     loading: boolean = false;
     requestState: boolean = false;
-    message: string;
+    alertMessage: string;
 
-    constructor(private carService: CarService, private alertService: AlertService) { }
+    constructor(private carService: CarService) { }
 
     ngOnInit() {
         this.getCars();
-
-        this.alertService.message$.subscribe(
-            (message: string) => {
-                this.message = message;
-            });
     }
 
     getCars() {
@@ -51,7 +45,7 @@ export class GarageComponent implements OnInit {
             () => {
                 this.loading = false;
                 this.requestState = true;
-                this.alertService.setMessage(`The car with the registration number: ${this.regNumber} was succesufully added to your garage !`);
+                this.alertMessage = `The car with the registration number: ${this.regNumber} was succesufully added to your garage !`;
 
                 // update the car list (make a new server request in the service)
                 this.carService.getCars(true);
@@ -67,7 +61,7 @@ export class GarageComponent implements OnInit {
             () => {
                 this.loading = false;
                 this.requestState = true;
-                this.alertService.setMessage(`The car was successfully removed from your garage !`);
+                this.alertMessage = `The car was successfully removed from your garage !`;
 
                 // update the car list (make a new server request in the service)
                 this.carService.getCars(true);
@@ -75,12 +69,17 @@ export class GarageComponent implements OnInit {
             error => this.handleError(error));
     }
 
+    // @Output : reset the message on alert Close
+    resetAlertMessage() {
+        this.alertMessage = null;
+    }
+
     handleError(error: Error) {
         this.requestState = false;
 
         this.loading = false;
 
-        this.alertService.setMessage('Sorry, the request failed.');
+        this.alertMessage = 'Sorry, the request failed.';
 
         console.log(error);
     }

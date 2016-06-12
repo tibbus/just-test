@@ -107,8 +107,23 @@ loading {
 .add-media {
     float: left;
     padding: 2px 12px;
+    margin-left: 10px;
+    margin-right: 2px;
+
+    .add-media-text {
+        top: -2px;
+        position: relative;
+        color: #949494;
+    }
 }
 
 .car-info {
     float: left;
+}
+
+.vertical-line {
+    float: left;
+    height: 27px;
+    width: 1px;
+    background-color: #c3c3c3;
 }

@@ -1,5 +1,5 @@
 <div class="car-info">
-    <span class="make">{{carMake}}</span>
+    <span class="make">{{carInfo.make}} {{carInfo.model}}</span>
     <span class="label label-primary reg-number">{{carRegNumber | regNumber}}</span>
 </div>
 
@@ -14,10 +14,11 @@
     </div>
 </div>
 
-<div class="btn btn-raised add-media" data-toggle="modal" data-target="#myModal" (click)="onMenuClick('videoModal')">
+<div class="btn add-media">
     <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
     <span class="add-media-text">Add media</span>
 </div>
+<div class="vertical-line"></div>
 
 <div class="btn btn-raised btn-success post"
    [class.disabled]="loading"
