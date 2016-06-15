@@ -18,6 +18,9 @@
         <div class="comment-text">
             <p>{{status.description}}</p>
         </div>
+        <div *ngFor="let uri of status.contentUris">
+            <img class="posted-image" src="{{uri}}" />
+        </div> 
     </div>
 
     <div class="line"></div>

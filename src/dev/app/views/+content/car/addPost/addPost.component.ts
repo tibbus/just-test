@@ -1,7 +1,7 @@
 ﻿import { Component, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ModalService, CarService, StatusService, TimelineService } from '../../../../services/index';
+import { ModalService, CarService, StatusService, TimelineService, MediaService } from '../../../../services/index';
 import { LoadingComponent } from '../../../../common/loading/loading.component';
 import { RegNumberPipe } from './regNumber.pipe'
 
@@ -25,12 +25,22 @@ export class AddPostComponent {
     constructor(
         private _carService: CarService,
         private statusService: StatusService,
-        private timelineService: TimelineService
+        private timelineService: TimelineService,
+        private mediaService: MediaService
     ) {}
 
     ngOnInit() {
         this.carInfo = this._carService.selectedCar.car;
         this.carRegNumber = this._carService.selectedCar.registrationNumber.toUpperCase();
+    }
+
+    test(e: any) {
+        console.log(e.target.files[0]);
+        this.mediaService.addStatus(e.target.files).subscribe(
+            res => {
+                console.log(res);
+                this.timelineService.getPosts(true);
+            })
     }
 
     clickAddStatus() {

@@ -19,6 +19,7 @@
     <span class="add-media-text">Add media</span>
 </div>
 <div class="vertical-line"></div>
+<input style="margin-left: 15px; float:left;" type="file" name="pic"  multiple="true" (change)="test($event)">
 
 <div class="btn btn-raised btn-success post"
    [class.disabled]="loading"

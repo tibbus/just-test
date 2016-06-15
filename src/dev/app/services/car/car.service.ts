@@ -69,7 +69,13 @@ export class CarService extends HttpService {
     }
 
     get userCarId(): string {
-        return this.getCarById(this._selectedCarId).carInfo.id;
+        const car: any = this.getCarById(this._selectedCarId);
+
+        if (car) {
+            return car.carInfo.id;
+        } else {
+            return null;
+        }
     }
 
     get selectedCarMot(): any {
