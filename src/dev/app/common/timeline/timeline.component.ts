@@ -4,13 +4,14 @@ import { Subscription } from 'rxjs/Subscription';
 import { StatusService, ModalService, TimelineService } from '../../services/index';
 import { LoadingComponent } from '../loading/loading.component';
 import { EditModalComponent } from './editModal/editModal.component';
+import { ImageModalComponent } from './imageModal/imageModal.component';
 import { TimelineDatePipe } from './timelineDate.pipe';
 
 @Component({
     selector: 'timeline',
     styleUrls: ['src/dist/app/common/timeline/timeline.component.css'],
     templateUrl: 'src/dev/app/common/timeline/timeline.component.html',
-    directives: [LoadingComponent, EditModalComponent],
+    directives: [LoadingComponent, EditModalComponent, ImageModalComponent],
     providers: [ModalService, StatusService],
     pipes: [TimelineDatePipe]
 })
@@ -75,5 +76,14 @@ export class TimelineComponent {
         this.timelineService.selectedPostId = postId;
 
         this.modalService.setModalName('editModal');
+    }
+
+    clickImage(postId: string, index: number) {
+        this.selectedPostId = postId;
+        this.timelineService.selectedPostId = postId;
+
+        this.timelineService.selectedImage = index;
+
+        this.modalService.setModalName('imageModal');
     }
 }

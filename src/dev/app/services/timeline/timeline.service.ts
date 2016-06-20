@@ -13,6 +13,7 @@ export class TimelineService extends HttpService {
 
     private statuses: any[];
     private _selectedPostId: any;
+    private _selectedImageIndex: number;
 
     getPosts(forceRefresh?: boolean) {
         return this.getData(forceRefresh).map((res: any) => {
@@ -32,11 +33,19 @@ export class TimelineService extends HttpService {
         this._selectedPostId = id;
     }
 
+    set selectedImage(index: number) {
+        this._selectedImageIndex = index;
+    }
+
     get selectedPostId() {
         return this._selectedPostId;
     }
 
     get selectedPost() {
         return this.getPostById(this.selectedPostId);
+    }
+
+    get selectedImage() {
+        return this._selectedImageIndex;
     }
 }

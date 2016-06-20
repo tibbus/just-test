@@ -122,4 +122,9 @@ a {
     float: left;
     margin-top: 15px;
     margin-left: 15px;
+    cursor: pointer;
+}
+
+.posted-image:hover {
+    opacity: 0.8;
 }

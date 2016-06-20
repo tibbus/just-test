@@ -43,9 +43,9 @@ export class ProfileComponent implements OnInit {
                     this.profileLoading = false;
 
                     this.profile = profile;
-                },
-                error => this.handleError(error)
-             );
+            },
+            error => this.handleError(error)
+        );
     }
 
     saveProfile() {

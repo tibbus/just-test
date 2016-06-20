@@ -1,4 +1,12 @@
-﻿.status-text {
+﻿:host {
+    width: 100%;
+    display: block;
+    background-color: #ffffff;
+    float: left;
+    padding-bottom: 5px;
+}
+
+.status-text {
     width: 660px;
     margin: 0;
     padding: 0;
@@ -117,6 +125,10 @@ loading {
     }
 }
 
+.add-photos {
+    clear: left;
+}
+
 .car-info {
     float: left;
 }
@@ -126,4 +138,31 @@ loading {
     height: 27px;
     width: 1px;
     background-color: #c3c3c3;
+}
+
+.media-wrapper {
+    float: left;
+
+    .img-wrapper {
+        position: relative;
+        float: left;
+
+        img {
+            height: 100px;
+            padding: 15px;
+            float: left;
+        }
+
+        button {
+            top: -12px;
+            right: -12px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+        }
+
+        button:hover ~ img {
+            opacity: 0.5;
+        }
+    }
 }

@@ -14,12 +14,25 @@
     </div>
 </div>
 
-<div class="btn add-media">
-    <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
-    <span class="add-media-text">Add media</span>
+<div class="media-wrapper">
+    <div class="img-wrapper" *ngFor="let image of images; let i=index">
+        <button type="button" class="close" (click)="clickImageRemove(i)">&#215;</button>
+        <img src="{{image}}" />
+        
+    </div>
+    
+</div>
+
+<div class="btn add-media add-photos" uploadFile (onFileSelect)="clickAddImages($event)">
+    <span class="glyphicon menu-glyphicon glyphicon-picture" aria-hidden="true"></span>
+    <span class="add-media-text">Add photo</span>
 </div>
 <div class="vertical-line"></div>
-<input style="margin-left: 15px; float:left;" type="file" name="pic"  multiple="true" (change)="test($event)">
+<div class="btn add-media add-videos">
+    <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
+    <span class="add-media-text">Add video</span>
+</div>
+<div class="vertical-line"></div>
 
 <div class="btn btn-raised btn-success post"
    [class.disabled]="loading"

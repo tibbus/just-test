@@ -16,7 +16,7 @@ export class MediaService {
     private _postMedia = new Subject<any>();
     postMedia$ = this._postMedia.asObservable();
 
-    addStatus(files: any[]) {
+    addStatus(files: any[], statusText: string) {
         const apiUrl = `/car/${this.carService.userCarId}/image`;
         //const body: any = {
         //    description: newStatus,
@@ -28,7 +28,7 @@ export class MediaService {
 
         formData.append('topics', 'test');
         formData.append('location', 'test');
-        formData.append('description', 'test');
+        formData.append('description', statusText);
 
         for (let file of files) {
             formData.append('files', file);

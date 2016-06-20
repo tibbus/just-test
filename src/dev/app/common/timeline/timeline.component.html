@@ -18,8 +18,8 @@
         <div class="comment-text">
             <p>{{status.description}}</p>
         </div>
-        <div *ngFor="let uri of status.contentUris">
-            <img class="posted-image" src="{{uri}}" />
+        <div *ngFor="let uri of status.contentUris; let i=index">
+            <img class="posted-image {{i}}" src="{{uri}}" (click)="clickImage(status.id, i)"/>
         </div> 
     </div>
 
@@ -41,3 +41,9 @@
     [status]="selectedStatusId"
 >
 </edit-modal>
+
+<image-modal 
+    *ngIf="modalName == 'imageModal'"
+    [status]="selectedStatusId"
+>
+</image-modal>
