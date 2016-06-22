@@ -18,9 +18,16 @@
         <div class="comment-text">
             <p>{{status.description}}</p>
         </div>
-        <div *ngFor="let uri of status.contentUris; let i=index">
-            <img class="posted-image {{i}}" src="{{uri}}" (click)="clickImage(status.id, i)"/>
-        </div> 
+        <div class="media-wrapper">
+            <div class="media-post" *ngFor="let uri of status.contentUris; let i=index">
+                <img *ngIf="status.type === 'Image'" class="posted-image {{i}}" src="{{uri}}" (click)="clickImage(status.id, i)" />
+
+                <video *ngIf="status.type === 'Video'" width="320" controls>
+                    <source src="{{uri}}" type="video/mp4">
+                </video>
+            </div>
+        </div>
+ 
     </div>
 
     <div class="line"></div>

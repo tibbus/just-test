@@ -11,6 +11,8 @@ export class ImageModalContentComponent implements OnInit {
     status: any;
     image: any;
     post: any;
+    currentImageIndex: number;
+    imageListLength: number;
 
     constructor(
         private statusService: StatusService,
@@ -19,8 +21,18 @@ export class ImageModalContentComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        const index = this.timelineService.selectedImage;
+        this.currentImageIndex = this.timelineService.selectedImage;
 
-        this.image = this.timelineService.selectedPost.details.contentUris[index];
+        this.imageListLength = this.timelineService.selectedPost.details.contentUris.length;
+
+        this.image = this.timelineService.selectedPost.details.contentUris[this.currentImageIndex];
+    }
+
+    navigate(direction: number) {
+        const imageListLength = this.timelineService.selectedPost.details.contentUris.length;
+
+        this.currentImageIndex += direction;
+
+        this.image = this.timelineService.selectedPost.details.contentUris[this.currentImageIndex];
     }
 }

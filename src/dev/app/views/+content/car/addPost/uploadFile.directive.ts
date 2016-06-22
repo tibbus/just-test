@@ -3,7 +3,8 @@
 @Directive({ selector: '[uploadFile]' })
 
 export class UploadFileDirective {
-    @Output() onFileSelect = new EventEmitter()
+    @Output() onFileSelect = new EventEmitter();
+
     private $host: JQuery;
     private $realUploader: JQuery;
 

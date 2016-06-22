@@ -1,4 +1,31 @@
-﻿img {
+﻿:host {
+    padding: 24px 50px !important;
+}
+
+img {
     width: 100%;
     padding: 20px;
+}
+
+a.arrow {
+    padding: 0 15px;
+}
+
+.arrow {
+    position: absolute;
+    top: 200px;
+    font-size: 49px;
+    cursor: pointer;
+}
+
+.arrow:hover {
+    opacity: 0.8;
+}
+
+.arrow.left {
+    left: 3px;
+}
+
+.arrow.right {
+    right: 3px;
 }

@@ -52,7 +52,10 @@ export class TimelineComponent {
         this.timelineService.getPosts().subscribe(
             (statuses: any) => {
                 this.statuses = statuses.results.reverse().map(item => {
-                    return item.details;
+                    const postObject = item.details;
+                    postObject.type = item.type;
+
+                    return postObject;
                 });
             }
         )

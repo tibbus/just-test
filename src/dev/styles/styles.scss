@@ -14,9 +14,7 @@ content {
     display: block;
 }
 
-.modal-dialog {
-    width: auto;
-    min-width: 600px;
-    max-width: 1060px;
+.modal-large {
+    width: 1060px;
     margin: 30px auto;
 }

@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
-export class MediaService {
+export class ImageService {
     constructor(private http: Http, private apiService: ApiService, private carService: CarService, private timelineService: TimelineService) {
         //super(http, `/car/${carService.userCarId}/status`);
     }

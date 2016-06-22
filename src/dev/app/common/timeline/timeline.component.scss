@@ -128,3 +128,17 @@ a {
 .posted-image:hover {
     opacity: 0.8;
 }
+
+.media-wrapper {
+    float: left;
+    clear: left;
+}
+
+.media-post {
+    float: left;
+}
+
+video {
+    float: left;
+    margin: 20px;
+}

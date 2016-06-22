@@ -2,7 +2,7 @@
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
-import { ModalService, CarService, StatusService, TimelineService, MediaService } from '../../../../services/index';
+import { ModalService, CarService, StatusService, TimelineService, ImageService, VideoService } from '../../../../services/index';
 import { LoadingComponent } from '../../../../common/loading/loading.component';
 import { RegNumberPipe } from './regNumber.pipe'
 import { UploadFileDirective } from './uploadFile.directive';
@@ -24,7 +24,7 @@ export class AddPostComponent {
     loading: boolean = false;
     carInfo: any;
     carRegNumber: string;
-    images: string[] = [];
+    uris: string[] = [];
     files: any[] = [];
     postType: string;
 
@@ -32,7 +32,8 @@ export class AddPostComponent {
         private _carService: CarService,
         private statusService: StatusService,
         private timelineService: TimelineService,
-        private mediaService: MediaService,
+        private imageService: ImageService,
+        private videoService: VideoService,
         private ref: ChangeDetectorRef
     ) {}
 
@@ -41,8 +42,8 @@ export class AddPostComponent {
         this.carRegNumber = this._carService.selectedCar.registrationNumber.toUpperCase();
     }
 
-    clickImageRemove(index: number) {
-        this.images.splice(index, 1);
+    clickUriRemove(index: number) {
+        this.uris.splice(index, 1);
         this.files.splice(index, 1);
 
         if (this.files.length === 0) {
@@ -57,13 +58,34 @@ export class AddPostComponent {
 
         this.files.push(file);
 
-        this.postType = 'images';
+        this.postType = 'Image';
 
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
             console.log('loaded');
-            this.images.push(e.target.result);
+            this.uris.push(e.target.result);
+
+            this.ref.detectChanges();
+        }
+
+        reader.readAsDataURL(file);
+    }
+
+    clickAddVideos(file) {
+        if (!file) {
+            return false;
+        }
+
+        this.files.push(file);
+
+        this.postType = 'Video';
+
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+            console.log('loaded');
+            this.uris.push(e.target.result);
 
             this.ref.detectChanges();
         }
@@ -74,8 +96,10 @@ export class AddPostComponent {
     clickAddStatus() {
         this.loading = true;
 
-        if (this.postType === 'images') {
+        if (this.postType === 'Image') {
             this.addPostImage();
+        } else if (this.postType === 'Video') {
+            this.addPostVideo();
         } else {
             this.addPostStatus();
         }
@@ -91,7 +115,16 @@ export class AddPostComponent {
     }
 
     addPostImage() {
-        this.mediaService.addStatus(this.files, this.currentStatus).subscribe(
+        this.imageService.addStatus(this.files, this.currentStatus).subscribe(
+            res => {
+                this.afterPostRequest();
+            },
+            error => this.handleError(error)
+        );
+    }
+
+    addPostVideo() {
+        this.videoService.addStatus(this.files, this.currentStatus).subscribe(
             res => {
                 this.afterPostRequest();
             },
@@ -102,7 +135,7 @@ export class AddPostComponent {
     afterPostRequest() {
         // Clear add Post
         this.currentStatus = '';
-        this.images = [];
+        this.uris = [];
         this.files = [];
         this.loading = false;
 

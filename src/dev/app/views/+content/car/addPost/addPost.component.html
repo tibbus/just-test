@@ -10,15 +10,18 @@
 <div class="form-group">
     <div>
         <textarea class="form-control" rows="3" placeholder="Write a post..." [(ngModel)]="currentStatus"></textarea>
-        <span class="help-block">Post a new Status, Media, Event on your timeline.</span>
+        <!--<span class="help-block">Post a new Status, Media, Event on your timeline.</span>-->
     </div>
 </div>
 
 <div class="media-wrapper">
-    <div class="img-wrapper" *ngFor="let image of images; let i=index">
-        <button type="button" class="close" (click)="clickImageRemove(i)">&#215;</button>
-        <img src="{{image}}" />
+    <div class="img-wrapper" *ngFor="let uri of uris; let i=index">
+        <button type="button" class="close" (click)="clickUriRemove(i)">&#215;</button>
+        <img *ngIf="postType === 'Image'" src="{{uri}}" />
         
+        <video *ngIf="postType === 'Video'" height="100">
+            <source src="{{uri}}" type="video/mp4">
+        </video>
     </div>
     
 </div>
@@ -28,7 +31,7 @@
     <span class="add-media-text">Add photo</span>
 </div>
 <div class="vertical-line"></div>
-<div class="btn add-media add-videos">
+<div class="btn add-media add-videos" uploadFile (onFileSelect)="clickAddVideos($event)">
     <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
     <span class="add-media-text">Add video</span>
 </div>

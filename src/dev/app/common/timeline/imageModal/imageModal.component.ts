@@ -13,9 +13,12 @@ import { ModalService } from '../../../services/index';
 export class ImageModalComponent extends ModalComponent {
     @Input() status: string;
 
+    modalSize: string;
+
     constructor(private modalservice: ModalService) {
         super(modalservice);
 
         this.title = '';
+        this.modalSize = 'large';
     }
 }
