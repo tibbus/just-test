@@ -19,14 +19,14 @@ export class UploadFileDirective {
             this.$realUploader.click();
         })
 
-        this.$realUploader.click((e: Event) => {
-            e.stopPropagation();
-        });
+        this.$realUploader
+            .click((e: Event) => {
+                e.stopPropagation();
+            })
+            .change((e: any) => {
+                e.stopPropagation();
 
-        this.$realUploader.change((e: any) => {
-            e.stopPropagation();
-
-            this.onFileSelect.emit(e.target.files[0]);
-        });
+                this.onFileSelect.emit(e.target.files[0]);
+            });
     }
 }
