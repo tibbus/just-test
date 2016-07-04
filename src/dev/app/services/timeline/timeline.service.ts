@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 @Injectable()
 export class TimelineService extends HttpService {
     constructor(private http: Http, private apiService: ApiService, private carService: CarService) {
-        super(http, `/timeline/${carService.userCarId}`);
+        super(http, null);
     }
 
     private statuses: any[];
@@ -16,6 +16,9 @@ export class TimelineService extends HttpService {
     private _selectedImageIndex: number;
 
     getPosts(forceRefresh?: boolean) {
+        // Set the url here as the Timeline should be initialized after the Car
+        this.url = `/timeline/${this.carService.userCarId}`;
+
         return this.getData(forceRefresh).map((res: any) => {
             this.statuses = res.results;    
 

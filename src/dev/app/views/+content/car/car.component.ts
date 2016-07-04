@@ -54,7 +54,7 @@ export class CarComponent implements OnInit, OnDestroy {
     carLoaded: boolean = false;
 
     ngOnInit() {
-        this.carService.getCars().delay(150).subscribe(
+        this.carService.getCars().subscribe(
             (cars) => {
                 if (!this.carService.selectedCar) {
                     this.router.navigate(['NotFound']);
