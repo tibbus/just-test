@@ -9,7 +9,11 @@
 
 <div class="form-group">
     <div>
-        <textarea class="form-control" rows="3" placeholder="Write a post..." [(ngModel)]="currentStatus"></textarea>
+        <textarea class="form-control" rows="3" placeholder="Write a post..." 
+            [(ngModel)]="currentStatus"
+            [class.lineDisabled]="postType !== 'status'"
+        >
+        </textarea>
         <!--<span class="help-block">Post a new Status, Media, Event on your timeline.</span>-->
     </div>
 </div>
@@ -26,12 +30,20 @@
     
 </div>
 
-<div class="btn add-media add-photos" uploadFile (onFileSelect)="clickAddImages($event)">
+<div class="btn add-media add-photos" 
+     uploadFile 
+     (onFileSelect)="clickAddImages($event)"
+     [class.disabled]="postType === 'Video'"
+     >
     <span class="glyphicon menu-glyphicon glyphicon-picture" aria-hidden="true"></span>
     <span class="add-media-text">Add photo</span>
 </div>
 <div class="vertical-line"></div>
-<div class="btn add-media add-videos" uploadFile (onFileSelect)="clickAddVideos($event)">
+<div class="btn add-media add-videos" 
+     uploadFile 
+     (onFileSelect)="clickAddVideos($event)"
+     [class.disabled]="postType === 'Image'"
+     >
     <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
     <span class="add-media-text">Add video</span>
 </div>

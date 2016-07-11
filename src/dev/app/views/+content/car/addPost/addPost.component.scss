@@ -27,6 +27,7 @@
 .btn-group {
     border-bottom: solid 1px #EDEDED;
 }
+
 .menu-glyphicon {
     top: 4px;
     font-size: 22px;
@@ -97,6 +98,10 @@ loading {
 
     textarea {
         padding-left: 100px;
+
+        &.lineDisabled {
+            background-image: none;
+        }
     }
 }
 
@@ -167,4 +172,8 @@ loading {
             opacity: 0.5;
         }
     }
+}
+
+.btn.disabled:hover {
+    background-color: transparent;
 }

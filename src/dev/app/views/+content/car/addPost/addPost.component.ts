@@ -19,7 +19,6 @@ import { UploadFileDirective } from './uploadFile.directive';
 })
 
 export class AddPostComponent {
-    
     currentStatus: string = '';
     loading: boolean = false;
     carInfo: any;
@@ -40,6 +39,8 @@ export class AddPostComponent {
     ngOnInit() {
         this.carInfo = this._carService.selectedCar.car;
         this.carRegNumber = this._carService.selectedCar.registrationNumber.toUpperCase();
+
+        this.postType = 'status';
     }
 
     clickUriRemove(index: number) {
@@ -63,7 +64,6 @@ export class AddPostComponent {
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
-            console.log('loaded');
             this.uris.push(e.target.result);
 
             this.ref.detectChanges();

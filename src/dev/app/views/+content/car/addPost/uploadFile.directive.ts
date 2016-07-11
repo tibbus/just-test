@@ -14,6 +14,11 @@ export class UploadFileDirective {
         this.$host = jQuery(el.nativeElement).append(this.$realUploader);
 
         this.$host.click((e: Event) => {
+            // If the button is disabled, ignore the click
+            if (this.$host.hasClass('disabled')) {
+                return false;
+            }
+
             e.stopImmediatePropagation();
 
             this.$realUploader.click();
