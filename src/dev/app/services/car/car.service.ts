@@ -1,8 +1,10 @@
 import { Injectable }     from '@angular/core';
 import { Http } from '@angular/http';
 import { ReplaySubject }    from 'rxjs/ReplaySubject';
+
 import { HttpService } from '../http/http.service';
 import { ApiService } from '../api/api.service';
+import { Car, CarInfo, Mot, Tax } from './car';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -14,8 +16,8 @@ export class CarService extends HttpService {
     private _selectedCarId: string;
 
     getCars(forceRefresh?: boolean) {
-        return this.getData(forceRefresh).map(res => {
-            return _.map(res, (carObject: any) => {
+        return this.getData(forceRefresh).map((res: Car[]) => {
+            return _.map(res, (carObject: Car) => {
                 const carMake: string = _.get(carObject, 'carInfo.car.make', null);
                 const carModel: string = _.get(carObject, 'carInfo.car.model', null);
                 const carName: string = `${carMake} ${carModel}`;
@@ -31,7 +33,7 @@ export class CarService extends HttpService {
     }
 
     addCar(regNumber: string) {
-        const apiUrl = `${this.apiService.userRegisterCar}${regNumber}`;
+        const apiUrl: string = `${this.apiService.userRegisterCar}${regNumber}`;
 
         return this.http.request(apiUrl, {
             body: null,
@@ -40,7 +42,7 @@ export class CarService extends HttpService {
     }
 
     removeCar(id: string) {
-        const apiUrl = `${this.apiService.userRemoveCar}${id}`;
+        const apiUrl: string = `${this.apiService.userRemoveCar}${id}`;
 
         return this.http.request(apiUrl, {
             body: null,
@@ -48,19 +50,19 @@ export class CarService extends HttpService {
         });
     }
 
-    getCarById(id: string): any {
-        const car = _.find(this.dataObject, (item: any) => {
-            return item.id == id;
+    getCarById(id: string): Car {
+        const currentCar: Car = _.find(this.dataObject, (car: Car) => {
+            return car.id == id;
         });
 
-        return car;
+        return currentCar;
     }
 
     set selectedCarId(carId: string) {
         this._selectedCarId = carId;
     }
 
-    get selectedCar(): any {
+    get selectedCar(): CarInfo {
         if (this.getCarById(this._selectedCarId)) {
             return this.getCarById(this._selectedCarId).carInfo;
         } else {
@@ -69,7 +71,7 @@ export class CarService extends HttpService {
     }
 
     get userCarId(): string {
-        const car: any = this.getCarById(this._selectedCarId);
+        const car: Car = this.getCarById(this._selectedCarId);
 
         if (car) {
             return car.carInfo.id;
@@ -78,11 +80,11 @@ export class CarService extends HttpService {
         }
     }
 
-    get selectedCarMot(): any {
+    get selectedCarMot(): Mot[] {
         return this.getCarById(this._selectedCarId).mot;
     }
 
-    get selectedCarTax(): any {
+    get selectedCarTax(): Tax {
         return this.getCarById(this._selectedCarId).tax;
     }
 }

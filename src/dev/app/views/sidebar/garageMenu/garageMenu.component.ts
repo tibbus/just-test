@@ -1,5 +1,5 @@
 ﻿import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import * as _ from 'lodash';
 
 import { CarService, SidebarService, ModalService } from '../../../services/index';
@@ -50,7 +50,8 @@ export class GarageMenuComponent implements OnInit{
 
         this._carService.selectedCarId = car.id;
 
-        this._router.navigate(['Car', { id: car.route }]);
+        // use this instead of [routerLink] as we want to do things before the route is initialized
+        this._router.navigate(['/car', car.route]);
     }
 
     onGarageSelect() {

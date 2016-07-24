@@ -1,5 +1,5 @@
 ﻿import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AddPostComponent } from './addPost/addPost.component';
@@ -10,7 +10,7 @@ import {
     TaxDetailsModalComponent,
     MotDetailsModalComponent
 } from './index';
-
+import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
 
 @Component({
     selector: 'content',
@@ -37,7 +37,8 @@ export class CarComponent implements OnInit, OnDestroy {
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
         private imageService: ImageService,
-        private videoService: VideoService
+        private videoService: VideoService,
+        private route: ActivatedRoute
     ) {
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
@@ -51,19 +52,29 @@ export class CarComponent implements OnInit, OnDestroy {
             });
     }
 
-    carLoaded: boolean = false;
+    carLoaded: boolean;
 
     ngOnInit() {
+        this.route.params.subscribe(params => {
+            this.carLoaded = false;
+            // used to re-render the component and all the sub-components
+            this.ref.detectChanges();
+
+            this.getCars();
+        });
+    }
+
+    getCars() {
         this.carService.getCars().subscribe(
-            (cars) => {
+            (cars: any) => {
                 if (!this.carService.selectedCar) {
                     this.router.navigate(['NotFound']);
 
                     return;
                 }
-                
-                this.carLoaded = true;
-        });
+
+                this.carLoaded = true;    
+            });
     }
 
     ngOnDestroy() {

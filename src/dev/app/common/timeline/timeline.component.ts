@@ -51,7 +51,7 @@ export class TimelineComponent {
     }
 
     ngOnInit() {
-        this.timelineService.getPosts().subscribe(
+        this.timelineService.getPosts(true).subscribe(
             (statuses: any) => {
                 this.statuses = statuses.results.reverse().map(item => {
                     const postObject = item.details;

@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES }  from '@angular/router';
 
 import { ProfileService } from '../../services/profile/profile.service';
 import { Profile } from '../../services/profile/profile';

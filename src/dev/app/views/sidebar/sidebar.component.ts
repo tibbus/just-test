@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
 import { GarageMenuComponent } from './garageMenu/garageMenu.component';
 import { SidebarService } from '../../services/index';
