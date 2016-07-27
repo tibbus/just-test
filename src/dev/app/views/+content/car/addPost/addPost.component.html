@@ -27,7 +27,13 @@
             <source src="{{uri}}" type="video/mp4">
         </video>
     </div>
-    
+
+    <div class="selected-topics">
+        <div *ngFor="let topic of selectedTopics" class="topic">
+            <button type="button" class="close" (click)="clickRemoveTopics(topic)">&#215;</button>
+            <span>{{topic}}</span>
+        </div>
+    </div>
 </div>
 
 <div class="btn add-media add-photos" 
@@ -47,6 +53,23 @@
     <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
     <span class="add-media-text">Add video</span>
 </div>
+<div class="vertical-line"></div>
+
+<div class="add-topics">
+    <span class="text">Add Topics</span>
+    <div class="btn-group menu">
+        <a data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <div class="ripple-container"></div>
+        </a>
+        <ul class="dropdown-menu">
+            <li *ngFor="let topic of topics">
+                <a (click)="clickAddTopics(topic)">{{topic}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 <div class="vertical-line"></div>
 
 <div class="btn btn-raised btn-success post"

@@ -26,6 +26,9 @@ export class AddPostComponent {
     uris: string[] = [];
     files: any[] = [];
     postType: string;
+    allTopics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
+    topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
+    selectedTopics: string[] = [];
 
     constructor(
         private _carService: CarService,
@@ -97,12 +100,31 @@ export class AddPostComponent {
         this.loading = true;
 
         if (this.postType === 'Image') {
+            this.imageService.topics = this.selectedTopics;
             this.addPostImage();
         } else if (this.postType === 'Video') {
+            this.videoService.topics = this.selectedTopics;
             this.addPostVideo();
         } else {
+            this.statusService.topics = this.selectedTopics;
             this.addPostStatus();
         }
+    }
+
+    clickAddTopics(topic: string) {
+        const currentTopicIndex = this.topics.indexOf(topic);
+
+        this.selectedTopics.push(topic);
+
+        this.topics.splice(currentTopicIndex, 1);
+    }
+
+    clickRemoveTopics(topic: string) {
+        const currentTopicIndex = this.selectedTopics.indexOf(topic);
+
+        this.topics.push(topic);
+
+        this.selectedTopics.splice(currentTopicIndex, 1);
     }
 
     addPostStatus() {
@@ -138,6 +160,10 @@ export class AddPostComponent {
         this.uris = [];
         this.files = [];
         this.loading = false;
+        this.postType = 'status';
+
+        this.topics = this.allTopics;
+        this.selectedTopics = [];
 
         // Refresh the TimeLine
         this.timelineService.getPosts(true);

@@ -25,7 +25,7 @@ export class GarageComponent implements OnInit {
     }
 
     getCars() {
-        this.carService.getCars().subscribe(
+        this.carService.getCars().delay(500).subscribe(
             cars => {
                 this.cars = cars;
             },

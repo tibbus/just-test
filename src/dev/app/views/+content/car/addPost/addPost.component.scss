@@ -151,6 +151,7 @@ loading {
     .img-wrapper {
         position: relative;
         float: left;
+    }
 
         img,
         video {
@@ -168,12 +169,58 @@ loading {
         }
 
         button:hover ~ img,
-        button:hover ~ video {
+        button:hover ~ video,
+        button:hover ~ span {
             opacity: 0.5;
+        }
+
+    .selected-topics {
+        float: left;
+        clear: left;
+        padding: 5px 0 10px 0;
+
+        .topic {
+            position: relative;
+            float: left;
+            font-weight: 500;
+            color: grey;
+            margin-left: 32px;
+        }
+
+        button {
+            top: -22px;
+            right: -22px;
         }
     }
 }
 
 .btn.disabled:hover {
     background-color: transparent;
+}
+
+.add-topics {
+    float: left;
+    margin: 4px 20px;
+    padding: 0;
+
+    .menu {
+        padding: 0;
+        margin: 0;
+
+        a {
+            cursor: pointer;
+            padding: 6px 16px;
+        }
+
+        .caret {
+            border-top: 6px dashed;
+            border-right: 6px solid transparent;
+            border-left: 6px solid transparent;
+        }
+    }
+
+    .text {
+        color: #949494;
+        font-weight: 500;
+    }
 }

@@ -5,6 +5,7 @@
         </div>
         <a class="username">Will Snowdon</a>
         <span class="date">{{status.createdDate | timelineDate }}</span>
+        
         <div class="btn-group edit-menu">
             <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
@@ -15,6 +16,11 @@
                 <li><a (click)="onClickDelete(status.id)">Delete</a></li>
             </ul>
         </div>
+
+        <div class="topics">
+            [ <span class="topic" *ngFor="let topic of status.topics">{{topic}} </span>]
+        </div>
+
         <div class="comment-text">
             <p>{{status.description}}</p>
         </div>

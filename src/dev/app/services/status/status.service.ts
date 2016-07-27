@@ -9,6 +9,8 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class StatusService extends HttpService {
+    private _topics: string[];
+
     constructor(private http: Http, private apiService: ApiService, private carService: CarService, private timelineService: TimelineService) {
         super(http, `/car/${carService.userCarId}/status`);
     }
@@ -17,7 +19,7 @@ export class StatusService extends HttpService {
         const apiUrl = `/car/${this.carService.userCarId}/status`;
         const body: any = {
             description: newStatus,
-            topics: ["Suzuki"]
+            topics: this._topics
         };
 
         return this.http.request(apiUrl, {
@@ -47,5 +49,9 @@ export class StatusService extends HttpService {
             body: null,
             method: 'DELETE'
         });
+    }
+
+        set topics(topics: string[]) {
+        this._topics = topics;
     }
 }

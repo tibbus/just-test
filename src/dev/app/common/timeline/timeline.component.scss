@@ -86,10 +86,12 @@
 
 .edit-menu {
     margin: 0;
+    margin-right: -8px;
     float: right;
 
     a {
         cursor: pointer;
+        padding: 6px 16px;
     }
 }
 
@@ -140,4 +142,9 @@ a {
 video {
     float: left;
     margin: 20px;
+}
+
+.topics {
+    float: right;
+    margin-right: 20px;
 }

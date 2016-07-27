@@ -9,29 +9,25 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ImageService {
+    private _topics: string[];
+    private _postMedia = new Subject<any>();
+    postMedia$ = this._postMedia.asObservable();
+    
     constructor(private http: Http, private apiService: ApiService, private carService: CarService, private timelineService: TimelineService) {
         //super(http, `/car/${carService.userCarId}/status`);
     }
 
-    private _postMedia = new Subject<any>();
-    postMedia$ = this._postMedia.asObservable();
-
     addStatus(files: any[], statusText: string) {
-        const apiUrl = `/car/${this.carService.userCarId}/image`;
-        //const body: any = {
-        //    description: newStatus,
-        //    topics: ["Suzuki"]
-        //};
-
-        console.log(apiUrl)
         const formData = new FormData();
 
-        formData.append('topics', 'test');
         formData.append('location', 'test');
         formData.append('description', statusText);
 
         for (let file of files) {
             formData.append('files', file);
+        }
+        for (let topic of this._topics) {
+            formData.append('topics', topic);
         }
 
         jQuery.ajax({
@@ -46,12 +42,9 @@ export class ImageService {
             });
 
         return this.postMedia$;
+    }
 
-        //this.http.post('https://contactsapi.apispark.net1/v1/companies', formData);
-
-        //return this.http.request(apiUrl, {
-        //    body: JSON.stringify(formData),
-        //    method: 'POST'
-        //});
+    set topics(topics: string[]) {
+        this._topics = topics;
     }
 }

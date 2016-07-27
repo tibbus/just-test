@@ -65,7 +65,7 @@ export class CarComponent implements OnInit, OnDestroy {
     }
 
     getCars() {
-        this.carService.getCars().subscribe(
+        this.carService.getCars().delay(500).subscribe(
             (cars: any) => {
                 if (!this.carService.selectedCar) {
                     this.router.navigate(['NotFound']);
