@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { StatusService, ModalService, TimelineService } from '../../../services/index';
+import { PostService, ModalService, TimelineService } from '../../../services/index';
 import { TimelineDatePipe } from '../timelineDate.pipe';
 
 @Component({
@@ -18,7 +18,7 @@ export class ImageModalContentComponent implements OnInit {
     createdDate: string;
 
     constructor(
-        private statusService: StatusService,
+        private postService: PostService,
         private modalService: ModalService,
         private timelineService: TimelineService
     ) { }

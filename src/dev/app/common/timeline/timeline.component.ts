@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { StatusService, ModalService, TimelineService } from '../../services/index';
+import { ModalService, TimelineService, PostService } from '../../services/index';
 import { LoadingComponent } from '../loading/loading.component';
 import { EditModalComponent } from './editModal/editModal.component';
 import { ImageModalComponent } from './imageModal/imageModal.component';
@@ -14,7 +14,7 @@ declare var FB: any;
     styleUrls: ['src/dist/app/common/timeline/timeline.component.css'],
     templateUrl: 'src/dev/app/common/timeline/timeline.component.html',
     directives: [LoadingComponent, EditModalComponent, ImageModalComponent],
-    providers: [ModalService, StatusService],
+    providers: [ModalService, PostService],
     pipes: [TimelineDatePipe]
 })
 
@@ -27,10 +27,10 @@ export class TimelineComponent {
     selectedPostId: string;
 
     constructor(
-        private statusService: StatusService,
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
-        private timelineService: TimelineService
+        private timelineService: TimelineService,
+        private postService: PostService
     ) {
         //super(statusService, modalService, ref, timelineService);
 
@@ -63,10 +63,10 @@ export class TimelineComponent {
         )
     }
 
-    onClickDelete(statusId: string) {
-        this.loading = statusId;
+    onClickDelete(postId: string) {
+        this.loading = postId;
 
-        this.statusService.deleteStatus(statusId).delay(500).subscribe(
+        this.postService.deletePost(postId).delay(500).subscribe(
             statuses => {
                 this.loading = null;
 

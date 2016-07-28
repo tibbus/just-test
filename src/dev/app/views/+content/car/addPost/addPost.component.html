@@ -21,9 +21,9 @@
 <div class="media-wrapper">
     <div class="img-wrapper" *ngFor="let uri of uris; let i=index">
         <button type="button" class="close" (click)="clickUriRemove(i)">&#215;</button>
-        <img *ngIf="postType === 'Image'" src="{{uri}}" />
+        <img *ngIf="postType === 'image'" src="{{uri}}" />
         
-        <video *ngIf="postType === 'Video'" height="100">
+        <video *ngIf="postType === 'video'" height="100">
             <source src="{{uri}}" type="video/mp4">
         </video>
     </div>
@@ -39,7 +39,7 @@
 <div class="btn add-media add-photos" 
      uploadFile 
      (onFileSelect)="clickAddImages($event)"
-     [class.disabled]="postType === 'Video'"
+     [class.disabled]="postType === 'video'"
      >
     <span class="glyphicon menu-glyphicon glyphicon-picture" aria-hidden="true"></span>
     <span class="add-media-text">Add photo</span>
@@ -48,7 +48,7 @@
 <div class="btn add-media add-videos" 
      uploadFile 
      (onFileSelect)="clickAddVideos($event)"
-     [class.disabled]="postType === 'Image'"
+     [class.disabled]="postType === 'image'"
      >
     <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
     <span class="add-media-text">Add video</span>

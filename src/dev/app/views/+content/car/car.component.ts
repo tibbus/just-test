@@ -4,7 +4,12 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { AddPostComponent } from './addPost/addPost.component';
 import { CarTimelineComponent } from './carTimeline/carTimeline.component';
-import { CarService, StatusService, ModalService, TimelineService, ImageService, VideoService } from '../../../services/index';
+import {
+    CarService,
+    ModalService,
+    TimelineService,
+    PostService
+} from '../../../services/index';
 import {
     CarDetailsModalComponent,
     TaxDetailsModalComponent,
@@ -24,7 +29,7 @@ import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
         TaxDetailsModalComponent,
         MotDetailsModalComponent
     ],
-    providers: [TimelineService, StatusService, ImageService, VideoService]
+    providers: [TimelineService, PostService]
 })
 
 export class CarComponent implements OnInit, OnDestroy {
@@ -36,8 +41,6 @@ export class CarComponent implements OnInit, OnDestroy {
         private router: Router,
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
-        private imageService: ImageService,
-        private videoService: VideoService,
         private route: ActivatedRoute
     ) {
         // on modal open/close :

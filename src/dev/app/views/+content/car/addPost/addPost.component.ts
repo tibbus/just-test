@@ -2,7 +2,12 @@
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
-import { ModalService, CarService, StatusService, TimelineService, ImageService, VideoService } from '../../../../services/index';
+import {
+    ModalService,
+    CarService,
+    TimelineService,
+    PostService
+} from '../../../../services/index';
 import { LoadingComponent } from '../../../../common/loading/loading.component';
 import { RegNumberPipe } from './regNumber.pipe'
 import { UploadFileDirective } from './uploadFile.directive';
@@ -32,11 +37,9 @@ export class AddPostComponent {
 
     constructor(
         private _carService: CarService,
-        private statusService: StatusService,
         private timelineService: TimelineService,
-        private imageService: ImageService,
-        private videoService: VideoService,
-        private ref: ChangeDetectorRef
+        private ref: ChangeDetectorRef,
+        private postService: PostService
     ) {}
 
     ngOnInit() {
@@ -62,7 +65,7 @@ export class AddPostComponent {
 
         this.files.push(file);
 
-        this.postType = 'Image';
+        this.postType = 'image';
 
         const reader = new FileReader();
 
@@ -82,7 +85,7 @@ export class AddPostComponent {
 
         this.files.push(file);
 
-        this.postType = 'Video';
+        this.postType = 'video';
 
         const reader = new FileReader();
 
@@ -98,15 +101,13 @@ export class AddPostComponent {
 
     clickAddStatus() {
         this.loading = true;
+        this.postService.topics = this.selectedTopics;
 
-        if (this.postType === 'Image') {
-            this.imageService.topics = this.selectedTopics;
+        if (this.postType === 'image') {
             this.addPostImage();
-        } else if (this.postType === 'Video') {
-            this.videoService.topics = this.selectedTopics;
+        } else if (this.postType === 'video') {
             this.addPostVideo();
         } else {
-            this.statusService.topics = this.selectedTopics;
             this.addPostStatus();
         }
     }
@@ -128,7 +129,7 @@ export class AddPostComponent {
     }
 
     addPostStatus() {
-        this.statusService.addStatus(this.currentStatus).delay(1000).subscribe(
+        this.postService.addPost(null, this.currentStatus, 'status').subscribe(
             res => {
                 this.afterPostRequest();
             },
@@ -137,7 +138,7 @@ export class AddPostComponent {
     }
 
     addPostImage() {
-        this.imageService.addStatus(this.files, this.currentStatus).subscribe(
+        this.postService.addPost(this.files, this.currentStatus, 'image').subscribe(
             res => {
                 this.afterPostRequest();
             },
@@ -146,7 +147,7 @@ export class AddPostComponent {
     }
 
     addPostVideo() {
-        this.videoService.addStatus(this.files, this.currentStatus).subscribe(
+        this.postService.addPost(this.files, this.currentStatus, 'video').subscribe(
             res => {
                 this.afterPostRequest();
             },

@@ -4,7 +4,5 @@ export * from './api/api.service';
 export * from './http/http.service';
 export * from './sidebar/sidebar.service';
 export * from './modal/modal.service';
-export * from './status/status.service';
 export * from './timeline/timeline.service';
-export * from './image/image.service';
-export * from './video/video.service';
+export * from './post/post.service';

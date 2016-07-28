@@ -23,7 +23,7 @@ import {
     ProfileService,
     SidebarService,
     ModalService,
-    StatusService,
+    PostService,
     TimelineService
 } from './app/services/index';
 
