@@ -26,6 +26,8 @@
         <video *ngIf="postType === 'video'" height="100">
             <source src="{{uri}}" type="video/mp4">
         </video>
+
+        <span *ngIf="postType === 'document'" class="glyphicon glyphicon-file document"></span>
     </div>
 
     <div class="selected-topics">
@@ -39,7 +41,7 @@
 <div class="btn add-media add-photos" 
      uploadFile 
      (onFileSelect)="clickAddImages($event)"
-     [class.disabled]="postType === 'video'"
+     [class.disabled]="postType !== 'status' && postType !== 'image'"
      >
     <span class="glyphicon menu-glyphicon glyphicon-picture" aria-hidden="true"></span>
     <span class="add-media-text">Add photo</span>
@@ -48,10 +50,18 @@
 <div class="btn add-media add-videos" 
      uploadFile 
      (onFileSelect)="clickAddVideos($event)"
-     [class.disabled]="postType === 'image'"
+     [class.disabled]="postType !== 'status' && postType !== 'video'"
      >
     <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
     <span class="add-media-text">Add video</span>
+</div>
+<div class="vertical-line"></div>
+<div class="btn add-media add-documents"
+     uploadFile
+     (onFileSelect)="clickAddDocuments($event)"
+     [class.disabled]="postType !== 'status' && postType !== 'document'">
+    <span class="glyphicon menu-glyphicon glyphicon-file" aria-hidden="true"></span>
+    <span class="add-media-text">Add document</span>
 </div>
 <div class="vertical-line"></div>
 

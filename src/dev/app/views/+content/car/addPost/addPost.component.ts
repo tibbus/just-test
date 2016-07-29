@@ -99,6 +99,27 @@ export class AddPostComponent {
         reader.readAsDataURL(file);
     }
 
+    clickAddDocuments(file) {
+        if (!file) {
+            return false;
+        }
+
+        this.files.push(file);
+
+        this.postType = 'document';
+
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+            console.log('loaded');
+            this.uris.push(e.target.result);
+
+            this.ref.detectChanges();
+        }
+
+        reader.readAsDataURL(file);
+    }
+
     clickAddStatus() {
         this.loading = true;
         this.postService.topics = this.selectedTopics;
@@ -107,6 +128,8 @@ export class AddPostComponent {
             this.addPostImage();
         } else if (this.postType === 'video') {
             this.addPostVideo();
+        } else if (this.postType === 'document') {
+            this.addPostDocument();
         } else {
             this.addPostStatus();
         }
@@ -148,6 +171,15 @@ export class AddPostComponent {
 
     addPostVideo() {
         this.postService.addPost(this.files, this.currentStatus, 'video').subscribe(
+            res => {
+                this.afterPostRequest();
+            },
+            error => this.handleError(error)
+        );
+    }
+
+    addPostDocument() {
+        this.postService.addPost(this.files, this.currentStatus, 'document').subscribe(
             res => {
                 this.afterPostRequest();
             },
