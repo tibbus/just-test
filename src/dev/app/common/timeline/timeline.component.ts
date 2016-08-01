@@ -76,8 +76,6 @@ export class TimelineComponent {
 
         this.postService.deletePost(postId).delay(500).subscribe(
             statuses => {
-                this.loading = null;
-
                 // update the status list (make a new server request in the service)
                 this.timelineService.getPosts(true);
             }

@@ -29,7 +29,12 @@
     float: left;
     border: solid 1px #EFECEC;
     border-radius: 3px;
+
+    &-removing {
+        opacity: 0.5;
+    }
 }
+
 
 .social {
     float: left;
@@ -132,6 +137,26 @@ a {
 .media-wrapper {
     float: left;
     clear: left;
+
+    .documents {
+        .document {
+            font-size: 80px;
+            padding: 5px 15px;
+            float: left;
+            clear: left;
+            color: grey;
+        }
+
+        .title {
+            float: left;
+            margin: 10px 0 0 18px;
+            width: 100px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            padding-right: 15px;
+        }
+    }
 }
 
 .media-post {
