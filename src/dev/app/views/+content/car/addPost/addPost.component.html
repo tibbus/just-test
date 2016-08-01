@@ -27,7 +27,10 @@
             <source src="{{uri}}" type="video/mp4">
         </video>
 
-        <span *ngIf="postType === 'document'" class="glyphicon glyphicon-file document"></span>
+        <div *ngIf="postType === 'document'" class="documents">
+            <span class="title" title="{{files[i].name}}">{{files[i].name}}</span>
+            <span class="glyphicon glyphicon-file document"></span>
+        </div>
     </div>
 
     <div class="selected-topics">

@@ -159,13 +159,25 @@ loading {
         padding: 15px;
         float: left;
     }
+    .documents {
+        .document {
+            font-size: 80px;
+            padding: 15px;
+            float: left;
+            color: grey;
+        }
 
-    .document {
-        font-size: 80px;
-        padding: 15px;
-        float: left;
-        color: grey;
+        .title {
+            display: block;
+            margin-left: 18px;
+            width: 100px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            padding-right: 15px;
+        }
     }
+
 
     button {
         top: -12px;
@@ -177,10 +189,9 @@ loading {
 
     button:hover ~ img,
     button:hover ~ video,
-    button:hover ~ span {
+    button:hover ~ .documents {
         opacity: 0.5;
     }
-
 
     .selected-topics {
         float: left;
