@@ -1,8 +1,4 @@
-/// <reference path="../../typings/jquery/jquery.d.ts" />
-/// <reference path="../../typings/lodash/lodash.d.ts" />
-/// <reference path="../../typings/bootstrap-material-design/bootstrap-material-design.d.ts" />
-/// <reference path="../../typings/bootstrap/bootstrap.d.ts" />
-/// <reference path="../../typings/browser/ambient/es6-shim/index.d.ts" />
+/// <reference path="../../typings/index.d.ts" />
 
 import 'rxjs/Rx';
 import { bootstrap } from '@angular/platform-browser-dynamic';

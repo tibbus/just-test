@@ -6,6 +6,7 @@ import { LoadingComponent } from '../loading/loading.component';
 import { EditModalComponent } from './editModal/editModal.component';
 import { ImageModalComponent } from './imageModal/imageModal.component';
 import { TimelineDatePipe } from './timelineDate.pipe';
+import * as _ from 'lodash';
 
 declare var FB: any;
 
