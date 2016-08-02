@@ -13,7 +13,8 @@ const routes: RouterConfig = [
     { path: 'garage', component: GarageComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'car/:id', component: CarComponent },
-    { path: 'feed', component: FeedComponent } 
+    { path: 'feed', component: FeedComponent },
+    { path: '**', component: NotFoundComponent }
 ];
 
 export const appRouterProviders = [
