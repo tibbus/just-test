@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "postinstall": "gulp all"
+    "postinstall": "typings install && gulp all"
   },
   "repository": {
     "type": "git",
