@@ -27,9 +27,9 @@ export class PostService {
 
         const formData = new FormData();
 
+        // Add form data :
         formData.append('location', 'test');
         formData.append('description', statusText);
-
         for (let file of files) {
             formData.append('files', file);
         }
@@ -65,17 +65,44 @@ export class PostService {
     }
 
     updatePost(newStatus: string) {
-        const apiUrl = `/car/${this.carService.userCarId}/status/${this.timelineService.selectedPostId}`;
-        const body: any = {
-            id: 1,
-            description: newStatus,
-            topics: ["Suzuki"]
-        };
+        const postType: string = this.timelineService.selectedPost.type;
 
-        return this.http.request(apiUrl, {
-            body: JSON.stringify(body),
-            method: 'PUT'
-        });
+        if (postType === 'Status') {
+            const apiUrl = `/car/${this.carService.userCarId}/status/${this.timelineService.selectedPostId}`;
+            const body: any = {
+                id: 1,
+                description: newStatus,
+                topics: ["Suzuki"]
+            };
+
+            return this.http.request(apiUrl, {
+                body: JSON.stringify(body),
+                method: 'PUT'
+            });
+        } else {
+            const formData = new FormData();
+
+            this._topics = ['new topic', 'test another'];
+
+            for (let topic of this._topics) {
+                formData.append('topics', topic);
+            }
+            formData.append('location', 'test');
+            formData.append('description', 'some description');
+
+            jQuery.ajax({
+                url: `http://amilatestapi-dev.azurewebsites.net/api/v1/car/${this.carService.userCarId}/${postType}/${this.timelineService.selectedPostId}`,
+                type: 'PUT',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false
+            }).done(() => {
+                this._postMedia.next('done')
+            });
+
+            return this.postMedia$;
+        }
     }
 
     deletePost(postId: string) {

@@ -8,7 +8,7 @@ import { PostService, ModalService, TimelineService } from '../../../services/in
 })
 
 export class EditModalContentComponent implements OnInit {
-    status: any;
+    postDescription: string;
 
     constructor(
         private postService: PostService,
@@ -17,7 +17,7 @@ export class EditModalContentComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.status = this.timelineService.selectedPost.details.description;
+        this.postDescription = this.timelineService.selectedPost.details.description;
 
         this.modalService.clickSave.subscribe(
             () => {
@@ -29,10 +29,10 @@ export class EditModalContentComponent implements OnInit {
     savePost() {
         this.modalService.setLoading();
 
-        this.postService.updatePost(this.status).subscribe(
+        this.postService.updatePost(this.postDescription).subscribe(
             () => {
                 // update the Model
-                this.timelineService.selectedPost.details.description = this.status;
+                this.timelineService.selectedPost.details.description = this.postDescription;
 
                 this.modalService.sendModalClose();
             }
