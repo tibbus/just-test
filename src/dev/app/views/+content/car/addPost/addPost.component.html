@@ -43,7 +43,7 @@
 
 <div class="btn add-media add-photos" 
      uploadFile 
-     (onFileSelect)="clickAddImages($event)"
+     (onFileSelect)="clickAddMedia($event, 'image')"
      [class.disabled]="postType !== 'status' && postType !== 'image'"
      >
     <span class="glyphicon menu-glyphicon glyphicon-picture" aria-hidden="true"></span>
@@ -52,7 +52,7 @@
 <div class="vertical-line"></div>
 <div class="btn add-media add-videos" 
      uploadFile 
-     (onFileSelect)="clickAddVideos($event)"
+     (onFileSelect)="clickAddMedia($event, 'video')"
      [class.disabled]="postType !== 'status' && postType !== 'video'"
      >
     <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
@@ -61,7 +61,7 @@
 <div class="vertical-line"></div>
 <div class="btn add-media add-documents"
      uploadFile
-     (onFileSelect)="clickAddDocuments($event)"
+     (onFileSelect)="clickAddMedia($event, 'document')"
      [class.disabled]="postType !== 'status' && postType !== 'document'">
     <span class="glyphicon menu-glyphicon glyphicon-file" aria-hidden="true"></span>
     <span class="add-media-text">Add document</span>

@@ -58,60 +58,18 @@ export class AddPostComponent {
         }
     }
 
-    clickAddImages(file) {
+    clickAddMedia(file: any, postType: string) {
         if (!file) {
             return false;
         }
 
         this.files.push(file);
 
-        this.postType = 'image';
+        this.postType = postType;
 
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
-            this.uris.push(e.target.result);
-
-            this.ref.detectChanges();
-        }
-
-        reader.readAsDataURL(file);
-    }
-
-    clickAddVideos(file) {
-        if (!file) {
-            return false;
-        }
-
-        this.files.push(file);
-
-        this.postType = 'video';
-
-        const reader = new FileReader();
-
-        reader.onload = (e: any) => {
-            console.log('loaded');
-            this.uris.push(e.target.result);
-
-            this.ref.detectChanges();
-        }
-
-        reader.readAsDataURL(file);
-    }
-
-    clickAddDocuments(file) {
-        if (!file) {
-            return false;
-        }
-
-        this.files.push(file);
-
-        this.postType = 'document';
-
-        const reader = new FileReader();
-
-        reader.onload = (e: any) => {
-            console.log('loaded');
             this.uris.push(e.target.result);
 
             this.ref.detectChanges();
@@ -124,12 +82,8 @@ export class AddPostComponent {
         this.loading = true;
         this.postService.topics = this.selectedTopics;
 
-        if (this.postType === 'image') {
-            this.addPostImage();
-        } else if (this.postType === 'video') {
-            this.addPostVideo();
-        } else if (this.postType === 'document') {
-            this.addPostDocument();
+        if (this.postType !== 'status') {
+            this.addPostMedia();
         } else {
             this.addPostStatus();
         }
@@ -160,26 +114,8 @@ export class AddPostComponent {
         );
     }
 
-    addPostImage() {
-        this.postService.addPost(this.files, this.currentStatus, 'image').subscribe(
-            res => {
-                this.afterPostRequest();
-            },
-            error => this.handleError(error)
-        );
-    }
-
-    addPostVideo() {
-        this.postService.addPost(this.files, this.currentStatus, 'video').subscribe(
-            res => {
-                this.afterPostRequest();
-            },
-            error => this.handleError(error)
-        );
-    }
-
-    addPostDocument() {
-        this.postService.addPost(this.files, this.currentStatus, 'document').subscribe(
+    addPostMedia() {
+        this.postService.addPost(this.files, this.currentStatus, this.postType).subscribe(
             res => {
                 this.afterPostRequest();
             },

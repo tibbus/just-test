@@ -12,6 +12,7 @@ export class PostService {
     private _topics: string[];
     private _postMedia = new Subject<any>();
     postMedia$ = this._postMedia.asObservable();
+    private urlRoot: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1/car/';
 
     constructor(
         private http: Http,
@@ -38,7 +39,7 @@ export class PostService {
         }
 
         jQuery.ajax({
-            url: `http://amilatestapi-dev.azurewebsites.net/api/v1/car/${this.carService.userCarId}/${postType}`,
+            url: `${this.urlRoot}${this.carService.userCarId}/${postType}`,
             type: 'POST',
             data: formData,
             cache: false,
@@ -91,7 +92,7 @@ export class PostService {
             formData.append('description', 'some description');
 
             jQuery.ajax({
-                url: `http://amilatestapi-dev.azurewebsites.net/api/v1/car/${this.carService.userCarId}/${postType}/${this.timelineService.selectedPostId}`,
+                url: `${this.urlRoot}/${this.carService.userCarId}/${postType}/${this.timelineService.selectedPostId}`,
                 type: 'PUT',
                 data: formData,
                 cache: false,
