@@ -13,6 +13,7 @@ import {
     PostService,
     TimelineService
 } from './services/index';
+import { appRouterProviders }   from './app.routes';
 
 import * as _ from 'lodash';
 // todo : move it to typings/typescript
@@ -24,6 +25,7 @@ declare const stream: any;
     styleUrls: ['src/dist/app/app.component.css'],
     directives: [ROUTER_DIRECTIVES, HeaderComponent, SidebarComponent],
     providers: [
+        appRouterProviders,
         ProfileService,
         CarService,
         SidebarService,

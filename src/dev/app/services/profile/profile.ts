@@ -1,6 +1,6 @@
-import { HttpInterface } from '../http/http.interface';
+import { RequestInterface } from '../http/request.interface';
 
-export interface Profile extends HttpInterface {
+export interface Profile extends RequestInterface {
     title?: string,
     name?: string,
     email?: string,

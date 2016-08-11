@@ -1,4 +1,4 @@
-import { HttpInterface } from '../http/http.interface';
+import { RequestInterface } from '../http/request.interface';
 
 export interface Car {
     carInfo: CarInfo,
@@ -7,7 +7,7 @@ export interface Car {
     tax: Tax
 }
 
-export interface CarInfo extends HttpInterface {
+export interface CarInfo extends RequestInterface {
     cO2Emission: string,
     car: CarDetails,
     colour: string,
@@ -23,7 +23,7 @@ export interface CarInfo extends HttpInterface {
     wheelPlan: string
 }
 
-export interface Mot extends HttpInterface {
+export interface Mot extends RequestInterface {
     advisoryItems: any[],
     carInfoId: string,
     failedItems: any[],
@@ -32,14 +32,14 @@ export interface Mot extends HttpInterface {
     testNumber: string
 }
 
-export interface Tax extends HttpInterface {
+export interface Tax extends RequestInterface {
     carInfoId: string,
     expiryDate: string,
     taxStatus: string
     taxed: boolean
 }
 
-export interface CarDetails extends HttpInterface {
+export interface CarDetails extends RequestInterface {
     make: string,
     model: string,
     yearOfManufacture: string

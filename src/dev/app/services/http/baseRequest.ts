@@ -3,13 +3,13 @@ import {BaseRequestOptions, RequestOptions, RequestOptionsArgs} from '@angular/h
 export class CustomRequestOptions extends BaseRequestOptions {
     
     // DEV Enviroment
-    private baseApiUrl: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1';
+    //private baseApiUrl: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1';
     
     // PROD Enviroment
     //private baseApiUrl: string = 'http://amilatestapi-prod.azurewebsites.net/api/v1';
     
     // Local FAKE Service Enviroment 
-    //private baseApiUrl: string = `${window.location.origin}/api/v1`;
+    private baseApiUrl: string = `${window.location.origin}/api/v1`;
 
     merge(options?: RequestOptionsArgs): RequestOptions {
         options.url = this.baseApiUrl + options.url;
