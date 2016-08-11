@@ -24,9 +24,10 @@ export class ApiService {
     }
 }
 
-const API = {
+export const API = {
     userCars: '/usercar/details=true',
     userRegisterCar: '/usercar/registration/',
     userRemoveCar: '/usercar/',
-    user: '/user/1'
+    user: '/user/1',
+    timeline: '/timeline/'
 }
