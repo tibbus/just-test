@@ -1,18 +1,9 @@
 import {BaseRequestOptions, RequestOptions, RequestOptionsArgs} from '@angular/http';
+import { API } from '../api/api.service';
 
 export class CustomRequestOptions extends BaseRequestOptions {
-    
-    // DEV Enviroment
-    private baseApiUrl: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1';
-    
-    // PROD Enviroment
-    //private baseApiUrl: string = 'http://amilatestapi-prod.azurewebsites.net/api/v1';
-    
-    // Local FAKE Service Enviroment 
-    //private baseApiUrl: string = `${window.location.origin}/api/v1`;
-
     merge(options?: RequestOptionsArgs): RequestOptions {
-        options.url = this.baseApiUrl + options.url;
+        options.url = API.root + options.url;
 
         // TODO : create an Interface or Enum with the request types
         if (options.method === 1 || options.method === 2 || options.method === 3) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpService } from '../http/http.service';
-import { ApiService } from '../api/api.service';
+import { ApiService, API } from '../api/api.service';
 import { CarService } from '../car/car.service';
 import { TimelineService } from '../timeline/timeline.service';
 import * as _ from 'lodash';
@@ -39,7 +39,7 @@ export class PostService {
         }
 
         jQuery.ajax({
-            url: `${this.urlRoot}${this.carService.userCarId}/${postType}`,
+            url: `${API.root}/car/${this.carService.userCarId}/${postType}`,
             type: 'POST',
             data: formData,
             cache: false,
@@ -68,6 +68,7 @@ export class PostService {
     updatePost(newStatus: string) {
         const postType: string = this.timelineService.selectedPost.type;
 
+        // Use angular2 http service for the Status and Jquery.Ajax for formData requests
         if (postType === 'Status') {
             const apiUrl = `/car/${this.carService.userCarId}/status/${this.timelineService.selectedPostId}`;
             const body: any = {
@@ -92,7 +93,7 @@ export class PostService {
             formData.append('description', 'some description');
 
             jQuery.ajax({
-                url: `${this.urlRoot}/${this.carService.userCarId}/${postType}/${this.timelineService.selectedPostId}`,
+                url: `${API.root}/car/${this.carService.userCarId}/${postType}/${this.timelineService.selectedPostId}`,
                 type: 'PUT',
                 data: formData,
                 cache: false,
