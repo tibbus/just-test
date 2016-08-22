@@ -31,7 +31,6 @@ export class AddPostComponent {
     uris: string[] = [];
     files: any[] = [];
     postType: string;
-    allTopics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
     topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
     selectedTopics: string[] = [];
 
@@ -108,7 +107,7 @@ export class AddPostComponent {
     addPostStatus() {
         this.postService.addPost(null, this.currentStatus, 'status').subscribe(
             res => {
-                this.afterPostRequest();
+               // this.afterPostRequest();
             },
             error => this.handleError(error)
         );
@@ -117,25 +116,10 @@ export class AddPostComponent {
     addPostMedia() {
         this.postService.addPost(this.files, this.currentStatus, this.postType).subscribe(
             res => {
-                this.afterPostRequest();
+               // this.afterPostRequest();
             },
             error => this.handleError(error)
         );
-    }
-
-    afterPostRequest() {
-        // Clear add Post
-        this.currentStatus = '';
-        this.uris = [];
-        this.files = [];
-        this.loading = false;
-        this.postType = 'status';
-
-        this.topics = this.allTopics;
-        this.selectedTopics = [];
-
-        // Refresh the TimeLine
-        this.timelineService.getPosts(true);
     }
 
     handleError(error: Error) {

@@ -16,7 +16,7 @@ export class EditModalComponent extends ModalComponent {
     constructor(private modalservice: ModalService) {
         super(modalservice);
 
-        this.title = 'Edit Status';
+        this.title = 'Edit post';
         this.showSaveButton = true;
     }
 }

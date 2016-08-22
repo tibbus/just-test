@@ -2,7 +2,72 @@
     <label for="textArea" class="col-md-2 control-label">Status</label>
 
     <div class="col-md-10">
-        <textarea class="form-control" rows="2" [(ngModel)]="status"></textarea>
-        <span class="help-block">Update the status.</span>
+        <textarea class="form-control" rows="2" [(ngModel)]="postDescription"></textarea>
+        <!--<span class="help-block">Update the status</span>-->
+    </div>
+</div>
+
+<div class="media-wrapper">
+    <div class="img-wrapper" *ngFor="let uri of uris; let i=index">
+        <button type="button" class="close" (click)="clickUriRemove(i)">&#215;</button>
+        <img *ngIf="postType === 'Image'" src="{{uri}}" />
+
+        <video *ngIf="postType === 'Video'" height="100">
+            <source src="{{uri}}" type="video/mp4">
+        </video>
+
+        <div *ngIf="postType === 'Document'" class="documents">
+            <span class="title" title="{{files[i].name}}">{{files[i].name}}</span>
+            <span class="glyphicon glyphicon-file document"></span>
+        </div>
+    </div>
+
+    <div class="selected-topics">
+        <div *ngFor="let topic of selectedTopics" class="topic">
+            <button type="button" class="close" (click)="clickRemoveTopics(topic)">&#215;</button>
+            <span>{{topic}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="btn add-media add-photos"
+     uploadFile
+     *ngIf="postType === 'Image'"
+     (onFileSelect)="clickAddMedia($event, 'image')"
+>
+    <span class="glyphicon menu-glyphicon glyphicon-picture" aria-hidden="true"></span>
+    <span class="add-media-text">Add photo</span>
+</div>
+
+<div class="btn add-media add-videos"
+     uploadFile
+     *ngIf="postType === 'Video'"
+     (onFileSelect)="clickAddMedia($event, 'video')"
+>
+    <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
+    <span class="add-media-text">Add video</span>
+</div>
+<div class="btn add-media add-documents"
+     uploadFile
+     *ngIf="postType === 'Document'"
+     (onFileSelect)="clickAddMedia($event, 'document')"
+>
+    <span class="glyphicon menu-glyphicon glyphicon-file" aria-hidden="true"></span>
+    <span class="add-media-text">Add document</span>
+</div>
+
+<div class="vertical-line"></div>
+<div class="add-topics">
+    <span class="text">Add Topics</span>
+    <div class="btn-group menu">
+        <a data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <div class="ripple-container"></div>
+        </a>
+        <ul class="dropdown-menu">
+            <li *ngFor="let topic of topics">
+                <a (click)="clickAddTopics(topic)">{{topic}}</a>
+            </li>
+        </ul>
     </div>
 </div>

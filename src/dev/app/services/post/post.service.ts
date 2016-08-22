@@ -65,7 +65,7 @@ export class PostService {
         });
     }
 
-    updatePost(newStatus: string) {
+    updatePost(updatedDescription, updatedFiles, updatedTopics) {
         const postType: string = this.timelineService.selectedPost.type;
 
         // Use angular2 http service for the Status and Jquery.Ajax for formData requests
@@ -73,7 +73,7 @@ export class PostService {
             const apiUrl = `/car/${this.carService.userCarId}/status/${this.timelineService.selectedPostId}`;
             const body: any = {
                 id: 1,
-                description: newStatus,
+                description: updatedDescription,
                 topics: ["Suzuki"]
             };
 
@@ -84,13 +84,14 @@ export class PostService {
         } else {
             const formData = new FormData();
 
-            this._topics = ['new topic', 'test another'];
-
-            for (let topic of this._topics) {
+            for (let file of updatedFiles) {
+                formData.append('files', file);
+            }
+            for (let topic of updatedTopics) {
                 formData.append('topics', topic);
             }
             formData.append('location', 'test');
-            formData.append('description', 'some description');
+            formData.append('description', updatedDescription);
 
             jQuery.ajax({
                 url: `${API.root}/car/${this.carService.userCarId}/${postType}/${this.timelineService.selectedPostId}`,

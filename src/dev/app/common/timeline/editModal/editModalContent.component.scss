@@ -1,3 +1,248 @@
 ﻿textarea.form-control  {
     margin-bottom: 35px;
 }
+
+:host {
+    width: 100%;
+    display: block;
+    background-color: #ffffff;
+    float: left;
+    padding-bottom: 5px;
+}
+
+.status-text {
+    width: 660px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: inline-block;
+}
+
+.status-text input {
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn {
+    text-transform: none;
+    color: #56517B;
+}
+
+.btn-group {
+    border-bottom: solid 1px #EDEDED;
+}
+
+.menu-glyphicon {
+    top: 4px;
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.details {
+    margin-top: 2px;
+    float: right;
+}
+
+.reg-number {
+    float: left;
+    margin: 5px;
+    font-size: 20px;
+    color: black;
+    border-radius: 4px;
+    background-color: #FFD239;
+}
+
+.make {
+    margin: 10px;
+    margin-left: 30px;
+    float: left;
+    font-weight: bold;
+}
+
+.menu {
+    margin-bottom: 0;
+}
+
+.save {
+    display: inline-block;
+    padding: 4px 13px;
+    margin-left: 18px;
+}
+
+loading {
+    left: 220px;
+    position: relative;
+    top: -5px;
+}
+
+.writer-img {
+    margin: 0;
+    margin-left: 10px;
+    height: 77px;
+    padding: 3px;
+    position: absolute;
+    border: solid 2px #E6E6E6;
+    border-radius: 4px;
+    margin-top: 50px;
+
+    img {
+        height: 100%;
+    }
+}
+
+.form-group {
+    margin: 0;
+    margin-top: 5px;
+    padding: 0;
+    float: left;
+    width: 100%;
+    clear: both;
+    padding-top: 10px;
+
+    textarea {
+
+        &.lineDisabled {
+            background-image: none;
+        }
+    }
+}
+
+.help-block {
+    margin-left: 320px;
+}
+
+.post, .add-media {
+    margin: 0;
+    padding: 5px 20px;
+    float: right;
+    margin-top: -3px;
+    margin-right: 10px;
+    clear: left;
+}
+
+.add-media {
+    float: left;
+    padding: 2px 12px;
+    margin-left: 10px;
+    margin-right: 2px;
+
+    .add-media-text {
+        top: -2px;
+        position: relative;
+        color: #949494;
+    }
+}
+
+.add-photos {
+    clear: left;
+}
+
+.car-info {
+    float: left;
+}
+
+.vertical-line {
+    float: left;
+    height: 27px;
+    width: 1px;
+    background-color: #c3c3c3;
+}
+
+.media-wrapper {
+    float: left;
+
+    .img-wrapper {
+        position: relative;
+        float: left;
+    }
+
+    img,
+    video {
+        height: 100px;
+        padding: 15px;
+        float: left;
+    }
+    .documents {
+        .document {
+            font-size: 80px;
+            padding: 15px;
+            float: left;
+            color: grey;
+        }
+
+        .title {
+            display: block;
+            margin-left: 18px;
+            width: 100px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            padding-right: 15px;
+        }
+    }
+
+
+    button {
+        top: -12px;
+        right: -12px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+    }
+
+    button:hover ~ img,
+    button:hover ~ video,
+    button:hover ~ .documents {
+        opacity: 0.5;
+    }
+
+    .selected-topics {
+        float: left;
+        clear: left;
+        padding: 5px 0 10px 0;
+
+        .topic {
+            position: relative;
+            float: left;
+            font-weight: 500;
+            color: grey;
+            margin-left: 32px;
+        }
+
+        button {
+            top: -22px;
+            right: -22px;
+        }
+    }
+}
+
+.btn.disabled:hover {
+    background-color: transparent;
+}
+
+.add-topics {
+    float: left;
+    margin: 4px 20px;
+    padding: 0;
+
+    .menu {
+        padding: 0;
+        margin: 0;
+
+        a {
+            cursor: pointer;
+            padding: 6px 16px;
+        }
+
+        .caret {
+            border-top: 6px dashed;
+            border-right: 6px solid transparent;
+            border-left: 6px solid transparent;
+        }
+    }
+
+    .text {
+        color: #949494;
+        font-weight: 500;
+    }
+}

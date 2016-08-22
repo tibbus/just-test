@@ -1,13 +1,13 @@
-<div *ngFor="let status of statuses"
+<div *ngFor="let post of posts"
       class="post"
-     [class.post-removing]="loading === status.id"
+     [class.post-removing]="loading === post.id"
 >
     <div  class="comment-wrapper last">
         <div class="post-img">
             <img src="/src/assets/muj.JPG" />
         </div>
         <a class="username">Will Snowdon</a>
-        <span class="date">{{status.createdDate | timelineDate }}</span>
+        <span class="date">{{post.createdDate | timelineDate }}</span>
         
         <div class="btn-group edit-menu">
             <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -15,27 +15,27 @@
                 <div class="ripple-container"></div>
             </a>
             <ul class="dropdown-menu">
-                <li><a (click)="onClickEdit(status.id)">Edit</a></li>
-                <li><a (click)="onClickDelete(status.id)">Delete</a></li>
+                <li><a (click)="onClickEdit(post)">Edit</a></li>
+                <li><a (click)="onClickDelete(post.id)">Delete</a></li>
             </ul>
         </div>
 
         <div class="topics">
-            [ <span class="topic" *ngFor="let topic of status.topics">{{topic}} </span>]
+            [ <span class="topic" *ngFor="let topic of post.topics">{{topic}} </span>]
         </div>
 
         <div class="comment-text">
-            <p>{{status.description}}</p>
+            <p>{{post.description}}</p>
         </div>
         <div class="media-wrapper">
-            <div class="media-post" *ngFor="let uri of status.contentUris; let i=index">
-                <img *ngIf="status.type === 'Image'" class="posted-image {{i}}" src="{{uri}}" (click)="clickImage(status.id, i)" />
+            <div class="media-post" *ngFor="let uri of post.contentUris; let i=index">
+                <img *ngIf="post.type === 'Image'" class="posted-image {{i}}" src="{{uri}}" (click)="clickImage(post.id, i)" />
 
-                <video *ngIf="status.type === 'Video'" width="320" controls>
+                <video *ngIf="post.type === 'Video'" width="320" controls>
                     <source src="{{uri}}" type="video/mp4">
                 </video>
 
-                <a href="{{uri}}" *ngIf="status.type === 'Document'" class="documents">
+                <a href="{{uri}}" *ngIf="post.type === 'Document'" class="documents">
                     <span class="title">document #{{i}}</span>
                     <span class="glyphicon glyphicon-file document"></span>
                 </a>
@@ -46,11 +46,11 @@
 
     <div class="line"></div>
     <div class="social">
-        <a>Like</a> <a>Comment</a> <a (click)="onClickShare(status.id)">Share</a>
+        <a>Like</a> <a>Comment</a> <a (click)="onClickShare(post.id)">Share</a>
     </div>
 
     <div class="loading-wrapper">
-        <div class="loading" *ngIf="loading === status.id">
+        <div class="loading" *ngIf="loading === post.id">
             <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
         </div>
     </div>
@@ -58,12 +58,12 @@
 
 <edit-modal 
     *ngIf="modalName == 'editModal'"
-    [status]="selectedStatusId"
+    [post]="selectedPost"
 >
 </edit-modal>
 
 <image-modal 
     *ngIf="modalName == 'imageModal'"
-    [status]="selectedStatusId"
+    [post]="selectedPost"
 >
 </image-modal>

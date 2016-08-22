@@ -22,7 +22,7 @@ declare var FB: any;
 export class TimelineComponent {
     private modalSubscription: Subscription;
 
-    statuses: any[];
+    posts: any[];
     loading: string;
     modalName: string;
     selectedPostId: string;
@@ -53,8 +53,8 @@ export class TimelineComponent {
 
     ngOnInit() {
         this.timelineService.getPosts(true).subscribe(
-            (statuses: any) => {
-                this.statuses = _.filter(statuses.results.reverse(), item => {
+            (posts: any) => {
+                this.posts = _.filter(posts.results.reverse(), item => {
                     if (item) {
                         return true;
                     } else {
@@ -62,7 +62,7 @@ export class TimelineComponent {
                     }
                 })
 
-                this.statuses = this.statuses.map(item => {
+                this.posts = this.posts.map(item => {
                     const postObject = item.details;
                     postObject.type = item.type;
 
@@ -76,16 +76,16 @@ export class TimelineComponent {
         this.loading = postId;
 
         this.postService.deletePost(postId).delay(500).subscribe(
-            statuses => {
+            posts => {
                 // update the status list (make a new server request in the service)
                 this.timelineService.getPosts(true);
             }
         )
     }
 
-    onClickEdit(postId: string) {
-        this.selectedPostId = postId;
-        this.timelineService.selectedPostId = postId;
+    onClickEdit(post: any) {
+        this.selectedPostId = post;
+        this.timelineService.selectedPostId = post.id;
 
         this.modalService.setModalName('editModal');
     }
