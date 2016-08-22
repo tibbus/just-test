@@ -10,7 +10,7 @@ import {
 } from '../../../../services/index';
 import { LoadingComponent } from '../../../../components/loading/loading.component';
 import { RegNumberPipe } from './regNumber.pipe'
-import { UploadFileDirective } from './uploadFile.directive';
+import { UploadFileDirective } from '../../../../directives/uploadFile.directive';
 
 @Component({
     selector: 'add-post',

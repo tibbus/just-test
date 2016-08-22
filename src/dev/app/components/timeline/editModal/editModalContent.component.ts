@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { PostService, ModalService, TimelineService } from '../../../services/index';
-import { UploadFileDirective } from './uploadFile.directive';
+import { UploadFileDirective } from '../../../directives/uploadFile.directive';
 
 import * as _ from 'lodash';
 
