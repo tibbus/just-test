@@ -1,12 +1,12 @@
 ﻿import { Component, Input } from '@angular/core';
 
 import { EditModalContentComponent } from './editModalContent.component';
-import { ModalComponent } from '../../../common/modal/modal.component';
+import { ModalComponent } from '../../../components/modal/modal.component';
 import { ModalService } from '../../../services/index';
 
 @Component({
     selector: 'edit-modal',
-    templateUrl: 'src/dev/app/common/modal/modal.component.html',
+    templateUrl: 'src/dev/app/components/modal/modal.component.html',
     directives: [EditModalContentComponent]
 })
 

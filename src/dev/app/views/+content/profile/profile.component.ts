@@ -3,8 +3,8 @@ import { HTTP_PROVIDERS, Response } from '@angular/http';
 
 import { ProfileService, SidebarService } from '../../../services/index';
 import { Profile } from '../../../services/profile/profile';
-import { LoadingComponent } from '../../../common/loading/loading.component';
-import { AlertComponent } from '../../../common/alert/alert.component';
+import { LoadingComponent } from '../../../components/loading/loading.component';
+import { AlertComponent } from '../../../components/alert/alert.component';
 
 @Component({
     selector: 'profile',

@@ -1,8 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
 import { CarService } from '../../../services/index';
-import { AlertComponent } from '../../../common/alert/alert.component';
-import { LoadingComponent } from '../../../common/loading/loading.component';
+import { AlertComponent } from '../../../components/alert/alert.component';
+import { LoadingComponent } from '../../../components/loading/loading.component';
 
 @Component({
     selector: 'all-cars',

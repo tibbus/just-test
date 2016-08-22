@@ -8,7 +8,7 @@ import {
     TimelineService,
     PostService
 } from '../../../../services/index';
-import { LoadingComponent } from '../../../../common/loading/loading.component';
+import { LoadingComponent } from '../../../../components/loading/loading.component';
 import { RegNumberPipe } from './regNumber.pipe'
 import { UploadFileDirective } from './uploadFile.directive';
 

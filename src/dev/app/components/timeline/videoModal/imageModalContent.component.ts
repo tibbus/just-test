@@ -4,8 +4,8 @@ import { TimelineDatePipe } from '../timelineDate.pipe';
 
 @Component({
     selector: 'content',
-    templateUrl: 'src/dev/app/common/timeline/imageModal/imageModalContent.component.html',
-    styleUrls: ['src/dist/app/common/timeline/imageModal/imageModalContent.component.css'],
+    templateUrl: 'src/dev/app/components/timeline/imageModal/imageModalContent.component.html',
+    styleUrls: ['src/dist/app/components/timeline/imageModal/imageModalContent.component.css'],
     pipes: [TimelineDatePipe]
 })
 

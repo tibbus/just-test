@@ -7,8 +7,8 @@ import * as _ from 'lodash';
 
 @Component({
     selector: 'content',
-    templateUrl: 'src/dev/app/common/timeline/editModal/editModalContent.component.html',
-    styleUrls: ['src/dist/app/common/timeline/editModal/editModalContent.component.css'],
+    templateUrl: 'src/dev/app/components/timeline/editModal/editModalContent.component.html',
+    styleUrls: ['src/dist/app/components/timeline/editModal/editModalContent.component.css'],
     directives: [
         UploadFileDirective
     ],

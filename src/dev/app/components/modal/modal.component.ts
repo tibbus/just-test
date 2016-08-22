@@ -5,7 +5,7 @@ import { ModalService } from '../../services/index';
 
 @Component({
     selector: 'video-modal',
-    templateUrl: 'src/dev/app/common/modal/common/modal.component.html'
+    templateUrl: 'src/dev/app/components/modal/components/modal.component.html'
 })
 
 export abstract class ModalComponent {

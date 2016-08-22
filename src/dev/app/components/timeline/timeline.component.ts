@@ -12,8 +12,8 @@ declare var FB: any;
 
 @Component({
     selector: 'timeline',
-    styleUrls: ['src/dist/app/common/timeline/timeline.component.css'],
-    templateUrl: 'src/dev/app/common/timeline/timeline.component.html',
+    styleUrls: ['src/dist/app/components/timeline/timeline.component.css'],
+    templateUrl: 'src/dev/app/components/timeline/timeline.component.html',
     directives: [LoadingComponent, EditModalComponent, ImageModalComponent],
     providers: [ModalService, PostService],
     pipes: [TimelineDatePipe]
