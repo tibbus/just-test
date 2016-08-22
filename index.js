@@ -9,6 +9,7 @@ app.use('/style', express.static(__dirname + '/style'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 //app.use('/api', express.static(__dirname + '/api'));
 app.use('/systemjs.config.js', express.static(__dirname + '/systemjs.config.js'));
+app.use('/le.min.js', express.static(__dirname + '/le.min.js'));
 
 // FAKE Service APIs :    
 app.use('/api/v1/user/1', express.static(__dirname + '/fakeService/profile.json'));

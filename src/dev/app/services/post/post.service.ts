@@ -7,6 +7,8 @@ import { TimelineService } from '../timeline/timeline.service';
 import * as _ from 'lodash';
 import { Subject } from 'rxjs/Subject';
 
+declare const LE: any;
+
 @Injectable()
 export class PostService {
     private _topics: string[];
@@ -46,8 +48,10 @@ export class PostService {
             contentType: false,
             processData: false
         }).done(() => {
-            this._postMedia.next('done')
-        });
+            this._postMedia.next('done');
+        }).fail(function (jqXHR, exception) {
+            LE.log(`Error trying to access:  ${this.url} with error message of: ${jqXHR.status} ${jqXHR.responseText}`);
+        })
 
         return this.postMedia$;
     }
@@ -101,8 +105,10 @@ export class PostService {
                 contentType: false,
                 processData: false
             }).done(() => {
-                this._postMedia.next('done')
-            });
+                    this._postMedia.next('done')
+            }).fail(function (jqXHR, exception) {
+                LE.log(`Error trying to access:  ${this.url} with error message of: ${jqXHR.status} ${jqXHR.responseText}`);
+            })
 
             return this.postMedia$;
         }

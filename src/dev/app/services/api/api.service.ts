@@ -26,11 +26,11 @@ export class ApiService {
 
 export const API = {
     /* **DEV** Enviroment */
-    //root: 'http://amilatestapi-dev.azurewebsites.net/api/v1',
+    root: 'http://amilatestapi-dev.azurewebsites.net/api/v1',
     /* **PROD** Enviroment */
     //root: 'http://amilatestapi-prod.azurewebsites.net/api/v1',
     /* **Local** FAKE Service Enviroment */
-    root: `${window.location.origin}/api/v1`,
+    //root: `${window.location.origin}/api/v1`,
     userCars: '/usercar/details=true',
     userRegisterCar: '/usercar/registration/',
     userRemoveCar: '/usercar/',

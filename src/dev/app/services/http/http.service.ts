@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { API } from '../api/api.service';
+import { Observable } from 'rxjs';
+
+declare const LE: any;
 
 export abstract class HttpService {
     constructor(private _http: Http, public url: string) { }
@@ -14,7 +18,7 @@ export abstract class HttpService {
             .map(res => res.json())
             .do(data => {
                 console.log(data);
-            });
+            })
     }
 
     getData(forceRefresh?: boolean) {
@@ -30,6 +34,8 @@ export abstract class HttpService {
                     this._dataObs.next(data);
                 },
                 error => {
+                    LE.log(`Error trying to access: ${API.root}${this.url}`);
+
                     this._dataObs.error(error);
                 });
         }
