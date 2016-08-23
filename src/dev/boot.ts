@@ -14,6 +14,5 @@ import { appRouterProviders }   from './app/app.routes';
 
 bootstrap(AppComponent, [
     appRouterProviders,
-    HTTP_PROVIDERS,
-    provide(RequestOptions, { useClass: CustomRequestOptions })
+    HTTP_PROVIDERS
 ]);

@@ -6,3 +6,4 @@ export * from './sidebar/sidebar.service';
 export * from './modal/modal.service';
 export * from './timeline/timeline.service';
 export * from './post/post.service';
+export * from './search/search.service';
