@@ -11,8 +11,7 @@ import {
     SidebarService,
     ModalService,
     PostService,
-    TimelineService,
-    SearchService
+    TimelineService
 } from './services/index';
 
 import * as _ from 'lodash';
@@ -30,14 +29,11 @@ declare const stream: any;
         SidebarService,
         ModalService,
         ApiService,
-        TimelineService,
-        SearchService 
+        TimelineService
     ]
 })
 
 export class AppComponent {
-    constructor(private searchService: SearchService) { }
-
     ngOnInit() {
         console.log(stream);
         let client;
@@ -46,9 +42,5 @@ export class AppComponent {
         console.log(client);
         
         jQuery.material.init();
-
-        this.searchService.search().subscribe(item => {
-            console.log(item);
-        })
     }
 }

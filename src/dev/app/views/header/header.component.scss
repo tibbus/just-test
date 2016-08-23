@@ -67,3 +67,11 @@ li:hover {
 .navbar .navbar-form .form-control:focus::-webkit-input-placeholder {
     color: #86C5BF;
 }
+
+.search-result {
+    position: absolute;
+    z-index: 100;
+    background: grey;
+    width: 100%;
+    min-height: 100;
+}

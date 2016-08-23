@@ -12,7 +12,10 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <form class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" class="form-control col-md-8 search" placeholder="Search for cars">
+                    <input type="text" class="form-control col-md-8 search" placeholder="Search for cars" #term (keyup)="search(term.value)">
+                    <ul class="search-result">
+                        <li *ngFor="let item of items | async">{{item.Make}} {{item.Model}} {{item.YearOfManufacture}}</li>
+                    </ul>
                     <span class="glyphicon glyphicon-search btn" aria-hidden="true"></span>
                 </div>
             </form>
@@ -26,7 +29,7 @@
                     </div>
                     <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
                         <strong>{{name}}</strong>
-                        <b class="caret"></b>
+                        <b class="caret"></b>{{items}}
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="javascript:void(0)" [routerLink]="['/profile']">Profile</a></li>
