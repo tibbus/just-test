@@ -10,7 +10,7 @@ export class SearchService {
     constructor(private http: Http, private apiService: ApiService) {
     }
 
-    public hasData: boolean;
+    public hasData: boolean = true;
 
     search(term: string) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
