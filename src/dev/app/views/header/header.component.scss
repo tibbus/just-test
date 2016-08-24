@@ -73,5 +73,28 @@ li:hover {
     z-index: 100;
     background: grey;
     width: 100%;
-    min-height: 100;
+    background: white;
+    border: solid 1px #e7e7e7;
+    border-top: none;
+    color: black;
+    list-style-type: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 6px 0 10px;
+
+    li {
+        padding-left: 20px;
+
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+.no-results {
+    color: red;
+}
+
+.hide {
+    display: none;
 }

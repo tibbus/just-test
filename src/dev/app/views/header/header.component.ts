@@ -15,11 +15,13 @@ import { Profile } from '../../services/profile/profile';
 })
 
 export class HeaderComponent {
-    constructor(private profileService: ProfileService, private searchService: SearchService) { }    
-
-    public profile: Profile; 
+    public profile: Profile;
     public name: string;
-    public errorMessage: string; 
+    public errorMessage: string;
+    private searchTermStream = new Subject();
+    hideSearchResults: boolean = true;
+
+    constructor(private profileService: ProfileService, private searchService: SearchService) { }    
 
     getProfile() {
         this.profileService.getProfile()
@@ -33,12 +35,13 @@ export class HeaderComponent {
 
     ngOnInit() {
         this.getProfile();
-
-
     }
 
-    private searchTermStream = new Subject();
-    search(term: string) { this.searchTermStream.next(term); }
+    search(term: string) {
+        this.hideSearchResults = false;
+
+        this.searchTermStream.next(term);
+    }
 
     items: Observable<string[]> = this.searchTermStream
         .debounceTime(300)

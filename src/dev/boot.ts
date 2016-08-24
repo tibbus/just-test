@@ -7,7 +7,6 @@ import { HTTP_PROVIDERS, RequestOptions } from '@angular/http';
 import { enableProdMode } from '@angular/core';
 
 import { AppComponent } from './app/app.component';
-import { CustomRequestOptions } from './app/services/http/baseRequest';
 import { appRouterProviders }   from './app/app.routes';
 
 //enableProdMode();
