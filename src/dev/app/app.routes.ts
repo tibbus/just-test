@@ -11,6 +11,7 @@ import {
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/garage', pathMatch: 'full' },
+    //{ path: 'garage', component: GarageComponent },
     { path: 'garage', component: GarageComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'car/:id', component: CarComponent },
