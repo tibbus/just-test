@@ -14,7 +14,7 @@ export abstract class HttpService {
 
     private getDataFromHttp() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        let options = new RequestOptions({ headers: headers, body: '' });
 
         return this._http
             .get(`${API.root}${this.url}`, options)

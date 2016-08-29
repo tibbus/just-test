@@ -1,22 +1,21 @@
-import { provideRouter, RouterConfig }  from '@angular/router';
+import { ModuleWithProviders }  from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import {
     GarageComponent,
     CarComponent,
     ProfileComponent,
     NotFoundComponent,
-    FeedComponent
+    //FeedComponent
 } from './views/+content/index';
 
-const routes: RouterConfig = [
+const appRoutes: Routes = [
     { path: '', redirectTo: '/garage', pathMatch: 'full' },
     { path: 'garage', component: GarageComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'car/:id', component: CarComponent },
-    { path: 'feed', component: FeedComponent },
+    //{ path: 'feed', component: FeedComponent },
     { path: '**', component: NotFoundComponent }
 ];
 
-export const appRouterProviders = [
-    provideRouter(routes)
-];
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

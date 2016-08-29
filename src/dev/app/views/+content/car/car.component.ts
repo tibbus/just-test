@@ -3,7 +3,7 @@ import { Router, ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AddPostComponent } from './addPost/addPost.component';
-import { CarTimelineComponent } from './carTimeline/carTimeline.component';
+//import { CarTimelineComponent } from './carTimeline/carTimeline.component';
 import {
     CarService,
     ModalService,
@@ -12,22 +12,22 @@ import {
 } from '../../../services/index';
 import {
     CarDetailsModalComponent,
-    TaxDetailsModalComponent,
-    MotDetailsModalComponent
+    //TaxDetailsModalComponent,
+    //MotDetailsModalComponent
 } from './index';
 import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
 
 @Component({
-    selector: 'content',
+    selector: 'car-content',
     styleUrls: ['src/dist/app/views/+content/car/car.component.css'],
     templateUrl: 'src/dev/app/views/+content/car/car.component.html',
     directives: [
         AddPostComponent,
-        CarTimelineComponent,
+        //CarTimelineComponent,
         ROUTER_DIRECTIVES,
         CarDetailsModalComponent,
-        TaxDetailsModalComponent,
-        MotDetailsModalComponent
+        //TaxDetailsModalComponent,
+        //MotDetailsModalComponent
     ],
     providers: [TimelineService, PostService]
 })

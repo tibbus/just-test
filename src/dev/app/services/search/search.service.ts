@@ -16,7 +16,7 @@ export class SearchService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         headers.append('api-key', `A57CC5AE46C3EE7955EC441AEEBAF4F0`);
 
-        let options = new RequestOptions({ headers: headers });
+        let options = new RequestOptions({ headers: headers, body: '' });
 
         return this.http
             .get(`https://amilatest.search.windows.net/indexes/carinfo/docs?api-version=2015-02-28&search=${term}*`, options)

@@ -2,13 +2,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
-import { ROUTER_DIRECTIVES }  from '@angular/router';
 
-import { appRouterProviders }   from './app.routes';
+import { routing }   from './app.routes';
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './views/header/header.component';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
+import {
+    GarageComponent,
+    CarComponent,
+    ProfileComponent,
+    NotFoundComponent,
+    FeedComponent
+} from './views/+content/index';
 
 import {
     ApiService,
@@ -22,14 +28,22 @@ import {
 
 @NgModule({
     imports: [
+        routing,
         BrowserModule,
         FormsModule,
-        HttpModule
+        HttpModule,
     ],
-    declarations: [AppComponent, HeaderComponent, SidebarComponent, ROUTER_DIRECTIVES],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        SidebarComponent,
+        GarageComponent,
+        CarComponent,
+        ProfileComponent,
+        NotFoundComponent,
+        //FeedComponent
+    ],
     providers: [
-        appRouterProviders,
-
         ProfileService,
         CarService,
         SidebarService,
