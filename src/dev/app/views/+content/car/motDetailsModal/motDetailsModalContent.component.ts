@@ -7,7 +7,7 @@ import { CarService } from '../../../../services/car/car.service';
     templateUrl: 'src/dev/app/views/+content/car/motDetailsModal/motDetailsModalContent.component.html',
 })
 
-export class MotDetailsModalContent {
+export class MotDetailsModalContentComponent {
     constructor(private _carService: CarService) { }
 
     carMotList: any;

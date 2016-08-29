@@ -1,7 +1,7 @@
 <div *ngIf="carLoaded">
     <add-post></add-post>
 
-    <!--<timeline></timeline>-->
+    <timeline></timeline>
 
     <!--<timeline>
         <p class="header">Timeline</p>
@@ -12,8 +12,6 @@
     </timeline>-->
 </div>
 
-<!--<car-details-modal *ngIf="modalName == 'carDetailsModal'"></car-details-modal>-->
-
-<modal [contentComponent]="carDetails" *ngIf="modalName == 'carDetailsModal'"></modal>
-<!--<tax-details-modal *ngIf="modalName == 'taxDetailsModal'"></tax-details-modal>
-<mot-details-modal *ngIf="modalName == 'motDetailsModal'"></mot-details-modal>-->
+<modal [contentComponent]="CarDetailsComponent" [title]="'Car Details'" *ngIf="modalName == 'carDetailsModal'"></modal>
+<modal [contentComponent]="TaxDetailsComponent" [title]="'Tax Details'" *ngIf="modalName == 'taxDetailsModal'"></modal>
+<modal [contentComponent]="MotDetailsComponent" [title]="'MOT Details'" *ngIf="modalName == 'motDetailsModal'"></modal>

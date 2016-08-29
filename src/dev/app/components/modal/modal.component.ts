@@ -12,10 +12,10 @@ import { ModalService } from '../../services/index';
 
 export class ModalComponent {
     @Input() contentComponent: any;
+    @Input() title: string;
     @ViewChild('dynamicComponent', { read: ViewContainerRef })
 
     dynamicComponent: any;
-    title: string = 'Default Title !';
     showSaveButton: boolean = false;
     private modalSubscription: Subscription;
     private modalSubscription2: Subscription;

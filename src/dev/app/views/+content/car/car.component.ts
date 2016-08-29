@@ -5,18 +5,16 @@ import { Subscription } from 'rxjs/Subscription';
 import { AddPostComponent } from './addPost/addPost.component';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
-//import { CarTimelineComponent } from './carTimeline/carTimeline.component';
+import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsModalContent.component';
+import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
+import { CarTimelineComponent } from './carTimeline/carTimeline.component';
 import {
     CarService,
     ModalService,
     TimelineService,
     PostService
 } from '../../../services/index';
-import {
-    //CarDetailsModalComponent,
-    //TaxDetailsModalComponent,
-    //MotDetailsModalComponent
-} from './index';
+
 import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
 
 @Component({
@@ -28,9 +26,6 @@ import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
         //CarTimelineComponent,
         ROUTER_DIRECTIVES,
         ModalComponent
-        //CarDetailsModalComponent,
-        //TaxDetailsModalComponent,
-        //MotDetailsModalComponent
     ],
     providers: [TimelineService, PostService]
 })
@@ -38,7 +33,9 @@ import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
 export class CarComponent implements OnInit, OnDestroy {
     modalName: string;
     private modalSubscription: Subscription;
-    carDetails;
+    CarDetailsComponent: any = CarDetailsModalContentComponent;
+    TaxDetailsComponent: any = TaxDetailsModalContentComponent;
+    MotDetailsComponent: any = MotDetailsModalContentComponent;
 
     constructor(
         private carService: CarService,
@@ -62,8 +59,6 @@ export class CarComponent implements OnInit, OnDestroy {
     carLoaded: boolean;
 
     ngOnInit() {
-        this.carDetails = CarDetailsModalContentComponent;
-
         this.route.params.subscribe(params => {
             this.carLoaded = false;
             // used to re-render the component and all the sub-components
