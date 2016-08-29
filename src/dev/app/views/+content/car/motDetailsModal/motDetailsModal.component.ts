@@ -10,10 +10,10 @@ import { ModalService } from '../../../../services/index';
     directives: [MotDetailsModalContent]
 })
 
-export class MotDetailsModalComponent extends ModalComponent {
+export class MotDetailsModalComponent {
     constructor(private _modalservice: ModalService) {
-        super(_modalservice);
+        //super(_modalservice);
 
-        this.title = 'MOT details';
+        //this.title = 'MOT details';
     }
 }

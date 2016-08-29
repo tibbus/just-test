@@ -1,21 +1,37 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentResolver,
+ComponentRef
+} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService } from '../../services/index';
 
 @Component({
-    selector: 'video-modal',
-    templateUrl: 'src/dev/app/components/modal/components/modal.component.html'
+    selector: 'modal',
+    templateUrl: 'src/dev/app/components/modal/modal.component.html'
 })
 
-export abstract class ModalComponent {
-    constructor(private modalService: ModalService) { }  
+export class ModalComponent {
+    @Input() contentComponent: any;
+    @ViewChild('just55', { read: ViewContainerRef });
+    protected dynamicComponentTarget: ViewContainerRef;
+    // this will be reference to dynamic content - to be able to destroy it
+    protected componentRef: ComponentRef<IHaveDynamicData>;
 
     title: string = 'Default Title !';
     showSaveButton: boolean = false;
     private modalSubscription: Subscription;
     private modalSubscription2: Subscription;
     loading: boolean;
+
+    constructor(private modalService: ModalService,
+        private componentResolver: ComponentResolver
+    ) { }  
+
+    ngAfterViewInit() {
+        this.componentResolver.resolveComponent(this.contentComponent).then((factory) => {
+            this.just55.createComponent(factory);
+        });
+    }
 
     ngOnInit() {
         jQuery('#myModal').on('hidden.bs.modal', (e) => {

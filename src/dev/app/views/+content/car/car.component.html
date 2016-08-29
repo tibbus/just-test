@@ -12,6 +12,8 @@
     </timeline>-->
 </div>
 
-<car-details-modal *ngIf="modalName == 'carDetailsModal'"></car-details-modal>
+<!--<car-details-modal *ngIf="modalName == 'carDetailsModal'"></car-details-modal>-->
+
+<modal [contentComponent]="carDetails" *ngIf="modalName == 'carDetailsModal'"></modal>
 <!--<tax-details-modal *ngIf="modalName == 'taxDetailsModal'"></tax-details-modal>
 <mot-details-modal *ngIf="modalName == 'motDetailsModal'"></mot-details-modal>-->

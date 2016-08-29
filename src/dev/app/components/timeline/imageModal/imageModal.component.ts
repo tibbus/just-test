@@ -10,15 +10,15 @@ import { ModalService } from '../../../services/index';
     directives: [ImageModalContentComponent]
 })
 
-export class ImageModalComponent extends ModalComponent {
+export class ImageModalComponent {
     @Input() status: string;
 
     modalSize: string;
 
     constructor(private modalservice: ModalService) {
-        super(modalservice);
+        //super(modalservice);
 
-        this.title = '';
-        this.modalSize = 'large';
+        //this.title = '';
+        //this.modalSize = 'large';
     }
 }

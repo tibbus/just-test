@@ -3,6 +3,8 @@ import { Router, ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AddPostComponent } from './addPost/addPost.component';
+import { ModalComponent } from '../../../components/modal/modal.component';
+import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
 //import { CarTimelineComponent } from './carTimeline/carTimeline.component';
 import {
     CarService,
@@ -11,7 +13,7 @@ import {
     PostService
 } from '../../../services/index';
 import {
-    CarDetailsModalComponent,
+    //CarDetailsModalComponent,
     //TaxDetailsModalComponent,
     //MotDetailsModalComponent
 } from './index';
@@ -25,7 +27,8 @@ import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
         AddPostComponent,
         //CarTimelineComponent,
         ROUTER_DIRECTIVES,
-        CarDetailsModalComponent,
+        ModalComponent
+        //CarDetailsModalComponent,
         //TaxDetailsModalComponent,
         //MotDetailsModalComponent
     ],
@@ -35,6 +38,7 @@ import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
 export class CarComponent implements OnInit, OnDestroy {
     modalName: string;
     private modalSubscription: Subscription;
+    carDetails;
 
     constructor(
         private carService: CarService,
@@ -58,6 +62,8 @@ export class CarComponent implements OnInit, OnDestroy {
     carLoaded: boolean;
 
     ngOnInit() {
+        this.carDetails = CarDetailsModalContentComponent;
+
         this.route.params.subscribe(params => {
             this.carLoaded = false;
             // used to re-render the component and all the sub-components

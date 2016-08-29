@@ -10,13 +10,13 @@ import { ModalService } from '../../../services/index';
     directives: [EditModalContentComponent]
 })
 
-export class EditModalComponent extends ModalComponent {
+export class EditModalComponent {
     @Input() status: string;
 
     constructor(private modalservice: ModalService) {
-        super(modalservice);
+        //super(modalservice);
 
-        this.title = 'Edit post';
-        this.showSaveButton = true;
+        //this.title = 'Edit post';
+        //this.showSaveButton = true;
     }
 }

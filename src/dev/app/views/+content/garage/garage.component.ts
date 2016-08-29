@@ -13,18 +13,18 @@ export class Test2 { }
 
 @Component({
     selector: 'testing',
-    template: `test <template #test> </template>`
+    template: `test55 <template #testUp> </template>`
 })
 
 export class Test {
-    @Input() dir;
-    @ViewChild('test', { read: ViewContainerRef }) test;
+    @Input() dirP;
+    @ViewChild('testUp', { read: ViewContainerRef }) testUp;
 
     constructor(private componentResolver: ComponentResolver) { }
 
     ngAfterViewInit() {
-        this.componentResolver.resolveComponent(this.dir).then((factory) => {
-            this.test.createComponent(factory);
+        this.componentResolver.resolveComponent(this.dirP).then((factory) => {
+            this.testUp.createComponent(factory);
         });
     }
 }

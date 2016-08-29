@@ -3,7 +3,7 @@
 import { CarService } from '../../../../services/car/car.service';
 
 @Component({
-    selector: 'content',
+    selector: 'car-details-content',
     templateUrl: 'src/dev/app/views/+content/car/carDetailsModal/carDetailsModalContent.component.html',
 })
 
