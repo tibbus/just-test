@@ -12,11 +12,9 @@ import { ModalService } from '../../services/index';
 
 export class ModalComponent {
     @Input() contentComponent: any;
-    @ViewChild('just55', { read: ViewContainerRef });
-    protected dynamicComponentTarget: ViewContainerRef;
-    // this will be reference to dynamic content - to be able to destroy it
-    protected componentRef: ComponentRef<IHaveDynamicData>;
+    @ViewChild('dynamicComponent', { read: ViewContainerRef })
 
+    dynamicComponent: any;
     title: string = 'Default Title !';
     showSaveButton: boolean = false;
     private modalSubscription: Subscription;
@@ -29,7 +27,7 @@ export class ModalComponent {
 
     ngAfterViewInit() {
         this.componentResolver.resolveComponent(this.contentComponent).then((factory) => {
-            this.just55.createComponent(factory);
+            this.dynamicComponent.createComponent(factory);
         });
     }
 
