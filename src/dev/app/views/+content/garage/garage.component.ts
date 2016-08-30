@@ -1,54 +1,26 @@
-﻿import { Component, OnInit, ViewChild, ViewContainerRef, ComponentResolver, Input } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 
 import { CarService } from '../../../services/index';
 import { AlertComponent } from '../../../components/alert/alert.component';
 import { LoadingComponent } from '../../../components/loading/loading.component';
 
 @Component({
-    selector: 'test2',
-    template: `test 2222`
-})
-
-export class Test2 { }
-
-@Component({
-    selector: 'testing',
-    template: `test55 <template #testUp> </template>`
-})
-
-export class Test {
-    @Input() dirP;
-    @ViewChild('testUp', { read: ViewContainerRef }) testUp;
-
-    constructor(private componentResolver: ComponentResolver) { }
-
-    ngAfterViewInit() {
-        this.componentResolver.resolveComponent(this.dirP).then((factory) => {
-            this.testUp.createComponent(factory);
-        });
-    }
-}
-
-@Component({
     selector: 'all-cars',
     styleUrls: ['src/dist/app/views/+content/garage/garage.component.css'],
     templateUrl: 'src/dev/app/views/+content/garage/garage.component.html',
-    directives: [AlertComponent, LoadingComponent, Test]
+    directives: [AlertComponent, LoadingComponent]
 })
 
 export class GarageComponent implements OnInit {
-    pass: any;
     cars: any;
     regNumber: string;
     loading: boolean = false;
     requestState: boolean = false;
     alertMessage: string;
 
-    constructor(private carService: CarService, private componentResolver: ComponentResolver) { }
+    constructor(private carService: CarService) { }
 
     ngOnInit() {
-        this.pass = Test2;
-
         this.getCars();
     }
 

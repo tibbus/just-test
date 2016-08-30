@@ -23,7 +23,7 @@ import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
     templateUrl: 'src/dev/app/views/+content/car/car.component.html',
     directives: [
         AddPostComponent,
-        //CarTimelineComponent,
+        CarTimelineComponent,
         ROUTER_DIRECTIVES,
         ModalComponent
     ],

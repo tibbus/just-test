@@ -2,9 +2,11 @@
 import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService, TimelineService, PostService } from '../../services/index';
+import { ModalComponent } from '../modal/modal.component';
+
 import { LoadingComponent } from '../loading/loading.component';
-import { EditModalComponent } from './editModal/editModal.component';
-import { ImageModalComponent } from './imageModal/imageModal.component';
+import { EditModalContentComponent } from './editModal/editModalContent.component';
+import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 import { TimelineDatePipe } from './timelineDate.pipe';
 import * as _ from 'lodash';
 
@@ -14,14 +16,15 @@ declare var FB: any;
     selector: 'timeline',
     styleUrls: ['src/dist/app/components/timeline/timeline.component.css'],
     templateUrl: 'src/dev/app/components/timeline/timeline.component.html',
-    directives: [LoadingComponent, EditModalComponent, ImageModalComponent],
+    directives: [LoadingComponent, ModalComponent],
     providers: [ModalService, PostService],
     pipes: [TimelineDatePipe]
 })
 
 export class TimelineComponent {
+    EditModalComponent: any = EditModalContentComponent;
+    ImageModalComponent: any = ImageModalContentComponent;
     private modalSubscription: Subscription;
-
     posts: any[];
     loading: string;
     modalName: string;

@@ -56,14 +56,11 @@
     </div>
 </div>
 
-<edit-modal 
-    *ngIf="modalName == 'editModal'"
-    [post]="selectedPost"
+<modal [contentComponent]="EditModalComponent" [title]="'Edit post'" *ngIf="modalName == 'editModal'"></modal>
+<modal 
+       *ngIf="modalName == 'imageModal'"
+       [contentComponent]="ImageModalComponent" 
+       [title]="'Images'" 
+       [size]="'large'"
 >
-</edit-modal>
-
-<image-modal 
-    *ngIf="modalName == 'imageModal'"
-    [post]="selectedPost"
->
-</image-modal>
+</modal>

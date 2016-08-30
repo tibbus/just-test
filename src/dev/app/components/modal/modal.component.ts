@@ -13,6 +13,7 @@ import { ModalService } from '../../services/index';
 export class ModalComponent {
     @Input() contentComponent: any;
     @Input() title: string;
+    @Input() size: string;
     @ViewChild('dynamicComponent', { read: ViewContainerRef })
 
     dynamicComponent: any;
