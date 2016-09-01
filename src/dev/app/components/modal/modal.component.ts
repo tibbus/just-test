@@ -14,10 +14,11 @@ export class ModalComponent {
     @Input() contentComponent: any;
     @Input() title: string;
     @Input() size: string;
+    @Input() showSaveButton: boolean;
     @ViewChild('dynamicComponent', { read: ViewContainerRef })
 
     dynamicComponent: any;
-    showSaveButton: boolean = false;
+
     private modalSubscription: Subscription;
     private modalSubscription2: Subscription;
     loading: boolean;
@@ -37,7 +38,7 @@ export class ModalComponent {
             this.onModalClose();  
         })
 
-        this.modalSubscription = this.modalService.closeModal.delay(500).subscribe(
+        this.modalSubscription = this.modalService.closeModal.delay(1).subscribe(
             () => {
                 jQuery('#myModal').modal('hide');
             }

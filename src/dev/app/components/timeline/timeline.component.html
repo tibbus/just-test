@@ -56,7 +56,13 @@
     </div>
 </div>
 
-<modal [contentComponent]="EditModalComponent" [title]="'Edit post'" *ngIf="modalName == 'editModal'"></modal>
+<modal 
+       *ngIf="modalName == 'editModal'"
+       [contentComponent]="EditModalComponent" 
+       [title]="'Edit post'" 
+       [showSaveButton]="true"
+>
+</modal>
 <modal 
        *ngIf="modalName == 'imageModal'"
        [contentComponent]="ImageModalComponent" 

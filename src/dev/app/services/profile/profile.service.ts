@@ -4,10 +4,10 @@ import {Profile} from './profile';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { HttpService } from '../http/http.service';
-import { ApiService } from '../api/api.service';
+import { ApiService, API } from '../api/api.service';
 
 @Injectable()
-export class ProfileService extends HttpService{
+export class ProfileService extends HttpService {
     constructor(private http: Http, private apiService: ApiService) {
         super(http, apiService.profile);
     }
@@ -19,7 +19,7 @@ export class ProfileService extends HttpService{
     setProfile(profile: Profile) {
         const body = JSON.stringify(profile);
 
-        return this.http.request(this.apiService.profile, {
+        return this.http.request(`${API.root}${this.apiService.profile}`, {
                 body: body,
                 method: 'PUT'
             })

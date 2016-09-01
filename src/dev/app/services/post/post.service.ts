@@ -14,7 +14,6 @@ export class PostService {
     private _topics: string[];
     private _postMedia = new Subject<any>();
     postMedia$ = this._postMedia.asObservable();
-    private urlRoot: string = 'http://amilatestapi-dev.azurewebsites.net/api/v1/car/';
 
     constructor(
         private http: Http,
@@ -74,7 +73,7 @@ export class PostService {
 
         // Use angular2 http service for the Status and Jquery.Ajax for formData requests
         if (postType === 'Status') {
-            const apiUrl = `/car/${this.carService.userCarId}/status/${this.timelineService.selectedPostId}`;
+            const apiUrl = `${API.root}/car/${this.carService.userCarId}/status/${this.timelineService.selectedPostId}`;
             const body: any = {
                 id: 1,
                 description: updatedDescription,
@@ -115,7 +114,7 @@ export class PostService {
     }
 
     deletePost(postId: string) {
-        const apiUrl = `/car/${this.carService.userCarId}/status/${postId}`;
+        const apiUrl = `${API.root}/car/${this.carService.userCarId}/status/${postId}`;
 
         return this.http.request(apiUrl, {
             body: null,

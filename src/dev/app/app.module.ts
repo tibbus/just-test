@@ -1,7 +1,9 @@
-﻿import { NgModule }      from '@angular/core';
+﻿import { NgModule, provide }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
-import { HttpModule }    from '@angular/http';
+import { HttpModule, RequestOptions }    from '@angular/http';
+import { CustomRequestOptions } from './services/http/baseRequest';
+
 
 import { routing }   from './app.routes';
 import { AppComponent } from './app.component';
@@ -50,6 +52,8 @@ import {
         ModalService,
         ApiService,
         TimelineService,
+        provide(RequestOptions, { useClass: CustomRequestOptions })
+
     ],
     bootstrap: [AppComponent]
 })
