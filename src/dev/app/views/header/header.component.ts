@@ -44,7 +44,7 @@ export class HeaderComponent {
     }
 
     items: Observable<string[]> = this.searchTermStream
-        .debounceTime(150)
+        .debounceTime(300)
         .distinctUntilChanged()
         .switchMap((term: string) => this.searchService.search(term));
 }
