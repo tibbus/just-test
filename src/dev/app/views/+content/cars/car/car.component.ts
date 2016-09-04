@@ -1,9 +1,8 @@
 ﻿import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AddPostComponent } from './addPost/addPost.component';
-import { ModalComponent } from '../../../components/modal/modal.component';
 import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
 import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsModalContent.component';
 import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
@@ -13,19 +12,17 @@ import {
     ModalService,
     TimelineService,
     PostService
-} from '../../../services/index';
+} from '../../../../services/index';
 
-import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
+import { Car, CarInfo, Mot, Tax } from '../../../../services/car/car';
 
 @Component({
     selector: 'car-content',
-    styleUrls: ['src/dist/app/views/+content/car/car.component.css'],
-    templateUrl: 'src/dev/app/views/+content/car/car.component.html',
+    styleUrls: ['src/dist/app/views/+content/cars/car/car.component.css'],
+    templateUrl: 'src/dev/app/views/+content/cars/car/car.component.html',
     directives: [
         AddPostComponent,
-        CarTimelineComponent,
-        ROUTER_DIRECTIVES,
-        ModalComponent
+        CarTimelineComponent
     ],
     providers: [TimelineService, PostService]
 })

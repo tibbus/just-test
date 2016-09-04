@@ -1,22 +1,14 @@
 ﻿import { NgModule, provide }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
 import { HttpModule, RequestOptions }    from '@angular/http';
 import { CustomRequestOptions } from './services/http/baseRequest';
-
 
 import { routing }   from './app.routes';
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './views/header/header.component';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
-import {
-    GarageComponent,
-    CarComponent,
-    ProfileComponent,
-    NotFoundComponent,
-    FeedComponent
-} from './views/+content/index';
+import { ProfileComponent, NotFoundComponent, FeedComponent } from './views/+content/index';
 
 import {
     ApiService,
@@ -28,22 +20,21 @@ import {
     TimelineService
 } from './services/index';
 
+import { SharedModule } from './components/shared.module';
+
 @NgModule({
     imports: [
+        SharedModule,
         routing,
         BrowserModule,
-        FormsModule,
-        HttpModule,
+        HttpModule
     ],
     declarations: [
         AppComponent,
         HeaderComponent,
         SidebarComponent,
-        GarageComponent,
-        CarComponent,
         ProfileComponent,
-        NotFoundComponent,
-        //FeedComponent
+        NotFoundComponent
     ],
     providers: [
         ProfileService,

@@ -36,7 +36,7 @@ export class CarService extends HttpService {
         const apiUrl: string = `${this.apiService.userRegisterCar}${regNumber}`;
 
         return this.http.request(apiUrl, {
-            body: null,
+            body: '',
             method: 'POST'
         });
     }

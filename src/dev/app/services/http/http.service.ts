@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { BehaviorSubject } from 'rxjs/Rx';
 import { API } from '../api/api.service';
 import { Observable } from 'rxjs';
 
 declare const LE: any;
 
 export abstract class HttpService {
-    constructor(private _http: Http, public url: string) { }
+    constructor(private _http: Http, public url: string) { console.log(BehaviorSubject) }
 
     private _dataObs = new ReplaySubject(1);
     public dataObject; 

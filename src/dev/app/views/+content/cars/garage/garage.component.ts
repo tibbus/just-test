@@ -1,14 +1,14 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { CarService } from '../../../services/index';
-import { AlertComponent } from '../../../components/alert/alert.component';
-import { LoadingComponent } from '../../../components/loading/loading.component';
+import { CarService } from '../../../../services/index';
+//import { AlertComponent } from '../../../../components/alert/alert.component';
+//import { LoadingComponent } from '../../../../components/loading/loading.component';
 
 @Component({
     selector: 'all-cars',
-    styleUrls: ['src/dist/app/views/+content/garage/garage.component.css'],
-    templateUrl: 'src/dev/app/views/+content/garage/garage.component.html',
-    directives: [AlertComponent, LoadingComponent]
+    styleUrls: ['src/dist/app/views/+content/cars/garage/garage.component.css'],
+    templateUrl: 'src/dev/app/views/+content/cars/garage/garage.component.html',
+    //directives: [AlertComponent, LoadingComponent]
 })
 
 export class GarageComponent implements OnInit {
