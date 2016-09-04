@@ -3,14 +3,11 @@ import { HTTP_PROVIDERS, Response } from '@angular/http';
 
 import { ProfileService, SidebarService } from '../../../services/index';
 import { Profile } from '../../../services/profile/profile';
-import { LoadingComponent } from '../../../components/loading/loading.component';
-import { AlertComponent } from '../../../components/alert/alert.component';
 
 @Component({
     selector: 'profile',
     styleUrls: ['src/dist/app/views/+content/profile/profile.component.css'],
-    templateUrl: 'src/dev/app/views/+content/profile/profile.component.html',
-    directives: [LoadingComponent, AlertComponent]
+    templateUrl: 'src/dev/app/views/+content/profile/profile.component.html'
 })
 
 export class ProfileComponent implements OnInit {

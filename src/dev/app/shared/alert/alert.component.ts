@@ -2,8 +2,8 @@
 
 @Component({
     selector: 'alert',
-    templateUrl: 'src/dev/app/components/alert/alert.component.html',
-    styleUrls: ['src/dist/app/components/alert/alert.component.css']
+    templateUrl: 'src/dev/app/shared/alert/alert.component.html',
+    styleUrls: ['src/dist/app/shared/alert/alert.component.css']
 })
 
 export class AlertComponent {

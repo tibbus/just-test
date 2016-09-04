@@ -25,7 +25,7 @@ export class GarageMenuComponent implements OnInit{
     ngOnInit() {
         this.getCars();
 
-        if (window.location.pathname === '/garage') {
+        if (window.location.pathname === '/cars/garage') {
             this.selected = 'garage';
         }
 
@@ -87,7 +87,7 @@ export class GarageMenuComponent implements OnInit{
                 this.cars = cars;
 
                 // Update the selected Car in the menu when the URL change
-                if (window.location.pathname !== '/garage') {
+                if (window.location.pathname !== '/cars/garage') {
                     this.updateSelectedCarMenu();
                 }
             },

@@ -1,7 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 
 import { routing }  from './cars.routing';
-import { SharedModule } from '../../../components/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 
 import { GarageComponent } from './garage/garage.component';
 import { CarComponent } from '../cars/car/car.component';

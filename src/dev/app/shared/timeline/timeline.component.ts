@@ -2,9 +2,7 @@
 import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService, TimelineService, PostService } from '../../services/index';
-import { ModalComponent } from '../modal/modal.component';
 
-import { LoadingComponent } from '../loading/loading.component';
 import { EditModalContentComponent } from './editModal/editModalContent.component';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 import { TimelineDatePipe } from './timelineDate.pipe';
@@ -14,9 +12,8 @@ declare var FB: any;
 
 @Component({
     selector: 'timeline',
-    styleUrls: ['src/dist/app/components/timeline/timeline.component.css'],
-    templateUrl: 'src/dev/app/components/timeline/timeline.component.html',
-    directives: [LoadingComponent, ModalComponent],
+    styleUrls: ['src/dist/app/shared/timeline/timeline.component.css'],
+    templateUrl: 'src/dev/app/shared/timeline/timeline.component.html',
     providers: [ModalService, PostService],
     pipes: [TimelineDatePipe]
 })

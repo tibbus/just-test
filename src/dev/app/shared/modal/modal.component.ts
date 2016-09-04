@@ -7,7 +7,7 @@ import { ModalService } from '../../services/index';
 
 @Component({
     selector: 'modal',
-    templateUrl: 'src/dev/app/components/modal/modal.component.html'
+    templateUrl: 'src/dev/app/shared/modal/modal.component.html'
 })
 
 export class ModalComponent {

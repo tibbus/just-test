@@ -1,14 +1,14 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { PostService, ModalService, TimelineService } from '../../../services/index';
-import { UploadFileDirective } from '../../../directives/uploadFile.directive';
+import { UploadFileDirective } from '../../uploadFile.directive';
 
 import * as _ from 'lodash';
 
 @Component({
     selector: 'content',
-    templateUrl: 'src/dev/app/components/timeline/editModal/editModalContent.component.html',
-    styleUrls: ['src/dist/app/components/timeline/editModal/editModalContent.component.css'],
+    templateUrl: 'src/dev/app/shared/timeline/editModal/editModalContent.component.html',
+    styleUrls: ['src/dist/app/shared/timeline/editModal/editModalContent.component.css'],
     directives: [
         UploadFileDirective
     ],

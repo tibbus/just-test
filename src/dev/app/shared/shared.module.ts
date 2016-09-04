@@ -5,12 +5,24 @@ import { FormsModule }         from '@angular/forms';
 import { AlertComponent } from './alert/alert.component';
 import { LoadingComponent }  from './loading/loading.component';
 import { ModalComponent } from './modal/modal.component';
+import { UploadFileDirective } from './uploadFile.directive';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [AlertComponent, LoadingComponent, ModalComponent],
-    exports: [AlertComponent, LoadingComponent, ModalComponent, 
-        CommonModule, FormsModule]
+    declarations: [
+        AlertComponent,
+        LoadingComponent,
+        ModalComponent,
+        UploadFileDirective
+    ],
+    exports: [
+        AlertComponent,
+        LoadingComponent,
+        ModalComponent, 
+        CommonModule,
+        FormsModule,
+        UploadFileDirective
+    ]
 })
 
 export class SharedModule { }
