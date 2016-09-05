@@ -1,12 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { PostService, ModalService, TimelineService } from '../../../services/index';
-import { TimelineDatePipe } from '../timelineDate.pipe';
 
 @Component({
     selector: 'content',
     templateUrl: 'src/dev/app/shared/timeline/imageModal/imageModalContent.component.html',
-    styleUrls: ['src/dist/app/shared/timeline/imageModal/imageModalContent.component.css'],
-    pipes: [TimelineDatePipe]
+    styleUrls: ['src/dist/app/shared/timeline/imageModal/imageModalContent.component.css']
 })
 
 export class ImageModalContentComponent implements OnInit {

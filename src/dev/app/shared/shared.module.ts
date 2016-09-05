@@ -7,6 +7,7 @@ import { LoadingComponent }  from './loading/loading.component';
 import { ModalComponent } from './modal/modal.component';
 import { UploadFileDirective } from './uploadFile.directive';
 import { TimelineComponent } from './timeline/timeline.component';
+import { TimelineDatePipe } from './timelineDate.pipe';
 
 @NgModule({
     imports: [CommonModule],
@@ -15,7 +16,8 @@ import { TimelineComponent } from './timeline/timeline.component';
         LoadingComponent,
         ModalComponent,
         UploadFileDirective,
-        TimelineComponent
+        TimelineComponent,
+        TimelineDatePipe
     ],
     exports: [
         AlertComponent,
@@ -24,7 +26,8 @@ import { TimelineComponent } from './timeline/timeline.component';
         CommonModule,
         FormsModule,
         UploadFileDirective,
-        TimelineComponent
+        TimelineComponent,
+        TimelineDatePipe
     ]
 })
 

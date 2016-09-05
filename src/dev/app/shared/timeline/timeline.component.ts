@@ -5,7 +5,7 @@ import { ModalService, TimelineService, PostService } from '../../services/index
 
 import { EditModalContentComponent } from './editModal/editModalContent.component';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
-import { TimelineDatePipe } from './timelineDate.pipe';
+
 import * as _ from 'lodash';
 
 declare var FB: any;
@@ -14,8 +14,7 @@ declare var FB: any;
     selector: 'timeline',
     styleUrls: ['src/dist/app/shared/timeline/timeline.component.css'],
     templateUrl: 'src/dev/app/shared/timeline/timeline.component.html',
-    providers: [ModalService, PostService],
-    pipes: [TimelineDatePipe]
+    providers: [ModalService, PostService]
 })
 
 export class TimelineComponent {
