@@ -4,14 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import {
     ProfileComponent,
     NotFoundComponent,
-    //FeedComponent
+    FeedComponent
 } from './views/+content/index';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'cars', pathMatch: 'full' },
     { path: 'cars', loadChildren: 'app/app/views/+content/cars/cars.module#CarsModule' },
     { path: 'profile', component: ProfileComponent },
-    //{ path: 'feed', component: FeedComponent },
+    { path: 'feed', component: FeedComponent },
     { path: '**', component: NotFoundComponent }
 ];
 

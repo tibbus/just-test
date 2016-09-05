@@ -6,6 +6,7 @@ import { AlertComponent } from './alert/alert.component';
 import { LoadingComponent }  from './loading/loading.component';
 import { ModalComponent } from './modal/modal.component';
 import { UploadFileDirective } from './uploadFile.directive';
+import { TimelineComponent } from './timeline/timeline.component';
 
 @NgModule({
     imports: [CommonModule],
@@ -13,7 +14,8 @@ import { UploadFileDirective } from './uploadFile.directive';
         AlertComponent,
         LoadingComponent,
         ModalComponent,
-        UploadFileDirective
+        UploadFileDirective,
+        TimelineComponent
     ],
     exports: [
         AlertComponent,
@@ -21,7 +23,8 @@ import { UploadFileDirective } from './uploadFile.directive';
         ModalComponent, 
         CommonModule,
         FormsModule,
-        UploadFileDirective
+        UploadFileDirective,
+        TimelineComponent
     ]
 })
 

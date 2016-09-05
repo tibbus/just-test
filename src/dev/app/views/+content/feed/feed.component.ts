@@ -1,9 +1,10 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+﻿import { Component } from '@angular/core';
 
-import { ModalService, TimelineService } from '../../../services/index';
-import { TimelineComponent } from '../../../shared/timeline/timeline.component'; 
+@Component({
+    selector: 'feed',
+    template: '<timeline></timeline>'
+})
 
-export class FeedComponent extends TimelineComponent {
+export class FeedComponent {
     
 }
