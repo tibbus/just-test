@@ -9,7 +9,7 @@ import { ApiService, API } from '../api/api.service';
 @Injectable()
 export class ProfileService extends HttpService {
     constructor(private http: Http, private apiService: ApiService) {
-        super(http, apiService.profile);
+        super(http, apiService.getProfileUrl());
     }
 
     getProfile() {
@@ -19,7 +19,7 @@ export class ProfileService extends HttpService {
     setProfile(profile: Profile) {
         const body = JSON.stringify(profile);
 
-        return this.http.request(`${API.root}${this.apiService.profile}`, {
+        return this.http.request(this.apiService.getProfileUrl(), {
                 body: body,
                 method: 'PUT'
             })

@@ -1,5 +1,5 @@
-import {Injectable}     from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { HttpService } from '../http/http.service';
@@ -13,13 +13,14 @@ export class SearchService {
     public hasData: boolean = true;
 
     search(term: string) {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        const headers: Headers = new Headers({ 'Content-Type': 'application/json' });
         headers.append('api-key', `A57CC5AE46C3EE7955EC441AEEBAF4F0`);
 
-        let options = new RequestOptions({ headers: headers, body: '' });
+        const options: RequestOptions = new RequestOptions({ headers: headers, body: '' });
+        const apiUrl: string = this.apiService.getSearchUrl(term);
 
         return this.http
-            .get(`https://amilatest.search.windows.net/indexes/carinfo/docs?api-version=2015-02-28&search=${term}*`, options)
+            .get(apiUrl, options)
             .map(res => res.json().value)
             .do(data => {
                 this.hasData = !!data.length;

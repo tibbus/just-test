@@ -15,8 +15,8 @@ export class AppComponent {
         console.log(stream);
         let client;
 
-        client = stream.connect('sjc7un6vn6zp');
-        console.log(client);
+        //client = stream.connect('sjc7un6vn6zp');
+        //console.log(client);
         
         jQuery.material.init();
     }

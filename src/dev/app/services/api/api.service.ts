@@ -3,24 +3,42 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiService {
     // Hardcoded user :
+    public userId: string = '41';
+
     get user(): string {
-        return '/user/1';
+        return `${API.user}${this.userId}`;
     }
 
-    get userCars(): string {
-        return `${this.user}${API.userCars}`;
+    getCarTimelineUrl(carId: string): string {
+        return `${API.root}${API.timeline}${carId}`;
     }
 
-    get userRegisterCar(): string {
-        return `${this.user}${API.userRegisterCar}`;
+    getUserCarsUrl(): string {
+        return `${API.root}${this.user}${API.userCars}`;
     }
 
-    get profile(): string {
-        return this.user;
+    getProfileUrl(): string {
+        return `${API.root}${this.user}`;;
     }
 
-    get userRemoveCar(): string {
-        return `${this.user}${API.userRemoveCar}`;
+    getRegisterCarUrl(regNumber: string): string {
+        return `${API.root}${this.user}${API.userRegisterCar}${regNumber}`;
+    }
+
+    getRemoveCarUrl(id: string): string {
+        return `${API.root}${this.user}${API.userRemoveCar}/${id}`;
+    }
+
+    getAddPostUrl(userCarId: string, postType: string): string {
+        return `${API.root}${API.post}${userCarId}/${postType}`;
+    }
+
+    getUpdatePostUrl(userCarId: string, postType: string, postId: string): string {
+        return `${API.root}${API.post}${userCarId}/${postType}/${postId}`;
+    }
+
+    getSearchUrl(term: string) {
+        return `${API.search}${term}`;
     }
 }
 
@@ -38,6 +56,8 @@ export const API = {
     userCars: '/usercar/details=true',
     userRegisterCar: '/usercar/registration/',
     userRemoveCar: '/usercar/',
-    user: '/user/1',
-    timeline: '/timeline/'
+    user: '/user/',
+    timeline: '/timeline/',
+    post: '/car/',
+    search: 'https://amilatest.search.windows.net/indexes/carinfo/docs?api-version=2015-02-28&search='
 }

@@ -20,7 +20,7 @@ export class TimelineService extends HttpService {
 
     getPosts(forceRefresh?: boolean) {
         // Set the url here as the Timeline should be initialized after the Car
-        this.url = `${API.timeline}${this.carService.userCarId}`;
+        this.url = this.apiService.getCarTimelineUrl(this.carService.userCarId);
 
         return this.getData(forceRefresh).map((res: Timeline) => {
             this.posts = res.results;    

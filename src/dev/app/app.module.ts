@@ -34,7 +34,8 @@ import { SharedModule } from './shared/shared.module';
         HeaderComponent,
         SidebarComponent,
         ProfileComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        FeedComponent
     ],
     providers: [
         ProfileService,

@@ -11,8 +11,3 @@ const routes: Routes = [
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);
-
-
-//{ path: '', redirectTo: 'list', pathMatch: 'full' },
-//{ path: 'list', component: CrisisListComponent },
-//{ path: ':id', component: CrisisDetailComponent }

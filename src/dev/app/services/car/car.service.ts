@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 @Injectable()
 export class CarService extends HttpService {
     constructor(private http: Http, private apiService: ApiService) {
-        super(http, apiService.userCars);
+        super(http, apiService.getUserCarsUrl());
     }
 
     private _selectedCarId: string;
@@ -33,7 +33,7 @@ export class CarService extends HttpService {
     }
 
     addCar(regNumber: string) {
-        const apiUrl: string = `${this.apiService.userRegisterCar}${regNumber}`;
+        const apiUrl: string = this.apiService.getRegisterCarUrl(regNumber);
 
         return this.http.request(apiUrl, {
             body: '',
@@ -42,10 +42,10 @@ export class CarService extends HttpService {
     }
 
     removeCar(id: string) {
-        const apiUrl: string = `${this.apiService.userRemoveCar}${id}`;
+        const apiUrl: string = this.apiService.getRemoveCarUrl(id);
 
         return this.http.request(apiUrl, {
-            body: null,
+            body: '',
             method: 'DELETE'
         });
     }

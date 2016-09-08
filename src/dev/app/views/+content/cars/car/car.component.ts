@@ -6,12 +6,7 @@ import { AddPostComponent } from './addPost/addPost.component';
 import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
 import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsModalContent.component';
 import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
-import {
-    CarService,
-    ModalService,
-    TimelineService,
-    PostService
-} from '../../../../services/index';
+import { CarService, ModalService, TimelineService, PostService } from '../../../../services/index';
 
 import { Car, CarInfo, Mot, Tax } from '../../../../services/car/car';
 
@@ -28,6 +23,7 @@ import { Car, CarInfo, Mot, Tax } from '../../../../services/car/car';
 export class CarComponent implements OnInit, OnDestroy {
     modalName: string;
     private modalSubscription: Subscription;
+    carLoaded: boolean;
     CarDetailsComponent: any = CarDetailsModalContentComponent;
     TaxDetailsComponent: any = TaxDetailsModalContentComponent;
     MotDetailsComponent: any = MotDetailsModalContentComponent;
@@ -50,11 +46,7 @@ export class CarComponent implements OnInit, OnDestroy {
             });
     }
 
-    carLoaded: boolean;
-
     ngOnInit() {
-        this.carLoaded = false;
-
         this.getCars();
     }
 

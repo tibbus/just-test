@@ -1,11 +1,7 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import {
-    ProfileComponent,
-    NotFoundComponent,
-    FeedComponent
-} from './views/+content/index';
+import { ProfileComponent, NotFoundComponent, FeedComponent } from './views/+content/index';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'cars', pathMatch: 'full' },

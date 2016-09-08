@@ -18,7 +18,7 @@ export abstract class HttpService {
         let options = new RequestOptions({ headers: headers, body: '' });
 
         return this._http
-            .get(`${API.root}${this.url}`, options)
+            .get(this.url, options)
             .map(res => res.json())
             .do(data => {
                 console.log(data);
@@ -38,7 +38,7 @@ export abstract class HttpService {
                     this._dataObs.next(data);
                 },
                 error => {
-                    LE.log(`Error trying to access: ${API.root}${this.url}`);
+                    LE.log(`Error trying to access: ${this.url}`);
 
                     this._dataObs.error(error);
                 });

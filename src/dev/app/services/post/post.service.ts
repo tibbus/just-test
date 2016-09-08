@@ -27,6 +27,7 @@ export class PostService {
             return this.addStatus(statusText);
         }
 
+        const apiUrl: string = this.apiService.getAddPostUrl(this.carService.userCarId, postType);
         const formData = new FormData();
 
         // Add form data :
@@ -40,7 +41,7 @@ export class PostService {
         }
 
         jQuery.ajax({
-            url: `${API.root}/car/${this.carService.userCarId}/${postType}`,
+            url: apiUrl,
             type: 'POST',
             data: formData,
             cache: false,
@@ -56,7 +57,7 @@ export class PostService {
     }
 
     addStatus(newStatus: string) {
-        const apiUrl = `/car/${this.carService.userCarId}/status`;
+        const apiUrl = this.apiService.getAddPostUrl(this.carService.userCarId, 'status');
         const body: any = {
             description: newStatus,
             topics: this._topics
@@ -70,14 +71,14 @@ export class PostService {
 
     updatePost(updatedDescription, updatedFiles, updatedTopics) {
         const postType: string = this.timelineService.selectedPost.type;
+        const apiUrl: string = this.apiService.getUpdatePostUrl(this.carService.userCarId, 'status', this.timelineService.selectedPostId);
 
         // Use angular2 http service for the Status and Jquery.Ajax for formData requests
         if (postType === 'Status') {
-            const apiUrl = `${API.root}/car/${this.carService.userCarId}/status/${this.timelineService.selectedPostId}`;
             const body: any = {
-                id: 1,
+                id: this.apiService.userId,
                 description: updatedDescription,
-                topics: ["Suzuki"]
+                topics: updatedTopics
             };
 
             return this.http.request(apiUrl, {
@@ -97,7 +98,7 @@ export class PostService {
             formData.append('description', updatedDescription);
 
             jQuery.ajax({
-                url: `${API.root}/car/${this.carService.userCarId}/${postType}/${this.timelineService.selectedPostId}`,
+                url: apiUrl,
                 type: 'PUT',
                 data: formData,
                 cache: false,
