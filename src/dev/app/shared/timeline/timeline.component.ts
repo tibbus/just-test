@@ -53,22 +53,9 @@ export class TimelineComponent {
     ngOnInit() {
         this.timelineService.getPosts(true).subscribe(
             (posts: any) => {
-                this.posts = _.filter(posts.results.reverse(), item => {
-                    if (item) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                })
-
-                this.posts = this.posts.map(item => {
-                    const postObject = item.details;
-                    postObject.type = item.type;
-
-                    return postObject;
-                });
+                this.posts = posts;
             }
-        )
+        );
     }
 
     onClickDelete(postId: string) {

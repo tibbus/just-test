@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+// todo : move it to typings/typescript
+declare const stream: any;
 
 @Injectable()
 export class ApiService {
     // Hardcoded user :
     public userId: string = '41';
+    private _streamClient: any;
 
     get user(): string {
         return `${API.user}${this.userId}`;
@@ -40,6 +43,18 @@ export class ApiService {
     getSearchUrl(term: string) {
         return `${API.search}${term}`;
     }
+
+    getTokenUrl() {
+        return `${API.root}${API.token}`;
+    }
+
+    set streamClient(streamClient: any) {
+        this._streamClient = streamClient;
+    }
+
+    get streamClient() {
+        return this._streamClient;
+    }
 }
 
 export const API = {
@@ -59,5 +74,6 @@ export const API = {
     user: '/user/',
     timeline: '/timeline/',
     post: '/car/',
-    search: 'https://amilatest.search.windows.net/indexes/carinfo/docs?api-version=2015-02-28&search='
+    search: 'https://amilatest.search.windows.net/indexes/carinfo/docs?api-version=2015-02-28&search=',
+    token: '/feeds/token'
 }
