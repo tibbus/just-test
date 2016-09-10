@@ -53,7 +53,7 @@ export class EditModalContentComponent implements OnInit {
         this.postService.updatePost(this.postDescription, this.files, this.selectedTopics).subscribe(
             () => {
                 // update the TimeLine
-                this.timelineService.getPosts(true);
+                this.timelineService.getPosts();
 
                 this.modalService.sendModalClose();
             }

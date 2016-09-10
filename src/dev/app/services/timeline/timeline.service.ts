@@ -17,13 +17,14 @@ export class TimelineService {
     private _selectedPostId: string;
     private _selectedImageIndex: number;
     private posts$ = new Subject();
+    public actor: any;
 
-    getPosts(forceRefresh?: boolean) {
+    getPosts() {
         // get the token for getStream timeline call
         this.getToken().subscribe(token => {
             // set the getStream settings
             const streamClient: any = this.apiService.streamClient;
-            const streamCar = streamClient.feed('car', this.carService.userCarId, token);
+            const streamCar = streamClient.feed(this.actor.actorType, this.actor.actorId, token);
 
             // make the call request for the timeline
             const carTimelineRequest = streamCar.get({ limit: 20 }).then(data => {
@@ -36,13 +37,8 @@ export class TimelineService {
     }
 
     getToken() {
-        const body = {
-            "actorType": "Car",
-            "actorId": this.carService.userCarId
-        };
-
         return this.http.request(this.apiService.getTokenUrl(), {
-            body: body,
+            body: this.actor,
             method: 'POST'
         })
         .map((res: any) => {

@@ -2,7 +2,7 @@
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import * as _ from 'lodash';
 
-import { CarService, SidebarService, ModalService } from '../../../services/index';
+import { CarService, SidebarService, ModalService, TimelineService } from '../../../services/index';
 
 @Component({
     selector: 'garage',
@@ -17,9 +17,10 @@ export class GarageMenuComponent implements OnInit{
 
     constructor(
         private _router: Router,
-        private _carService: CarService,
+        private carService: CarService,
         private _sidebarService: SidebarService,
-        private _modalService: ModalService
+        private _modalService: ModalService,
+        private timelineService: TimelineService
     ) { }
 
     ngOnInit() {
@@ -48,7 +49,7 @@ export class GarageMenuComponent implements OnInit{
 
         this.selected = car.name;
 
-        this._carService.selectedCarId = car.id;
+        this.carService.selectedCarId = car.id;
 
         // use this instead of [routerLink] as we want to do things before the route is initialized
         this._router.navigate(['/cars', car.route]);
@@ -68,7 +69,7 @@ export class GarageMenuComponent implements OnInit{
                 itemName = car.name
 
                 // TODO : move this to correct place
-                this._carService.selectedCarId = car.id;
+                this.carService.selectedCarId = car.id;
             }
         })
 
@@ -82,7 +83,7 @@ export class GarageMenuComponent implements OnInit{
     }
 
     getCars() {
-        this._carService.getCars().subscribe(
+        this.carService.getCars().subscribe(
             cars => {
                 this.cars = cars;
 

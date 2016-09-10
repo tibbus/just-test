@@ -17,7 +17,7 @@ import { Car, CarInfo, Mot, Tax } from '../../../../services/car/car';
     directives: [
         AddPostComponent
     ],
-    providers: [TimelineService, PostService]
+    providers: [PostService]
 })
 
 export class CarComponent implements OnInit, OnDestroy {
@@ -32,7 +32,8 @@ export class CarComponent implements OnInit, OnDestroy {
         private carService: CarService,
         private router: Router,
         private modalService: ModalService,
-        private ref: ChangeDetectorRef
+        private ref: ChangeDetectorRef,
+        private timelineService: TimelineService
     ) {
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
@@ -59,7 +60,12 @@ export class CarComponent implements OnInit, OnDestroy {
                     return;
                 }
 
-                this.carLoaded = true;    
+                this.carLoaded = true;   
+
+                this.timelineService.actor = {
+                    actorType: 'car',
+                    actorId: this.carService.selectedCar.id
+                }; 
             });
     }
 

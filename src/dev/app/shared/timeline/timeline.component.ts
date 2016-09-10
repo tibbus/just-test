@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService, TimelineService, PostService } from '../../services/index';
@@ -51,7 +51,7 @@ export class TimelineComponent {
     }
 
     ngOnInit() {
-        this.timelineService.getPosts(true).subscribe(
+        this.timelineService.getPosts().subscribe(
             (posts: any) => {
                 this.posts = posts;
             }
@@ -64,7 +64,7 @@ export class TimelineComponent {
         this.postService.deletePost(postId).delay(500).subscribe(
             posts => {
                 // update the status list (make a new server request in the service)
-                this.timelineService.getPosts(true);
+                this.timelineService.getPosts();
             }
         )
     }

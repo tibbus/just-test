@@ -2,7 +2,7 @@
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
 import { GarageMenuComponent } from './garageMenu/garageMenu.component';
-import { SidebarService } from '../../services/index';
+import { SidebarService, TimelineService } from '../../services/index';
 
 @Component({
     selector: 'sidebar',
@@ -20,7 +20,7 @@ export class SidebarComponent {
     ];
     modalName: string;
 
-    constructor(private _router: Router, private _sidebarService: SidebarService) {
+    constructor(private _router: Router, private _sidebarService: SidebarService, private timelineService: TimelineService) {
     }
 
     ngOnInit() {
