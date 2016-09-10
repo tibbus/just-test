@@ -8,10 +8,7 @@ import * as _ from 'lodash';
 @Component({
     selector: 'content',
     templateUrl: 'src/dev/app/shared/timeline/editModal/editModalContent.component.html',
-    styleUrls: ['src/dist/app/shared/timeline/editModal/editModalContent.component.css'],
-    directives: [
-        UploadFileDirective
-    ],
+    styleUrls: ['src/dist/app/shared/timeline/editModal/editModalContent.component.css']
 })
 
 export class EditModalContentComponent implements OnInit {

@@ -9,17 +9,10 @@ import {
     PostService
 } from '../../../../../services/index';
 
-import { RegNumberPipe } from './regNumber.pipe'
-//import { UploadFileDirective } from '../../../../../directives/uploadFile.directive';
-
 @Component({
     selector: 'add-post',
     styleUrls: ['src/dist/app/views/+content/cars/car/addPost/addPost.component.css'],
-    templateUrl: 'src/dev/app/views/+content/cars/car/addPost/addPost.component.html',
-    directives: [
-        //UploadFileDirective
-    ],
-    pipes: [RegNumberPipe]
+    templateUrl: 'src/dev/app/views/+content/cars/car/addPost/addPost.component.html'
 })
 
 export class AddPostComponent {

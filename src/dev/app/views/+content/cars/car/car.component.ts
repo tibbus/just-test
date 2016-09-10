@@ -1,8 +1,7 @@
 ﻿import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AddPostComponent } from './addPost/addPost.component';
 import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
 import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsModalContent.component';
 import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
@@ -14,9 +13,6 @@ import { Car, CarInfo, Mot, Tax } from '../../../../services/car/car';
     selector: 'car-content',
     styleUrls: ['src/dist/app/views/+content/cars/car/car.component.css'],
     templateUrl: 'src/dev/app/views/+content/cars/car/car.component.html',
-    directives: [
-        AddPostComponent
-    ],
     providers: [PostService]
 })
 
@@ -33,7 +29,8 @@ export class CarComponent implements OnInit, OnDestroy {
         private router: Router,
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
-        private timelineService: TimelineService
+        private timelineService: TimelineService,
+        private route: ActivatedRoute
     ) {
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
@@ -48,10 +45,17 @@ export class CarComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.getCars();
+        
+        this.route.params.subscribe(params => {
+            this.carLoaded = false;
+            // used to re-render the component and all the sub-components
+            this.ref.detectChanges();
+
+            this.getCar();
+        });
     }
 
-    getCars() {
+    getCar() {
         this.carService.getCars().delay(500).subscribe(
             (cars: any) => {
                 if (!this.carService.selectedCar) {

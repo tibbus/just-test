@@ -1,5 +1,4 @@
 ﻿import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES }  from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
@@ -10,7 +9,6 @@ import { Profile } from '../../services/profile/profile';
     selector: 'header',
     styleUrls: ['src/dist/app/views/header/header.component.css'],
     templateUrl: 'src/dev/app/views/header/header.component.html',
-    directives: [ROUTER_DIRECTIVES],
     providers: [SearchService]
 })
 

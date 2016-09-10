@@ -1,5 +1,5 @@
 ﻿import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import * as _ from 'lodash';
 
 import { CarService, SidebarService, ModalService, TimelineService } from '../../../services/index';
@@ -8,7 +8,6 @@ import { CarService, SidebarService, ModalService, TimelineService } from '../..
     selector: 'garage',
     styleUrls: ['src/dist/app/views/sidebar/garageMenu/garageMenu.component.css'],
     templateUrl: 'src/dev/app/views/sidebar/garageMenu/garageMenu.component.html',
-    directives: [ROUTER_DIRECTIVES]
 })
 
 export class GarageMenuComponent implements OnInit{

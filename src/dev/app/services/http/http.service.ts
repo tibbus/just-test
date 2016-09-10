@@ -27,7 +27,7 @@ export abstract class HttpService {
 
     getData(forceRefresh?: boolean) {
         // On Error the Subject will be Stoped and Unsubscribed, if so, create another one
-        this._dataObs = this._dataObs.isUnsubscribed ? new ReplaySubject(1) : this._dataObs;
+        this._dataObs = this._dataObs.isStopped ? new ReplaySubject(1) : this._dataObs;
 
         // If the Subject was NOT subscribed before OR if forceRefresh is requested 
         if (!this._dataObs.observers.length || forceRefresh) {

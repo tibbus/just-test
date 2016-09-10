@@ -1,14 +1,12 @@
 ﻿import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
-import { GarageMenuComponent } from './garageMenu/garageMenu.component';
 import { SidebarService, TimelineService } from '../../services/index';
 
 @Component({
     selector: 'sidebar',
     styleUrls: ['src/dist/app/views/sidebar/sidebar.component.css'],
-    templateUrl: 'src/dev/app/views/sidebar/sidebar.component.html',
-    directives: [ROUTER_DIRECTIVES, GarageMenuComponent]
+    templateUrl: 'src/dev/app/views/sidebar/sidebar.component.html'
 })
 
 export class SidebarComponent {

@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { HTTP_PROVIDERS, Response } from '@angular/http';
+import { Response } from '@angular/http';
 
 import { ProfileService, SidebarService } from '../../../services/index';
 import { Profile } from '../../../services/profile/profile';

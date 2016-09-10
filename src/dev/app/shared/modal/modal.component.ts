@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentResolver,
+﻿import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver,
 ComponentRef
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -24,13 +24,13 @@ export class ModalComponent {
     loading: boolean;
 
     constructor(private modalService: ModalService,
-        private componentResolver: ComponentResolver
+        private componentResolver: ComponentFactoryResolver
     ) { }  
 
     ngAfterViewInit() {
-        this.componentResolver.resolveComponent(this.contentComponent).then((factory) => {
-            this.dynamicComponent.createComponent(factory);
-        });
+        const factory = this.componentResolver.resolveComponentFactory(this.contentComponent);
+
+        this.dynamicComponent.createComponent(factory);
     }
 
     ngOnInit() {
