@@ -2,12 +2,10 @@
 import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService, TimelineService, PostService } from '../../services/index';
-
 import { EditModalContentComponent } from './editModal/editModalContent.component';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 
 import * as _ from 'lodash';
-
 declare var FB: any;
 
 @Component({
@@ -32,8 +30,6 @@ export class TimelineComponent {
         private timelineService: TimelineService,
         private postService: PostService
     ) {
-        //super(statusService, modalService, ref, timelineService);
-
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
             modalName => {
@@ -46,16 +42,16 @@ export class TimelineComponent {
             });
     }
 
-    ngOnDestroy() {
-        this.modalSubscription.unsubscribe();
-    }
-
     ngOnInit() {
         this.timelineService.getPosts().subscribe(
             (posts: any) => {
                 this.posts = posts;
             }
         );
+    }
+
+    ngOnDestroy() {
+        this.modalSubscription.unsubscribe();
     }
 
     onClickDelete(postId: string) {
@@ -79,28 +75,24 @@ export class TimelineComponent {
     clickImage(postId: string, index: number) {
         this.selectedPostId = postId;
         this.timelineService.selectedPostId = postId;
-
         this.timelineService.selectedImage = index;
 
         this.modalService.setModalName('imageModal');
     }
 
     onClickShare(postId: string) {
-        //this.timelineService.selectedPostId = postId;
-
         const post = this.timelineService.getPostById(postId);
-        const postData = post.details;
         let imageUrl: string = null;
 
         if (post.type === 'Image') {
-            imageUrl = postData.contentUris[0];
+            imageUrl = post.contentUris[0];
         } else {
             imageUrl = 'https://amiladevapiaccount.blob.core.windows.net/carinfoid31/Image/03072016/6df34b18-f88a-4107-a63c-8a24ad5d463c/car2.JPG';
         }
 
         FB.ui({
             method: 'feed',
-            name: postData.description,
+            name: post.description,
             description: "",
             picture: imageUrl
         }, function (response) {
