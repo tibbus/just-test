@@ -1,6 +1,4 @@
-﻿import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver,
-ComponentRef
-} from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService } from '../../services/index';

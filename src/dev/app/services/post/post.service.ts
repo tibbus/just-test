@@ -71,7 +71,7 @@ export class PostService {
 
     updatePost(updatedDescription, updatedFiles, updatedTopics) {
         const postType: string = this.timelineService.selectedPost.type;
-        const apiUrl: string = this.apiService.getUpdatePostUrl(this.carService.userCarId, 'status', this.timelineService.selectedPostId);
+        const apiUrl: string = this.apiService.getUpdatePostUrl(this.carService.userCarId, postType.toLocaleLowerCase(), this.timelineService.selectedPostId);
 
         // Use angular2 http service for the Status and Jquery.Ajax for formData requests
         if (postType === 'Status') {

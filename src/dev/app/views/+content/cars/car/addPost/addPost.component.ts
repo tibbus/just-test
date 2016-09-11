@@ -24,6 +24,7 @@ export class AddPostComponent {
     files: any[] = [];
     postType: string;
     topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
+    allTopics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
     selectedTopics: string[] = [];
 
     constructor(
@@ -53,23 +54,20 @@ export class AddPostComponent {
         if (!file) {
             return false;
         }
-
         this.files.push(file);
 
         this.postType = postType;
 
         const reader = new FileReader();
-
         reader.onload = (e: any) => {
             this.uris.push(e.target.result);
 
             this.ref.detectChanges();
         }
-
         reader.readAsDataURL(file);
     }
 
-    clickAddStatus() {
+    clickAddPost() {
         this.loading = true;
         this.postService.topics = this.selectedTopics;
 
@@ -99,7 +97,7 @@ export class AddPostComponent {
     addPostStatus() {
         this.postService.addPost(null, this.currentStatus, 'status').subscribe(
             res => {
-               // this.afterPostRequest();
+               this.afterPostRequest();
             },
             error => this.handleError(error)
         );
@@ -108,10 +106,25 @@ export class AddPostComponent {
     addPostMedia() {
         this.postService.addPost(this.files, this.currentStatus, this.postType).subscribe(
             res => {
-               // this.afterPostRequest();
+               this.afterPostRequest();
             },
             error => this.handleError(error)
         );
+    }
+
+    afterPostRequest() {
+        // Clear add Post
+        this.currentStatus = '';
+        this.uris = [];
+        this.files = [];
+        this.loading = false;
+        this.postType = 'status';
+
+        this.topics = this.allTopics;
+        this.selectedTopics = [];
+
+        // Refresh the TimeLine
+        this.timelineService.getPosts();
     }
 
     handleError(error: Error) {
