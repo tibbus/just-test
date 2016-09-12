@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { ProfileService, SearchService } from '../../services/index';
+import { ProfileService, SearchService, FollowService } from '../../services/index';
 import { Profile } from '../../services/profile/profile';
 
 @Component({
@@ -18,8 +18,13 @@ export class HeaderComponent {
     public errorMessage: string;
     private searchTermStream = new Subject();
     hideSearchResults: boolean = true;
+    followState: string;
 
-    constructor(private profileService: ProfileService, private searchService: SearchService) { }    
+    constructor(
+        private profileService: ProfileService,
+        private searchService: SearchService,
+        private followService: FollowService
+    ) { }    
 
     getProfile() {
         this.profileService.getProfile()
@@ -45,4 +50,16 @@ export class HeaderComponent {
         .debounceTime(300)
         .distinctUntilChanged()
         .switchMap((term: string) => this.searchService.search(term));
+
+    onClickFollow() {
+        this.followService.followCar().subscribe(data => {
+            this.followState = 'follow';
+        });
+    }
+
+    onClickUnFollow() {
+        this.followService.unFollowCar().subscribe(data => {
+            this.followState = 'unFollow';
+        });
+    }
 }

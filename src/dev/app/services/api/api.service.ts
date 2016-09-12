@@ -48,6 +48,14 @@ export class ApiService {
         return `${API.root}${API.token}`;
     }
 
+    getFollowUrl(carId: string) {
+        return `${API.root}${this.user}${API.follow}${carId}`;
+    }
+
+    getUnFollowUrl(carId: string) {
+        return `${API.root}${this.user}${API.unFollow}${carId}`;
+    }
+
     set streamClient(streamClient: any) {
         this._streamClient = streamClient;
     }
@@ -75,5 +83,7 @@ export const API = {
     timeline: '/timeline/',
     post: '/car/',
     search: 'https://amilatest.search.windows.net/indexes/carinfo/docs?api-version=2015-02-28&search=',
-    token: '/feeds/token'
+    token: '/feeds/token',
+    follow: '/follow/',
+    unFollow: '/unfollow/'
 }

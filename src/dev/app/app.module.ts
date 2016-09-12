@@ -18,7 +18,8 @@ import {
     SidebarService,
     ModalService,
     PostService,
-    TimelineService
+    TimelineService,
+    FollowService
 } from './services/index';
 
 import { SharedModule } from './shared/shared.module';
@@ -46,6 +47,7 @@ import { SharedModule } from './shared/shared.module';
         ModalService,
         ApiService,
         TimelineService,
+        FollowService,
         { provide: RequestOptions, useClass: CustomRequestOptions }
     ],
     bootstrap: [AppComponent]

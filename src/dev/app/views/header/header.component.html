@@ -21,8 +21,21 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="javascript:void(0)">Follows</a></li>
-                <li><a href="javascript:void(0)">Messages</a></li>
+                <li>
+                    <a href="javascript:void(0)" 
+                       (click)="onClickUnFollow()" 
+                       [class.followActive]="this.followState === 'unFollow'"
+                    >
+                        Unfollow
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"
+                       (click)="onClickFollow()"
+                       [class.followActive]="this.followState === 'follow'">
+                        Folllow
+                    </a>
+                </li>
                 <li><a href="javascript:void(0)">Notifications</a></li>
                 <li class="dropdown">
                     <div class="profile-img">
