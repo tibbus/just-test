@@ -21,7 +21,7 @@ export class CarService extends HttpService {
                 const carMake: string = _.get(carObject, 'carInfo.car.make', null);
                 const carModel: string = _.get(carObject, 'carInfo.car.model', null);
                 const carName: string = `${carMake} ${carModel}`;
-                const carId: string = carObject.id;
+                const carId: string = carObject.carInfo.id;
 
                 return {
                     name: carName,
@@ -52,7 +52,7 @@ export class CarService extends HttpService {
 
     getCarById(id: string): Car {
         const currentCar: Car = _.find(this.dataObject, (car: Car) => {
-            return car.id == id;
+            return car.carInfo.id == id;
         });
 
         return currentCar;
@@ -60,6 +60,10 @@ export class CarService extends HttpService {
 
     set selectedCarId(carId: string) {
         this._selectedCarId = carId;
+    }
+
+    get selectedCarId() {
+        return this._selectedCarId;
     }
 
     get selectedCar(): CarInfo {

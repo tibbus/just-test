@@ -68,6 +68,7 @@ export class GarageMenuComponent implements OnInit{
                 itemName = car.name
 
                 // TODO : move this to correct place
+                // This should belong to car component/module, who owns the car router
                 this.carService.selectedCarId = car.id;
             }
         })

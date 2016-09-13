@@ -18,7 +18,8 @@ export class HeaderComponent {
     public errorMessage: string;
     private searchTermStream = new Subject();
     hideSearchResults: boolean = true;
-    followState: string;
+    followState: boolean;
+    isFollowEnabled: boolean = true;
 
     constructor(
         private profileService: ProfileService,
@@ -38,6 +39,18 @@ export class HeaderComponent {
 
     ngOnInit() {
         this.getProfile();
+
+        this.followService.getPosts().subscribe(data => {
+            this.followService.carFollowers = data;
+        });
+
+        this.followService.following$.subscribe((data: boolean) => {
+            this.followState = data;
+        })
+
+        this.followService.isFollowEnable$.subscribe((data: boolean) => {
+            this.isFollowEnabled = data;
+        })
     }
 
     search(term: string) {
@@ -53,13 +66,17 @@ export class HeaderComponent {
 
     onClickFollow() {
         this.followService.followCar().subscribe(data => {
-            this.followState = 'follow';
+            this.followState = true;
+
+            this.followService.getPosts();
         });
     }
 
     onClickUnFollow() {
         this.followService.unFollowCar().subscribe(data => {
-            this.followState = 'unFollow';
+            this.followState = false;
+
+            this.followService.getPosts();
         });
     }
 }

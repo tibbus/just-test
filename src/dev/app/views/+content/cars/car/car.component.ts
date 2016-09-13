@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
 import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsModalContent.component';
 import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
-import { CarService, ModalService, TimelineService, PostService } from '../../../../services/index';
+import { CarService, ModalService, TimelineService, PostService, FollowService } from '../../../../services/index';
 
 import { Car, CarInfo, Mot, Tax } from '../../../../services/car/car';
 
@@ -30,7 +30,8 @@ export class CarComponent implements OnInit, OnDestroy {
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private followService: FollowService
     ) {
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
@@ -63,13 +64,16 @@ export class CarComponent implements OnInit, OnDestroy {
 
                     return;
                 }
-
                 this.carLoaded = true;   
 
                 this.timelineService.actor = {
                     actorType: 'car',
-                    actorId: this.carService.selectedCar.id
+                    actorId: this.carService.selectedCarId
                 }; 
+
+                this.followService.handleFollow();
+
+                this.followService.isFollowEnable$.next(true);
             });
     }
 

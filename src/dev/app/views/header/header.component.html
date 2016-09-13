@@ -22,17 +22,19 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="javascript:void(0)" 
+                    <a href="javascript:void(0)"
+                       *ngIf="isFollowEnabled" 
                        (click)="onClickUnFollow()" 
-                       [class.followActive]="this.followState === 'unFollow'"
+                       [class.followActive]="!this.followState"
                     >
                         Unfollow
                     </a>
                 </li>
                 <li>
                     <a href="javascript:void(0)"
+                       *ngIf="isFollowEnabled" 
                        (click)="onClickFollow()"
-                       [class.followActive]="this.followState === 'follow'">
+                       [class.followActive]="this.followState">
                         Folllow
                     </a>
                 </li>
