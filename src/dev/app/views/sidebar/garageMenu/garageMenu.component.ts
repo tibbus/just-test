@@ -15,10 +15,10 @@ export class GarageMenuComponent implements OnInit{
     private cars: any[] = [];
 
     constructor(
-        private _router: Router,
+        private router: Router,
         private carService: CarService,
-        private _sidebarService: SidebarService,
-        private _modalService: ModalService,
+        private sidebarService: SidebarService,
+        private modalService: ModalService,
         private timelineService: TimelineService
     ) { }
 
@@ -29,33 +29,37 @@ export class GarageMenuComponent implements OnInit{
             this.selected = 'garage';
         }
 
-        this._sidebarService.unSelect$
+        this.sidebarService.unSelect$
             .subscribe(
             () => {
                 this.selected = null;
 
             });
+
+        this.sidebarService.updateMenu$.subscribe(data => {
+            this.updateSelectedCarMenu();
+        });
     }
 
     // sub menu car details
     onMenuClick(modalName: string) {
-        this._modalService.setModalName(modalName);
+        this.modalService.setModalName(modalName);
     }
 
     // Navigate to the selected Car on menu Click
     onCarSelect(car: any) {
-        this._sidebarService.unSelectMenus(); 
+        this.sidebarService.unSelectMenus(); 
 
         this.selected = car.name;
 
         this.carService.selectedCarId = car.id;
 
         // use this instead of [routerLink] as we want to do things before the route is initialized
-        this._router.navigate(['/cars', car.route]);
+        this.router.navigate(['/cars', car.route]);
     }
 
     onGarageSelect() {
-        this._sidebarService.unSelectMenus();
+        this.sidebarService.unSelectMenus();
 
         this.selected = 'garage';
     }

@@ -2,14 +2,18 @@
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { ProfileService, SearchService, FollowService } from '../../services/index';
+import { ProfileService, SearchService, FollowService, SidebarService } from '../../services/index';
 import { Profile } from '../../services/profile/profile';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'header',
     styleUrls: ['src/dist/app/views/header/header.component.css'],
     templateUrl: 'src/dev/app/views/header/header.component.html',
-    providers: [SearchService]
+    providers: [SearchService],
+    host: {
+        '(document:click)': 'onClickOutside($event)',
+    },
 })
 
 export class HeaderComponent {
@@ -24,7 +28,9 @@ export class HeaderComponent {
     constructor(
         private profileService: ProfileService,
         private searchService: SearchService,
-        private followService: FollowService
+        private followService: FollowService,
+        private router: Router,
+        private sidebarService: SidebarService
     ) { }    
 
     getProfile() {
@@ -78,5 +84,18 @@ export class HeaderComponent {
 
             this.followService.getPosts();
         });
+    }
+
+    onClickOutside($event: EventListener) {
+        this.hideSearchResults = true;
+    }
+
+    onClickSearchResult(car) {
+        const routeFromCar = `${car.Make}-${car.Model}`;
+        const parsedRouteFromCar = routeFromCar.replace(/ /g, '-');
+
+        this.router.navigate(['/cars', parsedRouteFromCar]).then(() => {
+            this.sidebarService.updateMenu$.next('update');
+        }); 
     }
 }

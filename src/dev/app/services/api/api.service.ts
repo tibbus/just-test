@@ -41,7 +41,7 @@ export class ApiService {
     }
 
     getSearchUrl(term: string) {
-        return `${API.search}${term}`;
+        return `${API.search}${term}*`;
     }
 
     getTokenUrl() {
