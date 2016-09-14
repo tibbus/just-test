@@ -32,10 +32,10 @@ export class ImageModalContentComponent implements OnInit {
     }
 
     navigate(direction: number) {
-        const imageListLength = this.timelineService.selectedPost.details.contentUris.length;
+        const imageListLength = this.timelineService.selectedPost.contentUris.length;
 
         this.currentImageIndex += direction;
 
-        this.image = this.timelineService.selectedPost.details.contentUris[this.currentImageIndex];
+        this.image = this.timelineService.selectedPost.contentUris[this.currentImageIndex];
     }
 }

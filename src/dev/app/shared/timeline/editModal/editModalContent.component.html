@@ -56,8 +56,8 @@
     <span class="add-media-text">Add document</span>
 </div>
 
-<div class="vertical-line"></div>
-<div class="add-topics">
+<div *ngIf="postType !== 'Status'" class="vertical-line"></div>
+<div [class.status-add-topics]="postType === 'Status'" class="add-topics">
     <span class="text">Add Topics</span>
     <div class="btn-group menu">
         <a data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
