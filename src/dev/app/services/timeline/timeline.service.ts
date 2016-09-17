@@ -13,7 +13,7 @@ export class TimelineService {
         private carService: CarService
     ) {}
 
-    private posts: Post[];
+    public posts: Post[];
     private _selectedPostId: string;
     private _selectedImageIndex: number;
     private posts$ = new Subject();
@@ -30,8 +30,8 @@ export class TimelineService {
             const carTimelineRequest = streamCar.get({ limit: 20 }).then(data => {
                 // Callback function when we recive data, will call .next on the Observer
                 this.handlePostsRequest(data);
-            })
-        })
+            });
+        });
 
         return this.posts$;
     }

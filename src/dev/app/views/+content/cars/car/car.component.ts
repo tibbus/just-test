@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
 import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsModalContent.component';
 import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
-import { CarService, ModalService, TimelineService, PostService, FollowService } from '../../../../services/index';
+import { CarService, ModalService, TimelineService, PostService, FollowService, SidebarService } from '../../../../services/index';
 
 import { Car, CarInfo, Mot, Tax } from '../../../../services/car/car';
 
@@ -31,7 +31,8 @@ export class CarComponent implements OnInit, OnDestroy {
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
         private route: ActivatedRoute,
-        private followService: FollowService
+        private followService: FollowService,
+        private sidebarService: SidebarService
     ) {
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
@@ -46,34 +47,30 @@ export class CarComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        
         this.route.params.subscribe(params => {
             this.carLoaded = false;
             // used to re-render the component and all the sub-components
             this.ref.detectChanges();
 
-            this.getCar();
+            this.getCars(params['id']);
         });
     }
 
-    getCar() {
+    getCars(carRoute: string) {
         this.carService.getCars().delay(500).subscribe(
             (cars: any) => {
-                if (!this.carService.selectedCar) {
-                    this.router.navigate(['NotFound']);
+                const parsedRoute = carRoute.split('-');
+                const carId = parsedRoute[parsedRoute.length - 1];
 
-                    return;
-                }
-                this.carLoaded = true;   
-
+                this.carService.setCarByRoute(carRoute, carId);
                 this.timelineService.actor = {
                     actorType: 'car',
-                    actorId: this.carService.selectedCarId
+                    actorId: carId
                 }; 
-
-                this.followService.handleFollow();
-
+                this.sidebarService.updateSelectedCarMenu(this.carService.selectedCar ? this.carService.selectedCar.name : null);
                 this.followService.isFollowEnable$.next(true);
+
+                this.carLoaded = true;
             });
     }
 

@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { ProfileService, SidebarService } from '../../../services/index';
+import { ProfileService, SidebarService, FollowService } from '../../../services/index';
 import { Profile } from '../../../services/profile/profile';
 
 @Component({
@@ -20,10 +20,13 @@ export class ProfileComponent implements OnInit {
     constructor(
         private profileService: ProfileService,
         private sidebarService: SidebarService,
-        private ref: ChangeDetectorRef
+        private ref: ChangeDetectorRef,
+        private followService: FollowService
     ) { }
 
     ngOnInit() {
+        this.followService.isFollowEnable$.next(false);
+
         this.sidebarService.unSelectMenus();
 
         this.getProfile();

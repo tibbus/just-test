@@ -18,11 +18,11 @@ export class SidebarComponent {
     ];
     modalName: string;
 
-    constructor(private _router: Router, private _sidebarService: SidebarService, private timelineService: TimelineService) {
+    constructor(private _router: Router, private sidebarService: SidebarService, private timelineService: TimelineService) {
     }
 
     ngOnInit() {
-        this._sidebarService.unSelect$
+        this.sidebarService.unSelect$
             .subscribe(
                 () => {
                     this.selected = null;
@@ -34,7 +34,7 @@ export class SidebarComponent {
     }
 
     onSelect(item: string) {
-        this._sidebarService.unSelectMenus();    
+        this.sidebarService.unSelectMenus();    
 
         this.selected = item;
     }

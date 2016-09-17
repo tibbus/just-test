@@ -7,7 +7,7 @@
     <div class="well">
         <span>{{car.name}}</span> 
         <a class="btn glyphicon glyphicon-trash remove" 
-            (click)="clickRemove(car.id)"
+            (click)="clickRemove(car.userCarId)"
             [class.disabled]="loading"
         >
         </a>

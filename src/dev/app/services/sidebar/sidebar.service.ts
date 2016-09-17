@@ -12,7 +12,7 @@ export class SidebarService {
         this.unSelect.next(true);
     }
 
-    updateSelectedCarMenu() {
-        this.updateMenu$.next();
+    updateSelectedCarMenu(menuName: string) {
+        this.updateMenu$.next(menuName);
     }
 }

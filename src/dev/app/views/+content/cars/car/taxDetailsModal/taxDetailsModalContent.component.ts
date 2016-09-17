@@ -8,11 +8,11 @@ import { CarService } from '../../../../../services/car/car.service';
 })
 
 export class TaxDetailsModalContentComponent {
-    constructor(private _carService: CarService) { }
+    constructor(private carService: CarService) { }
 
     carTax: any;
 
     ngOnInit() {
-        this.carTax = this._carService.selectedCarTax;
+        this.carTax = this.carService.selectedCarTax;
     }
 }

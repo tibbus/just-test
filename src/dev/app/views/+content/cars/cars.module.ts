@@ -37,5 +37,5 @@ import { TaxDetailsModalContentComponent } from './car/taxDetailsModal/taxDetail
     ]
 })
 
-export class CarsModule { }
+export class CarsModule {}
 

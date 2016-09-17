@@ -1,5 +1,5 @@
 <div *ngIf="carLoaded">
-    <add-post></add-post>
+    <add-post *ngIf="carService.selectedCar.isUserCar"></add-post>
 
     <timeline></timeline>
 </div>

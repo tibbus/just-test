@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
 
@@ -25,10 +25,6 @@ export class GarageMenuComponent implements OnInit{
     ngOnInit() {
         this.getCars();
 
-        if (window.location.pathname === '/cars/garage') {
-            this.selected = 'garage';
-        }
-
         this.sidebarService.unSelect$
             .subscribe(
             () => {
@@ -36,8 +32,8 @@ export class GarageMenuComponent implements OnInit{
 
             });
 
-        this.sidebarService.updateMenu$.subscribe(data => {
-            this.updateSelectedCarMenu();
+        this.sidebarService.updateMenu$.subscribe((menuName: string) => {
+            this.updateSelectedCarMenu(menuName);
         });
     }
 
@@ -52,8 +48,6 @@ export class GarageMenuComponent implements OnInit{
 
         this.selected = car.name;
 
-        this.carService.selectedCarId = car.id;
-
         // use this instead of [routerLink] as we want to do things before the route is initialized
         this.router.navigate(['/cars', car.route]);
     }
@@ -64,48 +58,18 @@ export class GarageMenuComponent implements OnInit{
         this.selected = 'garage';
     }
 
-    getCarByRoute(route: string): string {
-        let itemName: string;
-
-        _.each(this.cars, (car) => {
-            if (route === car.route.toLowerCase()) {
-                itemName = car.name
-
-                // TODO : move this to correct place
-                // This should belong to car component/module, who owns the car router
-                this.carService.selectedCarId = car.id;
-            }
-        })
-
-        return itemName;
-    }
-
-    getCurrentRoute(path: string): string {
-        const formattedArray = path.split('/');
-
-        return _.last(formattedArray);
-    }
-
     getCars() {
         this.carService.getCars().subscribe(
             cars => {
                 this.cars = cars;
-
-                // Update the selected Car in the menu when the URL change
-                if (window.location.pathname !== '/cars/garage') {
-                    this.updateSelectedCarMenu();
-                }
             },
             error => this.handleError(error)
         );
     }
 
     // Update the selected Car in the menu when the URL change
-    updateSelectedCarMenu() {
-        const path = window.location.pathname;
-        const currentRoute = this.getCurrentRoute(path);
-
-        this.selected = this.getCarByRoute(currentRoute);
+    updateSelectedCarMenu(menuName: string) {
+        this.selected = menuName;
     }
 
     handleError(error: Error) {

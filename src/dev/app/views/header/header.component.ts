@@ -50,8 +50,8 @@ export class HeaderComponent {
             this.followService.carFollowers = data;
         });
 
-        this.followService.following$.subscribe((data: boolean) => {
-            this.followState = data;
+        this.followService.following$.subscribe((state: boolean) => {
+            this.followState = state;
         })
 
         this.followService.isFollowEnable$.subscribe((data: boolean) => {
@@ -73,16 +73,12 @@ export class HeaderComponent {
     onClickFollow() {
         this.followService.followCar().subscribe(data => {
             this.followState = true;
-
-            this.followService.getPosts();
         });
     }
 
     onClickUnFollow() {
         this.followService.unFollowCar().subscribe(data => {
             this.followState = false;
-
-            this.followService.getPosts();
         });
     }
 
@@ -91,7 +87,7 @@ export class HeaderComponent {
     }
 
     onClickSearchResult(car) {
-        const routeFromCar = `${car.Make}-${car.Model}`;
+        const routeFromCar = `${car.Make}-${car.Model}-${car.CarInfoId}`;
         const parsedRouteFromCar = routeFromCar.replace(/ /g, '-');
 
         this.router.navigate(['/cars', parsedRouteFromCar]).then(() => {

@@ -8,11 +8,11 @@ import { CarService } from '../../../../../services/car/car.service';
 })
 
 export class MotDetailsModalContentComponent {
-    constructor(private _carService: CarService) { }
+    constructor(private carService: CarService) { }
 
     carMotList: any;
 
     ngOnInit() {
-        this.carMotList = this._carService.selectedCarMot;
+        this.carMotList = this.carService.selectedCarMot;
     }
 }

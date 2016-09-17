@@ -14,17 +14,27 @@ export class FollowService  {
     constructor(private http: Http, private apiService: ApiService, private carService: CarService) { }
 
     followCar() {
-        return this.http.request(this.apiService.getFollowUrl(this.carService.selectedCarId), {
+        return this.http.request(this.apiService.getFollowUrl(this.carService.selectedCar.id), {
             body: '',
             method: 'POST'
-        });
+        }).do(data => {
+            // Update the followers list
+            this.posts.push({
+                carInfoId: this.carService.selectedCar.id
+            });
+        })
     }
 
     unFollowCar() {
-        return this.http.request(this.apiService.getUnFollowUrl(this.carService.selectedCarId), {
+        return this.http.request(this.apiService.getUnFollowUrl(this.carService.selectedCar.id), {
             body: '',
             method: 'POST'
-        });
+        }).do(data => {
+            // Update the followers list
+            this.posts = _.filter(this.posts, (car: any) => {
+                return car.carInfoId !== this.carService.selectedCar.id;
+            });
+        })
     }
 
     getPosts() {
@@ -77,7 +87,7 @@ export class FollowService  {
 
     handleFollow() {
         const car = _.find(this.posts, (car: any) => {
-            return car.carInfoId == this.carService.selectedCarId;
+            return car.carInfoId == this.carService.selectedCar.id;
         })
 
         this.following$.next(car ? true : false);

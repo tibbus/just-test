@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ModalService, TimelineService, PostService } from '../../services/index';
+import { ModalService, TimelineService, PostService, FollowService } from '../../services/index';
 import { EditModalContentComponent } from './editModal/editModalContent.component';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 
@@ -28,7 +28,8 @@ export class TimelineComponent {
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
-        private postService: PostService
+        private postService: PostService,
+        private followService: FollowService
     ) {
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
@@ -46,6 +47,8 @@ export class TimelineComponent {
         this.timelineService.getPosts().subscribe(
             (posts: any) => {
                 this.posts = posts;
+
+                this.followService.handleFollow();
             }
         );
     }

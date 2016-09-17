@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { CarService } from '../../../../services/index';
+import { CarService, SidebarService, FollowService } from '../../../../services/index';
 
 @Component({
     selector: 'all-cars',
@@ -15,9 +15,12 @@ export class GarageComponent implements OnInit {
     requestState: boolean = false;
     alertMessage: string;
 
-    constructor(private carService: CarService) { }
+    constructor(private carService: CarService, private sidebarService: SidebarService, private followService: FollowService) { }
 
     ngOnInit() {
+        this.sidebarService.updateSelectedCarMenu('garage');
+        this.followService.isFollowEnable$.next(false);
+
         this.getCars();
     }
 
@@ -50,10 +53,10 @@ export class GarageComponent implements OnInit {
             error => this.handleError(error));
     }
 
-    clickRemove(carId) {
+    clickRemove(userCarId) {
         this.loading = true;
 
-        this.carService.removeCar(carId)
+        this.carService.removeCar(userCarId)
             .subscribe(
             () => {
                 this.loading = false;

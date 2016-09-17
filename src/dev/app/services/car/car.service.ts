@@ -14,10 +14,13 @@ export class CarService extends HttpService {
     }
 
     private _selectedCarId: string;
+    private cars: any[];
+    public selectedCarName;
+    public selectedCar;
 
     getCars(forceRefresh?: boolean) {
         return this.getData(forceRefresh).map((res: Car[]) => {
-            return _.map(res, (carObject: Car) => {
+            this.cars = _.map(res, (carObject: Car) => {
                 const carMake: string = _.get(carObject, 'carInfo.car.make', null);
                 const carModel: string = _.get(carObject, 'carInfo.car.model', null);
                 const carName: string = `${carMake} ${carModel}`;
@@ -25,10 +28,14 @@ export class CarService extends HttpService {
 
                 return {
                     name: carName,
-                    route: carName.replace(/ /g, '-').toLocaleLowerCase(),
-                    id: carId
+                    route: `${carName.replace(/ /g, '-').toLocaleLowerCase()}-${carId}`,
+                    id: carId,
+                    userCarId: carObject.id,
+                    info: carObject.carInfo
                 }
             });
+
+            return this.cars;
         });
     }
 
@@ -66,19 +73,11 @@ export class CarService extends HttpService {
         return this._selectedCarId;
     }
 
-    get selectedCar(): CarInfo {
-        if (this.getCarById(this._selectedCarId)) {
-            return this.getCarById(this._selectedCarId).carInfo;
-        } else {
-            return null;
-        }
-    }
-
     get userCarId(): string {
         const car: Car = this.getCarById(this._selectedCarId);
 
         if (car) {
-            return car.carInfo.id;
+            return car.id;
         } else {
             return null;
         }
@@ -90,5 +89,21 @@ export class CarService extends HttpService {
 
     get selectedCarTax(): Tax {
         return this.getCarById(this._selectedCarId).tax;
+    }
+
+    setCarByRoute(route: string, carInfoId: string): void {
+        const userSelectedCar = _.find(this.cars, (car) => {
+            return route === car.route.toLowerCase();
+        });
+
+        if (userSelectedCar) {
+            this.selectedCar = userSelectedCar;
+            this.selectedCar.isUserCar = true;
+        } else {
+            this.selectedCar = {
+                id: carInfoId,
+                isUserCar: false
+            };
+        }
     }
 }

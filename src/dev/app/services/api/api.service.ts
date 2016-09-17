@@ -29,7 +29,7 @@ export class ApiService {
     }
 
     getRemoveCarUrl(id: string): string {
-        return `${API.root}${this.user}${API.userRemoveCar}/${id}`;
+        return `${API.root}${this.user}${API.userRemoveCar}${id}`;
     }
 
     getAddPostUrl(userCarId: string, postType: string): string {
