@@ -91,6 +91,7 @@ export class HeaderComponent {
         const parsedRouteFromCar = routeFromCar.replace(/ /g, '-');
 
         this.router.navigate(['/cars', parsedRouteFromCar]).then(() => {
+            this.sidebarService.unSelectMenus();
             this.sidebarService.updateMenu$.next('update');
         }); 
     }

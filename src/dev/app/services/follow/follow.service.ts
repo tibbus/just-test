@@ -32,7 +32,8 @@ export class FollowService  {
         }).do(data => {
             // Update the followers list
             this.posts = _.filter(this.posts, (car: any) => {
-                return car.carInfoId !== this.carService.selectedCar.id;
+                // Not a strict comparison due to BE bug where some are strings some are nubmers
+                return car.carInfoId != this.carService.selectedCar.id;
             });
         })
     }
