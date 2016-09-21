@@ -84,11 +84,11 @@ export class CarService extends HttpService {
     }
 
     get selectedCarMot(): Mot[] {
-        return this.getCarById(this._selectedCarId).mot;
+        return this.getCarById(this.selectedCar.id).mot;
     }
 
     get selectedCarTax(): Tax {
-        return this.getCarById(this._selectedCarId).tax;
+        return this.getCarById(this.selectedCar.id).tax;
     }
 
     setCarByRoute(route: string, carInfoId: string): void {
