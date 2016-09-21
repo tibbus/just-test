@@ -7,12 +7,12 @@ import {
     CarService,
     TimelineService,
     PostService
-} from '../../../../../services/index';
+} from '../../../../services/index';
 
 @Component({
     selector: 'add-post',
-    styleUrls: ['src/dist/app/views/+content/cars/car/addPost/addPost.component.css'],
-    templateUrl: 'src/dev/app/views/+content/cars/car/addPost/addPost.component.html'
+    styleUrls: ['src/dist/app/views/+content/car/addPost/addPost.component.css'],
+    templateUrl: 'src/dev/app/views/+content/car/addPost/addPost.component.html'
 })
 
 export class AddPostComponent {

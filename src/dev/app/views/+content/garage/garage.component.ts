@@ -1,11 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { CarService, SidebarService, FollowService } from '../../../../services/index';
+import { CarService, SidebarService, FollowService } from '../../../services/index';
 
 @Component({
     selector: 'all-cars',
-    styleUrls: ['src/dist/app/views/+content/cars/garage/garage.component.css'],
-    templateUrl: 'src/dev/app/views/+content/cars/garage/garage.component.html'
+    styleUrls: ['src/dist/app/views/+content/garage/garage.component.css'],
+    templateUrl: 'src/dev/app/views/+content/garage/garage.component.html'
 })
 
 export class GarageComponent implements OnInit {

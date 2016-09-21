@@ -1,10 +1,10 @@
 ﻿import { Component } from '@angular/core';
 
-import { CarService } from '../../../../../services/car/car.service';
+import { CarService } from '../../../../services/car/car.service';
 
 @Component({
     selector: 'car-details-content',
-    templateUrl: 'src/dev/app/views/+content/cars/car/carDetailsModal/carDetailsModalContent.component.html',
+    templateUrl: 'src/dev/app/views/+content/car/carDetailsModal/carDetailsModalContent.component.html',
 })
 
 export class CarDetailsModalContentComponent {

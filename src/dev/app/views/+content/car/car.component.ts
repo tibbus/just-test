@@ -5,14 +5,14 @@ import { Subscription } from 'rxjs/Subscription';
 import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
 import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsModalContent.component';
 import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
-import { CarService, ModalService, TimelineService, PostService, FollowService, SidebarService } from '../../../../services/index';
+import { CarService, ModalService, TimelineService, PostService, FollowService, SidebarService } from '../../../services/index';
 
-import { Car, CarInfo, Mot, Tax } from '../../../../services/car/car';
+import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
 
 @Component({
     selector: 'car-content',
-    styleUrls: ['src/dist/app/views/+content/cars/car/car.component.css'],
-    templateUrl: 'src/dev/app/views/+content/cars/car/car.component.html',
+    styleUrls: ['src/dist/app/views/+content/car/car.component.css'],
+    templateUrl: 'src/dev/app/views/+content/car/car.component.html',
     providers: [PostService]
 })
 

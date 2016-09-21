@@ -2,10 +2,12 @@ import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileComponent, NotFoundComponent, FeedComponent } from './views/+content/index';
+import { GarageComponent } from './views/+content/garage/garage.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'cars', pathMatch: 'full' },
-    { path: 'cars', loadChildren: 'app/app/views/+content/cars/cars.module#CarsModule' },
+    { path: 'garage', component: GarageComponent },
+    { path: 'cars', loadChildren: 'app/app/views/+content/car/car.module#CarModule' },
     { path: 'profile', component: ProfileComponent },
     { path: 'feed', component: FeedComponent },
     { path: '**', component: NotFoundComponent }

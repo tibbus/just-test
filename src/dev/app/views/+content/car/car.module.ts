@@ -1,27 +1,24 @@
 ﻿import { NgModule } from '@angular/core';
 
-import { routing }  from './cars.routing';
+import { routing }  from './car.routing';
 import { SharedModule } from '../../../shared/shared.module';
 
-import { GarageComponent } from './garage/garage.component';
-import { CarComponent } from '../cars/car/car.component';
-import { RegNumberPipe } from './car/addPost/regNumber.pipe';
-import { AddPostComponent } from './car/addPost/addPost.component';
+import { CarComponent } from './car.component';
+import { RegNumberPipe } from './addPost/regNumber.pipe';
+import { AddPostComponent } from './addPost/addPost.component';
 
 import { EditModalContentComponent } from '../../../shared/timeline/editModal/editModalContent.component';
 import { ImageModalContentComponent } from '../../../shared/timeline/imageModal/imageModalContent.component';
-import { CarDetailsModalContentComponent } from './car/carDetailsModal/carDetailsModalContent.component';
-import { MotDetailsModalContentComponent } from './car/motDetailsModal/motDetailsModalContent.component';
-import { TaxDetailsModalContentComponent } from './car/taxDetailsModal/taxDetailsModalContent.component';
+import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
+import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
+import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsModalContent.component';
 
 @NgModule({
     imports: [routing, SharedModule],
     declarations: [
-        GarageComponent,
         CarComponent,
         RegNumberPipe,
         AddPostComponent,
-
         EditModalContentComponent,
         ImageModalContentComponent,
         CarDetailsModalContentComponent,
@@ -37,5 +34,5 @@ import { TaxDetailsModalContentComponent } from './car/taxDetailsModal/taxDetail
     ]
 })
 
-export class CarsModule {}
+export class CarModule {}
 

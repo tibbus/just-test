@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './views/header/header.component';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
 import { ProfileComponent, NotFoundComponent, FeedComponent } from './views/+content/index';
+import { GarageComponent } from './views/+content/garage/garage.component';
 import { GarageMenuComponent } from './views/sidebar/garageMenu/garageMenu.component';
 
 import {
@@ -38,7 +39,8 @@ import { SharedModule } from './shared/shared.module';
         ProfileComponent,
         NotFoundComponent,
         FeedComponent,
-        GarageMenuComponent
+        GarageMenuComponent,
+        GarageComponent
     ],
     providers: [
         ProfileService,

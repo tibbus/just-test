@@ -26,6 +26,7 @@ export class ModalComponent {
     ) { }  
 
     ngAfterViewInit() {
+        console.log(this.dynamicComponent)
         const factory = this.componentResolver.resolveComponentFactory(this.contentComponent);
 
         this.dynamicComponent.createComponent(factory);
