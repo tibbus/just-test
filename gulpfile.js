@@ -18,7 +18,7 @@ gulp.task('ts', function() {
 
 gulp.task('watch', ['ts', 'sass'], function() {
     gulp.watch('src/dev/**/*.ts', ['ts']);
-    gulp.watch('src/dev/**/*.html', ['ts']);
+    gulp.watch('src/dev/**/*.html', ['ts', 'copy:html']);
     gulp.watch('src/dev/**/*.scss', ['sass']);
 });
 
@@ -30,13 +30,18 @@ gulp.task('sass', function() {
 });
 
 // Use this task only if necessary (currently not needed)
-gulp.task('css', function () {
+gulp.task('copy:css', function () {
     return gulp.src('src/dist/**/*.css')
       .pipe(autoprefixer())
       .pipe(gulp.dest('./src/dist'));
 });
 
-gulp.task('fonts', function () {
+gulp.task('copy:html', function () {
+    return gulp.src('src/dev/**/*.html')
+      .pipe(gulp.dest('./src/dist'));
+});
+
+gulp.task('copy:fonts', function () {
     console.log('copy fonts to dist');
 
     ncp('node_modules/bootstrap-sass/assets/fonts', 'src/dist/fonts/', function (err) {
@@ -46,7 +51,7 @@ gulp.task('fonts', function () {
     });
 });
 
-gulp.task('all', ['ts', 'sass'], function () {
+gulp.task('all', ['ts', 'copy:html', 'sass'], function () {
     // dist folder does not exists, therefore run the `fonts` task after the `ts` one
-    gulp.start('fonts');
+    gulp.start('copy:fonts');
 });

@@ -7,9 +7,10 @@ import { Profile } from '../../services/profile/profile';
 import { Router } from '@angular/router';
 
 @Component({
+    moduleId: module.id,
     selector: 'header',
-    styleUrls: ['src/dist/app/views/header/header.component.css'],
-    templateUrl: 'src/dev/app/views/header/header.component.html',
+    styleUrls: ['header.component.css'],
+    templateUrl: 'header.component.html',
     providers: [SearchService],
     host: {
         '(document:click)': 'onClickOutside($event)',

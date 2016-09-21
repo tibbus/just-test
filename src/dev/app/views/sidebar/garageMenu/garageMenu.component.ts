@@ -5,9 +5,10 @@ import * as _ from 'lodash';
 import { CarService, SidebarService, ModalService, TimelineService } from '../../../services/index';
 
 @Component({
+    moduleId: module.id,
     selector: 'garage',
-    styleUrls: ['src/dist/app/views/sidebar/garageMenu/garageMenu.component.css'],
-    templateUrl: 'src/dev/app/views/sidebar/garageMenu/garageMenu.component.html',
+    styleUrls: ['garageMenu.component.css'],
+    templateUrl: 'garageMenu.component.html'
 })
 
 export class GarageMenuComponent implements OnInit{

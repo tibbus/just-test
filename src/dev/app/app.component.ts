@@ -6,9 +6,10 @@ import * as _ from 'lodash';
 declare const stream: any;
 
 @Component({
+    moduleId: module.id,
     selector: 'car-app',
-    templateUrl: 'src/dev/app/app.component.html',
-    styleUrls: ['src/dist/app/app.component.css']
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.css']
 })
 
 export class AppComponent {
