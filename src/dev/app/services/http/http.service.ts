@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 declare const LE: any;
 
 export abstract class HttpService {
-    constructor(private _http: Http, public url: string) { console.log(BehaviorSubject) }
+    constructor(private _http: Http, public url: string) { }
 
-    private _dataObs = new ReplaySubject(1);
+    private dataObs$ = new ReplaySubject(1);
     public dataObject; 
 
     private getDataFromHttp() {
@@ -26,24 +26,21 @@ export abstract class HttpService {
     }
 
     getData(forceRefresh?: boolean) {
-        // On Error the Subject will be Stoped and Unsubscribed, if so, create another one
-        this._dataObs = this._dataObs.isStopped ? new ReplaySubject(1) : this._dataObs;
-
         // If the Subject was NOT subscribed before OR if forceRefresh is requested 
-        if (!this._dataObs.observers.length || forceRefresh) {
+        if (!this.dataObs$.observers.length || forceRefresh) {
             this.getDataFromHttp().subscribe(
                 data => {
                     this.dataObject = data;
 
-                    this._dataObs.next(data);
+                    this.dataObs$.next(data);
                 },
                 error => {
                     LE.log(`Error trying to access: ${this.url}`);
 
-                    this._dataObs.error(error);
+                    this.dataObs$.error(error);
                 });
         }
 
-        return this._dataObs;
+        return this.dataObs$;
     }
 }
