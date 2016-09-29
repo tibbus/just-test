@@ -12,7 +12,7 @@ export class SearchService {
 
     search(term: string) {
         const headers: Headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('api-key', `A57CC5AE46C3EE7955EC441AEEBAF4F0`);
+        headers.append('api-key', `EEF193988CD5AA413BCDC29CDE38E90C`);
 
         const options: RequestOptions = new RequestOptions({ headers: headers, body: '' });
         const apiUrl: string = this.apiService.getSearchUrl(term);

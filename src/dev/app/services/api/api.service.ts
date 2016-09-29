@@ -5,7 +5,7 @@ declare const stream: any;
 @Injectable()
 export class ApiService {
     // Hardcoded user :
-    public userId: string = '41';
+    public userId: string = '1';
     private _streamClient: any;
 
     get user(): string {
@@ -69,7 +69,7 @@ export const API = {
 
 
     /* **DEV** Enviroment */
-    root: 'http://amilatestapi-dev.azurewebsites.net/api/v1',
+    root: 'http://mycarbioservice-api.azurewebsites.net/api/v1',
     /* **PROD** Enviroment */
     //root: 'http://amilatestapi-prod.azurewebsites.net/api/v1',
     /* **Local** FAKE Service Enviroment */
@@ -82,7 +82,7 @@ export const API = {
     user: '/user/',
     timeline: '/timeline/',
     post: '/car/',
-    search: 'https://amilatest.search.windows.net/indexes/carinfo/docs?api-version=2015-02-28&search=',
+    search: 'https://mycarbiosearch.search.windows.net/indexes/carinfostaging/docs?api-version=2015-02-28&search=', 
     token: '/feeds/token',
     follow: '/follow/',
     unFollow: '/unfollow/'

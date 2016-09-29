@@ -43,7 +43,7 @@ export class FollowService  {
         this.getToken().subscribe(token => {
             // set the getStream settings
             const streamClient: any = this.apiService.streamClient;
-            const streamCar = streamClient.feed('user', '41', token);
+            const streamCar = streamClient.feed('user', this.apiService.userId, token);
 
             // make the call request for the timeline
             const carTimelineRequest = streamCar.get({ limit: 20 }).then(data => {
@@ -59,7 +59,7 @@ export class FollowService  {
         return this.http.request(this.apiService.getTokenUrl(), {
             body: {
                 actorType: 'user',
-                actorId: '41'
+                actorId: this.apiService.userId   
             },
             method: 'POST'
         })
