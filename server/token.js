@@ -17,5 +17,17 @@ module.exports = app => {
 
         res.send( {token} );
     });
-}
 
+    app.use(bodyParser.json());
+
+    app.post('/api/v1/feeds/token', (req, res) => {
+        let actor = req.body;
+        console.log(actor);
+        // creating a read-only feed token server side
+        readonlyToken = client.feed(actor.actorType, actor.actorId).getReadOnlyToken();
+        // passed to client via template or api and initialized as such
+        let token = client.feed(actor.actorType, actor.actorId, readonlyToken).token;
+
+        res.send( {token} );
+    });
+}

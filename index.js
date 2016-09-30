@@ -15,9 +15,7 @@ app.use('/le.min.js', express.static(__dirname + '/le.min.js'));
 // FAKE Service APIs :    
 app.use('/api/v1/user/1', express.static(__dirname + '/server/fakeService/profile.json'));
 app.use('/api/v1/user/1/usercar/details=true', express.static(__dirname + '/server/fakeService/userCars.json'));
-// app.use('/api/v1/timeline/1', express.static(__dirname + '/fakeService/timeline/car1.json'));
-// app.use('/api/v1/timeline/11', express.static(__dirname + '/fakeService/timeline/car11.json'));
-// app.use('/api/v1/timeline/31', express.static(__dirname + '/fakeService/timeline/car31.json'));
+app.use('/search', express.static(__dirname + '/server/fakeService/search.json'));
 
 app.use(basicAuth('bizcarapp', 'meetbiz550'));
 

@@ -65,16 +65,10 @@ export class ApiService {
     }
 }
 
-export const API = {
-
-
+const API = {
+    fakeServiceEnabled: false,
     /* **DEV** Enviroment */
     root: 'http://mycarbioservice-api.azurewebsites.net/api/v1',
-    /* **PROD** Enviroment */
-    //root: 'http://amilatestapi-prod.azurewebsites.net/api/v1',
-    /* **Local** FAKE Service Enviroment */
-    //root: `${window.location.origin}/api/v1`,
-
 
     userCars: '/usercar/details=true',
     userRegisterCar: '/usercar/registration/',
@@ -82,8 +76,18 @@ export const API = {
     user: '/user/',
     timeline: '/timeline/',
     post: '/car/',
-    search: 'https://mycarbiosearch.search.windows.net/indexes/carinfostaging/docs?api-version=2015-02-28&search=', 
+    search: 'https://mycarbiosearch.search.windows.net/indexes/carinfostaging/docs?api-version=2015-02-28&search=',
     token: '/feeds/token',
     follow: '/follow/',
     unFollow: '/unfollow/'
 }
+
+API.fakeServiceEnabled = true;
+
+if (API.fakeServiceEnabled) {
+    API.root = `${window.location.origin}/api/v1`;
+
+    API.search = '/search?';
+}
+
+export  { API };

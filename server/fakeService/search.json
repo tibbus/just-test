@@ -1,0 +1,41 @@
+{
+    "@odata.context": "https://mycarbiosearch.search.windows.net/indexes('carinfostaging')/$metadata#docs(CarInfoId,Make,Model,YearOfManufacture,Topics)",
+    "value": [
+        {
+            "@search.score": 1.0,
+            "CarInfoId": "1",
+            "Make": "daihatsu",
+            "Model": "copen",
+            "YearOfManufacture": "2009",
+            "Topics": [
+                "daihatsu",
+                "copen",
+                "2009"
+            ]
+        },
+        {
+            "@search.score": 1.0,
+            "CarInfoId": "11",
+            "Make": "daihatsu",
+            "Model": "sirion s",
+            "YearOfManufacture": "2009",
+            "Topics": [
+                "daihatsu",
+                "sirion s",
+                "2009"
+            ]
+        },
+        {
+            "@search.score": 1.0,
+            "CarInfoId": "21",
+            "Make": "mini",
+            "Model": "one",
+            "YearOfManufacture": "2009",
+            "Topics": [
+                "mini",
+                "one",
+                "2009"
+            ]
+        }
+    ]
+}
