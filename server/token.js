@@ -1,3 +1,5 @@
+"use strict"
+
 const stream = require('getstream');
 const bodyParser = require('body-parser');
 

@@ -1,3 +1,5 @@
+"use strict"
+
 const listenForTokens = require('./server/token');
 const express = require('express');
 const app = express();
