@@ -82,6 +82,7 @@ const API = {
     unFollow: '/unfollow/'
 }
 
+// SWITCH the FAKE service from here :
 API.fakeServiceEnabled = true;
 
 if (API.fakeServiceEnabled) {

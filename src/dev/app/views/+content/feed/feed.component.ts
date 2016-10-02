@@ -3,7 +3,7 @@ import { TimelineService, ApiService, FollowService } from '../../../services/in
 
 @Component({
     selector: 'feed',
-    template: '<timeline></timeline>'
+    template: '<timeline isFeed="true"></timeline>'
 })
 
 export class FeedComponent {

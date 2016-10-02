@@ -16,6 +16,8 @@ declare var FB: any;
 })
 
 export class TimelineComponent {
+    @Input() isFeed: boolean;
+
     EditModalComponent: any = EditModalContentComponent;
     ImageModalComponent: any = ImageModalContentComponent;
     private modalSubscription: Subscription;

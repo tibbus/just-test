@@ -20,14 +20,12 @@ import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsMod
         RegNumberPipe,
         AddPostComponent,
         EditModalContentComponent,
-        ImageModalContentComponent,
         CarDetailsModalContentComponent,
         MotDetailsModalContentComponent,
         TaxDetailsModalContentComponent
     ],
     entryComponents: [
         EditModalContentComponent,
-        ImageModalContentComponent,
         CarDetailsModalContentComponent,
         MotDetailsModalContentComponent,
         TaxDetailsModalContentComponent

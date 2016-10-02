@@ -9,7 +9,7 @@
         <a class="username">Will Snowdon</a>
         <span class="date">{{post.createdDate | timelineDate }}</span>
         
-        <div class="btn-group edit-menu">
+        <div *ngIf="!isFeed" class="btn-group edit-menu"> 
             <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
                 <div class="ripple-container"></div>
