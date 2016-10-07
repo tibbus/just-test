@@ -11,7 +11,7 @@ import { TimelineDatePipe } from './timelineDate.pipe';
 import { ImageModalContentComponent } from './timeline/imageModal/imageModalContent.component';
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [CommonModule, FormsModule],
     declarations: [
         AlertComponent,
         LoadingComponent,

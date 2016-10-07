@@ -56,6 +56,10 @@ export class ApiService {
         return `${API.root}${this.user}${API.unFollow}${carId}`;
     }
 
+    getCommentUrl(postId: string) {
+        return `${API.root}${API.timeline}${postId}${API.comment}`;
+    }
+
     set streamClient(streamClient: any) {
         this._streamClient = streamClient;
     }
@@ -79,11 +83,12 @@ const API = {
     search: 'https://mycarbiosearch.search.windows.net/indexes/carinfostaging/docs?api-version=2015-02-28&search=',
     token: '/feeds/token',
     follow: '/follow/',
-    unFollow: '/unfollow/'
+    unFollow: '/unfollow/',
+    comment: '/comment'
 }
 
 // SWITCH the FAKE service from here :
-API.fakeServiceEnabled = true;
+API.fakeServiceEnabled = false;
 
 if (API.fakeServiceEnabled) {
     API.root = `${window.location.origin}/api/v1`;

@@ -2,14 +2,14 @@
       class="post"
      [class.post-removing]="loading === post.id"
 >
-    <div  class="comment-wrapper last">
-        <div class="post-img">
+    <div class="content">
+        <div class="img">
             <img src="/src/assets/muj.JPG" />
         </div>
         <a class="username">Will Snowdon</a>
         <span class="date">{{post.createdDate | timelineDate }}</span>
         
-        <div *ngIf="!isFeed" class="btn-group edit-menu"> 
+        <div class="btn-group edit-menu"> 
             <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
                 <div class="ripple-container"></div>
@@ -24,7 +24,7 @@
             [ <span class="topic" *ngFor="let topic of post.topics">{{topic}} </span>]
         </div>
 
-        <div class="comment-text">
+        <div class="description">
             <p>{{post.description}}</p>
         </div>
         <div class="media-wrapper">
@@ -46,7 +46,62 @@
 
     <div class="line"></div>
     <div class="social">
-        <a>Like</a> <a>Comment</a> <a (click)="onClickShare(post.id)">Share</a>
+        <a>Like</a> 
+        <a (click)="onClickShare(post.id)">Share</a>
+    </div>
+
+    <div *ngIf="post.comments.loading" class="loading show-comments-loading">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate show-comments-loading-spinner"></span>
+    </div> 
+
+    <a class="btn show-comments" 
+        (click)="clickGetComments(post)"
+        [class.disabled]="post.comments.loading"
+    >
+        Comments <span class="show-comments-sign">{{post.comments.state}}</span>
+    </a>
+
+
+    <div class="line"></div>
+    <div *ngIf="post.comments.state === '-'" class="comments">
+        <div class="comments-text" *ngFor="let comment of post.comments.list">
+            <div class="comments-img">
+                <img src="/src/assets/muj.JPG" />
+            </div>
+            <a class="username">Will Snowdon</a>
+            <span class="date">{{comment.createdDate | timelineDate }}</span>
+
+            <div class="btn-group edit-menu">
+                <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <div class="ripple-container"></div>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a (click)="onClickEdit(post)">Edit</a></li>
+                    <li><a (click)="onClickDelete(post.id)">Delete</a></li>
+                </ul>
+            </div>
+
+            <div class="description">
+                <p> {{comment.comment}}</p>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="comments-textarea">
+            <textarea  class="form-control" placeholder="Write a comment..." 
+                [(ngModel)]="post.comments.newComment"
+            >
+            </textarea>
+            <!--<span class="help-block">Post a new Status, Media, Event on your timeline.</span>-->
+        </div>
+        <div class="btn btn-raised btn-success comments-add-button"
+            [class.disabled]="post.comments.addCommentLoading"
+            (click)="clickAddComment(post)">
+                <span class="save-text">Add</span>
+                <span *ngIf="post.comments.addCommentLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        </div>
     </div>
 
     <div class="loading-wrapper">

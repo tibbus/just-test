@@ -8,3 +8,4 @@ export * from './timeline/timeline.service';
 export * from './post/post.service';
 export * from './search/search.service';
 export * from './follow/follow.service';
+export * from './comments/comments.service';

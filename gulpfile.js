@@ -18,7 +18,7 @@ gulp.task('ts', function() {
 
 gulp.task('watch', ['ts', 'sass'], function() {
     gulp.watch('src/dev/**/*.ts', ['ts']);
-    gulp.watch('src/dev/**/*.html', ['ts', 'copy:html']);
+    gulp.watch('src/dev/**/*.html', ['copy:html']);
     gulp.watch('src/dev/**/*.scss', ['sass']);
 });
 

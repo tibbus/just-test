@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ModalService, TimelineService, PostService, FollowService } from '../../services/index';
+import { ModalService, TimelineService, PostService, FollowService, CommentsService } from '../../services/index';
 import { EditModalContentComponent } from './editModal/editModalContent.component';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 
@@ -18,20 +18,22 @@ declare var FB: any;
 export class TimelineComponent {
     @Input() isFeed: boolean;
 
-    EditModalComponent: any = EditModalContentComponent;
-    ImageModalComponent: any = ImageModalContentComponent;
+    public EditModalComponent: any = EditModalContentComponent;
+    public ImageModalComponent: any = ImageModalContentComponent;
     private modalSubscription: Subscription;
-    posts: any[];
-    loading: string;
-    modalName: string;
-    selectedPostId: string;
+    public posts: any[];
+    public loading: string;
+    public modalName: string;
+    public selectedPostId: string;
+    public currentCommentText: string;
 
     constructor(
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
         private postService: PostService,
-        private followService: FollowService
+        private followService: FollowService,
+        private commentsService: CommentsService
     ) {
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
@@ -48,8 +50,15 @@ export class TimelineComponent {
     ngOnInit() {
         this.timelineService.getPosts().subscribe(
             (posts: any) => {
-                this.posts = posts;
+                this.posts = posts.map(post => {
+                    post.comments = {
+                        state: '+'
+                    };
 
+                    return post;
+                });
+
+                console.log(this.posts);
                 this.followService.handleFollow();
             }
         );
@@ -102,6 +111,38 @@ export class TimelineComponent {
             picture: imageUrl
         }, function (response) {
             console.log(response);
+        });
+    }
+
+    clickGetComments(post: any) {
+        if (post.comments.state === '-') {
+            post.comments.list = [];
+            post.comments.state = '+';
+
+            return;
+        }
+
+        post.comments.loading = true;
+
+        this.commentsService.getComments(post.id).subscribe(comments => {
+            post.comments.state = '-';
+            post.comments.loading = false;
+
+            // Add the comments [] to the post Object of this.posts (by reference)
+            post.comments.list = comments;
+        })
+    }
+
+    clickAddComment(post: any) {
+        post.comments.addCommentLoading = true;
+
+        this.commentsService.addComment(post).subscribe(data => {
+            this.commentsService.getComments(post.id).subscribe(comments => {
+                // Add the comments [] to the post Object of this.posts (by reference)
+                post.comments.list = comments;
+                post.comments.newComment = '';
+                post.comments.addCommentLoading = false;
+            })
         });
     }
 }
