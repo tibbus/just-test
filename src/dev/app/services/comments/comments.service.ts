@@ -1,21 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { ApiService, CarService, API } from '../index';
 import { Subject } from 'rxjs/Subject';
-import * as _ from 'lodash';
+
+import { ApiService, CarService, API } from '../index';
 
 @Injectable()
-export class CommentsService  {
-
+export class CommentsService {
     private selectedComment: any;
+    private $comments = new Subject<any>();
 
     constructor(private http: Http, private apiService: ApiService) { }
 
     getComments(postId: string) {
-        return this.http
-            //.get(this.apiService.getCommentUrl('91'))
-            .get(`http://mycarbioservice-api.azurewebsites.net/api/v1/timeline/${postId}/comment`)
-            .map(res => res.json());
+        this.fetchComments(postId);
+
+        return this.$comments;
+    }
+
+    fetchComments(postId: string) {
+        const $dataComments = this.http
+            .get(this.apiService.getCommentsUrl(postId))
+            .map(res => res.json())
+
+        $dataComments.subscribe(data => {
+            this.$comments.next(data);
+        });
+
+        return $dataComments;
     }
 
     addComment(postId: string, commentText: string) {
@@ -25,32 +36,32 @@ export class CommentsService  {
             'comment': commentText
         };
 
-        return this.http.request(`http://mycarbioservice-api.azurewebsites.net/api/v1/timeline/${postId}/comment`, {
-                body,
-                method: 'POST'
-            })
+        return this.http.request(this.apiService.getCommentsUrl(postId), {
+            body,
+            method: 'POST'
+        })
             .do(data => console.log(data))
     }
 
     removeComment(postId: string, commentId: string) {
         const body = '';
 
-        return this.http.request(`http://mycarbioservice-api.azurewebsites.net/api/v1/timeline/${postId}/comment/${commentId}`, {
-                body: '',
-                method: 'DELETE'
-            })
+        return this.http.request(this.apiService.getChangeCommentsUrl(postId, commentId), {
+            body: '',
+            method: 'DELETE'
+        })
             .do(data => console.log(data))
     }
 
-    updateComment(postId: string, commentId: string, comment: string) {
+    updateComment(commentId: string, postId: string, comment: string) {
         const body = {
             comment
         };
-        
-        return this.http.request(`http://mycarbioservice-api.azurewebsites.net/api/v1/timeline/${postId}/comment/${commentId}`, {
-                body,
-                method: 'PUT'
-            })
+
+        return this.http.request(this.apiService.getChangeCommentsUrl(postId, commentId), {
+            body,
+            method: 'PUT'
+        })
             .do(data => console.log(data))
     }
 

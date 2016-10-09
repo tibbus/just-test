@@ -40,9 +40,9 @@ export class EditCommentsComponent implements OnInit {
         this.commentsService.updateComment(commentId, postId, this.newCommentText).subscribe(
             () => {
                 // update the Comments
-                this.commentsService.getComments(postId);
-
-                this.modalService.sendModalClose();
+                this.commentsService.fetchComments(postId).subscribe(data => {
+                    this.modalService.sendModalClose();
+                });
             }
         );
     }

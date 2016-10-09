@@ -56,8 +56,12 @@ export class ApiService {
         return `${API.root}${this.user}${API.unFollow}${carId}`;
     }
 
-    getCommentUrl(postId: string) {
+    getCommentsUrl(postId: string) {
         return `${API.root}${API.timeline}${postId}${API.comment}`;
+    }
+
+    getChangeCommentsUrl(postId: string, commentId: string) {
+        return `${API.root}${API.timeline}${postId}${API.comment}/${commentId}`;
     }
 
     set streamClient(streamClient: any) {
