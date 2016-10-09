@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ModalService, TimelineService, PostService, FollowService, CommentsService } from '../../services/index';
+import { ModalService, TimelineService, PostService, FollowService } from '../../services/index';
 import { EditModalContentComponent } from './editModal/editModalContent.component';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 
@@ -32,8 +32,7 @@ export class TimelineComponent {
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
         private postService: PostService,
-        private followService: FollowService,
-        private commentsService: CommentsService
+        private followService: FollowService
     ) {
         // on modal open/close :
         this.modalSubscription = modalService.modalName.subscribe(
@@ -123,26 +122,5 @@ export class TimelineComponent {
         }
 
         post.comments.loading = true;
-
-        this.commentsService.getComments(post.id).subscribe(comments => {
-            post.comments.state = '-';
-            post.comments.loading = false;
-
-            // Add the comments [] to the post Object of this.posts (by reference)
-            post.comments.list = comments;
-        })
-    }
-
-    clickAddComment(post: any) {
-        post.comments.addCommentLoading = true;
-
-        this.commentsService.addComment(post).subscribe(data => {
-            this.commentsService.getComments(post.id).subscribe(comments => {
-                // Add the comments [] to the post Object of this.posts (by reference)
-                post.comments.list = comments;
-                post.comments.newComment = '';
-                post.comments.addCommentLoading = false;
-            })
-        });
     }
 }

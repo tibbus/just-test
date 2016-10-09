@@ -1,0 +1,36 @@
+﻿<div *ngIf="comments" class="comments">
+    <div class="comments-text" *ngFor="let comment of comments">
+        <div class="comments-img">
+            <img src="/src/assets/muj.JPG" />
+        </div>
+        <a class="username">Will Snowdon</a>
+        <span class="date">{{comment.createdDate | timelineDate }}</span>
+
+        <div class="btn-group edit-menu">
+            <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <div class="ripple-container"></div>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a (click)="onClickEdit(post)">Edit</a></li>
+                <li><a (click)="onClickDelete(post.id)">Delete</a></li>
+            </ul>
+        </div>
+
+        <div class="description">
+            <p> {{comment.comment}}</p>
+        </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="comments-textarea">
+        <textarea class="form-control" placeholder="Write a comment..." [(ngModel)]="post.comments.newComment">
+            </textarea>
+        <!--<span class="help-block">Post a new Status, Media, Event on your timeline.</span>-->
+    </div>
+    <div class="btn btn-raised btn-success comments-add-button" [class.disabled]="post.comments.addCommentLoading" (click)="clickAddComment(post)">
+        <span class="save-text">Add</span>
+        <span *ngIf="post.comments.addCommentLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </div>
+</div>

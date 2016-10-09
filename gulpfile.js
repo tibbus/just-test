@@ -16,7 +16,7 @@ gulp.task('ts', function() {
             .pipe(gulp.dest('src/dist/'));
 });
 
-gulp.task('watch', ['ts', 'sass'], function() {
+gulp.task('watch', ['ts', 'sass', 'copy:html'], function() {
     gulp.watch('src/dev/**/*.ts', ['ts']);
     gulp.watch('src/dev/**/*.html', ['copy:html']);
     gulp.watch('src/dev/**/*.scss', ['sass']);

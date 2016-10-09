@@ -9,6 +9,7 @@ import { UploadFileDirective } from './uploadFile.directive';
 import { TimelineComponent } from './timeline/timeline.component';
 import { TimelineDatePipe } from './timelineDate.pipe';
 import { ImageModalContentComponent } from './timeline/imageModal/imageModalContent.component';
+import { CommentsComponnent } from './timeline/comments/comments.component';
 
 @NgModule({
     imports: [CommonModule, FormsModule],
@@ -19,7 +20,8 @@ import { ImageModalContentComponent } from './timeline/imageModal/imageModalCont
         UploadFileDirective,
         TimelineComponent,
         TimelineDatePipe,
-        ImageModalContentComponent
+        ImageModalContentComponent,
+        CommentsComponnent
     ],
     entryComponents: [
         ImageModalContentComponent
@@ -33,7 +35,8 @@ import { ImageModalContentComponent } from './timeline/imageModal/imageModalCont
         UploadFileDirective,
         TimelineComponent,
         TimelineDatePipe,
-        ImageModalContentComponent
+        ImageModalContentComponent,
+        CommentsComponnent
     ]
 })
 
