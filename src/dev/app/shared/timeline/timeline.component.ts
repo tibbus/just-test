@@ -41,8 +41,10 @@ export class TimelineComponent {
 
                 this.ref.detectChanges();
 
-                // open the modal
-                jQuery('#myModal').modal('show');
+                if (modalName) {
+                    // open the modal
+                    jQuery('#myModal').modal('show');
+                }
             });
     }
 
@@ -115,12 +117,9 @@ export class TimelineComponent {
 
     clickGetComments(post: any) {
         if (post.comments.state === '-') {
-            post.comments.list = [];
             post.comments.state = '+';
-
-            return;
+        } else {
+            post.comments.state = '-';
         }
-
-        post.comments.loading = true;
     }
 }

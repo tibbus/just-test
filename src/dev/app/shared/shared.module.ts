@@ -10,6 +10,7 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { TimelineDatePipe } from './timelineDate.pipe';
 import { ImageModalContentComponent } from './timeline/imageModal/imageModalContent.component';
 import { CommentsComponnent } from './timeline/comments/comments.component';
+import { EditCommentsComponent } from './timeline/comments/editComments.component';
 
 @NgModule({
     imports: [CommonModule, FormsModule],
@@ -21,10 +22,12 @@ import { CommentsComponnent } from './timeline/comments/comments.component';
         TimelineComponent,
         TimelineDatePipe,
         ImageModalContentComponent,
+        EditCommentsComponent,
         CommentsComponnent
     ],
     entryComponents: [
-        ImageModalContentComponent
+        ImageModalContentComponent,
+        EditCommentsComponent
     ],
     exports: [
         AlertComponent,
@@ -36,6 +39,7 @@ import { CommentsComponnent } from './timeline/comments/comments.component';
         TimelineComponent,
         TimelineDatePipe,
         ImageModalContentComponent,
+        EditCommentsComponent,
         CommentsComponnent
     ]
 })

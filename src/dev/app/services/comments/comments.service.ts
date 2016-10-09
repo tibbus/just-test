@@ -7,6 +7,8 @@ import * as _ from 'lodash';
 @Injectable()
 export class CommentsService  {
 
+    private selectedComment: any;
+
     constructor(private http: Http, private apiService: ApiService) { }
 
     getComments(postId: string) {
@@ -16,17 +18,47 @@ export class CommentsService  {
             .map(res => res.json());
     }
 
-    addComment(post: any) {
+    addComment(postId: string, commentText: string) {
         const body = {
             'authorUserId': this.apiService.userId,
             'recipientUserId': this.apiService.userId,
-            'comment': post.comments.newComment
+            'comment': commentText
         };
 
-        return this.http.request(`http://mycarbioservice-api.azurewebsites.net/api/v1/timeline/${post.id}/comment`, {
-                body: body,
+        return this.http.request(`http://mycarbioservice-api.azurewebsites.net/api/v1/timeline/${postId}/comment`, {
+                body,
                 method: 'POST'
             })
             .do(data => console.log(data))
+    }
+
+    removeComment(postId: string, commentId: string) {
+        const body = '';
+
+        return this.http.request(`http://mycarbioservice-api.azurewebsites.net/api/v1/timeline/${postId}/comment/${commentId}`, {
+                body: '',
+                method: 'DELETE'
+            })
+            .do(data => console.log(data))
+    }
+
+    updateComment(postId: string, commentId: string, comment: string) {
+        const body = {
+            comment
+        };
+        
+        return this.http.request(`http://mycarbioservice-api.azurewebsites.net/api/v1/timeline/${postId}/comment/${commentId}`, {
+                body,
+                method: 'PUT'
+            })
+            .do(data => console.log(data))
+    }
+
+    setSelectedComment(comment: any) {
+        this.selectedComment = comment;
+    }
+
+    getSelectedComment() {
+        return this.selectedComment;
     }
 }

@@ -1,7 +1,14 @@
-﻿<div *ngIf="comments" class="comments">
-    <div class="comments-text" *ngFor="let comment of comments">
-        <div class="comments-img">
-            <img src="/src/assets/muj.JPG" />
+﻿<div *ngIf="loading" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+</div>
+
+<div *ngIf="!loading">
+    <div class="content" 
+        *ngFor="let comment of comments"
+        [class.remove]="removeLoading === comment.id"
+    >
+        <div class="img">
+            <img src="/src/assets/profile01.png" />
         </div>
         <a class="username">Will Snowdon</a>
         <span class="date">{{comment.createdDate | timelineDate }}</span>
@@ -12,8 +19,8 @@
                 <div class="ripple-container"></div>
             </a>
             <ul class="dropdown-menu">
-                <li><a (click)="onClickEdit(post)">Edit</a></li>
-                <li><a (click)="onClickDelete(post.id)">Delete</a></li>
+                <li><a (click)="clickEdit(comment)">Edit</a></li>
+                <li><a (click)="clickRemove(comment.id)">Delete</a></li>
             </ul>
         </div>
 
@@ -24,13 +31,21 @@
 
     <div class="line"></div>
 
-    <div class="comments-textarea">
-        <textarea class="form-control" placeholder="Write a comment..." [(ngModel)]="post.comments.newComment">
-            </textarea>
+    <div class="textarea">
+        <textarea class="form-control" placeholder="Write a comment..." [(ngModel)]="newCommentText">
+        </textarea>
         <!--<span class="help-block">Post a new Status, Media, Event on your timeline.</span>-->
     </div>
-    <div class="btn btn-raised btn-success comments-add-button" [class.disabled]="post.comments.addCommentLoading" (click)="clickAddComment(post)">
+    <div class="btn btn-raised btn-success add-button" [class.disabled]="addLoading" (click)="clickAddComment()">
         <span class="save-text">Add</span>
-        <span *ngIf="post.comments.addCommentLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        <span *ngIf="addLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
     </div>
 </div>
+
+<modal 
+       *ngIf="modalName == 'editComments'"
+       [contentComponent]="EditCommentsComponent" 
+       [title]="'Edit'" 
+       [showSaveButton]="true"
+>
+</modal>

@@ -30,15 +30,6 @@
     }
 }
 
-.show-comments-loading {
-    float: left;
-    margin: 7px 0 0 243px;
-
-    &-spinner {
-        font-size: 25px;
-    }
-}
-
 .show-comments {
     float: right;
     font-weight: 600;
@@ -182,38 +173,4 @@ video {
 .topics {
     float: right;
     margin-right: 20px;
-}
-
-.comments {
-    float: left;
-    width: 100%;
-
-    &-text {
-        padding: 10px;
-    }
-
-    &-textarea {
-        float: left;
-        width: 600px;
-    }
-
-    &-add-button {
-        float: left;
-        margin: 0;
-        padding: 5px 20px;
-        margin-top: 53px;
-        position: relative;
-        margin-left: 40px;
-        text-transform: none;
-    }
-
-    &-img {
-        float: left;
-        height: 40px;
-        margin-right: 10px;
-
-        img {
-            height: 100%;
-        }
-    }
 }

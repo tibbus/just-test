@@ -1,1 +1,72 @@
-﻿
+﻿:host {
+    float: left;
+    width: 100%;
+    min-height: 45px;
+}
+
+.content {
+    float: left;
+    width: 100%;
+    padding: 10px;
+}
+
+.textarea {
+    float: left;
+    width: 600px;
+}
+
+.add-button {
+    float: left;
+    margin: 0;
+    padding: 5px 20px;
+    margin-top: 53px;
+    position: relative;
+    margin-left: 40px;
+    text-transform: none;
+}
+
+.img {
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+
+    img {
+        height: 100%;
+    }
+}
+
+.loading {
+    float: left;
+    margin: 10px 0 0 360px;
+
+    .glyphicon {
+        font-size: 25px;
+    }
+}
+
+.username {
+    float: left;
+}
+
+.date {
+    float: left;
+    margin-left: 10px;
+}
+
+.edit-menu {
+    float: right;
+
+    a {
+        cursor: pointer;
+    }
+}
+
+.description {
+    float: left;
+    width: 600px;
+    margin-top: 5px;
+}
+
+.remove {
+    opacity: 0.5;
+}
