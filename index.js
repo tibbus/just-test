@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const basicAuth = require('basic-auth-connect');
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 5003));
 
 app.use('/src', express.static(__dirname + '/src'));
 app.use('/style', express.static(__dirname + '/style'));
@@ -19,6 +19,8 @@ app.use('/oidc-client.js', express.static(__dirname + '/oidc-client.js'));
 app.use('/api/v1/user/1', express.static(__dirname + '/server/fakeService/profile.json'));
 app.use('/api/v1/user/1/usercar/details=true', express.static(__dirname + '/server/fakeService/userCars.json'));
 app.use('/search', express.static(__dirname + '/server/fakeService/search.json'));
+
+app.use('/callback.html', express.static(__dirname + '/callback.html'));
 
 //app.use(basicAuth('bizcarapp', 'meetbiz550'));
 

@@ -21,7 +21,8 @@ import {
     PostService,
     TimelineService,
     FollowService,
-    CommentsService
+    CommentsService,
+    AuthService
 } from './services/index';
 
 import { SharedModule } from './shared/shared.module';
@@ -52,6 +53,7 @@ import { SharedModule } from './shared/shared.module';
         TimelineService,
         FollowService,
         CommentsService,
+        AuthService,
         { provide: RequestOptions, useClass: CustomRequestOptions }
     ],
     bootstrap: [AppComponent]

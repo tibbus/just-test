@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { ProfileService, SearchService, FollowService, SidebarService } from '../../services/index';
+import { ProfileService, SearchService, FollowService, SidebarService, AuthService } from '../../services/index';
 import { Profile } from '../../services/profile/profile';
 import { Router } from '@angular/router';
 
@@ -31,7 +31,8 @@ export class HeaderComponent {
         private searchService: SearchService,
         private followService: FollowService,
         private router: Router,
-        private sidebarService: SidebarService
+        private sidebarService: SidebarService,
+        private authService: AuthService
     ) { }    
 
     getProfile() {
@@ -95,5 +96,13 @@ export class HeaderComponent {
             this.sidebarService.unSelectMenus();
             this.sidebarService.updateMenu$.next('update');
         }); 
+    }
+
+    clickSignOut() {
+        this.authService.signOut();
+    }
+
+    clickLogin() {
+        this.authService.signIn();
     }
 }

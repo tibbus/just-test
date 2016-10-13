@@ -9,3 +9,4 @@ export * from './post/post.service';
 export * from './search/search.service';
 export * from './follow/follow.service';
 export * from './comments/comments.service';
+export * from './auth/auth.service';
