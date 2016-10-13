@@ -10,6 +10,7 @@
         'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
         'rxjs': 'node_modules/rxjs',
         'lodash': 'node_modules/lodash/lodash.js',
+        'oidc-client': 'node_modules/oidc-client/lib/oidc-client.js',
         'moment': 'node_modules/moment/moment.js'
     };
     // packages tells the System loader how to load when no filename and/or no extension

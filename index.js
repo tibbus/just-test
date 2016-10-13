@@ -13,13 +13,14 @@ app.use('/node_modules', express.static(__dirname + '/node_modules'));
 //app.use('/api', express.static(__dirname + '/api'));
 app.use('/systemjs.config.js', express.static(__dirname + '/systemjs.config.js'));
 app.use('/le.min.js', express.static(__dirname + '/le.min.js'));
+app.use('/oidc-client.js', express.static(__dirname + '/oidc-client.js'));
 
 // FAKE Service APIs :    
 app.use('/api/v1/user/1', express.static(__dirname + '/server/fakeService/profile.json'));
 app.use('/api/v1/user/1/usercar/details=true', express.static(__dirname + '/server/fakeService/userCars.json'));
 app.use('/search', express.static(__dirname + '/server/fakeService/search.json'));
 
-app.use(basicAuth('bizcarapp', 'meetbiz550'));
+//app.use(basicAuth('bizcarapp', 'meetbiz550'));
 
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/index.html');

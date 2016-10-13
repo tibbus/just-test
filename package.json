@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://git.heroku.com/mycarbio.git"
   },
-   "engines": {
+  "engines": {
     "node": "6.6.0",
     "npm": "3.10.3"
   },
@@ -27,7 +27,6 @@
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/router": "3.0.0",
     "@angular/upgrade": "2.0.0",
-
     "angular2-in-memory-web-api": "0.0.20",
     "arrive": "2.3.1",
     "basic-auth-connect": "1.0.0",
@@ -38,17 +37,16 @@
     "core-js": "^2.4.1",
     "express": "4.13.4",
     "getstream": "^3.4.1",
-
     "gulp": "3.9.1",
     "gulp-autoprefixer": "3.1.0",
     "gulp-sass": "2.3.1",
     "gulp-sourcemaps": "1.6.0",
     "gulp-typescript": "2.13.0",
-
     "jquery": "2.2.3",
     "lodash": "4.11.1",
     "moment": "2.13.0",
     "ncp": "2.0.0",
+    "oidc-client": "^1.2.0",
     "reflect-metadata": "^0.1.3",
     "rxjs": "5.0.0-beta.12",
     "systemjs": "0.19.27",
