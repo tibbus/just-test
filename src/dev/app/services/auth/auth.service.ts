@@ -13,7 +13,7 @@ export class AuthService {
             redirect_uri: `${window.location.origin}/callback.html`,
             response_type: "id_token token",
             scope: "openid profile mycarbioapi",
-            post_logout_redirect_uri: `${window.location.origin}/callback.html`,
+            post_logout_redirect_uri: `${window.location.origin}`,
         };
 
         this.mgr = new Oidc.UserManager(config);
