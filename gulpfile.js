@@ -5,6 +5,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
 var ncp = require('ncp').ncp;
 var autoprefixer = require('gulp-autoprefixer');
+require('./task');
 
 gulp.task('ts', function() {
     var tsResult = gulp.src('src/dev/**/*')

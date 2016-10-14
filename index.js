@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const basicAuth = require('basic-auth-connect');
 
-app.set('port', (process.env.PORT || 5003));
+app.set('port', (process.env.PORT || 5000));
 
 app.use('/src', express.static(__dirname + '/src'));
 app.use('/style', express.static(__dirname + '/style'));
