@@ -8,9 +8,9 @@ var autoprefixer = require('gulp-autoprefixer');
 require('./task');
 
 gulp.task('ts', function() {
-    var tsResult = gulp.src('src/dev/**/*')
+    var tsResult = gulp.src('src/dev/**/*.ts')
         .pipe(sourcemaps.init())
-        .pipe(ts(tsProject));
+        .pipe(tsProject());
 
     return tsResult.js
             .pipe(sourcemaps.write())
