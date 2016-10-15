@@ -24,10 +24,10 @@ gulp.task('watch', ['ts', 'sass', 'copy:html'], function() {
 });
 
 gulp.task('sass', function() {
-    return gulp.src('src/dev/**/*.scss')
-      .pipe(sass({ includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/', 'src/dev/styles/'] })
+    return gulp.src('src/**/*.scss')
+      .pipe(sass({ includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/', 'src/styles/'] })
       .on('error', sass.logError))
-      .pipe(gulp.dest('./src/dist'));
+      .pipe(gulp.dest('./dist'));
 });
 
 // Use this task only if necessary (currently not needed)

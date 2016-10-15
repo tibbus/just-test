@@ -3,6 +3,8 @@ src/*.js
 
 node_modules
 src/dist/*
+/dist
+
 localhost_49687.sln
 localhost_49687.v12.suo
 
