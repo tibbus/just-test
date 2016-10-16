@@ -76,7 +76,7 @@ export class ApiService {
 const API = {
     fakeServiceEnabled: false,
     /* **DEV** Enviroment */
-    root: 'http://mycarbioservice-api.azurewebsites.net/api/v1',
+    root: 'http://mycarbioservice.azurewebsites.net//api/v1',
 
     userCars: '/usercar/details=true',
     userRegisterCar: '/usercar/registration/',
@@ -92,7 +92,7 @@ const API = {
 }
 
 // SWITCH the FAKE service from here :
-API.fakeServiceEnabled = true;
+API.fakeServiceEnabled = false;
 
 if (API.fakeServiceEnabled) {
     API.root = `${window.location.origin}/api/v1`;

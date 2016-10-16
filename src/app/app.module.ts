@@ -52,7 +52,6 @@ import { SharedModule } from './shared/shared.module';
         ApiService,
         TimelineService,
         FollowService,
-        CommentsService,
         AuthService,
         { provide: RequestOptions, useClass: CustomRequestOptions }
     ],

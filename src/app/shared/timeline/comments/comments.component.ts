@@ -10,7 +10,7 @@ import { EditCommentsComponent } from './editComments.component';
     selector: 'comments',
     templateUrl: 'comments.component.html',
     styleUrls: ['comments.component.css'],
-    providers: [ModalService]
+    providers: [ModalService, CommentsService]
 })
 
 export class CommentsComponnent implements OnInit {
