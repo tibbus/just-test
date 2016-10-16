@@ -1,14 +1,14 @@
-var gulp = require('gulp');
-var ts = require('gulp-typescript');
-var tsProject = ts.createProject('tsconfig.json');
-var sourcemaps = require('gulp-sourcemaps');
-var sass = require('gulp-sass');
-var ncp = require('ncp').ncp;
-var autoprefixer = require('gulp-autoprefixer');
+const gulp = require('gulp');
+const ts = require('gulp-typescript');
+const tsProject = ts.createProject('tsconfig.json');
+const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const cpx = require('cpx');
 require('./tasks');
 
-gulp.task('ts', function() {
-    var tsResult = gulp.src('src/**/*.ts')
+gulp.task('ts', () => {
+    const tsResult = gulp.src('src/**/*.ts')
         .pipe(sourcemaps.init())
         .pipe(tsProject());
 
@@ -17,20 +17,27 @@ gulp.task('ts', function() {
             .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('watch', ['ts', 'sass', 'copy:html'], function() {
-    gulp.watch('src/dev/**/*.ts', ['ts']);
-    gulp.watch('src/dev/**/*.html', ['copy:html']);
-    gulp.watch('src/dev/**/*.scss', ['sass']);
-});
-
-gulp.task('sass', function() {
+gulp.task('sass', () => {
     return gulp.src('src/**/*.scss')
       .pipe(sass({ includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/', 'src/styles/'] })
       .on('error', sass.logError))
       .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('all', ['ts', 'copy:html', 'sass'], function () {
-    // dist folder does not exists, therefore run the `fonts` task after the `ts` one
-    gulp.start('copy:fonts');
+gulp.task('watch', ['ts', 'sass', 'copy:html'], () => {
+    gulp.watch('src/**/*.ts', ['ts']);
+    gulp.watch('src/**/*.html', ['copy:html']);
+    gulp.watch('src/**/*.scss', ['sass']);
 });
+
+gulp.task('copy:fonts', () => {
+    console.log('copy fonts to dist');
+
+    cpx.copySync('node_modules/bootstrap-sass/assets/fonts/**/*', 'dist/fonts/');
+});
+
+gulp.task('copy:html', () => {
+    cpx.copySync('src/**/*.html', 'dist');
+});
+
+gulp.task('all', ['ts', 'copy:html', 'sass', 'copy:fonts']);

@@ -41,13 +41,3 @@ gulp.task('ts:new', onComplete => {
         });
     });
 });
-
-gulp.task('copy:fonts', function () {
-    console.log('copy fonts to dist');
-
-    cpx.copySync('node_modules/bootstrap-sass/assets/fonts/**/*', 'dist/fonts/');
-});
-
-gulp.task('copy:html', function () {
-    cpx.copySync('src/**/*{html}', 'dist');
-});

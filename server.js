@@ -9,6 +9,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use('/dist', express.static(__dirname + '/dist'));
 app.use('/style', express.static(__dirname + '/style'));
+app.use('/assets', express.static(__dirname + '/assets'));
 // used for ts maps
 app.use('/src', express.static(__dirname + '/src'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));

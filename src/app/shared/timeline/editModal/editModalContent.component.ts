@@ -6,9 +6,10 @@ import { UploadFileDirective } from '../../uploadFile.directive';
 import * as _ from 'lodash';
 
 @Component({
+    moduleId: module.id,
     selector: 'content',
-    templateUrl: 'src/dev/app/shared/timeline/editModal/editModalContent.component.html',
-    styleUrls: ['src/dist/app/shared/timeline/editModal/editModalContent.component.css']
+    templateUrl: 'editModalContent.component.html',
+    styleUrls: ['editModalContent.component.css']
 })
 
 export class EditModalContentComponent implements OnInit {
