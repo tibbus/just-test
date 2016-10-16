@@ -1,8 +1,8 @@
-/// <reference path="../../typings/index.d.ts" />
+/// <reference path="../typings/index.d.ts" />
 
 import 'rxjs/Rx';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';  
+import { AppModule } from './app/app.module';        
             
 //enableProdMode();             
 platformBrowserDynamic().bootstrapModule(AppModule);

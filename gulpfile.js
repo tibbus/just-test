@@ -5,16 +5,16 @@ var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
 var ncp = require('ncp').ncp;
 var autoprefixer = require('gulp-autoprefixer');
-require('./task');
+require('./tasks');
 
 gulp.task('ts', function() {
-    var tsResult = gulp.src('src/dev/**/*.ts')
+    var tsResult = gulp.src('src/**/*.ts')
         .pipe(sourcemaps.init())
         .pipe(tsProject());
 
     return tsResult.js
             .pipe(sourcemaps.write())
-            .pipe(gulp.dest('src/dist/'));
+            .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('watch', ['ts', 'sass', 'copy:html'], function() {
@@ -28,28 +28,6 @@ gulp.task('sass', function() {
       .pipe(sass({ includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/', 'src/styles/'] })
       .on('error', sass.logError))
       .pipe(gulp.dest('./dist'));
-});
-
-// Use this task only if necessary (currently not needed)
-gulp.task('copy:css', function () {
-    return gulp.src('src/dist/**/*.css')
-      .pipe(autoprefixer())
-      .pipe(gulp.dest('./src/dist'));
-});
-
-gulp.task('copy:html', function () {
-    return gulp.src('src/dev/**/*.html')
-      .pipe(gulp.dest('./src/dist'));
-});
-
-gulp.task('copy:fonts', function () {
-    console.log('copy fonts to dist');
-
-    ncp('node_modules/bootstrap-sass/assets/fonts', 'src/dist/fonts/', function (err) {
-        if (err) {
-            return console.error(err);
-        }
-    });
 });
 
 gulp.task('all', ['ts', 'copy:html', 'sass'], function () {
