@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 
+import { ApiService } from '../api/api.service';
+
 import * as Oidc from 'oidc-client';
 
 @Injectable()
 export class AuthService {
    private mgr: any;
 
-   constructor() {
+   constructor(private apiService: ApiService) {
        const config = {
             authority: "http://mycarbioidentity.azurewebsites.net/",
             client_id: "mycarbiowebapp",
@@ -20,7 +22,21 @@ export class AuthService {
    }
 
    getUser() {
-       return this.mgr.getUser();
+       const promise = this.mgr.getUser();
+
+       promise.then( user => {
+            if (user) {
+                console.log("User logged in", user);
+
+                this.apiService.setUser(user.profile.id);
+            }
+            else {
+                console.log("User not logged in");
+                // use default user
+            }
+        });
+
+       return promise;
    }
 
    signIn() {

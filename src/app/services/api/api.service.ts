@@ -12,6 +12,10 @@ export class ApiService {
         return `${API.user}${this.userId}`;
     }
 
+    setUser(userId: string) {
+       this.userId = userId;
+    }
+
     getCarTimelineUrl(carId: string): string {
         return `${API.root}${API.timeline}${carId}`;
     }
@@ -76,7 +80,7 @@ export class ApiService {
 const API = {
     fakeServiceEnabled: false,
     /* **DEV** Enviroment */
-    root: 'http://mycarbioservice.azurewebsites.net//api/v1',
+    root: 'http://mycarbioservice.azurewebsites.net/api/v1',
 
     userCars: '/usercar/details=true',
     userRegisterCar: '/usercar/registration/',

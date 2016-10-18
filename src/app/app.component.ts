@@ -20,14 +20,5 @@ export class AppComponent {
         jQuery.material.init();
 
         this.apiService.streamClient = stream.connect('8r2y2gbevg9j', null, '15872');
-
-        this.authService.getUser().then(function (user) {
-            if (user) {
-                console.log("User logged in", user);
-            }
-            else {
-                console.log("User not logged in");
-            }
-        });
     }
 }

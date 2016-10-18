@@ -75,7 +75,13 @@ export class GarageComponent implements OnInit {
         this.alertMessage = null;
     }
 
-    handleError(error: Error) {
+    handleError(error: any) {
+        if (error.statusText === 'Not Found') {
+            this.loading = false;
+            
+            return;
+        }
+
         this.requestState = false;
 
         this.loading = false;
