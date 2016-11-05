@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { BehaviorSubject } from 'rxjs/Rx';
-import { API } from '../api/api.service';
+import { API } from '../api/api';
 import { Observable } from 'rxjs';
 
 declare const LE: any;

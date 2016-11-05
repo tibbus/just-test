@@ -31,8 +31,8 @@ export class CommentsService {
 
     addComment(postId: string, commentText: string) {
         const body = {
-            'authorUserId': this.apiService.userId,
-            'recipientUserId': this.apiService.userId,
+            'authorUserId': this.apiService.getUserId(),
+            'recipientUserId': this.apiService.getUserId(),
             'comment': commentText
         };
 

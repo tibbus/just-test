@@ -16,7 +16,7 @@ export class FeedComponent {
     ngOnInit() {
         this.timelineService.actor = {
             actorType: 'user',
-            actorId: this.apiService.userId
+            actorId: this.apiService.getUserId()
         };
 
         this.followService.isFollowEnable$.next(false);

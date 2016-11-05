@@ -23,7 +23,7 @@ export class TimelineService {
         // get the token for getStream timeline call
         this.getToken().subscribe(token => {
             // set the getStream settings
-            const streamClient: any = this.apiService.streamClient;
+            const streamClient: any = this.apiService.getStreamClient();
             const streamCar = streamClient.feed(this.actor.actorType, this.actor.actorId, token);
 
             // make the call request for the timeline

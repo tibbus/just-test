@@ -1,5 +1,5 @@
 import {BaseRequestOptions, RequestOptions, RequestOptionsArgs} from '@angular/http';
-import { API } from '../api/api.service';
+import { API } from '../api/api';
 
 export class CustomRequestOptions extends BaseRequestOptions {
     merge(options?: RequestOptionsArgs): RequestOptions {

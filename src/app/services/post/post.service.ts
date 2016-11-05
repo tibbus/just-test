@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpService } from '../http/http.service';
-import { ApiService, API } from '../api/api.service';
+import { ApiService } from '../api/api.service';
+import { API } from '../api/api';
 import { CarService } from '../car/car.service';
 import { TimelineService } from '../timeline/timeline.service';
 import * as _ from 'lodash';
@@ -76,7 +77,7 @@ export class PostService {
         // Use angular2 http service for the Status and Jquery.Ajax for formData requests
         if (postType === 'Status') {
             const body: any = {
-                id: this.apiService.userId,
+                id: this.apiService.getUserId(),
                 description: updatedDescription,
                 topics: updatedTopics
             };

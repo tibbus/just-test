@@ -4,7 +4,8 @@ import {Profile} from './profile';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { HttpService } from '../http/http.service';
-import { ApiService, API } from '../api/api.service';
+import { ApiService } from '../api/api.service';
+import { API } from '../api/api';
 
 @Injectable()
 export class ProfileService extends HttpService {

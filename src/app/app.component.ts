@@ -19,6 +19,7 @@ export class AppComponent {
     ngOnInit() {
         jQuery.material.init();
 
-        this.apiService.streamClient = stream.connect('8r2y2gbevg9j', null, '15872');
+        const streamClient = stream.connect('8r2y2gbevg9j', null, '15872');
+        this.apiService.setStreamClient(streamClient); 
     }
 }
