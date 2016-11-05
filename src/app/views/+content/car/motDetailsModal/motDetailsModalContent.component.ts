@@ -14,6 +14,6 @@ export class MotDetailsModalContentComponent {
     carMotList: any;
 
     ngOnInit() {
-        this.carMotList = this.carService.selectedCarMot;
+        this.carMotList = this.carService.getSelectedCarMot();
     }
 }

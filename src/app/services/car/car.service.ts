@@ -9,16 +9,15 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class CarService extends HttpService {
-    constructor(private http: Http, private apiService: ApiService) {
-        super(http, apiService.getUserCarsUrl());
-    }
-
-    private _selectedCarId: string;
     private cars: any[];
     public selectedCarName;
     public selectedCar;
 
-    getCars(forceRefresh?: boolean) {
+    constructor(private http: Http, private apiService: ApiService) {
+        super(http, apiService.getUserCarsUrl());
+    }
+
+    public getCars(forceRefresh?: boolean) {
         return this.getData(forceRefresh).map((res: Car[]) => {
             this.cars = _.map(res, (carObject: Car) => {
                 const carMake: string = _.get(carObject, 'carInfo.car.make', null);
@@ -39,7 +38,7 @@ export class CarService extends HttpService {
         });
     }
 
-    addCar(regNumber: string) {
+    public addCar(regNumber: string) {
         const apiUrl: string = this.apiService.getRegisterCarUrl(regNumber);
 
         return this.http.request(apiUrl, {
@@ -48,7 +47,7 @@ export class CarService extends HttpService {
         });
     }
 
-    removeCar(id: string) {
+    public removeCar(id: string) {
         const apiUrl: string = this.apiService.getRemoveCarUrl(id);
 
         return this.http.request(apiUrl, {
@@ -57,7 +56,7 @@ export class CarService extends HttpService {
         });
     }
 
-    getCarById(id: string): Car {
+    public getCarById(id: string): Car {
         const currentCar: Car = _.find(this.dataObject, (car: Car) => {
             return car.carInfo.id == id;
         });
@@ -65,33 +64,15 @@ export class CarService extends HttpService {
         return currentCar;
     }
 
-    set selectedCarId(carId: string) {
-        this._selectedCarId = carId;
-    }
-
-    get selectedCarId() {
-        return this._selectedCarId;
-    }
-
-    get userCarId(): string {
-        const car: Car = this.getCarById(this._selectedCarId);
-
-        if (car) {
-            return car.id;
-        } else {
-            return null;
-        }
-    }
-
-    get selectedCarMot(): Mot[] {
+    public getSelectedCarMot(): Mot[] {
         return this.getCarById(this.selectedCar.id).mot;
     }
 
-    get selectedCarTax(): Tax {
+    public getSelectedCarTax(): Tax {
         return this.getCarById(this.selectedCar.id).tax;
     }
 
-    setCarByRoute(route: string, carInfoId: string): void {
+    public setCarByRoute(route: string, carInfoId: string): void {
         const userSelectedCar = _.find(this.cars, (car) => {
             return route === car.route.toLowerCase();
         });

@@ -14,6 +14,6 @@ export class TaxDetailsModalContentComponent {
     carTax: any;
 
     ngOnInit() {
-        this.carTax = this.carService.selectedCarTax;
+        this.carTax = this.carService.getSelectedCarTax();
     }
 }
