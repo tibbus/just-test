@@ -3,16 +3,13 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class SidebarService {
-    private unSelect = new Subject<boolean>();
-    public updateMenu$ = new Subject();
+    private menu$ = new Subject();
 
-    unSelect$ = this.unSelect.asObservable();
-
-    unSelectMenus() {
-        this.unSelect.next(true);
+    public getCarMenu$() {
+        return this.menu$;
     }
 
-    updateSelectedCarMenu(menuName: string) {
-        this.updateMenu$.next(menuName);
+    public setCarMenu$(menuName: string) {
+        this.menu$.next(menuName);
     }
 }

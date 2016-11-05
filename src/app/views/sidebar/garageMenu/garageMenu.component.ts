@@ -26,14 +26,14 @@ export class GarageMenuComponent implements OnInit{
     ngOnInit() {
         this.getCars();
 
-        this.sidebarService.unSelect$
+        this.sidebarService.getCarMenu$()
             .subscribe(
             () => {
                 this.selected = null;
 
             });
 
-        this.sidebarService.updateMenu$.subscribe((menuName: string) => {
+        this.sidebarService.getCarMenu$().subscribe((menuName: string) => {
             this.updateSelectedCarMenu(menuName);
         });
     }
@@ -45,7 +45,7 @@ export class GarageMenuComponent implements OnInit{
 
     // Navigate to the selected Car on menu Click
     onCarSelect(car: any) {
-        this.sidebarService.unSelectMenus(); 
+        this.sidebarService.setCarMenu$(null); 
 
         this.selected = car.name;
 
@@ -54,7 +54,7 @@ export class GarageMenuComponent implements OnInit{
     }
 
     onGarageSelect() {
-        this.sidebarService.unSelectMenus();
+        this.sidebarService.setCarMenu$(null);
 
         this.selected = 'garage';
     }

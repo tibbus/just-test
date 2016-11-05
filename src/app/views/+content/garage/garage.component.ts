@@ -19,7 +19,7 @@ export class GarageComponent implements OnInit {
     constructor(private carService: CarService, private sidebarService: SidebarService, private followService: FollowService) { }
 
     ngOnInit() {
-        this.sidebarService.updateSelectedCarMenu('garage');
+        this.sidebarService.setCarMenu$('garage');
         this.followService.isFollowEnable$.next(false);
 
         this.getCars();

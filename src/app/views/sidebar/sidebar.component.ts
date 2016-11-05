@@ -23,7 +23,7 @@ export class SidebarComponent {
     }
 
     ngOnInit() {
-        this.sidebarService.unSelect$
+        this.sidebarService.getCarMenu$()
             .subscribe(
                 () => {
                     this.selected = null;
@@ -35,7 +35,7 @@ export class SidebarComponent {
     }
 
     onSelect(item: string) {
-        this.sidebarService.unSelectMenus();    
+        this.sidebarService.setCarMenu$(null);    
 
         this.selected = item;
     }
