@@ -96,7 +96,7 @@ const API = {
 }
 
 // SWITCH the FAKE service from here :
-API.fakeServiceEnabled = false;
+API.fakeServiceEnabled = true;
 
 if (API.fakeServiceEnabled) {
     API.root = `${window.location.origin}/api/v1`;
