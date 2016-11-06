@@ -40,7 +40,7 @@ export class GarageMenuComponent implements OnInit{
 
     // sub menu car details
     onMenuClick(modalName: string) {
-        this.modalService.setModalName(modalName);
+        this.modalService.setModalName$(modalName);
     }
 
     // Navigate to the selected Car on menu Click

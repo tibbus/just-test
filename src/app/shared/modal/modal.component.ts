@@ -38,13 +38,13 @@ export class ModalComponent {
             this.onModalClose();  
         })
 
-        this.modalSubscription = this.modalService.closeModal.delay(1).subscribe(
+        this.modalSubscription = this.modalService.getModalClose$().delay(1).subscribe(
             () => {
                 jQuery('#myModal').modal('hide');
             }
         );
 
-        this.modalSubscription2 = this.modalService.loading.subscribe(
+        this.modalSubscription2 = this.modalService.getModalLoading$().subscribe(
             () => {
                 this.loading = true;
             }
@@ -58,10 +58,10 @@ export class ModalComponent {
     }
 
     onModalClose() {
-        this.modalService.setModalName('');
+        this.modalService.setModalName$('');
     }
 
     onClickSave() {
-        this.modalService.sendClickSave();
+        this.modalService.setModalSave$();
     }
 }

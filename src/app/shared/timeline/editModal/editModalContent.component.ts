@@ -38,7 +38,7 @@ export class EditModalContentComponent implements OnInit {
             return this.selectedTopics.indexOf(topic) === -1;
         });
 
-        this.modalService.clickSave.subscribe(
+        this.modalService.getModalSave$().subscribe(
             () => {
                 this.savePost();
             }
@@ -46,14 +46,14 @@ export class EditModalContentComponent implements OnInit {
     }
 
     savePost() {
-        this.modalService.setLoading();
+        this.modalService.setModalLoading$();
 
         this.postService.updatePost(this.postDescription, this.files, this.selectedTopics).subscribe(
             () => {
                 // update the TimeLine
                 this.timelineService.getPosts();
 
-                this.modalService.sendModalClose();
+                this.modalService.setModalClose$();
             }
         );
     }

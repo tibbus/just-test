@@ -3,26 +3,42 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ModalService {
-    constructor() { }
+    private modalName$ = new Subject<string>();
+    private modalClose$ = new Subject<boolean>();
+    private modalSave$ = new Subject<boolean>();
+    private modalLoading$ = new Subject<boolean>();
 
-    public modalName = new Subject<string>();
-    public clickSave = new Subject<string>();
-    public closeModal = new Subject<string>();
-    public loading = new Subject<string>();
-
-    setModalName(modalName: string) {
-        this.modalName.next(modalName);
+    constructor() {}
+    
+    public getModalName$() {
+        return this.modalName$;
+    }
+    
+    public setModalName$(modalName: string) {
+        this.modalName$.next(modalName);
     }
 
-    sendModalClose() {
-        this.closeModal.next('close');
+    public getModalClose$() {
+        return this.modalClose$;
     }
 
-    sendClickSave() {
-        this.clickSave.next('nextClick');
+    public setModalClose$() {
+        this.modalClose$.next(true);
     }
 
-    setLoading() {
-        this.loading.next('loading');
+    public getModalSave$() {
+        return this.modalSave$;
+    }
+
+    public setModalSave$() {
+        this.modalSave$.next(true);
+    }
+
+    public getModalLoading$() {
+        return this.modalLoading$;
+    }
+
+    public setModalLoading$() {
+        this.modalLoading$.next(true);
     }
 }

@@ -36,7 +36,7 @@ export class CarComponent implements OnInit, OnDestroy {
         private sidebarService: SidebarService
     ) {
         // on modal open/close :
-        this.modalSubscription = modalService.modalName.subscribe(
+        this.modalSubscription = modalService.getModalName$().subscribe(
             modalName => {
                 this.modalName = modalName;
 

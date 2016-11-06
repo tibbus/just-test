@@ -33,7 +33,7 @@ export class CommentsComponnent implements OnInit {
     ) {
 
         // on modal open/close :
-        this.modalSubscription = this.modalService.modalName.subscribe(
+        this.modalSubscription = this.modalService.getModalName$().subscribe(
             modalName => {
                 this.modalName = modalName;
 
@@ -92,6 +92,6 @@ export class CommentsComponnent implements OnInit {
         this.commentsService.setSelectedComment(selectedComment);
         this.timelineService.selectedPostId = this.postId;
 
-        this.modalService.setModalName('editComments');
+        this.modalService.setModalName$('editComments');
     }
 }

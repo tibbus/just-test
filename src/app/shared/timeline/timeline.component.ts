@@ -36,7 +36,7 @@ export class TimelineComponent {
         private followService: FollowService
     ) {
         // on modal open/close :
-        this.modalSubscription = modalService.modalName.subscribe(
+        this.modalSubscription = modalService.getModalName$().subscribe(
             modalName => {
                 this.modalName = modalName;
 
@@ -85,7 +85,7 @@ export class TimelineComponent {
         this.selectedPostId = post;
         this.timelineService.selectedPostId = post.id;
 
-        this.modalService.setModalName('editModal');
+        this.modalService.setModalName$('editModal');
     }
 
     clickImage(postId: string, index: number) {
@@ -93,7 +93,7 @@ export class TimelineComponent {
         this.timelineService.selectedPostId = postId;
         this.timelineService.selectedImage = index;
 
-        this.modalService.setModalName('imageModal');
+        this.modalService.setModalName$('imageModal');
     }
 
     onClickShare(postId: string) {

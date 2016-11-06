@@ -21,7 +21,7 @@ export class EditCommentsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.modalService.clickSave.subscribe(
+        this.modalService.getModalSave$().subscribe(
             () => {
                 this.savePost();
             }
@@ -32,7 +32,7 @@ export class EditCommentsComponent implements OnInit {
     }
 
     savePost() {
-        this.modalService.setLoading();
+        this.modalService.setModalLoading$();
 
         const commentId =  this.selectedComment.id;
         const postId = this.timelineService.selectedPostId;
@@ -41,7 +41,7 @@ export class EditCommentsComponent implements OnInit {
             () => {
                 // update the Comments
                 this.commentsService.fetchComments(postId).subscribe(data => {
-                    this.modalService.sendModalClose();
+                    this.modalService.setModalClose$();
                 });
             }
         );
