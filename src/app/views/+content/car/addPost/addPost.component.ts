@@ -70,7 +70,7 @@ export class AddPostComponent {
 
     clickAddPost() {
         this.loading = true;
-        this.postService.topics = this.selectedTopics;
+        this.postService.setTopics(this.selectedTopics);
 
         if (this.postType !== 'status') {
             this.addPostMedia();

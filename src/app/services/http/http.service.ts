@@ -25,7 +25,7 @@ export abstract class HttpService {
             })
     }
 
-    getData(forceRefresh?: boolean) {
+    public getData(forceRefresh?: boolean) {
         // If the Subject was NOT subscribed before OR if forceRefresh is requested 
         if (!this.dataObs$.observers.length || forceRefresh) {
             this.getDataFromHttp().subscribe(

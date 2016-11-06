@@ -12,9 +12,7 @@ declare const LE: any;
 
 @Injectable()
 export class PostService {
-    private _topics: string[];
-    private _postMedia = new Subject<any>();
-    postMedia$ = this._postMedia.asObservable();
+    private topics: string[];
 
     constructor(
         private http: Http,
@@ -23,7 +21,7 @@ export class PostService {
         private timelineService: TimelineService
     ) { }
 
-    addPost(files: any[], statusText: string, postType: string) {
+    public addPost(files: any[], statusText: string, postType: string) {
         if (postType === 'status') {
             return this.addStatus(statusText);
         }
@@ -37,31 +35,18 @@ export class PostService {
         for (let file of files) {
             formData.append('files', file);
         }
-        for (let topic of this._topics) {
+        for (let topic of this.topics) {
             formData.append('topics', topic);
         }
 
-        jQuery.ajax({
-            url: apiUrl,
-            type: 'POST',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false
-        }).done(() => {
-            this._postMedia.next('done');
-        }).fail(function (jqXHR, exception) {
-            LE.log(`Error trying to access:  ${this.url} with error message of: ${jqXHR.status} ${jqXHR.responseText}`);
-        })
-
-        return this.postMedia$;
+        return this.http.post(apiUrl, formData);
     }
 
-    addStatus(newStatus: string) {
+    private addStatus(newStatus: string) {
         const apiUrl = this.apiService.getAddPostUrl(this.carService.selectedCar.id, 'status');
         const body: any = {
             description: newStatus,
-            topics: this._topics
+            topics: this.topics
         };
 
         return this.http.request(apiUrl, {
@@ -70,11 +55,10 @@ export class PostService {
         });
     }
 
-    updatePost(updatedDescription, updatedFiles, updatedTopics) {
+    public updatePost(updatedDescription, updatedFiles, updatedTopics) {
         const postType: string = this.timelineService.selectedPost.type;
         const apiUrl: string = this.apiService.getUpdatePostUrl(this.carService.selectedCar.id, postType.toLocaleLowerCase(), this.timelineService.selectedPostId);
 
-        // Use angular2 http service for the Status and Jquery.Ajax for formData requests
         if (postType === 'Status') {
             const body: any = {
                 id: this.apiService.getUserId(),
@@ -98,24 +82,11 @@ export class PostService {
             formData.append('location', 'test');
             formData.append('description', updatedDescription);
 
-            jQuery.ajax({
-                url: apiUrl,
-                type: 'PUT',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false
-            }).done(() => {
-                    this._postMedia.next('done')
-            }).fail(function (jqXHR, exception) {
-                LE.log(`Error trying to access:  ${this.url} with error message of: ${jqXHR.status} ${jqXHR.responseText}`);
-            })
-
-            return this.postMedia$;
+            return this.http.put(apiUrl, formData);
         }
     }
 
-    deletePost(postId: string) {
+    public deletePost(postId: string) {
         const apiUrl = `${API.root}/car/${this.carService.selectedCar.id}/status/${postId}`;
 
         return this.http.request(apiUrl, {
@@ -124,7 +95,7 @@ export class PostService {
         });
     }
 
-    set topics(topics: string[]) {
-        this._topics = topics;
+    public setTopics(topics: string[]) {
+        this.topics = topics;
     }
 }
