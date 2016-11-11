@@ -25,7 +25,7 @@ app.use('/search', express.static(__dirname + '/server/fakeService/search.json')
 
 app.use('/callback.html', express.static(__dirname + '/callback.html'));
 
-//app.use(basicAuth('bizcarapp', 'meetbiz550'));
+app.use(basicAuth('bizcarapp', 'meetbiz550'));
 
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/index.html');

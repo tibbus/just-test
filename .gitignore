@@ -11,3 +11,5 @@ localhost_49687.v12.suo
 /typings
 
 npm-debug.log
+
+.vscode/**/*
