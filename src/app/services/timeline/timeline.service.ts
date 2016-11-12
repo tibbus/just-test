@@ -14,12 +14,12 @@ export class TimelineService {
     ) {}
 
     public posts: Post[];
-    private _selectedPostId: string;
-    private _selectedImageIndex: number;
+    private selectedPostId: string;
+    private selectedImageIndex: number;
     private posts$ = new Subject();
     public actor: any;
 
-    getPosts() {
+    public getPosts() {
         // get the token for getStream timeline call
         this.getToken().subscribe(token => {
             // set the getStream settings
@@ -36,7 +36,7 @@ export class TimelineService {
         return this.posts$;
     }
 
-    getToken() {
+    private getToken() {
         return this.http.request(this.apiService.getTokenUrl(), {
             body: this.actor,
             method: 'POST'
@@ -46,7 +46,7 @@ export class TimelineService {
         });
     }
 
-    handlePostsRequest(data) {
+    private handlePostsRequest(data) {
         this.posts = data.results.map(item => {
             // format all Object keys to lowercase
             const postObject: any = _.mapKeys(item.Target, (currentItem, currentKey: string) => {
@@ -60,27 +60,27 @@ export class TimelineService {
         this.posts$.next(this.posts);
     }
 
-    getPostById(id: string): any {
+    public getPostById(id: string): any {
         return _.find(this.posts, { id });
     }
 
-    set selectedPostId(id: string) {
-        this._selectedPostId = id;
+    public setSelectedPostId(id: string) {
+        this.selectedPostId = id;
     }
 
-    set selectedImage(index: number) {
-        this._selectedImageIndex = index;
+    public getSelectedPostId(): string {
+        return this.selectedPostId;
     }
 
-    get selectedPostId() {
-        return this._selectedPostId;
+    public setSelectedImage(index: number) {
+        this.selectedImageIndex = index;
     }
 
-    get selectedPost() {
+    public getSelectedImage(): number {
+        return this.selectedImageIndex;
+    }
+
+    public getSelectedPost() {
         return this.getPostById(this.selectedPostId);
-    }
-
-    get selectedImage() {
-        return this._selectedImageIndex;
     }
 }

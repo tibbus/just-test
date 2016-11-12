@@ -56,8 +56,8 @@ export class PostService {
     }
 
     public updatePost(updatedDescription, updatedFiles, updatedTopics) {
-        const postType: string = this.timelineService.selectedPost.type;
-        const apiUrl: string = this.apiService.getUpdatePostUrl(this.carService.selectedCar.id, postType.toLocaleLowerCase(), this.timelineService.selectedPostId);
+        const postType: string = this.timelineService.getSelectedPost().type;
+        const apiUrl: string = this.apiService.getUpdatePostUrl(this.carService.selectedCar.id, postType.toLocaleLowerCase(), this.timelineService.getSelectedPostId());
 
         if (postType === 'Status') {
             const body: any = {

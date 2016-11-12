@@ -58,8 +58,8 @@ export class CarComponent implements OnInit, OnDestroy {
     }
 
     getCars(carRoute: string) {
-        this.carService.getCars().delay(500).subscribe(
-            (cars: any) => {
+        this.carService.getCars().delay(100).subscribe(
+            cars => {
                 const parsedRoute = carRoute.split('-');
                 const carId = parsedRoute[parsedRoute.length - 1];
 

@@ -29,7 +29,7 @@ export class EditModalContentComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.post = this.timelineService.selectedPost;
+        this.post = this.timelineService.getSelectedPost();
         this.postDescription = this.post.description;
         this.postType = this.post.type;
         

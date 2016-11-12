@@ -83,15 +83,15 @@ export class TimelineComponent {
 
     onClickEdit(post: any) {
         this.selectedPostId = post;
-        this.timelineService.selectedPostId = post.id;
+        this.timelineService.setSelectedPostId(post.id);
 
         this.modalService.setModalName$('editModal');
     }
 
     clickImage(postId: string, index: number) {
         this.selectedPostId = postId;
-        this.timelineService.selectedPostId = postId;
-        this.timelineService.selectedImage = index;
+        this.timelineService.setSelectedPostId(postId);
+        this.timelineService.setSelectedImage(index);
 
         this.modalService.setModalName$('imageModal');
     }

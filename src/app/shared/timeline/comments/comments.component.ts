@@ -90,7 +90,7 @@ export class CommentsComponnent implements OnInit {
 
     clickEdit(selectedComment: any) {
         this.commentsService.setSelectedComment(selectedComment);
-        this.timelineService.selectedPostId = this.postId;
+        this.timelineService.setSelectedPostId(this.postId);
 
         this.modalService.setModalName$('editComments');
     }

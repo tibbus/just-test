@@ -35,7 +35,7 @@ export class EditCommentsComponent implements OnInit {
         this.modalService.setModalLoading$();
 
         const commentId =  this.selectedComment.id;
-        const postId = this.timelineService.selectedPostId;
+        const postId = this.timelineService.getSelectedPostId();
 
         this.commentsService.updateComment(commentId, postId, this.newCommentText).subscribe(
             () => {
