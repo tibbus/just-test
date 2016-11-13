@@ -72,6 +72,12 @@ export class ApiService {
         return `${API.root}${API.timeline}${postId}${API.comment}/${commentId}`;
     }
 
+    public getCarInfoUrl(carInfoId: string) {
+        const url = `${API.root}${API.carInfo}`;
+
+        return url.replace('{id}', carInfoId);
+    }
+
     public setStreamClient(streamClient: any) {
         this.streamClient = streamClient;
     }

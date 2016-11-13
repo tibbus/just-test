@@ -7,6 +7,7 @@ const API = {
     root: 'http://mycarbioservice.azurewebsites.net/api/v1',
 
     userCars: '/usercar/details=true',
+    carInfo: '/car/{id}/details',
     userRegisterCar: '/usercar/registration/',
     userRemoveCar: '/usercar/',
     user: '/user/',

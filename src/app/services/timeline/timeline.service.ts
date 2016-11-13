@@ -8,8 +8,8 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class TimelineService {
     constructor(
-        private http: Http, 
-        private apiService: ApiService, 
+        private http: Http,
+        private apiService: ApiService,
         private carService: CarService
     ) {}
 
@@ -21,7 +21,7 @@ export class TimelineService {
 
     public getPosts() {
         // get the token for getStream timeline call
-        this.getToken().subscribe(token => {
+        this.getToken$().subscribe(token => {
             // set the getStream settings
             const streamClient: any = this.apiService.getStreamClient();
             const streamCar = streamClient.feed(this.actor.actorType, this.actor.actorId, token);
@@ -29,24 +29,40 @@ export class TimelineService {
             // make the call request for the timeline
             const carTimelineRequest = streamCar.get({ limit: 20 }).then(data => {
                 // Callback function when we recive data, will call .next on the Observer
-                this.handlePostsRequest(data);
+                this.handlePostsRequest$(data);
             });
         });
 
-        return this.posts$;
+        return this.posts$.do((posts: any[]) => {
+            return posts.map(post => {
+                const carInfoUrl: string = this.apiService.getCarInfoUrl(post.carInfoId);
+
+                post.comments = {
+                    state: '+'
+                };
+
+                this.http.get(carInfoUrl).map((res: any) => {
+                    return res.json();
+                }).subscribe(car => {
+                    post.carInfo = car.carInfo.car;
+                });
+
+                return post;
+            });
+        });
     }
 
-    private getToken() {
+    private getToken$() {
         return this.http.request(this.apiService.getTokenUrl(), {
             body: this.actor,
             method: 'POST'
         })
-        .map((res: any) => {
-            return res.json().token;
-        });
+            .map((res: any) => {
+                return res.json().token;
+            });
     }
 
-    private handlePostsRequest(data) {
+    private handlePostsRequest$(data) {
         this.posts = data.results.map(item => {
             // format all Object keys to lowercase
             const postObject: any = _.mapKeys(item.Target, (currentItem, currentKey: string) => {

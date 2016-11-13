@@ -27,6 +27,7 @@ export class TimelineComponent {
     public modalName: string;
     public selectedPostId: string;
     public currentCommentText: string;
+    private posts$: any;
 
     constructor(
         private modalService: ModalService,
@@ -49,28 +50,23 @@ export class TimelineComponent {
             });
     }
 
-    ngOnInit() {
-        this.timelineService.getPosts().subscribe(
-            (posts: any) => {
-                this.posts = posts.map(post => {
-                    post.comments = {
-                        state: '+'
-                    };
+    private ngOnInit() {
+        this.posts$ = this.timelineService.getPosts().subscribe(
+            (posts: any[]) => {
+                this.posts = posts;
 
-                    return post;
-                });
-
-                console.log(this.posts);
                 this.followService.handleFollow();
             }
         );
     }
 
-    ngOnDestroy() {
+    private ngOnDestroy() {
         this.modalSubscription.unsubscribe();
+
+        this.posts$.unsubscribe();
     }
 
-    onClickDelete(postId: string) {
+    public onClickDelete(postId: string) {
         this.loading = postId;
 
         this.postService.deletePost(postId).delay(500).subscribe(
@@ -81,14 +77,14 @@ export class TimelineComponent {
         )
     }
 
-    onClickEdit(post: any) {
+    public onClickEdit(post: any) {
         this.selectedPostId = post;
         this.timelineService.setSelectedPostId(post.id);
 
         this.modalService.setModalName$('editModal');
     }
 
-    clickImage(postId: string, index: number) {
+    public clickImage(postId: string, index: number) {
         this.selectedPostId = postId;
         this.timelineService.setSelectedPostId(postId);
         this.timelineService.setSelectedImage(index);
@@ -96,7 +92,7 @@ export class TimelineComponent {
         this.modalService.setModalName$('imageModal');
     }
 
-    onClickShare(postId: string) {
+    public onClickShare(postId: string) {
         const post = this.timelineService.getPostById(postId);
         let imageUrl: string = null;
 
@@ -116,7 +112,7 @@ export class TimelineComponent {
         });
     }
 
-    clickGetComments(post: any) {
+    public clickGetComments(post: any) {
         if (post.comments.state === '-') {
             post.comments.state = '+';
         } else {
