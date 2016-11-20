@@ -87,4 +87,13 @@ export class CarService extends HttpService {
             };
         }
     }
+
+    public uploadProfileImage(car: any) {
+        const apiUrl: string = this.apiService.getCarImageUploadUrl(car.info.id);
+        const formData = new FormData();
+
+        formData.append('image', car.info.pictureData);
+
+        return this.http.post(apiUrl, formData);
+    }
 }

@@ -72,6 +72,12 @@ export class ApiService {
         return `${API.root}${API.timeline}${postId}${API.comment}/${commentId}`;
     }
 
+    public getCarImageUploadUrl(carId: string) {
+        const carUrl: string = `${API.root}${API.carImage}`
+
+        return carUrl.replace('{id}', carId);
+    }
+
     public getCarInfoUrl(carInfoId: string) {
         const url = `${API.root}${API.carInfo}`;
 

@@ -33,6 +33,8 @@ a .glyphicon {
 
 .panel-info {
     margin-top: 95px;
+    width: 100%;
+    float: left;
 }
 
 loading {
@@ -42,6 +44,51 @@ loading {
     position: absolute;
 }
 
+.car {
+    float: left;
+    position: relative;
+    width: 100%;
+    height: 100px;
+    padding: 10px 0;
+}
+
 .well {
     background: linear-gradient(#fff, #D1D1D1);
+    float: right;
+    width: 300px;
+    height: 58px;
+}
+
+.profile-picture {
+    position: relative;
+    float: left;
+
+    img {
+        height: 100%;
+    }
+
+    .change-picture {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background: black;
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+        padding: 2px;
+        opacity: 0.5;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+    }
+
+    .change-picture:hover {
+        opacity: 0.8;
+    }
+}
+
+.upload {
+    text-transform: none;
+    padding: 7px 20px;
+    margin-left: 20px;
 }

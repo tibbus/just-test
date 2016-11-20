@@ -17,7 +17,8 @@ const API = {
     token: '/feeds/token',
     follow: '/follow/',
     unFollow: '/unfollow/',
-    comment: '/comment'
+    comment: '/comment',
+    carImage: '/car/{id}/profile/image'
 }
 
 // SWITCH the FAKE service from here :

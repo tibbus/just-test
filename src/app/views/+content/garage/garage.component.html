@@ -3,7 +3,19 @@
     <loading *ngIf="loading"></loading>
 </div>
 
-<div *ngFor="let car of cars">
+<div *ngFor="let car of cars; let i=index" class="car">
+    <div class="profile-picture">
+        <img src="{{ car.info.image || '/assets/default-car.jpg'}}">
+        <span class="change-picture" uploadFile (onFileSelect)="clickAddPicture($event, i)">Change picture</span>
+    </div>
+    <a  *ngIf="car.pictureChanged"
+        class="btn btn-raised btn-success upload" 
+        [class.disabled]="false"
+        (click)="clickUploadPicture(car)"
+    >
+        <span class="save-text">Upload</span>
+        <span *ngIf="car.loading === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </a>
     <div class="well">
         <span>{{car.name}}</span> 
         <a class="btn glyphicon glyphicon-trash remove" 
@@ -12,7 +24,6 @@
         >
         </a>
     </div>
-
 </div>
 
 <div class="panel panel-info">

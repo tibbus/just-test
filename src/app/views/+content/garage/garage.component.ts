@@ -10,11 +10,11 @@ import { CarService, SidebarService, FollowService } from '../../../services/ind
 })
 
 export class GarageComponent implements OnInit {
-    cars: any;
-    regNumber: string;
-    loading: boolean = false;
-    requestState: boolean = false;
-    alertMessage: string;
+    public cars: any;
+    public regNumber: string;
+    public loading: boolean = false;
+    public requestState: boolean = false;
+    public alertMessage: string;
 
     constructor(private carService: CarService, private sidebarService: SidebarService, private followService: FollowService) { }
 
@@ -25,7 +25,7 @@ export class GarageComponent implements OnInit {
         this.getCars();
     }
 
-    getCars() {
+    private getCars() {
         this.carService.getCars().delay(500).subscribe(
             cars => {
                 this.cars = cars;
@@ -34,11 +34,11 @@ export class GarageComponent implements OnInit {
         );
     }
 
-    changeRegNumber(value: string) {
+    public changeRegNumber(value: string) {
         this.regNumber = value;
     }
 
-    clickAddCar() {
+    public clickAddCar() {
         this.loading = true;
 
         this.carService.addCar(this.regNumber)
@@ -54,7 +54,7 @@ export class GarageComponent implements OnInit {
             error => this.handleError(error));
     }
 
-    clickRemove(userCarId) {
+    public clickRemove(userCarId) {
         this.loading = true;
 
         this.carService.removeCar(userCarId)
@@ -71,11 +71,11 @@ export class GarageComponent implements OnInit {
     }
 
     // @Output : reset the message on alert Close
-    resetAlertMessage() {
+    private resetAlertMessage() {
         this.alertMessage = null;
     }
 
-    handleError(error: any) {
+    private handleError(error: any) {
         if (error.statusText === 'Not Found') {
             this.loading = false;
             
@@ -83,11 +83,32 @@ export class GarageComponent implements OnInit {
         }
 
         this.requestState = false;
-
         this.loading = false;
-
         this.alertMessage = 'Sorry, the request failed.';
 
         console.log(error);
+    }
+
+    public clickAddPicture(file: any, index: number) {
+        if (!file) {
+            return false;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+            this.cars[index].info.image = e.target.result;
+            this.cars[index].info.pictureData = file;
+            this.cars[index].pictureChanged = true;
+        }
+        reader.readAsDataURL(file);
+    }
+
+    public clickUploadPicture(car: any) {
+        car.loading = true;
+
+        this.carService.uploadProfileImage(car).subscribe(response => {
+            car.loading = false;
+            car.pictureChanged = false;
+        });
     }
 }
