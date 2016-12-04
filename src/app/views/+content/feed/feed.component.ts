@@ -19,6 +19,6 @@ export class FeedComponent {
             actorId: this.apiService.getUserId()
         };
 
-        this.followService.isFollowEnable$.next(false);
+        this.followService.setFollowState(false);
     }
 }

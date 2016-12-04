@@ -9,8 +9,8 @@ import { StreamService } from '../stream/stream.service';
 @Injectable()
 export class FollowService  {
     private posts$ = new Subject();
-    public following$ = new Subject();
-    public isFollowEnable$ = new Subject();
+    private following$ = new Subject();
+    private followState$ = new Subject();
     private posts;
     private actor: Actor;
 
@@ -63,5 +63,17 @@ export class FollowService  {
         })
 
         this.following$.next(car ? true : false);
+    }
+
+    public isUserFollowing$() {
+        return this.following$;
+    }
+
+    public getFollowState$() {
+        return this.followState$;
+    }
+
+    public setFollowState(state: boolean) {
+        this.followState$.next(state);
     }
 }

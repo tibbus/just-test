@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.followService.isFollowEnable$.next(false);
+        this.followService.setFollowState(false);
 
         this.sidebarService.setCarMenu$(null);
 

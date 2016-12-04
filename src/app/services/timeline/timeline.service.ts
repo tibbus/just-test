@@ -16,7 +16,7 @@ export class TimelineService {
         private streamService: StreamService
     ) {}
 
-    public posts: Post[];
+    private posts: Post[];
     private selectedPostId: string;
     private selectedImageIndex: number;
     private posts$ = new Subject();

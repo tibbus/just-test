@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
     selector: 'header',
     styleUrls: ['header.component.css'],
     templateUrl: 'header.component.html',
-    providers: [SearchService, StreamService],
+    providers: [SearchService, StreamService, FollowService],
     host: {
         '(document:click)': 'onClickOutside($event)',
     },
@@ -24,7 +24,7 @@ export class HeaderComponent {
     private searchTermStream = new Subject();
     hideSearchResults: boolean = true;
     followState: boolean;
-    isFollowEnabled: boolean = true;
+    public isFollowEnabled: boolean = true;
 
     constructor(
         private profileService: ProfileService,
@@ -50,12 +50,12 @@ export class HeaderComponent {
 
         this.followService.getPosts().subscribe();
 
-        this.followService.following$.subscribe((state: boolean) => {
+        this.followService.isUserFollowing$().subscribe((state: boolean) => {
             this.followState = state;
         })
 
-        this.followService.isFollowEnable$.subscribe((data: boolean) => {
-            this.isFollowEnabled = data;
+        this.followService.getFollowState$().subscribe((state: boolean) => {
+            this.isFollowEnabled = state;
         })
     }
 

@@ -69,7 +69,7 @@ export class CarComponent implements OnInit, OnDestroy {
                     actorId: carId
                 }; 
                 this.sidebarService.setCarMenu$(this.carService.selectedCar ? this.carService.selectedCar.name : null);
-                this.followService.isFollowEnable$.next(true);
+                this.followService.setFollowState(true);
 
                 this.carLoaded = true;
             });

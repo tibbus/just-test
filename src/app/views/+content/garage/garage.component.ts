@@ -20,7 +20,7 @@ export class GarageComponent implements OnInit {
 
     ngOnInit() {
         this.sidebarService.setCarMenu$('garage');
-        this.followService.isFollowEnable$.next(false);
+        this.followService.setFollowState(false);
 
         this.getCars();
     }
