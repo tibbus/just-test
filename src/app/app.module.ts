@@ -10,6 +10,7 @@ import { SidebarComponent } from './views/sidebar/sidebar.component';
 import { ProfileComponent, NotFoundComponent, FeedComponent } from './views/+content/index';
 import { GarageComponent } from './views/+content/garage/garage.component';
 import { GarageMenuComponent } from './views/sidebar/garageMenu/garageMenu.component';
+import { StreamService } from './services/stream/stream.service';
 
 import {
     ApiService,
@@ -52,6 +53,7 @@ import { SharedModule } from './shared/shared.module';
         TimelineService,
         FollowService,
         AuthService,
+        StreamService,
         { provide: RequestOptions, useClass: CustomRequestOptions },
         {
             provide: APP_INITIALIZER,

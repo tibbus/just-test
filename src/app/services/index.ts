@@ -11,3 +11,5 @@ export * from './search/search.service';
 export * from './follow/follow.service';
 export * from './comments/comments.service';
 export * from './auth/auth.service';
+export * from './stream/stream.service';
+export * from './stream/stream.model';

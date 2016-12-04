@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { ProfileService, SearchService, FollowService, SidebarService, AuthService } from '../../services/index';
+import { ProfileService, SearchService, FollowService, SidebarService, AuthService, StreamService } from '../../services/index';
 import { Profile } from '../../services/profile/profile';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
     selector: 'header',
     styleUrls: ['header.component.css'],
     templateUrl: 'header.component.html',
-    providers: [SearchService],
+    providers: [SearchService, StreamService],
     host: {
         '(document:click)': 'onClickOutside($event)',
     },
@@ -48,9 +48,7 @@ export class HeaderComponent {
     ngOnInit() {
         this.getProfile();
 
-        this.followService.getPosts().subscribe(data => {
-            this.followService.carFollowers = data;
-        });
+        this.followService.getPosts().subscribe();
 
         this.followService.following$.subscribe((state: boolean) => {
             this.followState = state;

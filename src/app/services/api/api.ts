@@ -1,8 +1,8 @@
 // SWITCH the FAKE service from here :
-const fakeServiceEnabled = true;
+const fakeServiceEnabled = false;
 
 const API = {
-    fakeServiceEnabled: null,
+    fakeServiceEnabled,
     /* **DEV** Enviroment */
     root: 'http://mycarbioservice.azurewebsites.net/api/v1',
 
@@ -20,9 +20,6 @@ const API = {
     comment: '/comment',
     carImage: '/car/{id}/profile/image'
 }
-
-// SWITCH the FAKE service from here :
-API.fakeServiceEnabled = false;
 
 if (API.fakeServiceEnabled) {
     API.root = `${window.location.origin}/api/v1`;

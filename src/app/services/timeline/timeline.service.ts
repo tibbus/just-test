@@ -1,39 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { ApiService, CarService, API, HttpService } from '../index';
-import { Timeline, Post } from './timeline';
-import * as _ from 'lodash';
 import { Subject } from 'rxjs/Subject';
+import * as _ from 'lodash';
+
+import { ApiService, CarService, API, HttpService, Actor } from '../index';
+import { StreamService } from '../stream/stream.service';
+import { Timeline, Post } from './timeline';
 
 @Injectable()
 export class TimelineService {
     constructor(
         private http: Http,
         private apiService: ApiService,
-        private carService: CarService
+        private carService: CarService,
+        private streamService: StreamService
     ) {}
 
     public posts: Post[];
     private selectedPostId: string;
     private selectedImageIndex: number;
     private posts$ = new Subject();
-    public actor: any;
+    public actor: Actor;
 
     public getPosts() {
-        // get the token for getStream timeline call
-        this.getToken$().subscribe(token => {
-            // set the getStream settings
-            const streamClient: any = this.apiService.getStreamClient();
-            const streamCar = streamClient.feed(this.actor.actorType, this.actor.actorId, token);
-
-            // make the call request for the timeline
-            const carTimelineRequest = streamCar.get({ limit: 20 }).then(data => {
-                // Callback function when we recive data, will call .next on the Observer
-                this.handlePostsRequest$(data);
-            });
-        });
-
-        return this.posts$.do((posts: any[]) => {
+       return this.streamService.getData(this.actor).do((posts: any[]) => {
             return posts.map(post => {
                 const carInfoUrl: string = this.apiService.getCarInfoUrl(post.carInfoId);
 
