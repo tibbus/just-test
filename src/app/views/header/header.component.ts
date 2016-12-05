@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { ProfileService, SearchService, FollowService, SidebarService, AuthService, StreamService } from '../../services/index';
-import { Profile } from '../../services/profile/profile';
+import { Profile } from '../../services/profile/profile.model';
 import { Router } from '@angular/router';
 
 @Component({

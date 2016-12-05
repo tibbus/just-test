@@ -1,9 +1,10 @@
 import {Injectable}     from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import {Profile} from './profile';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { HttpService } from '../http/http.service';
+
+import { Profile } from './profile.model';
 import { ApiService } from '../api/api.service';
 import { API } from '../api/api';
 
@@ -13,11 +14,11 @@ export class ProfileService extends HttpService {
         super(http, apiService.getProfileUrl());
     }
 
-    getProfile() {
+    public getProfile() {
         return this.getData();
     }
 
-    setProfile(profile: Profile) {
+    public setProfile(profile: Profile) {
         const body = JSON.stringify(profile);
 
         return this.http.request(this.apiService.getProfileUrl(), {

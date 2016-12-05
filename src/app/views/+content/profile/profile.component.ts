@@ -2,7 +2,7 @@
 import { Response } from '@angular/http';
 
 import { ProfileService, SidebarService, FollowService } from '../../../services/index';
-import { Profile } from '../../../services/profile/profile';
+import { Profile } from '../../../services/profile/profile.model';
 
 @Component({
     moduleId: module.id,

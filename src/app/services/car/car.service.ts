@@ -4,7 +4,7 @@ import { ReplaySubject }    from 'rxjs/ReplaySubject';
 
 import { HttpService } from '../http/http.service';
 import { ApiService } from '../api/api.service';
-import { Car, CarInfo, Mot, Tax } from './car';
+import { Car, CarInfo, Mot, Tax } from './car.model';
 import * as _ from 'lodash';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import { RequestInterface } from '../http/request.interface';
+import { RequestInterface } from '../http/request.model';
 
 export interface Timeline {
     results: Post[],

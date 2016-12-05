@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 
 import { ApiService, CarService, API, HttpService, Actor } from '../index';
 import { StreamService } from '../stream/stream.service';
-import { Timeline, Post } from './timeline';
+import { Timeline, Post } from './timeline.model';
 
 @Injectable()
 export class TimelineService {
@@ -24,7 +24,7 @@ export class TimelineService {
 
     public getPosts() {
        return this.streamService.getData(this.actor).do((posts: any[]) => {
-            return posts.map(post => {
+            this.posts = posts.map(post => {
                 const carInfoUrl: string = this.apiService.getCarInfoUrl(post.carInfoId);
 
                 post.comments = {
@@ -39,31 +39,9 @@ export class TimelineService {
 
                 return post;
             });
+
+            return this.posts;
         });
-    }
-
-    private getToken$() {
-        return this.http.request(this.apiService.getTokenUrl(), {
-            body: this.actor,
-            method: 'POST'
-        })
-            .map((res: any) => {
-                return res.json().token;
-            });
-    }
-
-    private handlePostsRequest$(data) {
-        this.posts = data.results.map(item => {
-            // format all Object keys to lowercase
-            const postObject: any = _.mapKeys(item.Target, (currentItem, currentKey: string) => {
-                return currentKey[0].toLowerCase() + currentKey.substr(1);
-            });
-            postObject.type = item.object;
-
-            return postObject;
-        });
-
-        this.posts$.next(this.posts);
     }
 
     public getPostById(id: string): any {

@@ -7,7 +7,7 @@ import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsMod
 import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
 import { CarService, ModalService, TimelineService, PostService, FollowService, SidebarService } from '../../../services/index';
 
-import { Car, CarInfo, Mot, Tax } from '../../../services/car/car';
+import { Car, CarInfo, Mot, Tax } from '../../../services/car/car.model';
 
 @Component({
     moduleId: module.id,

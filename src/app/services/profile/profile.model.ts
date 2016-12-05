@@ -1,4 +1,4 @@
-import { RequestInterface } from '../http/request.interface';
+import { RequestInterface } from '../http/request.model';
 
 export interface Profile extends RequestInterface {
     title?: string,

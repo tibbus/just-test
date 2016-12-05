@@ -24,11 +24,8 @@ export class ImageModalContentComponent implements OnInit {
 
     ngOnInit() {
         this.currentImageIndex = this.timelineService.getSelectedImage();
-
         this.imageListLength = this.timelineService.getSelectedPost().contentUris.length;
-
         this.image = this.timelineService.getSelectedPost().contentUris[this.currentImageIndex];
-
         this.createdDate = this.timelineService.getSelectedPost().createdDate;
     }
 
@@ -36,7 +33,6 @@ export class ImageModalContentComponent implements OnInit {
         const imageListLength = this.timelineService.getSelectedPost().contentUris.length;
 
         this.currentImageIndex += direction;
-
         this.image = this.timelineService.getSelectedPost().contentUris[this.currentImageIndex];
     }
 }
