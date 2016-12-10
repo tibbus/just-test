@@ -22,7 +22,8 @@ import {
     TimelineService,
     FollowService,
     CommentsService,
-    AuthService
+    AuthService,
+    LikesService
 } from './services/index';
 
 import { SharedModule } from './shared/shared.module';
@@ -54,6 +55,7 @@ import { SharedModule } from './shared/shared.module';
         FollowService,
         AuthService,
         StreamService,
+        LikesService,
         { provide: RequestOptions, useClass: CustomRequestOptions },
         {
             provide: APP_INITIALIZER,

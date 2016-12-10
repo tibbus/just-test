@@ -1,7 +1,7 @@
-﻿import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ModalService, TimelineService, PostService, FollowService } from '../../services/index';
+import { ModalService, TimelineService, PostService, FollowService, LikesService } from '../../services/index';
 import { EditModalContentComponent } from './editModal/editModalContent.component';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 
@@ -16,7 +16,7 @@ declare var FB: any;
     providers: [ModalService, PostService]
 })
 
-export class TimelineComponent {
+export class TimelineComponent implements OnInit, OnDestroy {
     @Input() isFeed: boolean;
 
     public EditModalComponent: any = EditModalContentComponent;
@@ -34,7 +34,8 @@ export class TimelineComponent {
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
         private postService: PostService,
-        private followService: FollowService
+        private followService: FollowService,
+        private likesService: LikesService
     ) {
         // on modal open/close :
         this.modalSubscription = modalService.getModalName$().subscribe(
@@ -50,20 +51,31 @@ export class TimelineComponent {
             });
     }
 
-    private ngOnInit() {
+    ngOnInit() {
         this.posts$ = this.timelineService.getPosts().subscribe(
             (posts: any[]) => {
                 this.posts = posts;
 
                 this.followService.handleFollow();
+
+                this.mapLikesToPosts();
             }
         );
     }
 
-    private ngOnDestroy() {
+    ngOnDestroy() {
         this.modalSubscription.unsubscribe();
 
         this.posts$.unsubscribe();
+    }
+
+    private mapLikesToPosts() {
+        // map likes to posts
+        this.likesService.getPostsLikesCount(this.posts).subscribe(posts => {
+            this.posts = posts;
+            console.log(posts);
+            this.ref.detectChanges();
+        });
     }
 
     public onClickDelete(postId: string) {
@@ -118,5 +130,11 @@ export class TimelineComponent {
         } else {
             post.comments.state = '-';
         }
+    }
+
+    public clickLike(post: any) {
+        this.likesService.likePost(post.id, 'timeline', post.likes).subscribe(data => {
+            this.mapLikesToPosts();
+        });
     }
 }

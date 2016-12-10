@@ -73,7 +73,7 @@ export class ApiService {
     }
 
     public getCarImageUploadUrl(carId: string) {
-        const carUrl: string = `${API.root}${API.carImage}`
+        const carUrl: string = `${API.root}${API.carImage}`;
 
         return carUrl.replace('{id}', carId);
     }
@@ -90,5 +90,25 @@ export class ApiService {
 
     public getStreamClient() {
         return this.streamClient;
+    }
+
+    public getLikesCountUrl(postType: string, postId: string): string {
+        let url: string = `${API.root}${API.likesCount}`;
+        url = url.replace('{postType}', postType);
+        url = url.replace('{postId}', postId);
+
+        return url;
+    }
+
+    public getAddLikeUrl(): string {
+        return `${API.root}${API.likes}`;
+    }
+
+    public getLikesUrl(postType: string, postId: string): string {
+        return `${API.root}${API.likes}/${postType}/${postId}`;
+    }
+
+    public getRemoveLikeUrl(postId: string): string {
+        return `${API.root}${API.likes}/${postId}`;
     }
 }

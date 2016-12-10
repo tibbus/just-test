@@ -13,3 +13,4 @@ export * from './comments/comments.service';
 export * from './auth/auth.service';
 export * from './stream/stream.service';
 export * from './stream/stream.model';
+export * from './likes/likes.service';

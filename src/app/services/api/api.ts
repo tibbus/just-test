@@ -18,7 +18,9 @@ const API = {
     follow: '/follow/',
     unFollow: '/unfollow/',
     comment: '/comment',
-    carImage: '/car/{id}/profile/image'
+    carImage: '/car/{id}/profile/image',
+    likes: '/timeline/likes',
+    likesCount: '/timeline/likes/{postType}/{postId}/count'
 }
 
 if (API.fakeServiceEnabled) {

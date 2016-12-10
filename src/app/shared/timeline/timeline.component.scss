@@ -28,6 +28,14 @@
         font-weight: 500;
         font-size: 16px;
     }
+
+    .like__button {
+        padding-right: 0;
+
+        &--enabled {
+            font-weight: bold;
+        }
+    }
 }
 
 .show-comments {
@@ -173,4 +181,8 @@ video {
 .topics {
     float: right;
     margin-right: 20px;
+}
+
+.like__count {
+    font-size: 12px;
 }

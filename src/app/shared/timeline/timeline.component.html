@@ -46,7 +46,12 @@
 
     <div class="line"></div>
     <div class="social">
-        <a>Like</a> 
+        <a 
+            class="like__button" 
+            (click)="clickLike(post)"
+            [ngClass]="{'like__button--enabled': post.likes?.isCurrentUserLike}"
+        >Like
+        </a> <span class="like__count">{{post.likes?.count}}</span> 
         <a (click)="onClickShare(post.id)">Share</a>
     </div>
 
