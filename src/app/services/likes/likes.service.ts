@@ -29,7 +29,7 @@ export class LikesService {
                 post.likes = {
                     list: likes[index],
                     count: likes[index].length,
-                    isCurrentUserLike: this.isCurrentUserLike(likes[index])
+                    isCurrentUserLike: !!this.getCurrentUserLike(likes[index])
                 }
 
                 return post;
@@ -37,19 +37,20 @@ export class LikesService {
         });
     }
 
-    private isCurrentUserLike(likes) {
-        return !!_.find(likes, (likeObj: any) => {
+    private getCurrentUserLike(likes) {
+        return _.find(likes, (likeObj: any) => {
             // Not explecit as id from BE can be a number
             return likeObj.userId == this.apiService.getUserId()
         });
     }
 
-    
-    public likePost(postId: string, postType: string, likes) {
+    public likePost(postId: string, postType: string, likes: any = {}) {
         // If user already likes the post then unlike it
         // BE api doesn't work for this yet
         if (likes.isCurrentUserLike) {
-            return this.http.delete(this.apiService.getRemoveLikeUrl(postId));
+            const currentUserLikeId = this.getCurrentUserLike(likes.list).id;
+
+            return this.http.delete(this.apiService.getRemoveLikeUrl(currentUserLikeId));
         }
 
         return this.http.post(this.apiService.getAddLikeUrl(), {

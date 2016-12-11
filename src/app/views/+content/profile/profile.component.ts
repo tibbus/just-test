@@ -39,14 +39,14 @@ export class ProfileComponent implements OnInit {
 
         this.profileService.getProfile()
             .subscribe(
-            (profile: Profile) => {
-                    // End loading
-                    this.profileLoading = false;
+                (profile: Profile) => {
+                        // End loading
+                        this.profileLoading = false;
 
-                    this.profile = profile;
-            },
-            error => this.handleError(error)
-        );
+                        this.profile = profile;
+                },
+                error => this.handleError(error)
+            );
     }
 
     saveProfile() {

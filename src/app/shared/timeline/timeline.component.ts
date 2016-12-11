@@ -71,11 +71,13 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
     private mapLikesToPosts() {
         // map likes to posts
-        this.likesService.getPostsLikesCount(this.posts).subscribe(posts => {
-            this.posts = posts;
-            console.log(posts);
-            this.ref.detectChanges();
-        });
+        this.likesService.getPostsLikesCount(this.posts).subscribe(
+            posts => {
+                this.posts = posts;
+                console.log(posts);
+                this.ref.detectChanges();
+            }
+        );
     }
 
     public onClickDelete(postId: string) {
