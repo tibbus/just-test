@@ -8,7 +8,8 @@ const API = {
 
     userCars: '/usercar/details=true',
     carInfo: '/car/{id}/details',
-    userRegisterCar: '/usercar/registration/',
+    registerCar: '/car/registration/{regNumber}',
+    userAddCar: '/user/{userId}/usercar/add/{carInfoId}',
     userRemoveCar: '/usercar/',
     user: '/user/',
     timeline: '/timeline/',

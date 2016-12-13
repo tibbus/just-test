@@ -10,11 +10,11 @@ export class ApiService {
 
     private get user(): string {
         return `${API.user}${this.userId}`;
-    } 
+    }
 
     public getUserId(): string {
         return this.userId;
-    } 
+    }
 
     public setUser(userId: string) {
        this.userId = userId;
@@ -33,7 +33,17 @@ export class ApiService {
     }
 
     public getRegisterCarUrl(regNumber: string): string {
-        return `${API.root}${this.user}${API.userRegisterCar}${regNumber}`;
+        const url = `${API.root}${API.registerCar}`;
+
+        return url.replace('{regNumber}', regNumber);
+    }
+
+    public getUserAddCarUrl(carInfoId: string): string {
+        let url = `${API.root}${API.userAddCar}`;
+        url = url.replace('{userId}', this.getUserId());
+        url = url.replace('{carInfoId}', carInfoId);
+
+        return url;
     }
 
     public getRemoveCarUrl(id: string): string {

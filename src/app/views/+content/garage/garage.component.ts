@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { CarService, SidebarService, FollowService } from '../../../services/index';
 
@@ -15,18 +15,23 @@ export class GarageComponent implements OnInit {
     public loading: boolean = false;
     public requestState: boolean = false;
     public alertMessage: string;
+    public carDetails;
 
-    constructor(private carService: CarService, private sidebarService: SidebarService, private followService: FollowService) { }
+    constructor(
+        private carService: CarService,
+        private sidebarService: SidebarService,
+        private followService: FollowService,
+        private changeDetector: ChangeDetectorRef) { }
 
     ngOnInit() {
         this.sidebarService.setCarMenu$('garage');
         this.followService.setFollowState(false);
 
-        this.getCars();
+        this.getCars(false);
     }
 
-    private getCars() {
-        this.carService.getCars().delay(500).subscribe(
+    private getCars(refreshRequest: boolean) {
+        this.carService.getCars(refreshRequest).subscribe(
             cars => {
                 this.cars = cars;
             },
@@ -38,20 +43,26 @@ export class GarageComponent implements OnInit {
         this.regNumber = value;
     }
 
+    public clickSearchCar() {
+        this.carService.searchCarByRegNumber(this.regNumber)
+            .subscribe(
+            (car) => {
+                this.carDetails = car;
+            },
+            error => this.handleError(error));
+    }
+
     public clickAddCar() {
         this.loading = true;
 
-        this.carService.addCar(this.regNumber)
-            .subscribe(
-            () => {
-                this.loading = false;
-                this.requestState = true;
-                this.alertMessage = `The car with the registration number: ${this.regNumber} was succesufully added to your garage !`;
+        this.carService.addCar(this.carDetails.id).subscribe(data => { console.log(data);
+            this.loading = false;
+            this.requestState = true;
+            this.alertMessage = `The car with the registration number: ${this.regNumber} was succesufully added to your garage !`;
 
-                // update the car list (make a new server request in the service)
-                this.carService.getCars(true);
-            },
-            error => this.handleError(error));
+            // update the car list (make a new server request in the service)
+            this.carService.getCars(true);
+        })
     }
 
     public clickRemove(userCarId) {
@@ -78,7 +89,7 @@ export class GarageComponent implements OnInit {
     private handleError(error: any) {
         if (error.statusText === 'Not Found') {
             this.loading = false;
-            
+
             return;
         }
 

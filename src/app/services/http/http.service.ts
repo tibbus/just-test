@@ -11,7 +11,7 @@ export abstract class HttpService {
     constructor(private _http: Http, public url: string) { }
 
     private dataObs$ = new ReplaySubject(1);
-    public dataObject; 
+    public dataObject;
 
     private getDataFromHttp() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -26,7 +26,7 @@ export abstract class HttpService {
     }
 
     public getData(forceRefresh?: boolean) {
-        // If the Subject was NOT subscribed before OR if forceRefresh is requested 
+        // If the Subject was NOT subscribed before OR if forceRefresh is requested
         if (!this.dataObs$.observers.length || forceRefresh) {
             this.getDataFromHttp().subscribe(
                 data => {

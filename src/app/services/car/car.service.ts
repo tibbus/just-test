@@ -38,13 +38,16 @@ export class CarService extends HttpService {
         });
     }
 
-    public addCar(regNumber: string) {
+    public addCar(carInfoId: string) {
+        const apiUrl: string = this.apiService.getUserAddCarUrl(carInfoId);
+
+        return this.http.post(apiUrl, null);
+    }
+
+    public searchCarByRegNumber(regNumber: string) {
         const apiUrl: string = this.apiService.getRegisterCarUrl(regNumber);
 
-        return this.http.request(apiUrl, {
-            body: '',
-            method: 'POST'
-        });
+        return this.http.get(apiUrl).map(response => response.json());
     }
 
     public removeCar(id: string) {
