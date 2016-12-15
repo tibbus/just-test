@@ -59,6 +59,8 @@ export class GarageComponent implements OnInit {
             this.loading = false;
             this.requestState = true;
             this.alertMessage = `The car with the registration number: ${this.regNumber} was succesufully added to your garage !`;
+            this.regNumber = null;
+            this.carDetails = null;
 
             // update the car list (make a new server request in the service)
             this.getCars(true);

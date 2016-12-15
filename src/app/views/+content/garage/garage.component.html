@@ -27,7 +27,7 @@
         <div class="form-group label-floating">
             <div class="input-group">
                 <label class="control-label">Enter the Registration Number</label>
-                <input type="text" class="form-control" #box (keyup)="changeRegNumber(box.value)">
+                <input type="text" class="form-control" [(ngModel)]="regNumber">
                 <p class="help-block">You need to enter a valid <code>Registration Number</code> in order to add a car.</p>
                 <span class="input-group-btn">
                     <a class="btn btn-raised btn-success"
