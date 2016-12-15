@@ -38,6 +38,9 @@ export abstract class HttpService {
                     LE.log(`Error trying to access: ${this.url}`);
 
                     this.dataObs$.error(error);
+
+                    // Create a new Observable as on Error the Observable becames innactive
+                    this.dataObs$ = new ReplaySubject(1);
                 });
         }
 

@@ -61,7 +61,7 @@ export class GarageComponent implements OnInit {
             this.alertMessage = `The car with the registration number: ${this.regNumber} was succesufully added to your garage !`;
 
             // update the car list (make a new server request in the service)
-            this.carService.getCars(true);
+            this.getCars(true);
         })
     }
 
@@ -76,7 +76,7 @@ export class GarageComponent implements OnInit {
                 this.alertMessage = `The car was successfully removed from your garage !`;
 
                 // update the car list (make a new server request in the service)
-                this.carService.getCars(true);
+                this.getCars(true);
             },
             error => this.handleError(error));
     }
