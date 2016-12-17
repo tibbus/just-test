@@ -15,8 +15,8 @@ export class FollowService  {
     private actor: Actor;
 
     constructor(
-        private http: Http, 
-        private apiService: ApiService, 
+        private http: Http,
+        private apiService: ApiService,
         private carService: CarService,
         private streamService: StreamService
     ) {
@@ -31,7 +31,7 @@ export class FollowService  {
             this.posts = data;
         });
     }
-    
+
     public followCar() {
         return this.http.request(this.apiService.getFollowUrl(this.carService.selectedCar.id), {
             body: '',

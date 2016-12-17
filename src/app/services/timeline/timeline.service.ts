@@ -25,7 +25,7 @@ export class TimelineService {
     public getPosts() {
        return this.streamService.getData(this.actor).do((posts: any[]) => {
             this.posts = posts.map(post => {
-                const carInfoUrl: string = this.apiService.getCarInfoUrl(post.carInfoId);
+                const carInfoUrl: string = this.apiService.getCarInfoUrl(post.activityData.carInfoId);
 
                 post.comments = {
                     state: '+'

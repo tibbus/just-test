@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
@@ -15,13 +15,13 @@ export class LikesService {
     public getPostsLikesCount(posts: any[]) {
         // extract the post IDs in to an Array
         const ids = posts.map(post => {
-            return post.id;
+            return post.activityData.id;
         });
         const obs: Observable<any>[] = [];
 
         // Make a http request for each post and map the likes to it
         ids.forEach(id => {
-            obs.push(this.http.get(this.apiService.getLikesUrl('timeline', id)).map(res => res.json()));
+            obs.push(this.http.get(this.apiService.getLikesUrl('timeline', id)).map(res => res.json()).catch(this.handleError));
         })
 
         return Observable.forkJoin(obs).map(likes => {
@@ -35,6 +35,12 @@ export class LikesService {
                 return post;
             })
         });
+    }
+
+    // Return an empty array [] as BE is bugged and returns and error when are 0 likes instead of []
+    private handleError(error: any) {
+        console.log('error');
+        return Observable.of([]);
     }
 
     private getCurrentUserLike(likes) {

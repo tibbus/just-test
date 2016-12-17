@@ -30,10 +30,10 @@ export class EditModalContentComponent implements OnInit {
 
     ngOnInit() {
         this.post = this.timelineService.getSelectedPost();
-        this.postDescription = this.post.description;
+        this.postDescription = this.post.activityData.description;
         this.postType = this.post.type;
-        
-        this.selectedTopics = this.post.topics;
+
+        this.selectedTopics = this.post.activityData.topics;
         this.topics = _.filter(this.topics, (topic): boolean => {
             return this.selectedTopics.indexOf(topic) === -1;
         });

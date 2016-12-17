@@ -93,7 +93,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
     public onClickEdit(post: any) {
         this.selectedPostId = post;
-        this.timelineService.setSelectedPostId(post.id);
+        this.timelineService.setSelectedPostId(post.activityData.id);
 
         this.modalService.setModalName$('editModal');
     }
@@ -111,7 +111,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
         let imageUrl: string = null;
 
         if (post.type === 'Image') {
-            imageUrl = post.contentUris[0];
+            imageUrl = post.activityData.contentUris[0];
         } else {
             imageUrl = 'https://amiladevapiaccount.blob.core.windows.net/carinfoid31/Image/03072016/6df34b18-f88a-4107-a63c-8a24ad5d463c/car2.JPG';
         }
@@ -135,7 +135,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     }
 
     public clickLike(post: any) {
-        this.likesService.likePost(post.id, 'timeline', post.likes).subscribe(data => {
+        this.likesService.likePost(post.activityData.id, 'timeline', post.likes).subscribe(data => {
             this.mapLikesToPosts();
         });
     }

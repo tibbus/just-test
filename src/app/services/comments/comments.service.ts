@@ -11,13 +11,13 @@ export class CommentsService {
 
     constructor(private http: Http, private apiService: ApiService) { }
 
-    getComments(postId: string) {
+    public getComments(postId: string) {
         this.fetchComments(postId);
 
         return this.$comments;
     }
 
-    fetchComments(postId: string) {
+    public fetchComments(postId: string) {
         const $dataComments = this.http
             .get(this.apiService.getCommentsUrl(postId))
             .map(res => res.json())
@@ -29,7 +29,7 @@ export class CommentsService {
         return $dataComments;
     }
 
-    addComment(postId: string, commentText: string) {
+    public addComment(postId: string, commentText: string) {
         const body = {
             'authorUserId': this.apiService.getUserId(),
             'recipientUserId': this.apiService.getUserId(),
@@ -43,7 +43,7 @@ export class CommentsService {
             .do(data => console.log(data))
     }
 
-    removeComment(postId: string, commentId: string) {
+    public removeComment(postId: string, commentId: string) {
         const body = '';
 
         return this.http.request(this.apiService.getChangeCommentsUrl(postId, commentId), {
@@ -53,7 +53,7 @@ export class CommentsService {
             .do(data => console.log(data))
     }
 
-    updateComment(commentId: string, postId: string, comment: string) {
+    public updateComment(commentId: string, postId: string, comment: string) {
         const body = {
             comment
         };
@@ -65,11 +65,11 @@ export class CommentsService {
             .do(data => console.log(data))
     }
 
-    setSelectedComment(comment: any) {
+    public setSelectedComment(comment: any) {
         this.selectedComment = comment;
     }
 
-    getSelectedComment() {
+    public getSelectedComment() {
         return this.selectedComment;
     }
 }

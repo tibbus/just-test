@@ -24,15 +24,15 @@ export class ImageModalContentComponent implements OnInit {
 
     ngOnInit() {
         this.currentImageIndex = this.timelineService.getSelectedImage();
-        this.imageListLength = this.timelineService.getSelectedPost().contentUris.length;
-        this.image = this.timelineService.getSelectedPost().contentUris[this.currentImageIndex];
-        this.createdDate = this.timelineService.getSelectedPost().createdDate;
+        this.imageListLength = this.timelineService.getSelectedPost().activityData.contentUris.length;
+        this.image = this.timelineService.getSelectedPost().activityData.contentUris[this.currentImageIndex];
+        this.createdDate = this.timelineService.getSelectedPost().activityData.createdDate;
     }
 
     navigate(direction: number) {
-        const imageListLength = this.timelineService.getSelectedPost().contentUris.length;
+        const imageListLength = this.timelineService.getSelectedPost().activityData.contentUris.length;
 
         this.currentImageIndex += direction;
-        this.image = this.timelineService.getSelectedPost().contentUris[this.currentImageIndex];
+        this.image = this.timelineService.getSelectedPost().activityData.contentUris[this.currentImageIndex];
     }
 }

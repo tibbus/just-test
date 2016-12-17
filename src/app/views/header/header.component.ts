@@ -33,7 +33,7 @@ export class HeaderComponent {
         private router: Router,
         private sidebarService: SidebarService,
         private authService: AuthService
-    ) { }    
+    ) { }
 
     getProfile() {
         this.profileService.getProfile()
@@ -92,7 +92,7 @@ export class HeaderComponent {
 
         this.router.navigate(['/cars', parsedRouteFromCar]).then(() => {
             this.sidebarService.setCarMenu$(null);
-        }); 
+        });
     }
 
     clickSignOut() {
