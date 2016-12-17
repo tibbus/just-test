@@ -14,9 +14,9 @@
                 <div class="form-group">
                     <input type="text" class="form-control col-md-8 search" placeholder="Search for cars" #term (keyup)="search(term.value)">
                     <ul class="search-result" [class.hide]="hideSearchResults">
-                        <li *ngFor="let item of items | async"
+                        <li *ngFor="let item of items$ | async"
                             (click)="onClickSearchResult(item)"
-                            >{{items.length}}{{item.Make}} {{item.Model}} {{item.YearOfManufacture}}
+                            >{{item.make}} {{item.model}} {{item.yearOfManufacture}}
                         </li>
                         <li *ngIf="!searchService.hasData" class="no-results">No results found</li>
                     </ul>
@@ -26,8 +26,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="javascript:void(0)"
-                       *ngIf="isFollowEnabled" 
-                       (click)="onClickUnFollow()" 
+                       *ngIf="isFollowEnabled"
+                       (click)="onClickUnFollow()"
                        [class.followActive]="!this.followState"
                     >
                         Unfollow
@@ -35,7 +35,7 @@
                 </li>
                 <li>
                     <a href="javascript:void(0)"
-                       *ngIf="isFollowEnabled" 
+                       *ngIf="isFollowEnabled"
                        (click)="onClickFollow()"
                        [class.followActive]="this.followState">
                         Folllow

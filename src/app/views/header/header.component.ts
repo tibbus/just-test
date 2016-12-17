@@ -25,6 +25,7 @@ export class HeaderComponent {
     hideSearchResults: boolean = true;
     followState: boolean;
     public isFollowEnabled: boolean = true;
+    public items$: Observable<string[]>;
 
     constructor(
         private profileService: ProfileService,
@@ -57,18 +58,16 @@ export class HeaderComponent {
         this.followService.getFollowState$().subscribe((state: boolean) => {
             this.isFollowEnabled = state;
         })
+
+        this.items$ = this.searchService.getSearchResult();
     }
 
     search(term: string) {
         this.hideSearchResults = false;
 
-        this.searchTermStream.next(term);
+        // Send the new search word to the service, will do a .next on the Observable
+        this.searchService.searchFor(term);
     }
-
-    items: Observable<string[]> = this.searchTermStream
-        .debounceTime(300)
-        .distinctUntilChanged()
-        .switchMap((term: string) => this.searchService.search(term));
 
     onClickFollow() {
         this.followService.followCar().subscribe(data => {
@@ -87,7 +86,7 @@ export class HeaderComponent {
     }
 
     onClickSearchResult(car) {
-        const routeFromCar = `${car.Make}-${car.Model}-${car.CarInfoId}`;
+        const routeFromCar = `${car.make}-${car.model}-${car.carInfoId}`;
         const parsedRouteFromCar = routeFromCar.replace(/ /g, '-');
 
         this.router.navigate(['/cars', parsedRouteFromCar]).then(() => {
