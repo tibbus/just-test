@@ -8,10 +8,9 @@ import { StreamService } from '../stream/stream.service';
 
 @Injectable()
 export class FollowService  {
-    private posts$ = new Subject();
     private following$ = new Subject();
     private followState$ = new Subject();
-    private posts;
+    private followings: any[];
     private actor: Actor;
 
     constructor(
@@ -26,10 +25,12 @@ export class FollowService  {
         };
      }
 
-    public getPosts() {
-        return this.streamService.getData(this.actor).do(data => {
-            this.posts = data;
-        });
+    public requestUserFollowing$() {
+        return this.streamService.getUserFollowing$(this.actor).do((followings: any[]) => {
+            this.followings = followings;
+
+            this.handleFollow();
+        })
     }
 
     public followCar() {
@@ -38,9 +39,7 @@ export class FollowService  {
             method: 'POST'
         }).do(data => {
             // Update the followers list
-            this.posts.push({
-                carInfoId: this.carService.selectedCar.id
-            });
+            this.requestUserFollowing$().subscribe();
         })
     }
 
@@ -50,19 +49,16 @@ export class FollowService  {
             method: 'POST'
         }).do(data => {
             // Update the followers list
-            this.posts = _.filter(this.posts, (car: any) => {
-                // Not a strict comparison due to BE bug where some are strings some are nubmers
-                return car.carInfoId != this.carService.selectedCar.id;
-            });
+            this.requestUserFollowing$().subscribe();
         })
     }
 
     public handleFollow() {
-        const car = _.find(this.posts, (car: any) => {
-            return car.carInfoId == this.carService.selectedCar.id;
+        const isFollowing = _.find(this.followings, (following: any) => {
+            return following.target_id.split('car:')[1] == this.carService.selectedCar.id;
         })
 
-        this.following$.next(car ? true : false);
+        this.following$.next(isFollowing ? true : false);
     }
 
     public isUserFollowing$() {

@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
     selector: 'header',
     styleUrls: ['header.component.css'],
     templateUrl: 'header.component.html',
-    providers: [SearchService, StreamService, FollowService],
+    providers: [SearchService, StreamService],
     host: {
         '(document:click)': 'onClickOutside($event)',
     },
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
     public profile: Profile;
     public name: string;
     public errorMessage: string;
@@ -33,28 +33,17 @@ export class HeaderComponent {
         private followService: FollowService,
         private router: Router,
         private sidebarService: SidebarService,
-        private authService: AuthService
+        private authService: AuthService,
+        private streamService: StreamService
     ) { }
-
-    getProfile() {
-        this.profileService.getProfile()
-            .subscribe(
-            (profile: Profile) => {
-                    this.profile = profile;
-                    this.name = this.profile.name;
-                },
-                error => this.errorMessage = <any>error);
-    }
 
     ngOnInit() {
         this.getProfile();
 
-        this.followService.getPosts().subscribe();
-
+        this.followService.requestUserFollowing$().subscribe();
         this.followService.isUserFollowing$().subscribe((state: boolean) => {
             this.followState = state;
         })
-
         this.followService.getFollowState$().subscribe((state: boolean) => {
             this.isFollowEnabled = state;
         })
@@ -62,30 +51,30 @@ export class HeaderComponent {
         this.items$ = this.searchService.getSearchResult();
     }
 
-    search(term: string) {
+    public search(term: string) {
         this.hideSearchResults = false;
 
         // Send the new search word to the service, will do a .next on the Observable
         this.searchService.searchFor(term);
     }
 
-    onClickFollow() {
+    public onClickFollow() {
         this.followService.followCar().subscribe(data => {
             this.followState = true;
         });
     }
 
-    onClickUnFollow() {
+    public onClickUnFollow() {
         this.followService.unFollowCar().subscribe(data => {
             this.followState = false;
         });
     }
 
-    onClickOutside($event: EventListener) {
+    public onClickOutside($event: EventListener) {
         this.hideSearchResults = true;
     }
 
-    onClickSearchResult(car) {
+    public onClickSearchResult(car) {
         const routeFromCar = `${car.make}-${car.model}-${car.carInfoId}`;
         const parsedRouteFromCar = routeFromCar.replace(/ /g, '-');
 
@@ -94,11 +83,21 @@ export class HeaderComponent {
         });
     }
 
-    clickSignOut() {
+    public clickSignOut() {
         this.authService.signOut();
     }
 
-    clickLogin() {
+    public clickLogin() {
         this.authService.signIn();
+    }
+
+    private getProfile() {
+        this.profileService.getProfile()
+            .subscribe(
+            (profile: Profile) => {
+                this.profile = profile;
+                this.name = this.profile.name;
+            },
+            error => this.errorMessage = <any>error);
     }
 }

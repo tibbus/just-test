@@ -67,9 +67,10 @@ export class CarComponent implements OnInit, OnDestroy {
                 this.timelineService.actor = {
                     actorType: 'car',
                     actorId: carId
-                }; 
+                };
                 this.sidebarService.setCarMenu$(this.carService.selectedCar ? this.carService.selectedCar.name : null);
                 this.followService.setFollowState(true);
+                this.followService.handleFollow()
 
                 this.carLoaded = true;
             });
@@ -77,5 +78,5 @@ export class CarComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.modalSubscription.unsubscribe();
-    }  
+    }
 }

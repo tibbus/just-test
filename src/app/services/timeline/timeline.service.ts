@@ -23,7 +23,7 @@ export class TimelineService {
     public actor: Actor;
 
     public getPosts() {
-       return this.streamService.getData(this.actor).do((posts: any[]) => {
+       return this.streamService.getData(this.actor, 'get').do((posts: any[]) => {
             this.posts = posts.map(post => {
                 const carInfoUrl: string = this.apiService.getCarInfoUrl(post.activityData.carInfoId);
 
