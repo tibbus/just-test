@@ -3,7 +3,7 @@
 </div>
 
 <div *ngIf="!loading">
-    <div class="content" 
+    <div class="content"
         *ngFor="let comment of comments"
         [class.remove]="removeLoading === comment.id"
     >
@@ -42,10 +42,10 @@
     </div>
 </div>
 
-<modal 
+<modal
        *ngIf="modalName == 'editComments'"
-       [contentComponent]="EditCommentsComponent" 
-       [title]="'Edit'" 
+       [contentComponent]="EditCommentsComponent"
+       [title]="'Edit'"
        [showSaveButton]="true"
 >
 </modal>

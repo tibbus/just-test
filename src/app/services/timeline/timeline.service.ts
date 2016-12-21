@@ -69,4 +69,14 @@ export class TimelineService {
     public getSelectedPost() {
         return this.getPostById(this.selectedPostId);
     }
+
+    public updateCommentsCount(postId: string, amount: number) {
+        this.posts = this.posts.map((post: any) => {
+            if (post.activityData.id == postId) {
+                post.socialData.commentsCount += amount;
+            }
+
+            return post;
+        })
+    }
 }

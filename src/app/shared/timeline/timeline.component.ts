@@ -83,7 +83,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     public onClickDelete(postId: string) {
         this.loading = postId;
 
-        this.postService.deletePost(postId).delay(500).subscribe(
+        this.postService.deletePost(postId).subscribe(
             posts => {
                 // update the status list (make a new server request in the service)
                 this.timelineService.getPosts();

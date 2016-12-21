@@ -72,7 +72,9 @@ export class CommentsComponnent implements OnInit {
                 this.comments = comments;
                 this.newCommentText = '';
                 this.addLoading = false;
-            })
+
+                this.timelineService.updateCommentsCount(this.postId, 1);
+            });
         });
     }
 
@@ -84,6 +86,8 @@ export class CommentsComponnent implements OnInit {
                 this.comments = comments;
 
                 this.removeLoading = null;
+
+                this.timelineService.updateCommentsCount(this.postId, -1);
             })
         });
     }

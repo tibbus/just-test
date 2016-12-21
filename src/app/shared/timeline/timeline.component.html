@@ -62,7 +62,7 @@
         (click)="clickGetComments(post)"
         [class.disabled]="post.comments.loading"
     >
-        Comments <span class="show-comments-sign">{{post.comments.state}}</span>
+       <span class="comments-count">{{post.socialData?.commentsCount}}</span> Comments <span class="show-comments-sign">{{post.comments.state}}</span>
     </a>
 
     <div class="line"></div>
