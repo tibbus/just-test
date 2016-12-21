@@ -9,11 +9,11 @@ export class ModalService {
     private modalLoading$ = new Subject<boolean>();
 
     constructor() {}
-    
+
     public getModalName$() {
         return this.modalName$;
     }
-    
+
     public setModalName$(modalName: string) {
         this.modalName$.next(modalName);
     }

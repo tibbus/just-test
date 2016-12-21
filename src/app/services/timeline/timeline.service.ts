@@ -45,7 +45,9 @@ export class TimelineService {
     }
 
     public getPostById(id: string): any {
-        return _.find(this.posts, { id });
+        return _.find(this.posts, (post: any) => {
+            return post.activityData.id == id;
+        });
     }
 
     public setSelectedPostId(id: string) {

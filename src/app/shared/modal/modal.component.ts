@@ -24,7 +24,7 @@ export class ModalComponent {
 
     constructor(private modalService: ModalService,
         private componentResolver: ComponentFactoryResolver
-    ) { }  
+    ) { }
 
     ngAfterViewInit() {
         console.log(this.dynamicComponent)
@@ -35,7 +35,7 @@ export class ModalComponent {
 
     ngOnInit() {
         jQuery('#myModal').on('hidden.bs.modal', (e) => {
-            this.onModalClose();  
+            this.onModalClose();
         })
 
         this.modalSubscription = this.modalService.getModalClose$().delay(1).subscribe(

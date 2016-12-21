@@ -1,4 +1,5 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { PostService, ModalService, TimelineService } from '../../../services/index';
 import { UploadFileDirective } from '../../uploadFile.directive';
@@ -12,14 +13,15 @@ import * as _ from 'lodash';
     styleUrls: ['editModalContent.component.css']
 })
 
-export class EditModalContentComponent implements OnInit {
-    postDescription: string;
-    post: any;
-    files: any = [];
-    postType: string;
-    uris: any = [];
-    topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
-    selectedTopics: string[] = [];
+export class EditModalContentComponent implements OnInit, OnDestroy {
+    public postDescription: string;
+    public files: any = [];
+    public postType: string;
+    public uris: any = [];
+    public selectedTopics: string[] = [];
+    private post: any;
+    private modalSaveSub: Subscription;
+    private topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
 
     constructor(
         private postService: PostService,
@@ -38,27 +40,18 @@ export class EditModalContentComponent implements OnInit {
             return this.selectedTopics.indexOf(topic) === -1;
         });
 
-        this.modalService.getModalSave$().subscribe(
+        this.modalSaveSub = this.modalService.getModalSave$().subscribe(
             () => {
                 this.savePost();
             }
         )
     }
 
-    savePost() {
-        this.modalService.setModalLoading$();
-
-        this.postService.updatePost(this.postDescription, this.files, this.selectedTopics).subscribe(
-            () => {
-                // update the TimeLine
-                this.timelineService.getPosts();
-
-                this.modalService.setModalClose$();
-            }
-        );
+    ngOnDestroy() {
+        this.modalSaveSub.unsubscribe();
     }
 
-    clickAddMedia(file: any) {
+    public clickAddMedia(file: any) {
         if (!file) {
             return false;
         }
@@ -76,12 +69,12 @@ export class EditModalContentComponent implements OnInit {
         reader.readAsDataURL(file);
     }
 
-    clickUriRemove(index: number) {
+    public clickUriRemove(index: number) {
         this.uris.splice(index, 1);
         this.files.splice(index, 1);
     }
 
-    clickAddTopics(topic: string) {
+    public clickAddTopics(topic: string) {
         const currentTopicIndex = this.topics.indexOf(topic);
 
         this.selectedTopics.push(topic);
@@ -89,11 +82,24 @@ export class EditModalContentComponent implements OnInit {
         this.topics.splice(currentTopicIndex, 1);
     }
 
-    clickRemoveTopics(topic: string) {
+    public clickRemoveTopics(topic: string) {
         const currentTopicIndex = this.selectedTopics.indexOf(topic);
 
         this.topics.push(topic);
 
         this.selectedTopics.splice(currentTopicIndex, 1);
+    }
+
+    private savePost() {
+        this.modalService.setModalLoading$();
+
+        this.postService.updatePost(this.postDescription, this.files, this.selectedTopics).subscribe(
+            () => {
+                // update the TimeLine
+                this.timelineService.getPosts();
+
+                this.modalService.setModalClose$();
+            }
+        );
     }
 }
