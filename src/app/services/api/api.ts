@@ -21,6 +21,7 @@ const API = {
     comment: '/comment',
     carImage: '/car/{id}/profile/image',
     likes: '/timeline/likes',
+    likeRemove: '/timeline/likes/{postType}/like/{postId}',
     likesCount: '/timeline/likes/{postType}/{postId}/count'
 }
 

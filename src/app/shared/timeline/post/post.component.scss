@@ -1,0 +1,186 @@
+﻿:host {
+    background: #ffffff;
+    padding: 0 8px;
+    margin-bottom: 20px;
+    float: left;
+    border: solid 1px #EFECEC;
+    border-radius: 3px;
+}
+
+.removing {
+    opacity: 0.5;
+}
+
+.social {
+    float: left;
+    clear: left;
+    padding: 10px;
+
+    a {
+        padding: 5px;
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+    .like__button {
+        padding-right: 0;
+
+        &--enabled {
+            font-weight: bold;
+        }
+    }
+}
+
+.show-comments {
+    float: right;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 10 20 0 0;
+    padding: 0;
+    text-transform: none;
+    color: #009688;
+
+    &-sign {
+        color: black;
+        font-weight: 400;
+    }
+}
+
+.line {
+    width: 100%;
+    float: left;
+    margin-top: 5px;
+    background: #EAEAEA;
+    height: 1px;
+}
+
+.content {
+    float: left;
+    margin-top: 9px;
+    padding: 5px;
+    border-radius: 4px;
+
+    .description {
+        width: 675px;
+        margin-top: 5px;
+        float: left;
+        padding: 0 10px 0 10px;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .img {
+        height: 60px;
+        float: left;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .username {
+        float: left;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .date {
+        color: #8A8A8A;
+        float: left;
+        margin-left: 15px;
+    }
+}
+
+.edit-menu {
+    margin: 0;
+    margin-right: -8px;
+    float: right;
+
+    a {
+        cursor: pointer;
+        padding: 6px 16px;
+    }
+}
+
+.caret {
+    border-top: 6px dashed;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+}
+
+.loading-wrapper {
+    width: 50px;
+    float: left;
+    margin-left: 195px;
+    top: 5px;
+    position: relative;
+    height: 1px;
+
+    span {
+        font-size: 30px;
+    }
+}
+
+a {
+    cursor: pointer;
+}
+
+.posted-image {
+    height: 100px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.posted-image:hover {
+    opacity: 0.8;
+}
+
+.media-wrapper {
+    float: left;
+    clear: left;
+
+    .documents {
+        .document {
+            font-size: 80px;
+            padding: 5px 15px;
+            float: left;
+            clear: left;
+            color: grey;
+        }
+
+        .title {
+            float: left;
+            margin: 10px 0 0 18px;
+            width: 100px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            padding-right: 15px;
+        }
+    }
+}
+
+.media-post {
+    float: left;
+}
+
+video {
+    float: left;
+    margin: 20px;
+}
+
+.topics {
+    float: right;
+    margin-right: 20px;
+}
+
+.like__count {
+    font-size: 12px;
+}
+
+.comments-count {
+    font-weight: 400;
+    color: black
+}

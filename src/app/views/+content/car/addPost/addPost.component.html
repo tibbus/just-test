@@ -1,15 +1,15 @@
 <div class="car-info">
-    <span class="make">{{carInfo.make}} {{carInfo.model}}</span>
+    <span class="make">{{carInfo.car.make}} {{carInfo.car.model}}</span>
     <span class="label label-primary reg-number">{{carRegNumber | regNumber}}</span>
 </div>
 
 <div class="writer-img" >
-    <img src="/assets/muj.JPG" />
+    <img src="{{carInfo.image || '/assets/default-car.jpg'}}" />
 </div>
 
 <div class="form-group">
     <div>
-        <textarea class="form-control" rows="3" placeholder="Write a post..." 
+        <textarea class="form-control" rows="3" placeholder="Write a post..."
             [(ngModel)]="currentStatus"
             [class.lineDisabled]="postType !== 'status'"
         >
@@ -22,7 +22,7 @@
     <div class="img-wrapper" *ngFor="let uri of uris; let i=index">
         <button type="button" class="close" (click)="clickUriRemove(i)">&#215;</button>
         <img *ngIf="postType === 'image'" src="{{uri}}" />
-        
+
         <video *ngIf="postType === 'video'" height="100">
             <source src="{{uri}}" type="video/mp4">
         </video>
@@ -41,8 +41,8 @@
     </div>
 </div>
 
-<div class="btn add-media add-photos" 
-     uploadFile 
+<div class="btn add-media add-photos"
+     uploadFile
      (onFileSelect)="clickAddMedia($event, 'image')"
      [class.disabled]="postType !== 'status' && postType !== 'image'"
      >
@@ -50,8 +50,8 @@
     <span class="add-media-text">Add photo</span>
 </div>
 <div class="vertical-line"></div>
-<div class="btn add-media add-videos" 
-     uploadFile 
+<div class="btn add-media add-videos"
+     uploadFile
      (onFileSelect)="clickAddMedia($event, 'video')"
      [class.disabled]="postType !== 'status' && postType !== 'video'"
      >

@@ -36,7 +36,7 @@ export class AddPostComponent {
     ) {}
 
     ngOnInit() {
-        this.carInfo = this._carService.selectedCar.info.car;
+        this.carInfo = this._carService.selectedCar.info;
         this.carRegNumber = this._carService.selectedCar.info.registrationNumber.toUpperCase();
 
         this.postType = 'status';

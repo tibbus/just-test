@@ -118,7 +118,11 @@ export class ApiService {
         return `${API.root}${API.likes}/${postType}/${postId}`;
     }
 
-    public getRemoveLikeUrl(postId: string): string {
-        return `${API.root}${API.likes}/${postId}`;
+    public getRemoveLikeUrl(postId: string, postType: string): string {
+        let url: string = `${API.root}${API.likeRemove}`;
+        url = url.replace('{postType}', postType);
+        url = url.replace('{postId}', postId);
+
+        return url;
     }
 }

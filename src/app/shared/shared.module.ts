@@ -7,6 +7,7 @@ import { LoadingComponent }  from './loading/loading.component';
 import { ModalComponent } from './modal/modal.component';
 import { UploadFileDirective } from './uploadFile.directive';
 import { TimelineComponent } from './timeline/timeline.component';
+import { PostComponent } from './timeline/post/post.component';
 import { TimelineDatePipe } from './timelineDate.pipe';
 import { ImageModalContentComponent } from './timeline/imageModal/imageModalContent.component';
 import { CommentsComponnent } from './timeline/comments/comments.component';
@@ -20,6 +21,7 @@ import { EditCommentsComponent } from './timeline/comments/editComments.componen
         ModalComponent,
         UploadFileDirective,
         TimelineComponent,
+        PostComponent,
         TimelineDatePipe,
         ImageModalContentComponent,
         EditCommentsComponent,
@@ -32,11 +34,12 @@ import { EditCommentsComponent } from './timeline/comments/editComments.componen
     exports: [
         AlertComponent,
         LoadingComponent,
-        ModalComponent, 
+        ModalComponent,
         CommonModule,
         FormsModule,
         UploadFileDirective,
         TimelineComponent,
+        PostComponent,
         TimelineDatePipe,
         ImageModalContentComponent,
         EditCommentsComponent,

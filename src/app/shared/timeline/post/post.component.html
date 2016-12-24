@@ -1,0 +1,60 @@
+<div class="content" [class.removing]="loading">
+    <div class="img">
+        <img src="{{post.carData.image || '/assets/default-car.jpg'}}" />
+    </div>
+    <a class="username">{{post.carData.make}} {{post.carData.model}}</a>
+    <span class="date">{{post.activityData.createdDate | timelineDate }}</span>
+
+    <div class="btn-group edit-menu">
+        <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <div class="ripple-container"></div>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a (click)="clickEdit(post)">Edit</a></li>
+            <li><a (click)="clickDelete(post.activityData.id)">Delete</a></li>
+        </ul>
+    </div>
+
+    <div class="topics">
+        [ <span class="topic" *ngFor="let topic of post.activityData.topics">{{topic}} </span>]
+    </div>
+
+    <div class="description">
+        <p>{{post.activityData.description}}</p>
+    </div>
+    <div class="media-wrapper">
+        <div class="media-post" *ngFor="let uri of post.activityData.contentUris; let i=index">
+            <img *ngIf="post.type === 'Image'" class="posted-image {{i}}" src="{{uri}}" (click)="clickImage(post.activityData.id, i)"
+            />
+
+            <video *ngIf="post.type === 'Video'" width="320" controls>
+                <source src="{{uri}}" type="video/mp4">
+            </video>
+
+            <a href="{{uri}}" *ngIf="post.type === 'Document'" class="documents">
+                <span class="title">document #{{i}}</span>
+                <span class="glyphicon glyphicon-file document"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="line"></div>
+<div class="social">
+    <a class="like__button" (click)="clickLike(post)" [ngClass]="{'like__button--enabled': post.likes?.isCurrentUserLike}">Like
+        </a> <span class="like__count">{{post.likes?.count}}</span>
+    <a (click)="clickShare(post.activityData.id)">Share</a>
+</div>
+
+<div *ngIf="post.comments.loading" class="loading show-comments-loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate show-comments-loading-spinner"></span>
+</div>
+
+<a class="btn show-comments" (click)="clickGetComments(post)" [class.disabled]="post.comments.loading">
+    <span class="comments-count">{{post.socialData?.commentsCount}}</span> Comments <span class="show-comments-sign">{{post.comments.state}}</span>
+</a>
+
+<div class="line"></div>
+
+<comments *ngIf="post.comments.state === '-'" [postId]="post.activityData.id"></comments>
