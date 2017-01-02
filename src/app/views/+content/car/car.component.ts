@@ -9,11 +9,13 @@ import { CarService, ModalService, TimelineService, PostService, FollowService, 
 
 import { Car, CarInfo, Mot, Tax } from '../../../services/car/car.model';
 
+declare const jQuery: any;
+
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'car-content',
-    styleUrls: ['car.component.css'],
-    templateUrl: 'car.component.html',
+    styleUrls: ['./car.component.scss'],
+    templateUrl: './car.component.html',
     providers: [PostService]
 })
 

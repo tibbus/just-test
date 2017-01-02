@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { SidebarService, TimelineService } from '../../services/index';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'sidebar',
-    styleUrls: ['sidebar.component.css'],
-    templateUrl: 'sidebar.component.html'
+    styleUrls: ['./sidebar.component.scss'],
+    templateUrl: './sidebar.component.html'
 })
 
 export class SidebarComponent {

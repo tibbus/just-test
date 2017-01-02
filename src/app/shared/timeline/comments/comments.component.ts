@@ -4,12 +4,13 @@ import { Subscription } from 'rxjs/Subscription';
 import { CommentsService, ModalService, TimelineService } from '../../../services/index';
 import { EditCommentsComponent } from './editComments.component';
 
+declare const jQuery: any;
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'comments',
-    templateUrl: 'comments.component.html',
-    styleUrls: ['comments.component.css'],
+    templateUrl: './comments.component.html',
+    styleUrls: ['./comments.component.scss'],
     providers: [ModalService, CommentsService]
 })
 

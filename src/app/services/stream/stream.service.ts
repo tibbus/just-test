@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { ApiService, API } from '../index';
+//import { ApiService, API } from '../index';
 import { Subject } from 'rxjs/Subject';
+
+import { ApiService } from '../api/api.service';
+import { API } from '../api/api';
 
 import * as _ from 'lodash';
 

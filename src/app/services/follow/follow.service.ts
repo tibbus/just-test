@@ -3,8 +3,9 @@ import { Http } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import * as _ from 'lodash';
 
-import { ApiService, CarService, API, Actor } from '../index';
+import { CarService, API, Actor } from '../index';
 import { StreamService } from '../stream/stream.service';
+import { ApiService, } from '../api/api.service';
 
 @Injectable()
 export class FollowService  {
@@ -16,46 +17,46 @@ export class FollowService  {
     constructor(
         private http: Http,
         private apiService: ApiService,
-        private carService: CarService,
-        private streamService: StreamService
+        //private carService: CarService,
+        //private streamService: StreamService
     ) {
         this.actor = {
             actorType: 'user',
-            actorId: this.apiService.getUserId()
+            actorId: "this.apiService.getUserId()"
         };
      }
 
     public requestUserFollowing$() {
-        return this.streamService.getUserFollowing$(this.actor).do((followings: any[]) => {
-            this.followings = followings;
+        // return this.streamService.getUserFollowing$(this.actor).do((followings: any[]) => {
+        //     this.followings = followings;
 
-            this.handleFollow();
-        })
+        //     this.handleFollow();
+        // })
     }
 
     public followCar() {
-        return this.http.request(this.apiService.getFollowUrl(this.carService.selectedCar.id), {
+        return this.http.request("this.apiService.getFollowUrl('this.carService.selectedCar.id')", {
             body: '',
             method: 'POST'
         }).do(data => {
             // Update the followers list
-            this.requestUserFollowing$().subscribe();
+            //this.requestUserFollowing$().subscribe();
         })
     }
 
     public unFollowCar() {
-        return this.http.request(this.apiService.getUnFollowUrl(this.carService.selectedCar.id), {
+        return this.http.request("this.apiService.getUnFollowUrl('this.carService.selectedCar.id')", {
             body: '',
             method: 'POST'
         }).do(data => {
             // Update the followers list
-            this.requestUserFollowing$().subscribe();
+            //this.requestUserFollowing$().subscribe();
         })
     }
 
     public handleFollow() {
         const isFollowing = _.find(this.followings, (following: any) => {
-            return following.target_id.split('car:')[1] == this.carService.selectedCar.id;
+            return following.target_id.split('car:')[1] == 'this.carService.selectedCar.id';
         })
 
         this.following$.next(isFollowing ? true : false);

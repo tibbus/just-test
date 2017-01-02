@@ -1,10 +1,10 @@
 ﻿import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'alert',
-    templateUrl: 'alert.component.html',
-    styleUrls: ['alert.component.css']
+    templateUrl: './alert.component.html',
+    styleUrls: ['./alert.component.scss']
 })
 
 export class AlertComponent {

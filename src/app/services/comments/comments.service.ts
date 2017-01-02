@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 
-import { ApiService, CarService, API } from '../index';
+//import { ApiService, CarService, API } from '../index';
+import { ApiService } from '../api/api.service';
+import { API } from '../api/api';
+import { CarService } from '../car/car.service';
 
 @Injectable()
 export class CommentsService {

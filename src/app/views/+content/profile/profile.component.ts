@@ -5,10 +5,10 @@ import { ProfileService, SidebarService, FollowService } from '../../../services
 import { Profile } from '../../../services/profile/profile.model';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'profile',
-    styleUrls: ['profile.component.css'],
-    templateUrl: 'profile.component.html'
+    styleUrls: ['./profile.component.scss'],
+    templateUrl: './profile.component.html'
 })
 
 export class ProfileComponent implements OnInit {
@@ -22,11 +22,11 @@ export class ProfileComponent implements OnInit {
         private profileService: ProfileService,
         private sidebarService: SidebarService,
         private ref: ChangeDetectorRef,
-        private followService: FollowService
+        //private followService: FollowService
     ) { }
 
     ngOnInit() {
-        this.followService.setFollowState(false);
+        //this.followService.setFollowState(false);
 
         this.sidebarService.setCarMenu$(null);
 

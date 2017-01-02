@@ -7,7 +7,7 @@ import { GarageComponent } from './views/+content/garage/garage.component';
 const appRoutes: Routes = [
     { path: '', redirectTo: 'garage', pathMatch: 'full' },
     { path: 'garage', component: GarageComponent },
-    { path: 'cars', loadChildren: 'app/app/views/+content/car/car.module#CarModule' },
+    { path: 'cars', loadChildren: 'app/views/+content/car/car.module#CarModule' },
     { path: 'profile', component: ProfileComponent },
     { path: 'feed', component: FeedComponent },
     { path: '**', component: NotFoundComponent }

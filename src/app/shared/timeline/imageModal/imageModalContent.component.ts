@@ -2,10 +2,10 @@
 import { PostService, ModalService, TimelineService } from '../../../services/index';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'content',
-    templateUrl: 'imageModalContent.component.html',
-    styleUrls: ['imageModalContent.component.css']
+    templateUrl: './imageModalContent.component.html',
+    styleUrls: ['./imageModalContent.component.scss']
 })
 
 export class ImageModalContentComponent implements OnInit {

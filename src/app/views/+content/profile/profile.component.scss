@@ -1,4 +1,4 @@
-﻿@import "mixins";
+﻿//@import "mixins";
 
 h1 {
     margin-top: 0;
@@ -6,7 +6,7 @@ h1 {
 }
 
 :host {
-    @include content-default;
+    //@include content-default;
 
     padding: 30px 100px;
 }

@@ -3,9 +3,9 @@
 import { CarService } from '../../../../services/car/car.service';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'content',
-    templateUrl: 'taxDetailsModalContent.component.html',
+    templateUrl: './taxDetailsModalContent.component.html',
 })
 
 export class TaxDetailsModalContentComponent {

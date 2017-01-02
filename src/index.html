@@ -1,0 +1,47 @@
+<html>
+<head>
+    <base href="/">
+    <title>Car App Sample</title>
+
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Bootstrap included -->
+    <!--<link rel="stylesheet" href="dist/styles/styles.css">-->
+
+    <!-- Bootstrap Material Design -->
+    <!--<link rel="stylesheet" type="text/css" href="node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-material-design/dist/css/ripples.min.css">-->
+</head>
+<body>
+    <car-app></car-app>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '155185568233878',
+                xfbml: true,
+                version: 'v2.5'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!--<script src="/le.min.js"></script>
+    <script>
+        LE.init('f40bf743-fc01-4e0e-b8f8-e71f615c4fc9');
+
+        // log something
+        LE.log("App loaded !");
+    </script>-->
+</body>
+
+</html>

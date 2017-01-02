@@ -6,10 +6,9 @@ import { ModalService, TimelineService, PostService, LikesService } from '../../
 declare var FB: any;
 
 @Component({
-    moduleId: module.id,
     selector: 'post',
-    styleUrls: ['post.component.css'],
-    templateUrl: 'post.component.html'
+    styleUrls: ['./post.component.scss'],
+    templateUrl: './post.component.html'
 })
 
 export class PostComponent {

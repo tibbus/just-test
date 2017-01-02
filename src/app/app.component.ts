@@ -2,15 +2,15 @@
 import { ApiService } from './services/api/api.service';
 import { AuthService } from './services/auth/auth.service';
 
-import * as _ from 'lodash';
 // todo : move it to typings/typescript
 declare const stream: any;
+declare const jQuery: any;
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'car-app',
-    templateUrl: 'app.component.html',
-    styleUrls: ['app.component.css']
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 
 export class AppComponent {
@@ -20,6 +20,6 @@ export class AppComponent {
         jQuery.material.init();
 
         const streamClient = stream.connect('8r2y2gbevg9j', null, '15872');
-        this.apiService.setStreamClient(streamClient); 
+        this.apiService.setStreamClient(streamClient);
     }
 }

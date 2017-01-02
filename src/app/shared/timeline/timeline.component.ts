@@ -5,11 +5,14 @@ import { ModalService, TimelineService, PostService, FollowService, LikesService
 import { EditModalContentComponent } from './editModal/editModalContent.component';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 
+declare var FB: any;
+declare const jQuery: any;
+
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'timeline',
-    styleUrls: ['timeline.component.css'],
-    templateUrl: 'timeline.component.html',
+    styleUrls: ['./timeline.component.scss'],
+    templateUrl: './timeline.component.html',
     providers: [ModalService, PostService]
 })
 

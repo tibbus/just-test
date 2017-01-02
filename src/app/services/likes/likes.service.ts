@@ -4,7 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import * as _ from 'lodash';
 
-import { ApiService, API } from '../index';
+//import { ApiService, API } from '../index';
+import { ApiService } from '../api/api.service';
+import { API } from '../api/api';
 
 @Injectable()
 export class LikesService {

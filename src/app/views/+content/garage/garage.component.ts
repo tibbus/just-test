@@ -3,10 +3,10 @@
 import { CarService, SidebarService, FollowService } from '../../../services/index';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'all-cars',
-    styleUrls: ['garage.component.css'],
-    templateUrl: 'garage.component.html'
+    styleUrls: ['./garage.component.scss'],
+    templateUrl: './garage.component.html'
 })
 
 export class GarageComponent implements OnInit {
@@ -20,12 +20,12 @@ export class GarageComponent implements OnInit {
     constructor(
         private carService: CarService,
         private sidebarService: SidebarService,
-        private followService: FollowService,
+        //private followService: FollowService,
         private changeDetector: ChangeDetectorRef) { }
 
     ngOnInit() {
         this.sidebarService.setCarMenu$('garage');
-        this.followService.setFollowState(false);
+        //this.followService.setFollowState(false);
 
         this.getCars(false);
     }

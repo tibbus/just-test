@@ -3,10 +3,12 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService } from '../../services/index';
 
+declare const jQuery: any;
+
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'modal',
-    templateUrl: 'modal.component.html'
+    templateUrl: './modal.component.html'
 })
 
 export class ModalComponent {

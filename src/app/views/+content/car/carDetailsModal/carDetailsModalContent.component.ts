@@ -3,9 +3,9 @@
 import { CarService } from '../../../../services/car/car.service';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'car-details-content',
-    templateUrl: 'carDetailsModalContent.component.html',
+    templateUrl: './carDetailsModalContent.component.html',
 })
 
 export class CarDetailsModalContentComponent {

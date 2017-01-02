@@ -10,10 +10,10 @@ import {
 } from '../../../../services/index';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'add-post',
-    styleUrls: ['addPost.component.css'],
-    templateUrl: 'addPost.component.html'
+    styleUrls: ['./addPost.component.scss'],
+    templateUrl: './addPost.component.html'
 })
 
 export class AddPostComponent {

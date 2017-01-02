@@ -27,6 +27,7 @@ import {
 } from './services/index';
 
 import { SharedModule } from './shared/shared.module';
+import useFactory from './factory';
 
 @NgModule({
     imports: [
@@ -57,9 +58,12 @@ import { SharedModule } from './shared/shared.module';
         StreamService,
         LikesService,
         { provide: RequestOptions, useClass: CustomRequestOptions },
+        // provideInterceptorService([
+        //     ServerURLInterceptor
+        // ]),
         {
             provide: APP_INITIALIZER,
-            useFactory: (auth: AuthService) => () => auth.getUser(),
+            useFactory: useFactory,
             deps: [AuthService],
             multi: true
         }

@@ -3,10 +3,10 @@
 import { CommentsService, ModalService, TimelineService } from '../../../services/index';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'content',
-    templateUrl: 'editComments.component.html',
-    styleUrls: ['editComments.component.css']
+    templateUrl: './editComments.component.html',
+    styleUrls: ['./editComments.component.scss']
 })
 
 export class EditCommentsComponent implements OnInit {

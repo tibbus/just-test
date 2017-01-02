@@ -1,12 +1,13 @@
 ﻿import { Directive, ElementRef, Output, EventEmitter } from '@angular/core';
+declare const jQuery: any;
 
 @Directive({ selector: '[uploadFile]' })
 
 export class UploadFileDirective {
     @Output() onFileSelect = new EventEmitter();
 
-    private $host: JQuery;
-    private $realUploader: JQuery;
+    private $host: any;
+    private $realUploader: any;
 
     constructor(el: ElementRef) {
         this.$realUploader = jQuery('<input type="file" name="pics">').css('display', 'none');

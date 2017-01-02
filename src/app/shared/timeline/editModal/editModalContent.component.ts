@@ -7,10 +7,10 @@ import { UploadFileDirective } from '../../uploadFile.directive';
 import * as _ from 'lodash';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     selector: 'content',
-    templateUrl: 'editModalContent.component.html',
-    styleUrls: ['editModalContent.component.css']
+    templateUrl: './editModalContent.component.html',
+    styleUrls: ['./editModalContent.component.scss']
 })
 
 export class EditModalContentComponent implements OnInit, OnDestroy {
