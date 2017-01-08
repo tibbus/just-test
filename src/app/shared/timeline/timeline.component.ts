@@ -74,7 +74,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
             (posts: any) => {
                 this.posts = posts;
                 console.log(posts);
-                this.ref.detectChanges();
+                //this.ref.detectChanges();
             }
         );
     }

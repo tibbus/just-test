@@ -80,5 +80,7 @@ export class CarComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.modalSubscription.unsubscribe();
+        // Hide follow button
+        this.followService.setFollowState(false);
     }
 }

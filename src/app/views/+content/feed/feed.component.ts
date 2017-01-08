@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { TimelineService, ApiService, FollowService } from '../../../services/index';
+import { TimelineService, ApiService } from '../../../services/index';
 
 @Component({
     selector: 'feed',
@@ -9,8 +9,7 @@ import { TimelineService, ApiService, FollowService } from '../../../services/in
 export class FeedComponent {
     constructor(
         private timelineService: TimelineService,
-        private apiService: ApiService,
-        private followService: FollowService
+        private apiService: ApiService
     ) { }
 
     ngOnInit() {
@@ -18,7 +17,5 @@ export class FeedComponent {
             actorType: 'user',
             actorId: this.apiService.getUserId()
         };
-
-        this.followService.setFollowState(false);
     }
 }
