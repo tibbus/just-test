@@ -30,23 +30,23 @@ export class HeaderComponent implements OnInit {
     constructor(
         private profileService: ProfileService,
         private searchService: SearchService,
-        //private followService: FollowService,
+        private followService: FollowService,
         private router: Router,
         private sidebarService: SidebarService,
         private authService: AuthService,
-        //private streamService: StreamService
+        private streamService: StreamService
     ) { }
 
     ngOnInit() {
         this.getProfile();
 
-        // this.followService.requestUserFollowing$().subscribe();
-        // this.followService.isUserFollowing$().subscribe((state: boolean) => {
-        //     this.followState = state;
-        // })
-        // this.followService.getFollowState$().subscribe((state: boolean) => {
-        //     this.isFollowEnabled = state;
-        // })
+        this.followService.requestUserFollowing$().subscribe();
+        this.followService.isUserFollowing$().subscribe((state: boolean) => {
+            this.followState = state;
+        })
+        this.followService.getFollowState$().subscribe((state: boolean) => {
+            this.isFollowEnabled = state;
+        })
 
         this.items$ = this.searchService.getSearchResult();
     }
@@ -59,15 +59,15 @@ export class HeaderComponent implements OnInit {
     }
 
     public onClickFollow() {
-        // this.followService.followCar().subscribe(data => {
-        //     this.followState = true;
-        // });
+        this.followService.followCar().subscribe(data => {
+            this.followState = true;
+        });
     }
 
     public onClickUnFollow() {
-        // this.followService.unFollowCar().subscribe(data => {
-        //     this.followState = false;
-        // });
+        this.followService.unFollowCar().subscribe(data => {
+            this.followState = false;
+        });
     }
 
     public onClickOutside($event: EventListener) {
