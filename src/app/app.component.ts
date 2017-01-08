@@ -1,9 +1,9 @@
 ﻿import { Component } from '@angular/core';
 import { ApiService } from './services/api/api.service';
 import { AuthService } from './services/auth/auth.service';
+// @TODO add types for this
+const getStream = require('getstream');
 
-// todo : move it to typings/typescript
-declare const stream: any;
 declare const jQuery: any;
 
 @Component({
@@ -19,7 +19,7 @@ export class AppComponent {
     ngOnInit() {
         jQuery.material.init();
 
-        const streamClient = stream.connect('8r2y2gbevg9j', null, '15872');
+        const streamClient = getStream.connect('8r2y2gbevg9j', null, '15872');
         this.apiService.setStreamClient(streamClient);
     }
 }
