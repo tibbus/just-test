@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
+import * as Oidc from 'oidc-client';
 
 import { ApiService } from '../api/api.service';
-
-import * as Oidc from 'oidc-client';
 
 @Injectable()
 export class AuthService {
