@@ -1,0 +1,50 @@
+﻿<div>
+    <div *ngIf="!carAdded" class="search">
+        <div class="search__text">What's your Vehicle Registration No.?</div>
+        <div class="search__text search__text--secondary">"We'll just quickly verify your ownership of this car"</div>
+        <input type="text" class="search__input" [(ngModel)]="regNumber" placeholder="e.g. LG68 OOK">
+        <!--<p class="help-block">You need to enter a valid <code>Registration Number</code> in order to add a car.</p>-->
+        <a class="btn btn-default search__btn-continue" [class.disabled]="loading" (click)="clickSearchCar()">
+            <span class="save-text">Search</span>
+            <span *ngIf="loading === true && !carDetails" class="glyphicon glyphicon-refresh glyphicon-refresh-animate">
+            </span>
+        </a>
+    </div>
+
+    <div *ngIf="carDetails && !carAdded" class="add-car">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Are these details correct?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Make</td>
+                    <td class="add-car__details-value">{{carDetails.car.make}}</td>
+                </tr>
+                <tr>
+                    <td>Model</td>
+                    <td class="add-car__details-value">{{carDetails.car.model}}</td>
+                </tr>
+                <tr>
+                    <td>Colour</td>
+                    <td class="add-car__details-value">{{carDetails.colour}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-default add-car__btn-add" [class.disabled]="loading" (click)="clickAddCar()">
+            <span class="save-text">Yes, add car</span>
+            <span *ngIf="loading === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        </a>
+    </div>
+</div>
+
+<alert [(message)]="alertMessage" [state]="requestState"></alert>
+
+<div *ngIf="carAdded" class="car-added">
+    <a class="btn btn-default search__btn-continue" [class.disabled]="loading" (click)="clickCarDone()">
+        <span class="save-text">Done!</span>
+    </a>
+</div>

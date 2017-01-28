@@ -1,7 +1,12 @@
+:host {
+    position: relative;
+    display: block;
+    height: 100%;
+}
+
 .wrapper {
     width: 100%;
     height: calc(100% - 100px);
-    top: 59px;
 }
 
 .content-wrapper {
@@ -12,8 +17,10 @@
 }
 
 .content {
-    width: 762px;
+    width: 850px;
+    position: absolute;
     height: 100%;
-    margin: 10px auto;
-    margin-top: 70px;
+    left: 50%;
+    margin-left: -425px;
+    background: #e9e8ee;
 }

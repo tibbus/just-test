@@ -1,9 +1,11 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
-import { CarService, SidebarService, FollowService } from '../../../services/index';
+import { CarService, SidebarService, FollowService, ModalService } from '../../../services/index';
+import { AddCarModalComponent } from './addCarModal/addCarModal.component';
+
+declare const jQuery: any;
 
 @Component({
-    //moduleId: module.id,
     selector: 'all-cars',
     styleUrls: ['./garage.component.scss'],
     templateUrl: './garage.component.html'
@@ -11,17 +13,35 @@ import { CarService, SidebarService, FollowService } from '../../../services/ind
 
 export class GarageComponent implements OnInit {
     public cars: any;
-    public regNumber: string;
     public loading: boolean = false;
     public requestState: boolean = false;
     public alertMessage: string;
-    public carDetails;
+
+    public AddCarModalContent: any;
+    private modalSubscription;
+    private modalName;
 
     constructor(
         private carService: CarService,
         private sidebarService: SidebarService,
+        private modalService: ModalService,
         //private followService: FollowService,
-        private changeDetector: ChangeDetectorRef) { }
+        private changeDetector: ChangeDetectorRef) {
+        // on modal open/close :
+        this.modalSubscription = modalService.getModalName$().subscribe(
+            modalName => {
+                this.modalName = modalName;
+
+                this.changeDetector.detectChanges();
+
+                if (modalName) {
+                    // open the modal
+                    jQuery('#myModal').modal('show');
+                }
+            });
+
+        this.AddCarModalContent = AddCarModalComponent;
+    }
 
     ngOnInit() {
         this.sidebarService.setCarMenu$('garage');
@@ -37,34 +57,6 @@ export class GarageComponent implements OnInit {
             },
             error => this.handleError(error)
         );
-    }
-
-    public changeRegNumber(value: string) {
-        this.regNumber = value;
-    }
-
-    public clickSearchCar() {
-        this.carService.searchCarByRegNumber(this.regNumber)
-            .subscribe(
-            (car) => {
-                this.carDetails = car;
-            },
-            error => this.handleError(error));
-    }
-
-    public clickAddCar() {
-        this.loading = true;
-
-        this.carService.addCar(this.carDetails.id).subscribe(data => { console.log(data);
-            this.loading = false;
-            this.requestState = true;
-            this.alertMessage = `The car with the registration number: ${this.regNumber} was succesufully added to your garage !`;
-            this.regNumber = null;
-            this.carDetails = null;
-
-            // update the car list (make a new server request in the service)
-            this.getCars(true);
-        })
     }
 
     public clickRemove(userCarId) {
@@ -123,5 +115,10 @@ export class GarageComponent implements OnInit {
             car.loading = false;
             car.pictureChanged = false;
         });
+    }
+
+    public clickOpenCarModal() {
+        // open Edit Modal
+        this.modalService.setModalName$('dasdasdsa');
     }
 }

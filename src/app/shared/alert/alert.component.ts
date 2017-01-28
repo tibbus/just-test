@@ -8,11 +8,19 @@
 })
 
 export class AlertComponent {
-    @Input() message: string;
+    @Output() messageChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input() set message(newMessage: string) {
+        this.currentMessage = newMessage;
+        this.messageChange.emit(newMessage);
+    }
     @Input() state: boolean;
-    @Output() resetAlertMessage = new EventEmitter();
 
-    typeMessage: string;
+    private currentMessage: string;
+    private typeMessage: string;
+
+    get message(): string {
+        return this.currentMessage;
+    }
 
     ngOnChanges() {
         if (this.state) {
@@ -24,6 +32,6 @@ export class AlertComponent {
 
     // Close the alert:
     onClickClose() {
-        this.resetAlertMessage.emit(null);
+        this.message = null;
     }
 }

@@ -6,8 +6,8 @@ import { ModalService } from '../../services/index';
 declare const jQuery: any;
 
 @Component({
-    //moduleId: module.id,
     selector: 'modal',
+    styleUrls: ['./modal.component.scss'],
     templateUrl: './modal.component.html'
 })
 
@@ -16,6 +16,7 @@ export class ModalComponent {
     @Input() title: string;
     @Input() size: string;
     @Input() showSaveButton: boolean;
+    @Input() hideFooter: boolean;
     @ViewChild('dynamicComponent', { read: ViewContainerRef })
 
     dynamicComponent: any;

@@ -1,7 +1,8 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document" 
-         [class.modal-large]="size === 'large'"
+    <div class="modal-dialog" role="document"
+         [class.large]="size === 'large'"
+         [class.small]="size === 'small'"
     >
         <div class="modal-content">
             <div class="modal-header">
@@ -11,12 +12,12 @@
 
             <template #dynamicComponent></template>
 
-            <div class="modal-footer">
+            <div class="modal-footer" *ngIf="!hideFooter">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-raised btn-success"
                     *ngIf="showSaveButton"
                     (click)="onClickSave()"
-                    [class.disabled]="loading"                
+                    [class.disabled]="loading"
                 >
                     <span class="save-text">Save</span>
                     <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>

@@ -9,6 +9,7 @@ import { HeaderComponent } from './views/header/header.component';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
 import { ProfileComponent, NotFoundComponent, FeedComponent } from './views/+content/index';
 import { GarageComponent } from './views/+content/garage/garage.component';
+import { AddCarModalComponent } from './views/+content/garage/addCarModal/addCarModal.component';
 import { GarageMenuComponent } from './views/sidebar/garageMenu/garageMenu.component';
 import { AuthComponent } from './views/auth/auth.component';
 import { StreamService } from './services/stream/stream.service';
@@ -46,7 +47,11 @@ import useFactory from './factory';
         FeedComponent,
         GarageMenuComponent,
         GarageComponent,
-        AuthComponent
+        AuthComponent,
+        AddCarModalComponent
+    ],
+    entryComponents: [
+        AddCarModalComponent
     ],
     providers: [
         ProfileService,

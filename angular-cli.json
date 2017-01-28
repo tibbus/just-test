@@ -19,16 +19,11 @@
       "mobile": false,
       "styles": [
         "styles.css",
-        "styles/styles-bundle.css",
-        "../node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.css",
-        "../node_modules/bootstrap-material-design/dist/css/ripples.min.css"
+        "styles/styles.scss"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js",
-        "../node_modules/arrive/minified/arrive.min.js",
-        "../node_modules/bootstrap-material-design/dist/js/material.min.js",
-        "../node_modules/bootstrap-material-design/dist/js/ripples.min.js",
         "../src/le.min.js"
       ],
       "environments": {

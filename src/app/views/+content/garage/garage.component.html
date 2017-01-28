@@ -1,71 +1,41 @@
-<div>
-    <h1>My cars</h1>
-    <loading *ngIf="loading"></loading>
+<div class="cover">
+    <img src="/assets/cover.jpg">
 </div>
 
-<div *ngFor="let car of cars; let i=index" class="car">
-    <div class="profile-picture">
-        <img src="{{ car.info.image || '/assets/default-car.jpg'}}">
-        <span class="change-picture" uploadFile (onFileSelect)="clickAddPicture($event, i)">Change picture</span>
-    </div>
-    <a *ngIf="car.pictureChanged" class="btn btn-raised btn-success upload" [class.disabled]="false" (click)="clickUploadPicture(car)">
-        <span class="save-text">Upload</span>
-        <span *ngIf="car.loading === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-    </a>
-    <div class="well">
-        <span>{{car.name}}</span>
-        <a class="btn glyphicon glyphicon-trash remove" (click)="clickRemove(car.userCarId)" [class.disabled]="loading">
-        </a>
-    </div>
-</div>
+<loading *ngIf="loading"></loading>
 
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">Add a new Car</h3>
-    </div>
-    <div class="panel-body">
-        <div class="form-group label-floating">
-            <div class="input-group">
-                <label class="control-label">Enter the Registration Number</label>
-                <input type="text" class="form-control" [(ngModel)]="regNumber">
-                <p class="help-block">You need to enter a valid <code>Registration Number</code> in order to add a car.</p>
-                <span class="input-group-btn">
-                    <a class="btn btn-raised btn-success"
-                       [class.disabled]="loading"
-                       (click)="clickSearchCar()">
-                        <span class="save-text">Search</span>
-                </a>
-                </span>
-            </div>
+<div class="cars-wrapper">
+    <div *ngFor="let car of cars; let i=index" class="profile">
+        <div class="profile__image">
+            <img src="{{ car.info.image || '/assets/default-car.jpg'}}">
+            <!--<span class="change-picture" uploadFile (onFileSelect)="clickAddPicture($event, i)">Change picture</span>-->
         </div>
-
-        <div *ngIf="carDetails">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Is this your car ?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Make</td>
-                        <td>{{carDetails.car.make}}</td>
-                    </tr>
-                    <tr>
-                        <td>Model</td>
-                        <td>{{carDetails.car.model}}</td>
-                    </tr>
-                    <tr>
-                        <td>Colour</td>
-                        <td>{{carDetails.colour}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <a class="btn btn-raised btn-success" [class.disabled]="loading" (click)="clickAddCar()">
-                <span class="save-text">Yes, add car</span>
+        <!--<a *ngIf="car.pictureChanged" class="btn btn-raised btn-success upload" [class.disabled]="false" (click)="clickUploadPicture(car)">
+            <span class="save">Upload</span>
+            <span *ngIf="car.loading === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        </a>-->
+        <!--<div class="name">
+            <span>{{car.name}}</span>
+            <a class="btn glyphicon glyphicon-trash remove" (click)="clickRemove(car.userCarId)" [class.disabled]="loading">
             </a>
+        </div>-->
+        <div class="profile__info">
+            <a class="btn btn-primary profile__edit">
+                <span>Edit profile</span>
+            </a>
+            <span class="profile__name">Ferarri 458</span>
+            <span class="profile__followers">713 Followers</span>
+        </div>
+    </div>
+    <div class="add" (click)="clickOpenCarModal()">
+        <div class="add__buttons">
+            <span class="glyphicon glyphicon-plus add__plus"></span>
+            <span class="add__text">Add Car</span>
         </div>
     </div>
 </div>
 
 <alert [message]="alertMessage" [state]="requestState" (resetAlertMessage)="resetAlertMessage($event)"></alert>
+
+<modal [contentComponent]="AddCarModalContent" [title]="'Adding your car to Logbook'" [size]="'small'" [hideFooter]="true">
+</modal>

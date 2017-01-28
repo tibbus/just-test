@@ -8,7 +8,7 @@ import { AuthComponent } from './views/auth/auth.component';
 const appRoutes: Routes = [
     { path: '', redirectTo: 'garage', pathMatch: 'full' },
     { path: 'garage', component: GarageComponent },
-    { path: 'cars', loadChildren: 'app/views/+content/car/car.module#CarModule' },
+    { path: 'cars', loadChildren: './views/+content/car/car.module#CarModule' },
     { path: 'profile', component: ProfileComponent },
     { path: 'feed', component: FeedComponent },
     { path: 'callback.html', component: AuthComponent },

@@ -1,66 +1,42 @@
-<div class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="javascript:void(0)">Brand</a>
-        </div>
+<a class="logo" href="javascript:void(0)">Logbook</a>
 
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control col-md-8 search" placeholder="Search for cars" #term (keyup)="search(term.value)">
-                    <ul class="search-result" [class.hide]="hideSearchResults">
-                        <li *ngFor="let item of items$ | async"
-                            (click)="onClickSearchResult(item)"
-                            >{{item.make}} {{item.model}} {{item.yearOfManufacture}}
-                        </li>
-                        <li *ngIf="!searchService.hasData" class="no-results">No results found</li>
-                    </ul>
-                    <span class="glyphicon glyphicon-search btn" aria-hidden="true"></span>
-                </div>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="javascript:void(0)"
-                       *ngIf="isFollowEnabled"
-                       (click)="onClickUnFollow()"
-                       [class.followActive]="!this.followState"
-                    >
+<div class="search">
+    <input type="text" class="form-control col-md-8 search__input" placeholder="" #term (keyup)="search(term.value)">
+    <span class="glyphicon glyphicon-search btn search__icon" aria-hidden="true"></span>
+</div>
+
+<ul class="search__result" [class.hide]="hideSearchResults">
+    <li *ngFor="let item of items$ | async" (click)="onClickSearchResult(item)">{{item.make}} {{item.model}} {{item.yearOfManufacture}}
+    </li>
+    <li *ngIf="!searchService.hasData" class="no-results">No results found</li>
+</ul>
+
+<!--<li>
+        <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="onClickUnFollow()" [class.followActive]="!this.followState">
                         Unfollow
                     </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)"
-                       *ngIf="isFollowEnabled"
-                       (click)="onClickFollow()"
-                       [class.followActive]="this.followState">
-                        Folllow
-                    </a>
-                </li>
-                <li><a href="javascript:void(0)">Notifications</a></li>
-                 <li class="dropdown">
-                    <div class="profile-img">
-                        <img src="/assets/muj.JPG" />
-                    </div>
-                    <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <strong>{{name}}</strong>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)" [routerLink]="['/profile']">Profile</a></li>
-                        <li><a href="javascript:void(0)">Settings</a></li>
-                        <li><a href="javascript:void(0)">Security</a></li>
+    </li>
+    <li>
+        <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="onClickFollow()" [class.followActive]="this.followState">
+                Folllow
+            </a>
+    </li>
+    <li><a href="javascript:void(0)">Notifications</a></li>-->
+<div class="profile-dropdown">
+    <div data-target="#" class="profile-dropdown__img dropdown-toggle" data-toggle="dropdown">
+        <img src="/assets/muj.JPG" />
+    </div>
+    <!--<a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
+    <strong>{{name}}</strong>
+    <b class="caret"></b>
+</a>-->
+    <ul class="dropdown-menu">
+        <li><a href="javascript:void(0)" [routerLink]="['/profile']">Profile</a></li>
+        <li><a href="javascript:void(0)">Settings</a></li>
+        <li><a href="javascript:void(0)">Security</a></li>
 
-                        <li class="divider"></li>
-                        <li><a href="javascript:void(0)" (click)="clickLogin()">Sing In</a></li>
-                        <li><a href="javascript:void(0)" (click)="clickSignOut()">Sign Out</a></li>
-                    </ul>
-                </li>
-            </ul>
-            </div>
-        </div>
+        <li class="divider"></li>
+        <li><a href="javascript:void(0)" (click)="clickLogin()">Sing In</a></li>
+        <li><a href="javascript:void(0)" (click)="clickSignOut()">Sign Out</a></li>
+    </ul>
 </div>
