@@ -6,3 +6,20 @@
     padding: 5px;
     display: block;
 }
+
+%center {
+    @extend %center--left;
+    @extend %center--top;
+}
+
+%center--left {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+%center--top{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}

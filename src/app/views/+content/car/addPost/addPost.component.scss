@@ -1,4 +1,6 @@
-﻿:host {
+﻿@import '../../../../../styles/mixins';
+
+:host {
     width: 100%;
     display: block;
     background-color: #ffffff;
@@ -6,147 +8,92 @@
     padding-bottom: 5px;
 }
 
-.status-text {
-    width: 660px;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    display: inline-block;
-}
-
-.status-text input {
-    text-align: center;
-    font-weight: bold;
-}
-
-.btn {
-    text-transform: none;
-    color: #56517B;
-}
-
-.btn-group {
-    border-bottom: solid 1px #EDEDED;
-}
-
-.menu-glyphicon {
-    top: 4px;
-    font-size: 22px;
-    margin-right: 10px;
-}
-
-.details {
-    margin-top: 2px;
-    float: right;
-}
-
-.reg-number {
-    float: left;
-    margin: 5px;
-    font-size: 20px;
-    color: black;
-    border-radius: 4px;
-    background-color: #FFD239;
-}
-
-.make {
-    margin: 10px;
-    margin-left: 30px;
-    float: left;
-    font-weight: bold;
-}
-
 .menu {
     margin-bottom: 0;
 }
 
-.save {
-    display: inline-block;
-    padding: 4px 13px;
-    margin-left: 18px;
-}
-
-loading {
-    left: 220px;
-    position: relative;
-    top: -5px;
-}
-
 .writer-img {
-    margin: 0;
-    margin-left: 10px;
-    height: 77px;
-    padding: 3px;
-    position: absolute;
-    border: solid 2px #E6E6E6;
-    border-radius: 4px;
-    margin-top: 50px;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 30px;
+    float: left;
 
     img {
-        height: 100%;
+        width: 100%;
     }
 }
 
-.form-group {
-    margin: 0;
-    margin-top: 5px;
-    padding: 0;
+.text-input {
+    border: none;
+    width: 300px;
+    margin-top: 30px;
     float: left;
-    width: 100%;
-    clear: both;
-    border-top: solid 1px #D2D2D2;
-    padding-top: 10px;
+}
 
-    textarea {
-        padding-left: 100px;
+.add {
+    float: right;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 18px;
 
-        &.lineDisabled {
-            background-image: none;
+    &__plus {
+        @extend %center;
+
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    &__action {
+        padding: 8px;
+        border-radius: 16px;
+        background: #e9e8ee;
+        position: absolute;
+        box-shadow: 1px 1px 3px 1px rgba(196, 195, 195, 0.75);
+        cursor: pointer;
+
+        &.disabled {
+            cursor: default;
+
+            span {
+                opacity: 0.3;
+            }
+        }
+
+        &:hover:not(.disabled) {
+            font-size: 24px;
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        &--video {
+            transition: 0.3s;
+            left: 0;
+            top: 32px;
+            color: red;
+        }
+
+        &--image {
+            transition: 0.3s;
+            left: 47px;
+            top: -5px;
+            color: green;
+        }
+
+        &--document {
+            transition: 0.3s;
+            left: 87px;
+            top: 32px;
+            color: blue;
         }
     }
 }
 
-.help-block {
-    margin-left: 320px;
-}
-
-.post, .add-media {
-    margin: 0;
-    padding: 5px 20px;
-    float: right;
-    margin-top: -3px;
-    margin-right: 10px;
-}
-
-.add-media {
-    float: left;
-    padding: 2px 12px;
-    margin-left: 10px;
-    margin-right: 2px;
-
-    .add-media-text {
-        top: -2px;
-        position: relative;
-        color: #949494;
-    }
-}
-
-.add-photos {
-    clear: left;
-}
-
-.car-info {
-    float: left;
-}
-
-.vertical-line {
-    float: left;
-    height: 27px;
-    width: 1px;
-    background-color: #c3c3c3;
-}
-
 .media-wrapper {
     float: left;
+    clear: left;
 
     .img-wrapper {
         position: relative;
@@ -219,6 +166,7 @@ loading {
 
 .add-topics {
     float: left;
+    clear: left;
     margin: 4px 20px;
     padding: 0;
 
@@ -226,15 +174,21 @@ loading {
         padding: 0;
         margin: 0;
 
+
+        .dropdown-toggle {
+            cursor: pointer;
+            padding: 4px 8px;
+            color: white;
+        }
+
         a {
             cursor: pointer;
-            padding: 6px 16px;
         }
 
         .caret {
-            border-top: 6px dashed;
-            border-right: 6px solid transparent;
-            border-left: 6px solid transparent;
+            border-top: 4px dashed;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
         }
     }
 
@@ -242,4 +196,20 @@ loading {
         color: #949494;
         font-weight: 500;
     }
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background: #e1e1e1;
+    float: left;
+    margin: 10px 0;
+}
+
+.post {
+    padding: 0 10px;
+    float: right;
+    font-size: 13px;
+    margin: 0 10px 0 0;
+    color: white;
 }

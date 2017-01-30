@@ -1,26 +1,8 @@
-﻿/*timeline {
-    width: 90px;
-    background-color: #ffffff;
-    position: fixed;
-    right: 0px;
-    top: 68px;
+﻿:host {
     display: block;
-    height: 100%;
-    border: solid 2px #F3ECEC;
-
-    .header {
-        font-size: 16px;
-        font-weight: 600;
-        text-align: center;
-        padding: 5px;
-        border-bottom: solid 2px #F3ECEC;
-    }
-
-    .item {
-        font-weight: 500;
-        padding: 5px;
-        margin-left: 10px;
-        float: left;
-        clear: both;
-    }
-}*/
+    width: 500px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 80px;
+}

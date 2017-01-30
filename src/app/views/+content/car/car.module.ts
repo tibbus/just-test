@@ -5,6 +5,7 @@ import { SharedModule } from '../../../shared/shared.module';
 
 import { CarComponent } from './car.component';
 import { RegNumberPipe } from './addPost/regNumber.pipe';
+import { HoverAddDirective } from './addPost/hoverAdd.directive';
 import { AddPostComponent } from './addPost/addPost.component';
 
 import { EditModalContentComponent } from '../../../shared/timeline/editModal/editModalContent.component';
@@ -18,6 +19,7 @@ import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsMod
     declarations: [
         CarComponent,
         RegNumberPipe,
+        HoverAddDirective,
         AddPostComponent,
         EditModalContentComponent,
         CarDetailsModalContentComponent,
