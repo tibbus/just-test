@@ -12,16 +12,21 @@
 
 .textarea {
     float: left;
-    width: 600px;
+    width: 400px;
+    padding: 10px;
+
+    textarea {
+        border: none;
+        box-shadow: none;
+    }
 }
 
 .add-button {
     float: left;
-    margin: 0;
     padding: 5px 20px;
-    margin-top: 53px;
+
     position: relative;
-    margin-left: 40px;
+    margin: 10px 0 0 20px;
     text-transform: none;
 }
 
@@ -49,8 +54,9 @@
 }
 
 .date {
-    float: left;
-    margin-left: 10px;
+    float: right;
+    margin-right: 10px;
+    color: grey;
 }
 
 .edit-menu {
@@ -63,8 +69,8 @@
 
 .description {
     float: left;
-    width: 600px;
-    margin-top: 5px;
+    width: 280px;
+    margin: 10px 10px 10px;
 }
 
 .remove {

@@ -1,10 +1,81 @@
 ﻿:host {
     background: #ffffff;
-    padding: 0 8px;
     margin-bottom: 20px;
     float: left;
     border: solid 1px #EFECEC;
     border-radius: 3px;
+    width: 100%;
+}
+
+.line {
+    width: 100%;
+    float: left;
+    margin-top: 5px;
+    background: #EAEAEA;
+    height: 1px;
+}
+
+.content {
+    float: left;
+    margin-top: 9px;
+    padding: 5px;
+    border-radius: 4px;
+    width: 100%;
+
+    &__profile-image {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        float: left;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    &__car-name {
+        float: left;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    &__topics {
+        float: left;
+        margin: 10px;
+        font-size: 15px;
+        color: #a4a4ed;
+
+        span {
+            margin-left: 5px;
+        }
+    }
+
+    &__date {
+        color: #8A8A8A;
+        float: right;
+        margin: 10px;
+    }
+
+    &__description {
+        width: 100%;
+        margin-top: 5px;
+        float: left;
+        padding: 0 10px 0 10px;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    &__image {
+        &:hover {
+            opacity: 0.8;
+        }
+
+        width: 100%;
+        max-height: 300px;
+        float: left;
+        cursor: pointer;
+    }
 }
 
 .removing {
@@ -24,70 +95,31 @@
 
     .like__button {
         padding-right: 0;
+        font-weight: 400;
+        color: grey;
+        font-size: 20px;
+        position: relative;
+        top: 5px;
+        cursor: pointer;
 
         &--enabled {
-            font-weight: bold;
+            color: red;
         }
     }
 }
 
 .show-comments {
     float: right;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 14px;
     margin: 10 20 0 0;
     padding: 0;
     text-transform: none;
-    color: #009688;
+    color: lightgrey;
 
     &-sign {
         color: black;
         font-weight: 400;
-    }
-}
-
-.line {
-    width: 100%;
-    float: left;
-    margin-top: 5px;
-    background: #EAEAEA;
-    height: 1px;
-}
-
-.content {
-    float: left;
-    margin-top: 9px;
-    padding: 5px;
-    border-radius: 4px;
-
-    .description {
-        width: 675px;
-        margin-top: 5px;
-        float: left;
-        padding: 0 10px 0 10px;
-        font-weight: 400;
-        font-size: 16px;
-    }
-
-    .img {
-        height: 60px;
-        float: left;
-
-        img {
-            height: 100%;
-        }
-    }
-
-    .username {
-        float: left;
-        font-weight: bold;
-        margin-left: 10px;
-    }
-
-    .date {
-        color: #8A8A8A;
-        float: left;
-        margin-left: 15px;
     }
 }
 
@@ -125,18 +157,6 @@ a {
     cursor: pointer;
 }
 
-.posted-image {
-    height: 100px;
-    float: left;
-    margin-top: 15px;
-    margin-left: 15px;
-    cursor: pointer;
-}
-
-.posted-image:hover {
-    opacity: 0.8;
-}
-
 .media-wrapper {
     float: left;
     clear: left;
@@ -171,16 +191,11 @@ video {
     margin: 20px;
 }
 
-.topics {
-    float: right;
-    margin-right: 20px;
-}
-
 .like__count {
     font-size: 12px;
 }
 
-.comments-count {
-    font-weight: 400;
-    color: black
-}
+// .comments-count {
+//     font-weight: 400;
+//     color: black
+// }
