@@ -7,6 +7,8 @@ import { CarComponent } from './car.component';
 import { RegNumberPipe } from './addPost/regNumber.pipe';
 import { HoverAddDirective } from './addPost/hoverAdd.directive';
 import { AddPostComponent } from './addPost/addPost.component';
+import { CarNavigationComponent } from './carNavigation/carNavigation.component';
+import { ShowcaseComponent } from './showcase/showcase.component';
 
 import { EditModalContentComponent } from '../../../shared/timeline/editModal/editModalContent.component';
 import { ImageModalContentComponent } from '../../../shared/timeline/imageModal/imageModalContent.component';
@@ -21,10 +23,12 @@ import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsMod
         RegNumberPipe,
         HoverAddDirective,
         AddPostComponent,
+        CarNavigationComponent,
+        ShowcaseComponent,
         EditModalContentComponent,
         CarDetailsModalContentComponent,
         MotDetailsModalContentComponent,
-        TaxDetailsModalContentComponent
+        TaxDetailsModalContentComponent,
     ],
     entryComponents: [
         EditModalContentComponent,

@@ -1,8 +1,10 @@
 <div *ngIf="carLoaded">
     <add-post *ngIf="carService.selectedCar.isUserCar"></add-post>
 
-    <timeline></timeline>
+    <car-navigation></car-navigation>
 </div>
+
+<router-outlet></router-outlet>
 
 <modal [contentComponent]="CarDetailsComponent" [title]="'Car Details'" *ngIf="modalName == 'carDetailsModal'"></modal>
 <modal [contentComponent]="TaxDetailsComponent" [title]="'Tax Details'" *ngIf="modalName == 'taxDetailsModal'"></modal>
