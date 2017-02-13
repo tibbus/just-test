@@ -1,7 +1,9 @@
 ﻿import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ModalService, TimelineService, PostService, FollowService, LikesService } from '../../services/index';
+import { Actor } from '../../services/stream/stream.model';
 import { EditModalContentComponent } from './editModal/editModalContent.component';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 
@@ -31,7 +33,8 @@ export class TimelineComponent implements OnInit, OnDestroy {
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
         private followService: FollowService,
-        private likesService: LikesService
+        private likesService: LikesService,
+        private route: ActivatedRoute
     ) {
         // on modal open/close :
         this.modalSubscription = modalService.getModalName$().subscribe(
@@ -51,7 +54,28 @@ export class TimelineComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.posts$ = this.timelineService.getPosts().subscribe(
+       this.route.parent.params.subscribe(params => {
+            const carRoute = params['id'];
+            const parsedRoute = carRoute.split('-');
+            const carId = parsedRoute[parsedRoute.length - 1];
+
+            this.timelineService.actor = {
+                actorId: carId,
+                actorType: 'car'
+            };
+
+            this.posts$ = this.getPosts();
+        });
+    }
+
+    ngOnDestroy() {
+        this.modalSubscription.unsubscribe();
+
+        this.posts$.unsubscribe();
+    }
+
+    private getPosts() {
+        return this.timelineService.getPosts().subscribe(
             (posts: any[]) => {
                 this.posts = posts;
 
@@ -60,12 +84,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
                 this.mapLikesToPosts();
             }
         );
-    }
-
-    ngOnDestroy() {
-        this.modalSubscription.unsubscribe();
-
-        this.posts$.unsubscribe();
     }
 
     private mapLikesToPosts() {
