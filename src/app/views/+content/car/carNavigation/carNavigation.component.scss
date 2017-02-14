@@ -1,4 +1,10 @@
-﻿ul {
+﻿:host {
+    float: left;
+    margin-top: 25px;
+    clear: right;
+}
+
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -10,21 +16,20 @@
 li {
     float: left;
     cursor: pointer;
-}
-
-li {
     display: block;
-    color: grey;
-    font-size: 23px;
+    color: #a5a5a5;
+    font-size: 17px;
     text-align: center;
-    padding: 16px;
+    margin: 16px;
     text-decoration: none;
+    font-weight: 600;
 }
 
 li.active {
-    border-bottom: solid 2px blue;
+    border-bottom: solid 3px #0000d5;
+    color: black;
 }
 
-li:hover {
-    //background-color: #111111;
+li:hover:not(.active) {
+    color: #888888;
 }

@@ -1,4 +1,4 @@
-<a class="logo" href="javascript:void(0)">Logbook</a>
+<a class="logo" href="javascript:void(0)" [routerLink]="['/feed']">Logbook</a>
 
 <div class="search">
     <input type="text" class="form-control col-md-8 search__input" placeholder="" #term (keyup)="search(term.value)">
@@ -31,7 +31,7 @@
     <b class="caret"></b>
 </a>-->
     <ul class="dropdown-menu">
-        <li><a href="javascript:void(0)" [routerLink]="['/profile']">Profile</a></li>
+        <li><a href="javascript:void(0)" [routerLink]="['/garage']">Profile</a></li>
         <li><a href="javascript:void(0)">Settings</a></li>
         <li><a href="javascript:void(0)">Security</a></li>
 

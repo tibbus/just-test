@@ -9,7 +9,7 @@ import { HoverAddDirective } from './addPost/hoverAdd.directive';
 import { AddPostComponent } from './addPost/addPost.component';
 import { CarNavigationComponent } from './carNavigation/carNavigation.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
-
+import { TechSpecComponent } from './techSpec/techSpec.component';
 import { EditModalContentComponent } from '../../../shared/timeline/editModal/editModalContent.component';
 import { ImageModalContentComponent } from '../../../shared/timeline/imageModal/imageModalContent.component';
 import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
@@ -25,6 +25,7 @@ import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsMod
         AddPostComponent,
         CarNavigationComponent,
         ShowcaseComponent,
+        TechSpecComponent,
         EditModalContentComponent,
         CarDetailsModalContentComponent,
         MotDetailsModalContentComponent,
