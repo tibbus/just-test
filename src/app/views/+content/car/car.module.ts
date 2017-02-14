@@ -12,9 +12,6 @@ import { ShowcaseComponent } from './showcase/showcase.component';
 import { TechSpecComponent } from './techSpec/techSpec.component';
 import { EditModalContentComponent } from '../../../shared/timeline/editModal/editModalContent.component';
 import { ImageModalContentComponent } from '../../../shared/timeline/imageModal/imageModalContent.component';
-import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
-import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
-import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsModalContent.component';
 
 @NgModule({
     imports: [routing, SharedModule],
@@ -26,16 +23,10 @@ import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsMod
         CarNavigationComponent,
         ShowcaseComponent,
         TechSpecComponent,
-        EditModalContentComponent,
-        CarDetailsModalContentComponent,
-        MotDetailsModalContentComponent,
-        TaxDetailsModalContentComponent,
+        EditModalContentComponent
     ],
     entryComponents: [
-        EditModalContentComponent,
-        CarDetailsModalContentComponent,
-        MotDetailsModalContentComponent,
-        TaxDetailsModalContentComponent
+        EditModalContentComponent
     ]
 })
 

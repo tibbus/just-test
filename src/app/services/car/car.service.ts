@@ -4,6 +4,7 @@ import { ReplaySubject }    from 'rxjs/ReplaySubject';
 
 import { HttpService } from '../http/http.service';
 import { ApiService } from '../api/api.service';
+import { API } from '../api/api';
 import { Car, CarInfo, Mot, Tax } from './car.model';
 import * as _ from 'lodash';
 
@@ -59,20 +60,9 @@ export class CarService extends HttpService {
         });
     }
 
-    public getCarById(id: string): Car {
-        const currentCar: Car = _.find(this.dataObject, (car: Car) => {
-            return car.carInfo.id == id;
-        });
-
-        return currentCar;
-    }
-
-    public getSelectedCarMot(): Mot[] {
-        return this.getCarById(this.selectedCar.id).mot;
-    }
-
-    public getSelectedCarTax(): Tax {
-        return this.getCarById(this.selectedCar.id).tax;
+    public getCarById(id: string) {
+        return this.http.get(`${API.root}/car/${id}/details`)
+            .map(response => response.json());
     }
 
     public setCarByRoute(route: string, carInfoId: string): void {

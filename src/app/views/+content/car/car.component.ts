@@ -2,13 +2,8 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { CarDetailsModalContentComponent } from './carDetailsModal/carDetailsModalContent.component';
-import { TaxDetailsModalContentComponent } from './taxDetailsModal/taxDetailsModalContent.component';
-import { MotDetailsModalContentComponent } from './motDetailsModal/motDetailsModalContent.component';
 import { CarService, ModalService, TimelineService, PostService, FollowService, SidebarService } from '../../../services/index';
-
 import { Car, CarInfo, Mot, Tax } from '../../../services/car/car.model';
-
 declare const jQuery: any;
 
 @Component({
@@ -23,9 +18,6 @@ export class CarComponent implements OnInit, OnDestroy {
     modalName: string;
     private modalSubscription: Subscription;
     carLoaded: boolean;
-    CarDetailsComponent: any = CarDetailsModalContentComponent;
-    TaxDetailsComponent: any = TaxDetailsModalContentComponent;
-    MotDetailsComponent: any = MotDetailsModalContentComponent;
 
     constructor(
         private carService: CarService,
