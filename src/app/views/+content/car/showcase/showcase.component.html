@@ -1,1 +1,16 @@
-<h1> show case </h1>
+<h3>Images</h3>
+<div class="image">
+    <div *ngFor="let image of posts.images" class="image__uri">
+        <img src="{{image}}">
+    </div>
+<div>
+
+<h3>Videos</h3>
+<div class="video">
+    <div *ngFor="let video of posts.videos" class="video__uri">
+        <video  controls>
+            <source src="{{video}}" type="video/mp4">
+        </video>
+    </div>
+<div>
+

@@ -3,6 +3,34 @@
     float: left;
 }
 
-h1 {
-    color: red;
+h3 {
+    clear: left;
+}
+
+.image {
+    float: left;
+    clear: left;
+
+    &__uri {
+        float: left;
+        width: 160px;
+        height: 170px;
+        border: solid 4px black;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.video {
+    float: left;
+    clear: left;
+
+    &__uri {
+        float: left;
+        width: 100%;
+        overflow: hidden;
+    }
 }
