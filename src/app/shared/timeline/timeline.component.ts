@@ -54,6 +54,12 @@ export class TimelineComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        if (this.isFeed) {
+            this.posts$ = this.getPosts();
+
+            return;
+        }
+
        this.route.parent.params.subscribe(params => {
             const carRoute = params['id'];
             const parsedRoute = carRoute.split('-');
@@ -77,7 +83,8 @@ export class TimelineComponent implements OnInit, OnDestroy {
     private getPosts() {
         return this.timelineService.getPosts().subscribe(
             (posts: any[]) => {
-                this.posts = posts;
+                // filter for old unsported posts
+                this.posts = posts.filter(post => post.activityData);
 
                 this.followService.handleFollow();
 

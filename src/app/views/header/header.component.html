@@ -11,17 +11,13 @@
     <li *ngIf="!searchService.hasData" class="no-results">No results found</li>
 </ul>
 
-<!--<li>
-        <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="onClickUnFollow()" [class.followActive]="!this.followState">
-                        Unfollow
-                    </a>
-    </li>
-    <li>
-        <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="onClickFollow()" [class.followActive]="this.followState">
-                Folllow
-            </a>
-    </li>
-    <li><a href="javascript:void(0)">Notifications</a></li>-->
+    <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="onClickUnFollow()" [class.followActive]="!this.followState">
+        Unfollow
+    </a>
+    <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="onClickFollow()" [class.followActive]="this.followState">
+        Folllow
+    </a>
+
 <div class="profile-dropdown">
     <div data-target="#" class="profile-dropdown__img dropdown-toggle" data-toggle="dropdown">
         <img src="/assets/muj.JPG" />

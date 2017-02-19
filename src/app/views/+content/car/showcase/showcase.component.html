@@ -1,11 +1,11 @@
-<h3>Images</h3>
+<h5 *ngIf="posts.images.length">Images</h5>
 <div class="image">
     <div *ngFor="let image of posts.images" class="image__uri">
         <img src="{{image}}">
     </div>
 <div>
 
-<h3>Videos</h3>
+<h5 *ngIf="posts.videos.length">Videos</h5>
 <div class="video">
     <div *ngFor="let video of posts.videos" class="video__uri">
         <video  controls>

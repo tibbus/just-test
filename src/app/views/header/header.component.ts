@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     private searchTermStream = new Subject();
     hideSearchResults: boolean = true;
     followState: boolean;
-    public isFollowEnabled: boolean = true;
+    public isFollowEnabled: boolean = false;
     public items$: Observable<string[]>;
 
     constructor(
