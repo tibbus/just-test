@@ -30,7 +30,6 @@
     "@types/jasmine": "2.5.38",
     "@types/lodash": "^4.14.44",
     "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.24",
     "bootstrap-sass": "3.3.6",
     "codelyzer": "~2.0.0-beta.1",
     "core-js": "^2.4.1",
@@ -54,5 +53,8 @@
     "tslint": "^4.0.2",
     "typescript": "2.0.3",
     "zone.js": "^0.7.2"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.0.0-rc.0"
   }
 }
