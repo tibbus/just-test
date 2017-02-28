@@ -7,7 +7,6 @@ import { Car, CarInfo, Mot, Tax } from '../../../services/car/car.model';
 declare const jQuery: any;
 
 @Component({
-    //moduleId: module.id,
     selector: 'car-content',
     styleUrls: ['./car.component.scss'],
     templateUrl: './car.component.html',
