@@ -14,16 +14,15 @@
             <span class="save">Upload</span>
             <span *ngIf="car.loading === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
         </a>-->
-        <!--<div class="name">
-            <span>{{car.name}}</span>
+        <div class="name">
             <a class="btn glyphicon glyphicon-trash remove" (click)="clickRemove(car.userCarId)" [class.disabled]="loading">
             </a>
-        </div>-->
+        </div>
         <div class="profile__info">
             <a class="btn btn-primary profile__edit"  [routerLink]="['/cars/' + car.route]">
                 <span>Edit profile</span>
             </a>
-            <span class="profile__name">Ferarri 458</span>
+            <span class="profile__name">{{car.name}}</span>
             <span class="profile__followers">713 Followers</span>
         </div>
     </div>

@@ -6,9 +6,7 @@
 
     <div class="line"></div>
 
-    <span class="content__date">{{post.activityData.createdDate | timelineDate }}</span>
-
-    <!--<div class="btn-group edit-menu">
+    <div class="btn-group edit-menu">
         <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>
             <div class="ripple-container"></div>
@@ -17,7 +15,8 @@
             <li><a (click)="clickEdit(post)">Edit</a></li>
             <li><a (click)="clickDelete(post.activityData.id)">Delete</a></li>
         </ul>
-    </div>-->
+    </div>
+    <span class="content__date">{{post.activityData.createdDate | timelineDate }}</span>
 
     <div class="content__topics">
         <span *ngFor="let topic of post.activityData?.topics">{{topic}} </span>

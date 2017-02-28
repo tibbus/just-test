@@ -125,19 +125,19 @@
 
 .edit-menu {
     margin: 0;
-    margin-right: -8px;
+    margin-right: 5px;
     float: right;
 
     a {
         cursor: pointer;
-        padding: 6px 16px;
+        padding: 4px 10px;
     }
 }
 
 .caret {
-    border-top: 6px dashed;
-    border-right: 6px solid transparent;
-    border-left: 6px solid transparent;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
 }
 
 .loading-wrapper {
