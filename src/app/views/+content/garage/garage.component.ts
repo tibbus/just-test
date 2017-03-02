@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
-import { CarService, SidebarService, FollowService, ModalService } from '../../../services/index';
+import { CarService, FollowService, ModalService } from '../../../services/index';
 import { AddCarModalComponent } from './addCarModal/addCarModal.component';
 
 declare const jQuery: any;
@@ -23,13 +23,10 @@ export class GarageComponent implements OnInit {
 
     constructor(
         private carService: CarService,
-        private sidebarService: SidebarService,
         private modalService: ModalService,
         private changeDetector: ChangeDetectorRef) { }
 
     ngOnInit() {
-        this.sidebarService.setCarMenu$('garage');
-
         this.getCars(false);
 
         this.modalService.getModalClose().subscribe(() => {

@@ -1,7 +1,8 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { ProfileService, SidebarService, FollowService } from '../../../services/index';
+import { ProfileService } from '../../../services/profile/profile.service';
+import { FollowService } from '../../../services/follow/follow.service';
 import { Profile } from '../../../services/profile/profile.model';
 
 @Component({
@@ -20,16 +21,10 @@ export class ProfileComponent implements OnInit {
 
     constructor(
         private profileService: ProfileService,
-        private sidebarService: SidebarService,
-        private ref: ChangeDetectorRef,
-        //private followService: FollowService
+        private ref: ChangeDetectorRef
     ) { }
 
     ngOnInit() {
-        //this.followService.setFollowState(false);
-
-        this.sidebarService.setCarMenu$(null);
-
         this.getProfile();
     }
 

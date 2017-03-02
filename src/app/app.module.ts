@@ -6,11 +6,9 @@ import { CustomRequestOptions } from './services/http/baseRequest';
 import { routing } from './app.routes';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './views/header/header.component';
-import { SidebarComponent } from './views/sidebar/sidebar.component';
 import { ProfileComponent, NotFoundComponent, FeedComponent } from './views/+content/index';
 import { GarageComponent } from './views/+content/garage/garage.component';
 import { AddCarModalComponent } from './views/+content/garage/addCarModal/addCarModal.component';
-import { GarageMenuComponent } from './views/sidebar/garageMenu/garageMenu.component';
 import { AuthComponent } from './views/auth/auth.component';
 import { StreamService } from './services/stream/stream.service';
 
@@ -18,7 +16,6 @@ import {
     ApiService,
     CarService,
     ProfileService,
-    SidebarService,
     ModalService,
     PostService,
     TimelineService,
@@ -41,11 +38,9 @@ import useFactory from './factory';
     declarations: [
         AppComponent,
         HeaderComponent,
-        SidebarComponent,
         ProfileComponent,
         NotFoundComponent,
         FeedComponent,
-        GarageMenuComponent,
         GarageComponent,
         AuthComponent,
         AddCarModalComponent
@@ -56,7 +51,6 @@ import useFactory from './factory';
     providers: [
         ProfileService,
         CarService,
-        SidebarService,
         ModalService,
         ApiService,
         TimelineService,

@@ -2,7 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { CarService, ModalService, TimelineService, PostService, FollowService, SidebarService } from '../../../services/index';
+import { CarService, ModalService, TimelineService, PostService, FollowService } from '../../../services/index';
 import { Car, CarInfo, Mot, Tax } from '../../../services/car/car.model';
 declare const jQuery: any;
 
@@ -23,8 +23,7 @@ export class CarComponent implements OnInit, OnDestroy {
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
         private route: ActivatedRoute,
-        private followService: FollowService,
-        private sidebarService: SidebarService
+        private followService: FollowService
     ) { }
 
     ngOnInit() {
@@ -48,7 +47,6 @@ export class CarComponent implements OnInit, OnDestroy {
                     actorType: 'car',
                     actorId: carId
                 };
-                this.sidebarService.setCarMenu$(this.carService.selectedCar ? this.carService.selectedCar.name : null);
                 this.followService.setFollowState(true);
                 this.followService.handleFollow()
 

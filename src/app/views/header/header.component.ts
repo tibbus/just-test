@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { ProfileService, SearchService, FollowService, SidebarService, AuthService, StreamService } from '../../services/index';
+import { ProfileService, SearchService, FollowService, AuthService, StreamService } from '../../services/index';
 import { Profile } from '../../services/profile/profile.model';
 import { Router } from '@angular/router';
 
@@ -32,7 +32,6 @@ export class HeaderComponent implements OnInit {
         private searchService: SearchService,
         private followService: FollowService,
         private router: Router,
-        private sidebarService: SidebarService,
         private authService: AuthService,
         private streamService: StreamService
     ) { }
@@ -77,10 +76,6 @@ export class HeaderComponent implements OnInit {
     public onClickSearchResult(car) {
         const routeFromCar = `${car.make}-${car.model}-${car.carInfoId}`;
         const parsedRouteFromCar = routeFromCar.replace(/ /g, '-');
-
-        this.router.navigate(['/cars', parsedRouteFromCar]).then(() => {
-            this.sidebarService.setCarMenu$(null);
-        });
     }
 
     public clickSignOut() {
