@@ -40,7 +40,7 @@ export class EditModalContentComponent implements OnInit, OnDestroy {
             return this.selectedTopics.indexOf(topic) === -1;
         });
 
-        this.modalSaveSub = this.modalService.getModalSave$().subscribe(
+        this.modalSaveSub = this.modalService.getModalSave().subscribe(
             () => {
                 this.savePost();
             }
@@ -91,14 +91,14 @@ export class EditModalContentComponent implements OnInit, OnDestroy {
     }
 
     private savePost() {
-        this.modalService.setModalLoading$();
+        this.modalService.setModalLoading();
 
         this.postService.updatePost(this.postDescription, this.files, this.selectedTopics).subscribe(
             () => {
                 // update the TimeLine
                 this.timelineService.getPosts();
 
-                this.modalService.setModalClose$();
+                this.modalService.setModalClose();
             }
         );
     }

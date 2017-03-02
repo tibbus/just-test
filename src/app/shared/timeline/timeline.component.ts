@@ -4,8 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ModalService, TimelineService, PostService, FollowService, LikesService } from '../../services/index';
 import { Actor } from '../../services/stream/stream.model';
-import { EditModalContentComponent } from './editModal/editModalContent.component';
-import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 
 declare var FB: any;
 declare const jQuery: any;
@@ -22,8 +20,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
     @Input() isFeed: boolean;
 
     public EditModalComponent: any;
-    public ImageModalComponent: any;
-    private modalSubscription: Subscription;
     public posts: any[];
     public modalName: string;
     private posts$: any;
@@ -35,23 +31,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
         private followService: FollowService,
         private likesService: LikesService,
         private route: ActivatedRoute
-    ) {
-        // on modal open/close :
-        this.modalSubscription = modalService.getModalName$().subscribe(
-            modalName => {
-                this.modalName = modalName;
-
-                this.ref.detectChanges();
-
-                if (modalName) {
-                    // open the modal
-                    jQuery('#myModal').modal('show');
-                }
-            });
-
-        this.EditModalComponent = EditModalContentComponent;
-        this.ImageModalComponent = ImageModalContentComponent;
-    }
+    ) {}
 
     ngOnInit() {
         if (this.isFeed) {
@@ -75,8 +55,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.modalSubscription.unsubscribe();
-
         this.posts$.unsubscribe();
     }
 

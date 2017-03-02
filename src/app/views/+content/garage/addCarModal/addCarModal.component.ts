@@ -26,7 +26,7 @@ export class AddCarModalComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
-        this.modalSaveSub = this.modalService.getModalSave$().subscribe(
+        this.modalSaveSub = this.modalService.getModalSave().subscribe(
             () => {
                 //this.savePost();
             }
@@ -75,7 +75,7 @@ export class AddCarModalComponent implements OnInit, OnDestroy {
     }
 
     public clickCarDone() {
-        this.modalService.setModalClose$();
+        this.modalService.setModalClose();
 
         this.carAdded = false;
         this.alertMessage = null;

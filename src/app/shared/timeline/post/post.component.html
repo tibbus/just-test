@@ -64,3 +64,15 @@
 <div class="line"></div>
 
 <comments [postId]="post.activityData.id"></comments>
+
+<modal *ngIf="modal == 'imageModal'"
+    [contentComponent]="ImageModalComponent"
+    [title]="'Images'"
+    [size]="'large'">
+</modal>
+
+<modal *ngIf="modal == 'editModal'"
+    [contentComponent]="EditModalComponent"
+    [title]="'Edit post'"
+    [showSaveButton]="true">
+</modal>

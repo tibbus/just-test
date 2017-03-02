@@ -2,6 +2,8 @@
 import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService, TimelineService, PostService, LikesService } from '../../../services/index';
+import { ImageModalContentComponent } from '../imageModal/imageModalContent.component';
+import { EditModalContentComponent } from '../editModal/editModalContent.component';
 
 declare var FB: any;
 
@@ -14,13 +16,22 @@ declare var FB: any;
 export class PostComponent {
     @Input() post: any;
     public loading: boolean;
+    public ImageModalComponent: any = ImageModalContentComponent;
+    public EditModalComponent: any = EditModalContentComponent;
+    public modal: string;
 
     constructor(
         private modalService: ModalService,
         private timelineService: TimelineService,
         private postService: PostService,
         private likesService: LikesService
-    ) {}
+    ) { }
+
+    ngOnInit() {
+        this.modalService.getModalClose().subscribe(() => {
+            this.modal = '';
+        });
+    }
 
     public clickDelete(postId: string) {
         this.loading = true;
@@ -36,15 +47,16 @@ export class PostComponent {
     public clickEdit(post: any) {
         this.timelineService.setSelectedPostId(post.activityData.id);
 
-        // open Edit Modal
-        this.modalService.setModalName$('editModal');
+        // open modal
+        this.modal = 'editModal';
     }
 
     public clickImage(postId: string, index: number) {
         this.timelineService.setSelectedPostId(postId);
         this.timelineService.setSelectedImage(index);
 
-        this.modalService.setModalName$('imageModal');
+        // open modal
+        this.modal = 'imageModal';
     }
 
     public clickShare(postId: string) {

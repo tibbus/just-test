@@ -21,33 +21,30 @@ export class ModalComponent {
 
     dynamicComponent: any;
 
-    private modalSubscription: Subscription;
-    private modalSubscription2: Subscription;
-    loading: boolean;
+    private subModalClose: Subscription;
+    private subModalLoading: Subscription;
+    public loading: boolean;
 
     constructor(private modalService: ModalService,
         private componentResolver: ComponentFactoryResolver
     ) { }
 
-    ngAfterViewInit() {
-        console.log(this.dynamicComponent)
-        const factory = this.componentResolver.resolveComponentFactory(this.contentComponent);
-
-        this.dynamicComponent.createComponent(factory);
-    }
-
     ngOnInit() {
         jQuery('#myModal').on('hidden.bs.modal', (e) => {
             this.onModalClose();
         })
+        jQuery('#myModal').on('show.bs.modal', (e) => {
+            this.renderModalContent();
+        })
+        jQuery('#myModal').modal('show');
 
-        this.modalSubscription = this.modalService.getModalClose$().delay(1).subscribe(
+        this.subModalClose = this.modalService.getModalClose().subscribe(
             () => {
                 jQuery('#myModal').modal('hide');
             }
         );
 
-        this.modalSubscription2 = this.modalService.getModalLoading$().subscribe(
+        this.subModalLoading = this.modalService.getModalLoading().subscribe(
             () => {
                 this.loading = true;
             }
@@ -55,16 +52,20 @@ export class ModalComponent {
     }
 
     ngOnDestroy() {
-        // TODO : find a better way to handle this
-        this.modalSubscription.unsubscribe();
-        this.modalSubscription2.unsubscribe();
+        this.subModalClose.unsubscribe();
+        this.subModalLoading.unsubscribe();
     }
 
-    onModalClose() {
-        this.modalService.setModalName$('');
+    public onClickSave() {
+        this.modalService.setModalSave();
     }
 
-    onClickSave() {
-        this.modalService.setModalSave$();
+    private renderModalContent() {
+        const factory = this.componentResolver.resolveComponentFactory(this.contentComponent);
+        this.dynamicComponent.createComponent(factory);
+    }
+
+    private onModalClose() {
+        this.modalService.setModalClose();
     }
 }

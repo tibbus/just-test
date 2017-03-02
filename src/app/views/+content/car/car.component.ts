@@ -14,9 +14,7 @@ declare const jQuery: any;
 })
 
 export class CarComponent implements OnInit, OnDestroy {
-    modalName: string;
-    private modalSubscription: Subscription;
-    carLoaded: boolean;
+    public carLoaded: boolean;
 
     constructor(
         private carService: CarService,
@@ -27,18 +25,7 @@ export class CarComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private followService: FollowService,
         private sidebarService: SidebarService
-    ) {
-        // on modal open/close :
-        this.modalSubscription = modalService.getModalName$().subscribe(
-            modalName => {
-                this.modalName = modalName;
-
-                this.ref.detectChanges();
-
-                // open the modal
-                jQuery('#myModal').modal('show');
-            });
-    }
+    ) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -70,7 +57,6 @@ export class CarComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.modalSubscription.unsubscribe();
         // Hide follow button
         this.followService.setFollowState(false);
     }

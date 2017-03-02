@@ -17,37 +17,25 @@ export class GarageComponent implements OnInit {
     public requestState: boolean = false;
     public alertMessage: string;
 
-    public AddCarModalContent: any;
+    public AddCarModalContent: any = AddCarModalComponent;
     private modalSubscription;
-    private modalName;
+    public modal;
 
     constructor(
         private carService: CarService,
         private sidebarService: SidebarService,
         private modalService: ModalService,
-        //private followService: FollowService,
-        private changeDetector: ChangeDetectorRef) {
-        // on modal open/close :
-        this.modalSubscription = modalService.getModalName$().subscribe(
-            modalName => {
-                this.modalName = modalName;
-
-                this.changeDetector.detectChanges();
-
-                if (modalName) {
-                    // open the modal
-                    jQuery('#myModal').modal('show');
-                }
-            });
-
-        this.AddCarModalContent = AddCarModalComponent;
-    }
+        private changeDetector: ChangeDetectorRef) { }
 
     ngOnInit() {
         this.sidebarService.setCarMenu$('garage');
-        //this.followService.setFollowState(false);
 
         this.getCars(false);
+
+        this.modalService.getModalClose().subscribe(() => {
+            // close modal
+            this.modal = '';
+        });
     }
 
     private getCars(refreshRequest: boolean) {
@@ -119,6 +107,6 @@ export class GarageComponent implements OnInit {
 
     public clickOpenCarModal() {
         // open Edit Modal
-        this.modalService.setModalName$('dasdasdsa');
+        this.modal = 'addCarModal';
     }
 }

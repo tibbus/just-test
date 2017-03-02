@@ -23,8 +23,7 @@ export class CommentsComponnent implements OnInit {
     public removeLoading: string;
     public newCommentText: string;
     public EditCommentsComponent: any = EditCommentsComponent;
-    private modalSubscription: Subscription;
-    public modalName: string;
+    public modal: string;
 
     constructor(
         private commentsService: CommentsService,
@@ -34,17 +33,10 @@ export class CommentsComponnent implements OnInit {
     ) {
 
         // on modal open/close :
-        this.modalSubscription = this.modalService.getModalName$().subscribe(
-            modalName => {
-                this.modalName = modalName;
-
-                this.ref.detectChanges();
-
-                if (modalName) {
-                    // open the modal
-                    jQuery('#myModal').modal('show');
-                }
-            });
+        this.modalService.getModalClose().subscribe(() => {
+            // close modal
+            this.modal = '';
+        });
     }
 
     ngOnInit() {
@@ -58,10 +50,6 @@ export class CommentsComponnent implements OnInit {
             //post.comments.list = comments;
             this.comments = comments;
         })
-    }
-
-    ngOnDestroy() {
-        this.modalSubscription.unsubscribe();
     }
 
     clickAddComment() {
@@ -97,6 +85,6 @@ export class CommentsComponnent implements OnInit {
         this.commentsService.setSelectedComment(selectedComment);
         this.timelineService.setSelectedPostId(this.postId);
 
-        this.modalService.setModalName$('editComments');
+        this.modal = 'editComments';
     }
 }

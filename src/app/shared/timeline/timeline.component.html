@@ -1,13 +1,1 @@
 <post *ngFor="let post of posts"  class="post" [post]="post"></post>
-
-<modal *ngIf="modalName == 'editModal'"
-    [contentComponent]="EditModalComponent"
-    [title]="'Edit post'"
-    [showSaveButton]="true">
-</modal>
-
-<modal *ngIf="modalName == 'imageModal'"
-    [contentComponent]="ImageModalComponent"
-    [title]="'Images'"
-    [size]="'large'">
-</modal>

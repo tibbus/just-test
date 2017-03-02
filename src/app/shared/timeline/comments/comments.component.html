@@ -13,7 +13,7 @@
         <div class="description">
             <p> {{comment.comment}}</p>
         </div>
-        <!--<div class="btn-group edit-menu">
+        <div class="btn-group edit-menu">
             <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
                 <div class="ripple-container"></div>
@@ -22,7 +22,7 @@
                 <li><a (click)="clickEdit(comment)">Edit</a></li>
                 <li><a (click)="clickRemove(comment.id)">Delete</a></li>
             </ul>
-        </div>-->
+        </div>
         <span class="date">{{comment.createdDate | timelineDate }}</span>
     </div>
 
@@ -40,7 +40,7 @@
 </div>
 
 <modal
-       *ngIf="modalName == 'editComments'"
+       *ngIf="modal == 'editComments'"
        [contentComponent]="EditCommentsComponent"
        [title]="'Edit'"
        [showSaveButton]="true"
