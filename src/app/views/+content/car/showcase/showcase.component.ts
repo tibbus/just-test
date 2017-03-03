@@ -47,8 +47,6 @@ export class ShowcaseComponent {
                         this.posts.docs = this.posts.docs.concat(item.activityData.contentUris)
                     }
                 });
-
-                console.log(this.posts.images);
             }
         );
     }

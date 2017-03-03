@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { ProfileService, SearchService, FollowService, AuthService, StreamService } from '../../services/index';
+import { ProfileService, SearchService, FollowService, AuthService, StreamService, CarService } from '../../services/index';
 import { Profile } from '../../services/profile/profile.model';
 import { Router } from '@angular/router';
 
@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
     followState: boolean;
     public isFollowEnabled: boolean = false;
     public items$: Observable<string[]>;
+    public cars: any[] = [];
 
     constructor(
         private profileService: ProfileService,
@@ -33,7 +34,8 @@ export class HeaderComponent implements OnInit {
         private followService: FollowService,
         private router: Router,
         private authService: AuthService,
-        private streamService: StreamService
+        private streamService: StreamService,
+        private carService: CarService
     ) { }
 
     ngOnInit() {
@@ -48,6 +50,10 @@ export class HeaderComponent implements OnInit {
         })
 
         this.items$ = this.searchService.getSearchResult();
+
+        this.carService.getCars().subscribe(cars => {
+            this.cars = cars;
+        })
     }
 
     public search(term: string) {

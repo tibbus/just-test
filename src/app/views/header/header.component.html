@@ -27,6 +27,9 @@
     <b class="caret"></b>
 </a>-->
     <ul class="dropdown-menu">
+        <li *ngFor="let car of cars">
+            <a href="javascript:void(0)" [routerLink]="['/cars/' + car.route + '/timeline']">{{car.name}}</a>
+        </li>
         <li><a href="javascript:void(0)" [routerLink]="['/garage']">View Garage</a></li>
         <li><a href="javascript:void(0)">Settings</a></li>
         <li><a href="javascript:void(0)">Security</a></li>

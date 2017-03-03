@@ -37,21 +37,18 @@ export class CarComponent implements OnInit, OnDestroy {
     }
 
     getCars(carRoute: string) {
-        this.carService.getCars().delay(100).subscribe(
-            cars => {
-                const parsedRoute = carRoute.split('-');
-                const carId = parsedRoute[parsedRoute.length - 1];
+        const parsedRoute = carRoute.split('-');
+        const carId = parsedRoute[parsedRoute.length - 1];
 
-                this.carService.setCarByRoute(carRoute, carId);
-                this.timelineService.actor = {
-                    actorType: 'car',
-                    actorId: carId
-                };
-                this.followService.setFollowState(true);
-                this.followService.handleFollow()
+        this.carService.setCarByRoute(carRoute, carId);
+        this.timelineService.actor = {
+            actorType: 'car',
+            actorId: carId
+        };
+        this.followService.setFollowState(true);
+        this.followService.handleFollow()
 
-                this.carLoaded = true;
-            });
+        this.carLoaded = true;
     }
 
     ngOnDestroy() {
