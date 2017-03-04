@@ -2,7 +2,7 @@
 import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService, TimelineService, PostService, LikesService } from '../../../services/index';
-import { ImageModalContentComponent } from '../imageModal/imageModalContent.component';
+import { ImageModalContentComponent } from '../../imageModal/imageModalContent.component';
 import { EditModalContentComponent } from '../editModal/editModalContent.component';
 
 declare var FB: any;
@@ -53,6 +53,7 @@ export class PostComponent {
 
     public clickImage(postId: string, index: number) {
         this.timelineService.setSelectedPostId(postId);
+        this.timelineService.setImages(this.post.activityData.contentUris);
         this.timelineService.setSelectedImage(index);
 
         // open modal

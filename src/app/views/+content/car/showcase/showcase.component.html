@@ -1,7 +1,7 @@
 <h5 *ngIf="posts.images.length">Images</h5>
 <div class="image">
-    <div *ngFor="let image of posts.images" class="image__uri">
-        <img src="{{image}}">
+    <div *ngFor="let image of posts.images; let i=index" class="image__uri">
+        <img src="{{image}}" (click)="clickImage(i)">
     </div>
 <div>
 
@@ -14,3 +14,8 @@
     </div>
 <div>
 
+<modal *ngIf="modal == 'imageModal'"
+    [contentComponent]="ImageModalComponent"
+    [title]="'Images'"
+    [size]="'large'">
+</modal>

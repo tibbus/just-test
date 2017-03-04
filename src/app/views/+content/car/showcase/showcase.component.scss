@@ -26,6 +26,11 @@ h5 {
 
         img {
             height: 100%;
+            cursor: pointer;
+        }
+
+        img:hover {
+            opacity: 0.6;
         }
     }
 }

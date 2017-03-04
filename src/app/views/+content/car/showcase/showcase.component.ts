@@ -1,7 +1,8 @@
 ﻿import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TimelineService } from '../../../../services/index';
+import { ImageModalContentComponent } from '../../../../shared/imageModal/imageModalContent.component';
+import { TimelineService, ModalService } from '../../../../services/index';
 
 @Component({
     selector: 'showcase',
@@ -11,8 +12,10 @@ import { TimelineService } from '../../../../services/index';
 
 export class ShowcaseComponent {
     public posts: any = {};
+    public modal: string;
+    public ImageModalComponent: any = ImageModalContentComponent;
 
-    constructor(private route: ActivatedRoute, private timelineService: TimelineService) { }
+    constructor(private route: ActivatedRoute, private timelineService: TimelineService, private modalService: ModalService) { }
 
     ngOnInit() {
         this.route.parent.params.subscribe(params => {
@@ -27,7 +30,19 @@ export class ShowcaseComponent {
 
             this.getPosts();
         });
+
+        this.modalService.getModalClose().subscribe(() => {
+            this.modal = '';
+        });
     }
+
+    public clickImage(index: number) {
+        this.timelineService.setSelectedImage(index);
+
+        // open modal
+        this.modal = 'imageModal';
+    }
+
 
     private getPosts() {
         this.posts = {
@@ -47,6 +62,8 @@ export class ShowcaseComponent {
                         this.posts.docs = this.posts.docs.concat(item.activityData.contentUris)
                     }
                 });
+
+                this.timelineService.setImages(this.posts.images);
             }
         );
     }

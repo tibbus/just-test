@@ -9,7 +9,6 @@ declare var FB: any;
 declare const jQuery: any;
 
 @Component({
-    //moduleId: module.id,
     selector: 'timeline',
     styleUrls: ['./timeline.component.scss'],
     templateUrl: './timeline.component.html',

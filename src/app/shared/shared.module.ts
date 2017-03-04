@@ -9,7 +9,7 @@ import { UploadFileDirective } from './uploadFile.directive';
 import { TimelineComponent } from './timeline/timeline.component';
 import { PostComponent } from './timeline/post/post.component';
 import { TimelineDatePipe } from './timelineDate.pipe';
-import { ImageModalContentComponent } from './timeline/imageModal/imageModalContent.component';
+import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 import { CommentsComponnent } from './timeline/comments/comments.component';
 import { EditCommentsComponent } from './timeline/comments/editComments.component';
 

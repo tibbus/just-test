@@ -21,6 +21,7 @@ export class TimelineService {
     private selectedImageIndex: number;
     private posts$ = new Subject();
     public actor: Actor;
+    private images: any[];
 
     public getPosts() {
        return this.streamService.getData(this.actor, 'get').do((posts: any[]) => {
@@ -56,6 +57,14 @@ export class TimelineService {
 
     public getSelectedImage(): number {
         return this.selectedImageIndex;
+    }
+
+    public setImages(images: any[]) {
+        this.images = images;
+    }
+
+    public getImages() {
+        return this.images;
     }
 
     public getSelectedPost() {
