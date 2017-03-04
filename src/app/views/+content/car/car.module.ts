@@ -10,8 +10,6 @@ import { AddPostComponent } from './addPost/addPost.component';
 import { CarNavigationComponent } from './carNavigation/carNavigation.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TechSpecComponent } from './techSpec/techSpec.component';
-import { EditModalContentComponent } from '../../../shared/timeline/editModal/editModalContent.component';
-import { ImageModalContentComponent } from '../../../shared/timeline/imageModal/imageModalContent.component';
 
 @NgModule({
     imports: [routing, SharedModule],
@@ -22,11 +20,7 @@ import { ImageModalContentComponent } from '../../../shared/timeline/imageModal/
         AddPostComponent,
         CarNavigationComponent,
         ShowcaseComponent,
-        TechSpecComponent,
-        EditModalContentComponent
-    ],
-    entryComponents: [
-        EditModalContentComponent
+        TechSpecComponent
     ]
 })
 
