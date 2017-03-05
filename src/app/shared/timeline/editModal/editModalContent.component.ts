@@ -93,7 +93,7 @@ export class EditModalContentComponent implements OnInit, OnDestroy {
     private savePost() {
         this.modalService.setModalLoading();
 
-        this.postService.updatePost(this.postDescription, this.files, this.selectedTopics).subscribe(
+        this.postService.updatePost(this.postDescription, this.files, this.selectedTopics, this.post.id).subscribe(
             () => {
                 // update the TimeLine
                 this.timelineService.getPosts();

@@ -4,13 +4,11 @@
 </div>
 
 <img src="{{image}}"/>
-<a class="btn glyphicon glyphicon-chevron-left arrow left" 
+<a class="btn glyphicon glyphicon-chevron-left arrow left"
       (click)="navigate(-1)"
-      [class.disabled]="currentImageIndex === 0"
-      >
+      [class.disabled]="currentImageIndex === 0">
 </a>
-<a class="btn glyphicon glyphicon-chevron-right arrow right" 
+<a class="btn glyphicon glyphicon-chevron-right arrow right"
    (click)="navigate(1)"
-   [class.disabled]="currentImageIndex + 1 === imageListLength"
-   >
+   [class.disabled]="currentImageIndex + 1 === imageListLength" >
 </a>

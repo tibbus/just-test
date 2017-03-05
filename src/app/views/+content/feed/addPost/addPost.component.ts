@@ -6,43 +6,40 @@ import {
     ModalService,
     CarService,
     TimelineService,
-    PostService
+    PostService,
 } from '../../../../services/index';
 
 @Component({
-    //moduleId: module.id,
     selector: 'add-post',
     styleUrls: ['./addPost.component.scss'],
     templateUrl: './addPost.component.html'
 })
 
 export class AddPostComponent {
-    currentStatus: string = '';
-    loading: boolean = false;
-    carInfo: any;
-    carRegNumber: string;
-    uris: string[] = [];
-    files: any[] = [];
-    postType: string;
-    topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
-    allTopics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
-    selectedTopics: string[] = [];
+    public currentStatus: string = '';
+    public loading: boolean = false;
+    public uris: string[] = [];
+    public files: any[] = [];
+    public postType: string = 'status';
+    public topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
+    public selectedTopics: string[] = [];
+    private allTopics: string[] = this.topics;
+    private carId: string;
 
     constructor(
-        private _carService: CarService,
+        private carService: CarService,
         private timelineService: TimelineService,
         private ref: ChangeDetectorRef,
         private postService: PostService
     ) {}
 
     ngOnInit() {
-        this.carInfo = this._carService.selectedCar.info;
-        this.carRegNumber = this._carService.selectedCar.info.registrationNumber.toUpperCase();
-
-        this.postType = 'status';
+        this.carService.getCars(false).subscribe(cars => {
+            this.carId = cars[0].id;
+        })
     }
 
-    clickUriRemove(index: number) {
+   public clickUriRemove(index: number) {
         this.uris.splice(index, 1);
         this.files.splice(index, 1);
 
@@ -51,7 +48,7 @@ export class AddPostComponent {
         }
     }
 
-    clickAddMedia(file: any, postType: string) {
+   public clickAddMedia(file: any, postType: string) {
         if (!file) {
             return false;
         }
@@ -68,7 +65,7 @@ export class AddPostComponent {
         reader.readAsDataURL(file);
     }
 
-    clickAddPost() {
+   public clickAddPost() {
         this.loading = true;
         this.postService.setTopics(this.selectedTopics);
 
@@ -79,7 +76,7 @@ export class AddPostComponent {
         }
     }
 
-    clickAddTopics(topic: string) {
+   public clickAddTopics(topic: string) {
         const currentTopicIndex = this.topics.indexOf(topic);
 
         this.selectedTopics.push(topic);
@@ -87,7 +84,7 @@ export class AddPostComponent {
         this.topics.splice(currentTopicIndex, 1);
     }
 
-    clickRemoveTopics(topic: string) {
+   public clickRemoveTopics(topic: string) {
         const currentTopicIndex = this.selectedTopics.indexOf(topic);
 
         this.topics.push(topic);
@@ -95,8 +92,8 @@ export class AddPostComponent {
         this.selectedTopics.splice(currentTopicIndex, 1);
     }
 
-    addPostStatus() {
-        this.postService.addPost(null, this.currentStatus, 'status').subscribe(
+   private addPostStatus() {
+        this.postService.addPost(null, this.currentStatus, 'status', this.carId).subscribe(
             res => {
                this.afterPostRequest();
             },
@@ -104,8 +101,8 @@ export class AddPostComponent {
         );
     }
 
-    addPostMedia() {
-        this.postService.addPost(this.files, this.currentStatus, this.postType).subscribe(
+   private addPostMedia() {
+        this.postService.addPost(this.files, this.currentStatus, this.postType, this.carId).subscribe(
             res => {
                this.afterPostRequest();
             },
@@ -113,7 +110,7 @@ export class AddPostComponent {
         );
     }
 
-    afterPostRequest() {
+   private afterPostRequest() {
         // Clear add Post
         this.currentStatus = '';
         this.uris = [];
@@ -128,7 +125,7 @@ export class AddPostComponent {
         this.timelineService.getPosts();
     }
 
-    handleError(error: Error) {
+   private handleError(error: Error) {
         this.loading = false;
 
         console.log(error);

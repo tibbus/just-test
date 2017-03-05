@@ -6,7 +6,7 @@ import { CustomRequestOptions } from './services/http/baseRequest';
 import { routing } from './app.routes';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './views/header/header.component';
-import { ProfileComponent, NotFoundComponent, FeedComponent } from './views/+content/index';
+import { ProfileComponent, NotFoundComponent } from './views/+content/index';
 import { GarageComponent } from './views/+content/garage/garage.component';
 import { AddCarModalComponent } from './views/+content/garage/addCarModal/addCarModal.component';
 import { AuthComponent } from './views/auth/auth.component';
@@ -26,6 +26,7 @@ import {
 } from './services/index';
 
 import { SharedModule } from './shared/shared.module';
+import { FeedModule } from './views/+content/feed/feed.module';
 import useFactory from './factory';
 
 @NgModule({
@@ -33,14 +34,14 @@ import useFactory from './factory';
         SharedModule,
         routing,
         BrowserModule,
-        HttpModule
+        HttpModule,
+        FeedModule
     ],
     declarations: [
         AppComponent,
         HeaderComponent,
         ProfileComponent,
         NotFoundComponent,
-        FeedComponent,
         GarageComponent,
         AuthComponent,
         AddCarModalComponent

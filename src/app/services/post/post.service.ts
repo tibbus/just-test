@@ -21,12 +21,12 @@ export class PostService {
         private timelineService: TimelineService
     ) { }
 
-    public addPost(files: any[], statusText: string, postType: string) {
+    public addPost(files: any[], statusText: string, postType: string, carId) {
         if (postType === 'status') {
-            return this.addStatus(statusText);
+            return this.addStatus(statusText, carId);
         }
 
-        const apiUrl: string = this.apiService.getAddPostUrl(this.carService.selectedCar.id, postType);
+        const apiUrl: string = this.apiService.getAddPostUrl(carId, postType);
         const formData = new FormData();
 
         // Add form data :
@@ -42,8 +42,8 @@ export class PostService {
         return this.http.post(apiUrl, formData);
     }
 
-    private addStatus(newStatus: string) {
-        const apiUrl = this.apiService.getAddPostUrl(this.carService.selectedCar.id, 'status');
+    private addStatus(newStatus: string, carId) {
+        const apiUrl = this.apiService.getAddPostUrl(carId, 'status');
         const body: any = {
             description: newStatus,
             topics: this.topics
@@ -55,9 +55,9 @@ export class PostService {
         });
     }
 
-    public updatePost(updatedDescription, updatedFiles, updatedTopics) {
+    public updatePost(updatedDescription, updatedFiles, updatedTopics, carId) {
         const postType: string = this.timelineService.getSelectedPost().type;
-        const apiUrl: string = this.apiService.getUpdatePostUrl(this.carService.selectedCar.id, postType.toLocaleLowerCase(), this.timelineService.getSelectedPostId());
+        const apiUrl: string = this.apiService.getUpdatePostUrl(carId, postType.toLocaleLowerCase(), this.timelineService.getSelectedPostId());
 
         if (postType === 'Status') {
             const body: any = {

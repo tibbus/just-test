@@ -28,6 +28,9 @@ export class PostComponent {
     ) { }
 
     ngOnInit() {
+        // @TODO remove this line / defensive code added for a BE bug
+        this.post.carData = this.post.carData || {};
+
         this.modalService.getModalClose().subscribe(() => {
             this.modal = '';
         });
