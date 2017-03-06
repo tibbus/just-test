@@ -79,3 +79,12 @@
     <span class="save-text">Post</span>
     <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 </div>
+
+<div class="car-images">
+    <div *ngFor="let car of cars; let index=index"
+        class="car-images__image"
+        [class.car-images__image--active]="index === carActiveIndex"
+        (click)="clickCar(index)">
+        <img src="{{car.info.image || '/assets/default-car.jpg'}}">
+    </div>
+</div>

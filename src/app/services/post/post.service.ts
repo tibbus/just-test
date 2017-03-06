@@ -86,8 +86,8 @@ export class PostService {
         }
     }
 
-    public deletePost(postId: string) {
-        const apiUrl = `${API.root}/car/${this.carService.selectedCar.id}/status/${postId}`;
+    public deletePost(postId: string, carInfoId: string) {
+        const apiUrl = `${API.root}/car/${carInfoId}/status/${postId}`;
 
         return this.http.request(apiUrl, {
             body: null,

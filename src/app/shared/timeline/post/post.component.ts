@@ -36,10 +36,10 @@ export class PostComponent {
         });
     }
 
-    public clickDelete(postId: string) {
+    public clickDelete() {
         this.loading = true;
 
-        this.postService.deletePost(postId).subscribe(
+        this.postService.deletePost(this.post.activityData.id, this.post.activityData.carInfoId).subscribe(
             posts => {
                 // update the status list (make a new server request in the service)
                 this.timelineService.getPosts();
@@ -47,8 +47,8 @@ export class PostComponent {
         )
     }
 
-    public clickEdit(post: any) {
-        this.timelineService.setSelectedPostId(post.activityData.id);
+    public clickEdit() {
+        this.timelineService.setSelectedPostId(this.post.activityData.id);
 
         // open modal
         this.modal = 'editModal';

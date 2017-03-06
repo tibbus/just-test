@@ -12,8 +12,8 @@
             <div class="ripple-container"></div>
         </a>
         <ul class="dropdown-menu">
-            <li><a (click)="clickEdit(post)">Edit</a></li>
-            <li><a (click)="clickDelete(post.activityData.id)">Delete</a></li>
+            <li><a (click)="clickEdit()">Edit</a></li>
+            <li><a (click)="clickDelete()">Delete</a></li>
         </ul>
     </div>
     <span class="content__date">{{post.activityData.createdDate | timelineDate }}</span>

@@ -24,22 +24,24 @@ export class AddPostComponent {
     public topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
     public selectedTopics: string[] = [];
     private allTopics: string[] = this.topics;
-    private carId: string;
+    public cars: any[];
+    public carActiveIndex: number;
 
     constructor(
         private carService: CarService,
         private timelineService: TimelineService,
         private ref: ChangeDetectorRef,
         private postService: PostService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.carService.getCars(false).subscribe(cars => {
-            this.carId = cars[0].id;
+            this.cars = cars;
+            this.carActiveIndex = 0;
         })
     }
 
-   public clickUriRemove(index: number) {
+    public clickUriRemove(index: number) {
         this.uris.splice(index, 1);
         this.files.splice(index, 1);
 
@@ -48,7 +50,7 @@ export class AddPostComponent {
         }
     }
 
-   public clickAddMedia(file: any, postType: string) {
+    public clickAddMedia(file: any, postType: string) {
         if (!file) {
             return false;
         }
@@ -65,7 +67,7 @@ export class AddPostComponent {
         reader.readAsDataURL(file);
     }
 
-   public clickAddPost() {
+    public clickAddPost() {
         this.loading = true;
         this.postService.setTopics(this.selectedTopics);
 
@@ -76,7 +78,7 @@ export class AddPostComponent {
         }
     }
 
-   public clickAddTopics(topic: string) {
+    public clickAddTopics(topic: string) {
         const currentTopicIndex = this.topics.indexOf(topic);
 
         this.selectedTopics.push(topic);
@@ -84,7 +86,7 @@ export class AddPostComponent {
         this.topics.splice(currentTopicIndex, 1);
     }
 
-   public clickRemoveTopics(topic: string) {
+    public clickRemoveTopics(topic: string) {
         const currentTopicIndex = this.selectedTopics.indexOf(topic);
 
         this.topics.push(topic);
@@ -92,25 +94,29 @@ export class AddPostComponent {
         this.selectedTopics.splice(currentTopicIndex, 1);
     }
 
-   private addPostStatus() {
-        this.postService.addPost(null, this.currentStatus, 'status', this.carId).subscribe(
+    public clickCar(index: number) {
+        this.carActiveIndex = index;
+    }
+
+    private addPostStatus() {
+        this.postService.addPost(null, this.currentStatus, 'status', this.cars[this.carActiveIndex].id).subscribe(
             res => {
-               this.afterPostRequest();
+                this.afterPostRequest();
             },
             error => this.handleError(error)
         );
     }
 
-   private addPostMedia() {
-        this.postService.addPost(this.files, this.currentStatus, this.postType, this.carId).subscribe(
+    private addPostMedia() {
+        this.postService.addPost(this.files, this.currentStatus, this.postType, this.cars[this.carActiveIndex].id).subscribe(
             res => {
-               this.afterPostRequest();
+                this.afterPostRequest();
             },
             error => this.handleError(error)
         );
     }
 
-   private afterPostRequest() {
+    private afterPostRequest() {
         // Clear add Post
         this.currentStatus = '';
         this.uris = [];
@@ -125,7 +131,7 @@ export class AddPostComponent {
         this.timelineService.getPosts();
     }
 
-   private handleError(error: Error) {
+    private handleError(error: Error) {
         this.loading = false;
 
         console.log(error);
