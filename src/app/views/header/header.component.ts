@@ -7,13 +7,12 @@ import { Profile } from '../../services/profile/profile.model';
 import { Router } from '@angular/router';
 
 @Component({
-    //moduleId: module.id,
     selector: 'header',
     styleUrls: ['./header.component.scss'],
     templateUrl: '././header.component.html',
     providers: [SearchService],
     host: {
-        '(document:click)': 'onClickOutside($event)',
+        '(document:click)': 'clickOutside($event)',
     },
 })
 
@@ -63,25 +62,27 @@ export class HeaderComponent implements OnInit {
         this.searchService.searchFor(term);
     }
 
-    public onClickFollow() {
+    public clickFollow() {
         this.followService.followCar().subscribe(data => {
             this.followState = true;
         });
     }
 
-    public onClickUnFollow() {
+    public clickUnFollow() {
         this.followService.unFollowCar().subscribe(data => {
             this.followState = false;
         });
     }
 
-    public onClickOutside($event: EventListener) {
+    public clickOutside($event: EventListener) {
         this.hideSearchResults = true;
     }
 
-    public onClickSearchResult(car) {
+    public clickSearchResult(car) {
         const routeFromCar = `${car.make}-${car.model}-${car.carInfoId}`;
         const parsedRouteFromCar = routeFromCar.replace(/ /g, '-');
+
+        this.router.navigateByUrl(`/cars/${parsedRouteFromCar}/timeline`);
     }
 
     public clickSignOut() {

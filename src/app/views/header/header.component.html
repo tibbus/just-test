@@ -6,15 +6,15 @@
 </div>
 
 <ul class="search__result" [class.hide]="hideSearchResults">
-    <li *ngFor="let item of items$ | async" (click)="onClickSearchResult(item)">{{item.make}} {{item.model}} {{item.yearOfManufacture}}
+    <li *ngFor="let item of items$ | async" (click)="clickSearchResult(item)">{{item.make}} {{item.model}} {{item.yearOfManufacture}}
     </li>
     <li *ngIf="!searchService.hasData" class="no-results">No results found</li>
 </ul>
 
-    <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="onClickUnFollow()" [class.followActive]="!this.followState">
+    <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="clickUnFollow()" [class.followActive]="!this.followState">
         Unfollow
     </a>
-    <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="onClickFollow()" [class.followActive]="this.followState">
+    <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="clickFollow()" [class.followActive]="this.followState">
         Folllow
     </a>
 
