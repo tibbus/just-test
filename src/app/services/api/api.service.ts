@@ -5,7 +5,7 @@ import { API } from './api';
 @Injectable()
 export class ApiService {
     // Hardcoded user :
-    private userId: string = '1';
+    private userId: string = '6';
     private streamClient: any;
 
     private get user(): string {

@@ -21,7 +21,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     public EditModalComponent: any;
     public posts: any[];
     public modalName: string;
-    private posts$: any;
+    private posts$: Subscription;
 
     constructor(
         private modalService: ModalService,
@@ -60,8 +60,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     private getPosts() {
         return this.timelineService.getPosts().subscribe(
             (posts: any[]) => {
-                // filter for old unsported posts
-                this.posts = posts.filter(post => post.activityData);
+                this.posts = posts
 
                 this.followService.handleFollow();
 

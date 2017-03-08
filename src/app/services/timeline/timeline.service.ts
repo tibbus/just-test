@@ -14,17 +14,23 @@ export class TimelineService {
     constructor(
         private carService: CarService,
         private streamService: StreamService
-    ) {}
+    ) { }
 
     private posts: Post[];
     private selectedPostId: string;
     private selectedImageIndex: number;
-    private posts$ = new Subject();
+    private posts$: any = new Subject();
     public actor: Actor;
     private images: any[];
+    private streamData$;
 
     public getPosts() {
-       return this.streamService.getData(this.actor, 'get').do((posts: any[]) => {
+        // Remove subscribtion to avoid sub loop
+        if (this.streamData$) {
+            this.streamData$.unsubscribe();
+        }
+
+        this.streamData$ = this.streamService.getData(this.actor, 'get').do((posts: any[]) => {
             this.posts = posts.map(post => {
                 post.comments = {
                     state: '+'
@@ -34,7 +40,22 @@ export class TimelineService {
             });
 
             return this.posts;
+        }).subscribe(posts => this.posts$.next(posts));
+
+        return this.posts$;
+    }
+
+    public updateAfterDelete(postId: string) {
+        console.log(this.posts)
+        this.posts = this.posts.filter((post: any) => {
+            if (!post.activityData) {
+                return true;
+            }
+
+            return post.activityData.id != postId;
         });
+
+        this.posts$.next(this.posts);
     }
 
     public getPostById(id: string): any {

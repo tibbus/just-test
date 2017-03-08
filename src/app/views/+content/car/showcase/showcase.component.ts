@@ -11,7 +11,12 @@ import { TimelineService, ModalService } from '../../../../services/index';
 })
 
 export class ShowcaseComponent {
-    public posts: any = {};
+    private emptyPosts = {
+        images: [],
+        videos: [],
+        docs: []
+    };
+    public posts: any = this.emptyPosts;
     public modal: string;
     public ImageModalComponent: any = ImageModalContentComponent;
 
@@ -45,14 +50,11 @@ export class ShowcaseComponent {
 
 
     private getPosts() {
-        this.posts = {
-            images: [],
-            videos: [],
-            docs: []
-        };
-
         return this.timelineService.getPosts().subscribe(
             (posts: any[]) => {
+                // create new Object
+                this.posts = Object.assign({}, this.emptyPosts);
+
                 posts.forEach(item => {
                     if (item.type === 'Image') {
                         this.posts.images = this.posts.images.concat(item.activityData.contentUris)

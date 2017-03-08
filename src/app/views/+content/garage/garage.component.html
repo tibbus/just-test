@@ -8,12 +8,12 @@
     <div *ngFor="let car of cars; let i=index" class="profile">
         <div class="profile__image">
             <img src="{{ car.info.image || '/assets/default-car.jpg'}}">
-            <!--<span class="change-picture" uploadFile (onFileSelect)="clickAddPicture($event, i)">Change picture</span>-->
+            <span class="change-picture" uploadFile (onFileSelect)="clickAddPicture($event, i)">Change picture</span>
         </div>
-        <!--<a *ngIf="car.pictureChanged" class="btn btn-raised btn-success upload" [class.disabled]="false" (click)="clickUploadPicture(car)">
+        <a *ngIf="car.pictureChanged" class="btn btn-raised btn-success upload" [class.disabled]="false" (click)="clickUploadPicture(car)">
             <span class="save">Upload</span>
             <span *ngIf="car.loading === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-        </a>-->
+        </a>
         <div class="name">
             <a class="btn glyphicon glyphicon-trash remove" (click)="clickRemove(car.userCarId)" [class.disabled]="loading">
             </a>
