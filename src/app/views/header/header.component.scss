@@ -93,14 +93,17 @@
             width: 100%;
         }
     }
-}
 
-.dropdown {
-    margin-left: 13px;
+    &__list-delimiter {
+        margin-top: 10px;
+    }
 
-    a.dropdown-toggle {
-        float: left;
-        padding-left: 5px;
+    &__link {
+        font-weight: bold;
+
+        &--auth {
+            font-weight: normal;
+        }
     }
 }
 

@@ -28,14 +28,21 @@
 </a>-->
     <ul class="dropdown-menu">
         <li *ngFor="let car of cars">
-            <a href="javascript:void(0)" [routerLink]="['/cars/' + car.route + '/timeline']">{{car.name}}</a>
+            <a href="javascript:void(0)" class="profile-dropdown__link" [routerLink]="['/cars/' + car.route + '/timeline']">{{car.name}}</a>
         </li>
-        <li><a href="javascript:void(0)" [routerLink]="['/garage']">View Garage</a></li>
-        <li><a href="javascript:void(0)">Settings</a></li>
-        <li><a href="javascript:void(0)">Security</a></li>
 
-        <li class="divider"></li>
-        <li><a href="javascript:void(0)" (click)="clickLogin()">Sing In</a></li>
-        <li><a href="javascript:void(0)" (click)="clickSignOut()">Sign Out</a></li>
+        <li class="profile-dropdown__list-delimiter">
+            <a href="javascript:void(0)" class="profile-dropdown__link" [routerLink]="['/garage']">View Garage</a>
+        </li>
+         <li>
+             <a href="javascript:void(0)" class="profile-dropdown__link">Settings</a>
+         </li>
+        <div class="divider"></div>
+        <li>
+            <a href="javascript:void(0)" class="profile-dropdown__link profile-dropdown__link--auth" (click)="clickLogin()">Log in</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="profile-dropdown__link profile-dropdown__link--auth" (click)="clickSignOut()">Log out</a>
+        </li>
     </ul>
 </div>
