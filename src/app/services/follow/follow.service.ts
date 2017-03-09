@@ -21,19 +21,28 @@ export class FollowService  {
         private apiService: ApiService,
         private carService: CarService,
         private streamService: StreamService
-    ) {
-        this.actor = {
+    ) { }
+
+    public requestUserFollowing() {
+        const actor: Actor = {
             actorType: 'user',
             actorId: this.apiService.getUserId()
         };
-     }
 
-    public requestUserFollowing$() {
-        return this.streamService.getUserFollowing$(this.actor).do((followings: any[]) => {
+        return this.streamService.getUserFollowing(actor).do((followings: any[]) => {
             this.followings = followings;
 
             this.handleFollow();
         })
+    }
+
+    public getCarFollowers(carId: string) {
+        const actor: Actor = {
+            actorType: 'car',
+            actorId: carId
+        };
+
+        return this.streamService.getCarFollowers(actor);
     }
 
     public followCar() {
@@ -42,7 +51,7 @@ export class FollowService  {
             method: 'POST'
         }).do(data => {
             // Update the followers list
-            this.requestUserFollowing$().subscribe();
+            this.requestUserFollowing().subscribe();
         })
     }
 
@@ -52,7 +61,7 @@ export class FollowService  {
             method: 'POST'
         }).do(data => {
             // Update the followers list
-            this.requestUserFollowing$().subscribe();
+            this.requestUserFollowing().subscribe();
         })
     }
 

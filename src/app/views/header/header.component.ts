@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.getProfile();
 
-        this.followService.requestUserFollowing$().subscribe();
+        this.followService.requestUserFollowing().subscribe();
         this.followService.isUserFollowing$().subscribe((state: boolean) => {
             this.followState = state;
         })

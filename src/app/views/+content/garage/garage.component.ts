@@ -20,10 +20,12 @@ export class GarageComponent implements OnInit {
     public AddCarModalContent: any = AddCarModalComponent;
     private modalSubscription;
     public modal;
+    public followers = {};
 
     constructor(
         private carService: CarService,
         private modalService: ModalService,
+        private followService: FollowService,
         private changeDetector: ChangeDetectorRef) { }
 
     ngOnInit() {
@@ -39,6 +41,15 @@ export class GarageComponent implements OnInit {
         this.carService.getCars(refreshRequest).subscribe(
             cars => {
                 this.cars = cars;
+
+                //get the followers number for each car
+                this.cars.forEach(car => {
+                    const carFollowersObservable = this.followService.getCarFollowers(car.id);
+
+                    carFollowersObservable.subscribe((followers: any[]) => {
+                        this.followers[car.id] = followers.length;
+                    });
+                });
             },
             error => this.handleError(error)
         );

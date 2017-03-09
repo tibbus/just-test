@@ -13,7 +13,6 @@ import { Actor } from './stream.model';
 @Injectable()
 export class StreamService  {
     private posts$ = new Subject();
-    private following$ = new Subject();
 
     constructor(private http: Http, private apiService: ApiService) {
      }
@@ -35,7 +34,9 @@ export class StreamService  {
         return this.posts$;
     }
 
-    public getUserFollowing$(actor?: Actor) {
+    public getUserFollowing(actor?: Actor) {
+        let follows$ = new Subject();
+
         // get the token for getStream timeline call
         this.getToken(actor).subscribe(token => {
             // set the getStream settings
@@ -45,11 +46,31 @@ export class StreamService  {
             // make the call request for the timeline
             const carTimelineRequest = streamCar.following({ limit: 20 }).then(data => {
                 // Callback function when we recive data, will call .next on the Observer
-                this.following$.next(data.results);
+                follows$.next(data.results);
             });
         });
 
-        return this.following$;
+        return follows$;
+    }
+
+    // @TODO merge this function with the following one
+    public getCarFollowers(actor: Actor) {
+        let followers$ = new Subject();
+
+        // get the token for getStream timeline call
+        this.getToken(actor).subscribe(token => {
+            // set the getStream settings
+            const streamClient: any = this.apiService.getStreamClient();
+            const streamCar = streamClient.feed(actor.actorType, actor.actorId, token);
+
+            // make the call request for the timeline
+            const carTimelineRequest = streamCar.followers({ limit: 20 }).then(data => {
+                // Callback function when we recive data, will call .next on the Observer
+                followers$.next(data.results);
+            });
+        });
+
+        return followers$;
     }
 
     private getToken(actor: Actor) {
