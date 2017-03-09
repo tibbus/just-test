@@ -41,7 +41,7 @@ export class PostComponent {
 
         this.postService.deletePost(this.post.activityData.id, this.post.activityData.carInfoId).subscribe(
             posts => {
-                // update the status list (make a new server request in the service)
+                // update the timeline list (make a new server request in the service)
                 this.timelineService.updateAfterDelete(this.post.activityData.id);
             }
         )

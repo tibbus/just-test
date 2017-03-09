@@ -62,7 +62,9 @@ export class TimelineComponent implements OnInit, OnDestroy {
             (posts: any[]) => {
                 this.posts = posts
 
-                this.followService.handleFollow();
+                if (!this.isFeed) {
+                    this.followService.handleFollow();
+                }
 
                 this.mapLikesToPosts();
             }

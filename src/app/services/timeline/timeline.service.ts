@@ -46,14 +46,7 @@ export class TimelineService {
     }
 
     public updateAfterDelete(postId: string) {
-        console.log(this.posts)
-        this.posts = this.posts.filter((post: any) => {
-            if (!post.activityData) {
-                return true;
-            }
-
-            return post.activityData.id != postId;
-        });
+        this.posts = this.posts.filter((post: any) => post.activityData.id != postId);
 
         this.posts$.next(this.posts);
     }
