@@ -40,7 +40,9 @@ export class TimelineService {
             });
 
             return this.posts;
-        }).subscribe(posts => this.posts$.next(posts));
+        }).subscribe(posts => {
+            this.posts$.next(posts);
+        });
 
         return this.posts$;
     }

@@ -22,6 +22,8 @@ export class TimelineComponent implements OnInit, OnDestroy {
     public posts: any[];
     public modalName: string;
     private posts$: Subscription;
+    private likes$: Subscription;
+    private route$: Subscription;
 
     constructor(
         private modalService: ModalService,
@@ -33,13 +35,12 @@ export class TimelineComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-        if (this.isFeed) {
-            this.posts$ = this.getPosts();
+      this.route$ = this.route.parent.params.subscribe(params => {
+            // @TODO remove this when ready
+            // Angular doesn't re-render the views when the parent route is not changed
+            // therefore the subscriptions cannot be removed on `ngOnDestroy`
+            this.removeOldSubscribtions();
 
-            return;
-        }
-
-       this.route.parent.params.subscribe(params => {
             const carRoute = params['id'];
             const parsedRoute = carRoute.split('-');
             const carId = parsedRoute[parsedRoute.length - 1];
@@ -51,10 +52,22 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
             this.posts$ = this.getPosts();
         });
+
+        if (this.isFeed) {
+            this.posts$ = this.getPosts();
+
+            return;
+        }
     }
 
     ngOnDestroy() {
-        this.posts$.unsubscribe();
+        this.route$.unsubscribe();
+        this.removeOldSubscribtions();
+    }
+
+    private removeOldSubscribtions() {
+        this.posts$ ? this.posts$.unsubscribe() : null;
+        this.likes$ ? this.likes$.unsubscribe() : null;
     }
 
     private getPosts() {
@@ -73,11 +86,9 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
     private mapLikesToPosts() {
         // map likes to posts
-        this.likesService.getPostsLikesCount(this.posts).subscribe(
+        this.likes$ = this.likesService.getPostsLikesCount(this.posts).subscribe(
             (posts: any) => {
                 this.posts = posts;
-                console.log(posts);
-                //this.ref.detectChanges();
             }
         );
     }

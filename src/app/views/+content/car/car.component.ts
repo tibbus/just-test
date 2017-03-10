@@ -15,6 +15,7 @@ declare const jQuery: any;
 
 export class CarComponent implements OnInit, OnDestroy {
     public carLoaded: boolean;
+    private $route: Subscription;
 
     constructor(
         private carService: CarService,
@@ -27,7 +28,7 @@ export class CarComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
-        this.route.params.subscribe(params => {
+        this.route$ = this.route.params.subscribe(params => {
             this.carLoaded = false;
             // used to re-render the component and all the sub-components
             this.ref.detectChanges();
@@ -36,7 +37,13 @@ export class CarComponent implements OnInit, OnDestroy {
         });
     }
 
-    getCars(carRoute: string) {
+    ngOnDestroy() {
+        // Hide follow button
+        this.followService.setFollowState(false);
+        this.route$.unsubscribe();
+    }
+
+    private getCars(carRoute: string) {
         const parsedRoute = carRoute.split('-');
         const carId = parsedRoute[parsedRoute.length - 1];
 
@@ -49,10 +56,5 @@ export class CarComponent implements OnInit, OnDestroy {
         this.followService.handleFollow()
 
         this.carLoaded = true;
-    }
-
-    ngOnDestroy() {
-        // Hide follow button
-        this.followService.setFollowState(false);
     }
 }

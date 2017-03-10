@@ -36,3 +36,7 @@ content {
     .large {
     width: 500px;}
 }
+
+li:focus {
+    outline: none;
+}

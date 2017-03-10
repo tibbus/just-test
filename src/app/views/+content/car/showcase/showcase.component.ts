@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ImageModalContentComponent } from '../../../../shared/imageModal/imageModalContent.component';
@@ -10,7 +10,7 @@ import { TimelineService, ModalService } from '../../../../services/index';
     templateUrl: './showcase.component.html'
 })
 
-export class ShowcaseComponent {
+export class ShowcaseComponent implements OnInit, OnDestroy {
     private emptyPosts = {
         images: [],
         videos: [],
@@ -19,11 +19,12 @@ export class ShowcaseComponent {
     public posts: any = this.emptyPosts;
     public modal: string;
     public ImageModalComponent: any = ImageModalContentComponent;
+    private route$: any;
 
     constructor(private route: ActivatedRoute, private timelineService: TimelineService, private modalService: ModalService) { }
 
     ngOnInit() {
-        this.route.parent.params.subscribe(params => {
+        this.route$ = this.route.parent.params.subscribe(params => {
             const carRoute = params['id'];
             const parsedRoute = carRoute.split('-');
             const carId = parsedRoute[parsedRoute.length - 1];
@@ -39,6 +40,10 @@ export class ShowcaseComponent {
         this.modalService.getModalClose().subscribe(() => {
             this.modal = '';
         });
+    }
+
+    ngOnDestroy() {
+        this.route$.unsubscribe();
     }
 
     public clickImage(index: number) {

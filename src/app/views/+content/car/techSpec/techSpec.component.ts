@@ -1,5 +1,6 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 import { CarService } from '../../../../services/car/car.service'
 
@@ -9,13 +10,14 @@ import { CarService } from '../../../../services/car/car.service'
     templateUrl: './techSpec.component.html'
 })
 
-export class TechSpecComponent {
+export class TechSpecComponent implements OnInit, OnDestroy{
     public car;
+    private route$: Subscription;
 
     constructor(private carService: CarService, private route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.route.parent.params.subscribe(params => {
+        this.route$ = this.route.parent.params.subscribe(params => {
             const carRoute = params['id'];
             const parsedRoute = carRoute.split('-');
             const carId = parsedRoute[parsedRoute.length - 1];
@@ -24,5 +26,9 @@ export class TechSpecComponent {
                 this.car = data;
             })
         });
+    }
+
+    ngOnDestroy() {
+        this.route$.unsubscribe();
     }
 }
