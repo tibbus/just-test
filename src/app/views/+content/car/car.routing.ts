@@ -7,13 +7,15 @@ import { TimelineComponent } from '../../../shared/timeline/timeline.component';
 import { TechSpecComponent } from './techSpec/techSpec.component';
 
 const routes: Routes = [
-    { path: ':id', component: CarComponent,
-    children: [
-      { path: '', redirectTo: 'timeline', pathMatch: 'full' },
-      { path: 'timeline', component: TimelineComponent },
-      { path: 'showcase', component: ShowcaseComponent },
-      { path: 'specs', component: TechSpecComponent }
-    ] },
+    {
+      path: ':id', component: CarComponent,
+        children: [
+            { path: '', redirectTo: 'timeline', pathMatch: 'full' },
+            { path: 'timeline', component: TimelineComponent },
+            { path: 'showcase', component: ShowcaseComponent },
+            { path: 'specs', component: TechSpecComponent }
+        ]
+    },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);
