@@ -1,90 +1,57 @@
-﻿import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { CommentsService, ModalService, TimelineService } from '../../../services/index';
-import { EditCommentsComponent } from './editComments.component';
-
-declare const jQuery: any;
+import { CommentsService, ModalService, TimelineService, LikesService } from '../../../services/index';
+import { EditCommentsComponent } from './editComments/editComments.component';
 
 @Component({
-    //moduleId: module.id,
     selector: 'comments',
     templateUrl: './comments.component.html',
-    styleUrls: ['./comments.component.scss'],
-    providers: [ModalService, CommentsService]
+    styleUrls: ['./comments.component.scss']
 })
 
-export class CommentsComponnent implements OnInit {
-    @Input() postId: string;
+export class CommentsComponent implements OnInit {
+    @Input() post: any;
+    @Output() commentsCount: EventEmitter<number> = new EventEmitter<number>();
 
     public comments = [];
     public loading: boolean;
     public addLoading: boolean;
     public removeLoading: string;
     public newCommentText: string;
-    public EditCommentsComponent: any = EditCommentsComponent;
-    public modal: string;
+    private postId: string;
 
     constructor(
         private commentsService: CommentsService,
-        private modalService: ModalService,
-        private ref: ChangeDetectorRef,
         private timelineService: TimelineService
-    ) {
 
-        // on modal open/close :
-        this.modalService.getModalClose().subscribe(() => {
-            // close modal
-            this.modal = '';
-        });
-    }
+    ) { }
 
     ngOnInit() {
+        this.postId = this.post.activityData.id;
         this.loading = true;
 
-        this.commentsService.getComments(this.postId).subscribe(comments => {
-            //post.comments.state = '-';
+        this.commentsService.getComments(this.postId, this.post.socialDataRequested).subscribe(comments => {
             this.loading = false;
 
-            // Add the comments [] to the post Object of this.posts (by reference)
-            //post.comments.list = comments;
+            this.commentsCount.emit(comments.length);
+
             this.comments = comments;
-        })
+        });
+
+        if (this.post.socialDataRequested) {
+            this.loading = false;
+        }
     }
 
-    clickAddComment() {
+    public clickAddComment() {
         this.addLoading = true;
 
         this.commentsService.addComment(this.postId, this.newCommentText).subscribe(data => {
-            this.commentsService.getComments(this.postId).subscribe(comments => {
-                // Add the comments [] to the post Object of this.posts (by reference)
-                this.comments = comments;
-                this.newCommentText = '';
-                this.addLoading = false;
+            this.newCommentText = '';
+            this.addLoading = false;
 
-                this.timelineService.updateCommentsCount(this.postId, 1);
-            });
+            this.timelineService.updateCommentsCount(this.postId, 1);;
         });
-    }
-
-    clickRemove(commentId: string) {
-        this.removeLoading = commentId;
-
-        this.commentsService.removeComment(this.postId, commentId).subscribe(comments => {
-            this.commentsService.getComments(this.postId).subscribe(comments => {
-                this.comments = comments;
-
-                this.removeLoading = null;
-
-                this.timelineService.updateCommentsCount(this.postId, -1);
-            })
-        });
-    }
-
-    clickEdit(selectedComment: any) {
-        this.commentsService.setSelectedComment(selectedComment);
-        this.timelineService.setSelectedPostId(this.postId);
-
-        this.modal = 'editComments';
     }
 }

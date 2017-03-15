@@ -16,7 +16,7 @@ export class TimelineService {
         private streamService: StreamService
     ) { }
 
-    private posts: Post[];
+    private posts: any[];
     private selectedPostId: string;
     private selectedImageIndex: number;
     private posts$: any = new Subject();
@@ -48,7 +48,53 @@ export class TimelineService {
     }
 
     public updateAfterDelete(postId: string) {
-        this.posts = this.posts.filter((post: any) => post.activityData.id != postId);
+        this.posts = this.posts.filter((post: any) => {
+            return post.activityData.id !== postId
+        });
+
+        this.posts$.next(this.posts);
+    }
+
+    public updateAfterPost(post, car, postType) {
+        // format the word to start with CAPITAL letter
+        const formattedPostType = postType[0].toUpperCase() + postType.substr(1);
+
+        const formattedPost = {
+            activityData: post,
+            carData: {
+                image: car.info.image,
+                make: car.info.car.make,
+                model: car.info.car.model
+            },
+            socialData: {
+                commentsCount: 0,
+                likesCount: 0
+            },
+            likes: {
+                count: 0,
+                isCurrentUserLike: false,
+                list: []
+            },
+            type: formattedPostType,
+            comments: {},
+            socialDataRequested: true
+        }
+        this.posts.unshift(formattedPost);
+
+        this.posts$.next(this.posts);
+    }
+
+    public updateAfterEdit(newPost, oldPost) {
+        oldPost.activityData = newPost;
+        oldPost.socialDataRequested = true;
+
+        this.posts = this.posts.map(post => {
+            if(newPost.id === post.activityData.id) {
+                return oldPost;
+            }
+
+            return post;
+        });
 
         this.posts$.next(this.posts);
     }

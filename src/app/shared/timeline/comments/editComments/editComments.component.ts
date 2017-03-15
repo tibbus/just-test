@@ -1,9 +1,8 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
-import { CommentsService, ModalService, TimelineService } from '../../../services/index';
+import { CommentsService, ModalService, TimelineService } from '../../../../services/index';
 
 @Component({
-    //moduleId: module.id,
     selector: 'content',
     templateUrl: './editComments.component.html',
     styleUrls: ['./editComments.component.scss']
@@ -12,6 +11,7 @@ import { CommentsService, ModalService, TimelineService } from '../../../service
 export class EditCommentsComponent implements OnInit {
     public newCommentText: string = null;
     public selectedComment: any;
+    private modalSave: any;
 
     constructor(
         private commentsService: CommentsService,
@@ -21,7 +21,7 @@ export class EditCommentsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.modalService.getModalSave().subscribe(
+        this.modalSave = this.modalService.getModalSave().subscribe(
             () => {
                 this.savePost();
             }
@@ -31,19 +31,18 @@ export class EditCommentsComponent implements OnInit {
         this.newCommentText = this.selectedComment.comment;
     }
 
-    savePost() {
+    ngOnDestroy() {
+        this.modalSave.unsubscribe();
+    }
+
+    public savePost() {
         this.modalService.setModalLoading();
 
         const commentId =  this.selectedComment.id;
         const postId = this.timelineService.getSelectedPostId();
 
         this.commentsService.updateComment(commentId, postId, this.newCommentText).subscribe(
-            () => {
-                // update the Comments
-                this.commentsService.fetchComments(postId).subscribe(data => {
-                    this.modalService.setModalClose();
-                });
-            }
+            data => this.modalService.setModalClose()
         );
     }
 }

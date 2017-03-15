@@ -20,9 +20,7 @@ import {
     PostService,
     TimelineService,
     FollowService,
-    CommentsService,
-    AuthService,
-    LikesService
+    AuthService
 } from './services/index';
 
 import { SharedModule } from './shared/shared.module';
@@ -58,7 +56,6 @@ import useFactory from './factory';
         FollowService,
         AuthService,
         StreamService,
-        LikesService,
         { provide: RequestOptions, useClass: CustomRequestOptions },
         // provideInterceptorService([
         //     ServerURLInterceptor

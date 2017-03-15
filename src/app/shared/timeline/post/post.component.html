@@ -24,7 +24,7 @@
 
     <div class="media-wrapper">
         <div class="media-post" *ngFor="let uri of post.activityData.contentUris; let i=index">
-            <img *ngIf="post.type === 'Image'" class="content__image {{i}}" src="{{uri}}" (click)="clickImage(post.activityData.id, i)"
+            <img *ngIf="post.type === 'Image'" class="content__image {{i}}" src="{{uri}}" (click)="clickImage(i)"
             />
 
             <video *ngIf="post.type === 'Video'" width="320" controls>
@@ -44,10 +44,10 @@
 </div>
 
 <div class="social">
-    <span class="like__count">{{post.likes?.count}}</span>
+    <span class="like__count">{{likes.length}}</span>
     <span class="glyphicon glyphicon-heart like__button"
-        (click)="clickLike(post)"
-        [ngClass]="{'like__button--enabled': post.likes?.isCurrentUserLike}">
+        (click)="clickLike()"
+        [ngClass]="{'like__button--enabled': likesService.isCurrentUserLike()}">
     </span>
     <!--<a (click)="clickShare(post.activityData.id)">Share</a>-->
 </div>
@@ -56,14 +56,13 @@
     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate show-comments-loading-spinner"></span>
 </div>
 
-<a class="btn show-comments" (click)="clickGetComments(post)" [class.disabled]="post.comments.loading">
-    <span class="comments-count">{{post.socialData?.commentsCount}}</span> Comments
-    <!--<span class="show-comments-sign">{{post.comments.state}}</span>-->
+<a class="btn show-comments" (click)="clickGetComments()" [class.disabled]="post.comments.loading">
+    <span class="comments-count">{{commentsCount}}</span> Comments
 </a>
 
 <div class="line"></div>
 
-<comments [postId]="post.activityData.id"></comments>
+<comments [post]="post" (commentsCount)="setCommentsCount($event)"></comments>
 
 <modal *ngIf="modal == 'imageModal'"
     [contentComponent]="ImageModalComponent"

@@ -1,7 +1,6 @@
 ﻿import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
-    //moduleId: module.id,
     selector: 'alert',
     templateUrl: './alert.component.html',
     styleUrls: ['./alert.component.scss']

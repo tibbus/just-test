@@ -23,6 +23,7 @@ export class ModalComponent {
 
     private subModalClose: Subscription;
     private subModalLoading: Subscription;
+    private subModalSave: any;
     public loading: boolean;
 
     constructor(private modalService: ModalService,
@@ -57,7 +58,7 @@ export class ModalComponent {
     }
 
     public onClickSave() {
-        this.modalService.setModalSave();
+        this.subModalSave = this.modalService.setModalSave();
     }
 
     private renderModalContent() {

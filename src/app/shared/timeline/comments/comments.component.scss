@@ -4,12 +4,6 @@
     min-height: 45px;
 }
 
-.content {
-    float: left;
-    width: 100%;
-    padding: 10px;
-}
-
 .textarea {
     float: left;
     width: 400px;
@@ -30,16 +24,6 @@
     font-size: 12px;
 }
 
-.img {
-    float: left;
-    height: 40px;
-    margin-right: 10px;
-
-    img {
-        height: 100%;
-    }
-}
-
 .loading {
     float: left;
     margin: 10px 0 0 360px;
@@ -47,32 +31,4 @@
     .glyphicon {
         font-size: 25px;
     }
-}
-
-.username {
-    float: left;
-}
-
-.date {
-    float: right;
-    margin-right: 10px;
-    color: grey;
-}
-
-.edit-menu {
-    float: right;
-
-    a {
-        cursor: pointer;
-    }
-}
-
-.description {
-    float: left;
-    width: 280px;
-    margin: 10px 10px 10px;
-}
-
-.remove {
-    opacity: 0.5;
 }

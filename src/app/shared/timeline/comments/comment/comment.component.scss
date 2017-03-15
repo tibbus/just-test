@@ -1,0 +1,67 @@
+﻿:host {
+    float: left;
+    width: 100%;
+    padding: 10px;
+}
+
+.img {
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+
+    img {
+        height: 100%;
+    }
+}
+
+.date {
+    float: right;
+    margin-right: 10px;
+    color: grey;
+}
+
+.edit-menu {
+    float: right;
+
+    a {
+        cursor: pointer;
+    }
+}
+
+.description {
+    float: left;
+    width: 280px;
+    margin: 10px 10px 10px;
+}
+
+.remove {
+    opacity: 0.5;
+}
+
+.social {
+    float: right;
+
+    a {
+        padding: 5px;
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+    .like__button {
+        padding-right: 0;
+        font-weight: 400;
+        color: grey;
+        font-size: 20px;
+        position: relative;
+        top: 5px;
+        cursor: pointer;
+
+        &--enabled {
+            color: green;
+        }
+    }
+}
+
+.like__count {
+    font-size: 12px;
+}

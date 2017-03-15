@@ -23,6 +23,7 @@ export class ModalService {
 
     public setModalSave() {
         this.modalSave$.next(true);
+        return this.modalSave$;
     }
 
     public getModalLoading() {

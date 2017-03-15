@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import * as _ from 'lodash';
+import { Subject } from 'rxjs/Subject';
+
 import { HttpService } from '../http/http.service';
 import { ApiService } from '../api/api.service';
 import { API } from '../api/api';
 import { CarService } from '../car/car.service';
 import { TimelineService } from '../timeline/timeline.service';
-import * as _ from 'lodash';
-import { Subject } from 'rxjs/Subject';
 
 declare const LE: any;
 
@@ -21,12 +22,12 @@ export class PostService {
         private timelineService: TimelineService
     ) { }
 
-    public addPost(files: any[], statusText: string, postType: string, carId) {
+    public addPost(files: any[], statusText: string, postType: string, car) {
         if (postType === 'status') {
-            return this.addStatus(statusText, carId);
+            return this.addStatus(statusText, car);
         }
 
-        const apiUrl: string = this.apiService.getAddPostUrl(carId, postType);
+        const apiUrl: string = this.apiService.getAddPostUrl(car.id, postType);
         const formData = new FormData();
 
         // Add form data :
@@ -39,11 +40,11 @@ export class PostService {
             formData.append('topics', topic);
         }
 
-        return this.http.post(apiUrl, formData);
+        return this.http.post(apiUrl, formData).do(data => this.timelineService.updateAfterPost(data.json(), car, postType));
     }
 
-    private addStatus(newStatus: string, carId) {
-        const apiUrl = this.apiService.getAddPostUrl(carId, 'status');
+    private addStatus(newStatus: string, car) {
+        const apiUrl = this.apiService.getAddPostUrl(car.id, 'status');
         const body: any = {
             description: newStatus,
             topics: this.topics
@@ -52,12 +53,12 @@ export class PostService {
         return this.http.request(apiUrl, {
             body: JSON.stringify(body),
             method: 'POST'
-        });
+        }).do(data => this.timelineService.updateAfterPost(data.json(), car, 'status'));
     }
 
-    public updatePost(updatedDescription, updatedFiles, updatedTopics, carId) {
+    public updatePost(updatedDescription, updatedFiles, updatedTopics, post) {
         const postType: string = this.timelineService.getSelectedPost().type;
-        const apiUrl: string = this.apiService.getUpdatePostUrl(carId, postType.toLocaleLowerCase(), this.timelineService.getSelectedPostId());
+        const apiUrl: string = this.apiService.getUpdatePostUrl(post.activityData.carInfoId, postType.toLocaleLowerCase(), post.activityData.id);
 
         if (postType === 'Status') {
             const body: any = {
@@ -69,7 +70,7 @@ export class PostService {
             return this.http.request(apiUrl, {
                 body: JSON.stringify(body),
                 method: 'PUT'
-            });
+            }).do(data => this.timelineService.updateAfterEdit(data.json(), post));
         } else {
             const formData = new FormData();
 
@@ -82,7 +83,7 @@ export class PostService {
             formData.append('location', 'test');
             formData.append('description', updatedDescription);
 
-            return this.http.put(apiUrl, formData);
+            return this.http.put(apiUrl, formData).do(data => this.timelineService.updateAfterEdit(data.json(), post));
         }
     }
 

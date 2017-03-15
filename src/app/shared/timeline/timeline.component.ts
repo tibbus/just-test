@@ -2,7 +2,7 @@
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ModalService, TimelineService, PostService, FollowService, LikesService } from '../../services/index';
+import { ModalService, TimelineService, PostService, FollowService } from '../../services/index';
 import { Actor } from '../../services/stream/stream.model';
 
 declare var FB: any;
@@ -19,10 +19,9 @@ export class TimelineComponent implements OnInit, OnDestroy {
     @Input() isFeed: boolean;
 
     public EditModalComponent: any;
-    public posts: any[];
+    public posts: any[] = [];
     public modalName: string;
     private posts$: Subscription;
-    private likes$: Subscription;
     private route$: Subscription;
 
     constructor(
@@ -30,16 +29,21 @@ export class TimelineComponent implements OnInit, OnDestroy {
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
         private followService: FollowService,
-        private likesService: LikesService,
         private route: ActivatedRoute
-    ) {}
+    ) { }
 
     ngOnInit() {
-      this.route$ = this.route.parent.params.subscribe(params => {
+        if (this.isFeed) {
+            this.posts$ = this.getPosts();
+
+            return;
+        }
+
+        this.route$ = this.route.parent.params.subscribe(params => {
             // @TODO remove this when ready
             // Angular doesn't re-render the views when the parent route is not changed
             // therefore the subscriptions cannot be removed on `ngOnDestroy`
-            this.removeOldSubscribtions();
+            this.posts$ ? this.posts$.unsubscribe() : null;
 
             const carRoute = params['id'];
             const parsedRoute = carRoute.split('-');
@@ -52,22 +56,11 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
             this.posts$ = this.getPosts();
         });
-
-        if (this.isFeed) {
-            this.posts$ = this.getPosts();
-
-            return;
-        }
     }
 
     ngOnDestroy() {
-        this.route$.unsubscribe();
-        this.removeOldSubscribtions();
-    }
-
-    private removeOldSubscribtions() {
+        this.route$ ? this.route$.unsubscribe() : null;
         this.posts$ ? this.posts$.unsubscribe() : null;
-        this.likes$ ? this.likes$.unsubscribe() : null;
     }
 
     private getPosts() {
@@ -78,17 +71,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
                 if (!this.isFeed) {
                     this.followService.handleFollow();
                 }
-
-                this.mapLikesToPosts();
-            }
-        );
-    }
-
-    private mapLikesToPosts() {
-        // map likes to posts
-        this.likes$ = this.likesService.getPostsLikesCount(this.posts).subscribe(
-            (posts: any) => {
-                this.posts = posts;
             }
         );
     }

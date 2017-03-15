@@ -99,7 +99,7 @@ export class AddPostComponent {
     }
 
     private addPostStatus() {
-        this.postService.addPost(null, this.currentStatus, 'status', this.cars[this.carActiveIndex].id).subscribe(
+        this.postService.addPost(null, this.currentStatus, 'status', this.cars[this.carActiveIndex]).subscribe(
             res => {
                 this.afterPostRequest();
             },
@@ -108,7 +108,7 @@ export class AddPostComponent {
     }
 
     private addPostMedia() {
-        this.postService.addPost(this.files, this.currentStatus, this.postType, this.cars[this.carActiveIndex].id).subscribe(
+        this.postService.addPost(this.files, this.currentStatus, this.postType, this.cars[this.carActiveIndex]).subscribe(
             res => {
                 this.afterPostRequest();
             },
@@ -128,7 +128,7 @@ export class AddPostComponent {
         this.selectedTopics = [];
 
         // Refresh the TimeLine
-        this.timelineService.getPosts();
+        //this.timelineService.getPosts();
     }
 
     private handleError(error: Error) {

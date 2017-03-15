@@ -1,1 +1,1 @@
-<post *ngFor="let post of posts"  class="post" [post]="post"></post>
+<post *ngFor="let post of posts; trackBy:post?.activityData.id"  class="post" [post]="post"></post>

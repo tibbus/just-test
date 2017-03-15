@@ -3,46 +3,19 @@
 </div>
 
 <div *ngIf="!loading">
-    <div class="content"
-        *ngFor="let comment of comments"
+    <comment *ngFor="let comment of comments"
         [class.remove]="removeLoading === comment.id"
-    >
-        <div class="img">
-            <img src="/assets/profile01.png" />
-        </div>
-        <div class="description">
-            <p> {{comment.comment}}</p>
-        </div>
-        <div class="btn-group edit-menu">
-            <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                <span class="caret"></span>
-                <div class="ripple-container"></div>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a (click)="clickEdit(comment)">Edit</a></li>
-                <li><a (click)="clickRemove(comment.id)">Delete</a></li>
-            </ul>
-        </div>
-        <span class="date">{{comment.createdDate | timelineDate }}</span>
-    </div>
+        [comment]="comment"
+        [postId]="postId">
+    </comment>
 
     <div class="line"></div>
 
     <div class="textarea">
-        <textarea class="form-control" placeholder="Add your comment here!" [(ngModel)]="newCommentText">
-        </textarea>
-        <!--<span class="help-block">Post a new Status, Media, Event on your timeline.</span>-->
+        <textarea class="form-control" placeholder="Add your comment here!" [(ngModel)]="newCommentText"></textarea>
     </div>
     <div class="btn btn-raised btn-success add-button" [class.disabled]="addLoading" (click)="clickAddComment()">
         <span class="save-text">Add</span>
         <span *ngIf="addLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
     </div>
 </div>
-
-<modal
-       *ngIf="modal == 'editComments'"
-       [contentComponent]="EditCommentsComponent"
-       [title]="'Edit'"
-       [showSaveButton]="true"
->
-</modal>

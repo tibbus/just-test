@@ -15,7 +15,7 @@ declare const jQuery: any;
 
 export class CarComponent implements OnInit, OnDestroy {
     public carLoaded: boolean;
-    private $route: Subscription;
+    private route$: Subscription;
 
     constructor(
         private carService: CarService,

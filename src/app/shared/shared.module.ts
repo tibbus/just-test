@@ -11,8 +11,9 @@ import { PostComponent } from './timeline/post/post.component';
 import { TimelineDatePipe } from './timelineDate.pipe';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
 import { EditModalContentComponent } from './timeline/editModal/editModalContent.component';
-import { CommentsComponnent } from './timeline/comments/comments.component';
-import { EditCommentsComponent } from './timeline/comments/editComments.component';
+import { CommentsComponent } from './timeline/comments/comments.component';
+import { CommentComponent } from './timeline/comments/comment/comment.component';
+import { EditCommentsComponent } from './timeline/comments/editComments/editComments.component';
 
 @NgModule({
     imports: [CommonModule, FormsModule],
@@ -27,7 +28,8 @@ import { EditCommentsComponent } from './timeline/comments/editComments.componen
         ImageModalContentComponent,
         EditModalContentComponent,
         EditCommentsComponent,
-        CommentsComponnent
+        CommentsComponent,
+        CommentComponent
     ],
     entryComponents: [
         ImageModalContentComponent,
@@ -46,7 +48,8 @@ import { EditCommentsComponent } from './timeline/comments/editComments.componen
         TimelineDatePipe,
         ImageModalContentComponent,
         EditCommentsComponent,
-        CommentsComponnent
+        CommentsComponent,
+        CommentComponent
     ]
 })
 

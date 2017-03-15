@@ -10,26 +10,25 @@ import { CarService } from '../car/car.service';
 @Injectable()
 export class CommentsService {
     private selectedComment: any;
+    private comments: any = [];
     private $comments = new Subject<any>();
 
     constructor(private http: Http, private apiService: ApiService) { }
 
-    public getComments(postId: string) {
-        this.fetchComments(postId);
+    public getComments(postId: string, dataRequested: boolean) {
+        if (!dataRequested) {
+            this.http
+                .get(this.apiService.getCommentsUrl(postId))
+                .map(res => res.json())
+                .subscribe(data => {
+                    this.comments = data.map(comment => {
+                        return comment;
+                    });
+                    this.$comments.next(this.comments);
+                });
+        }
 
         return this.$comments;
-    }
-
-    public fetchComments(postId: string) {
-        const $dataComments = this.http
-            .get(this.apiService.getCommentsUrl(postId))
-            .map(res => res.json())
-
-        $dataComments.subscribe(data => {
-            this.$comments.next(data);
-        });
-
-        return $dataComments;
     }
 
     public addComment(postId: string, commentText: string) {
@@ -43,17 +42,25 @@ export class CommentsService {
             body,
             method: 'POST'
         })
-            .do(data => console.log(data))
+            .do(data => {
+                const comment = data.json();
+                comment.dataRequested = true;
+                this.comments.push(comment);
+
+                this.$comments.next(this.comments);
+            });
     }
 
     public removeComment(postId: string, commentId: string) {
-        const body = '';
-
         return this.http.request(this.apiService.getChangeCommentsUrl(postId, commentId), {
             body: '',
             method: 'DELETE'
         })
-            .do(data => console.log(data))
+            .do(data => {
+                this.comments = this.comments.filter(comment => comment.id !== commentId);
+
+                this.$comments.next(this.comments);
+            });
     }
 
     public updateComment(commentId: string, postId: string, comment: string) {
@@ -65,7 +72,19 @@ export class CommentsService {
             body,
             method: 'PUT'
         })
-            .do(data => console.log(data))
+            .do(data => {
+                const comment = data.json();
+                comment.dataRequested = true;
+                this.comments = this.comments.map(currentComment => {
+                    if (currentComment.id === comment.id) {
+                        return Object.assign(currentComment, comment);
+                    }
+
+                    return currentComment;
+                });
+
+                this.$comments.next(this.comments);
+            });
     }
 
     public setSelectedComment(comment: any) {
