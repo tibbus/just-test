@@ -3,8 +3,6 @@
 import { CarService, FollowService, ModalService } from '../../../services/index';
 import { AddCarModalComponent } from './addCarModal/addCarModal.component';
 
-declare const jQuery: any;
-
 @Component({
     selector: 'all-cars',
     styleUrls: ['./garage.component.scss'],

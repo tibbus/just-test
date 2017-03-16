@@ -2,7 +2,7 @@
     <div class="content__profile-image">
         <img src="{{post.carData.image || '/assets/default-car.jpg'}}" />
     </div>
-    <a class="content__car-name">{{post.carData.make}} {{post.carData.model}}</a>
+    <a class="content__car-name" [routerLink]="['/cars/' + carRoute]">{{post.carData.make}} {{post.carData.model}}</a>
 
     <div class="line"></div>
 

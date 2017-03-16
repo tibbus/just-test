@@ -21,14 +21,13 @@ export class CarService extends HttpService {
     public getCars(forceRefresh?: boolean) {
         return this.getData(forceRefresh).map((res: Car[]) => {
             this.cars = _.map(res, (carObject: Car) => {
-                const carMake: string = _.get(carObject, 'carInfo.car.make', null);
-                const carModel: string = _.get(carObject, 'carInfo.car.model', null);
-                const carName: string = `${carMake} ${carModel}`;
-                const carId: string = carObject.carInfo.id;
+                const carMake = carObject.carInfo.car.make;
+                const carModel = carObject.carInfo.car.model;
+                const carId = carObject.carInfo.id;
 
                 return {
-                    name: carName,
-                    route: `${carName.replace(/ /g, '-').toLocaleLowerCase()}-${carId}`,
+                    name: this.getCarName(carMake, carModel),
+                    route: this.getCarRoute(carMake, carModel, carId),
                     id: carId,
                     userCarId: carObject.id,
                     info: carObject.carInfo
@@ -88,5 +87,15 @@ export class CarService extends HttpService {
         formData.append('image', car.info.pictureData);
 
         return this.http.post(apiUrl, formData);
+    }
+
+    public getCarRoute(carMake: string, carModel: string, carId: string): string {
+        const carName = this.getCarName(carMake, carModel);
+
+        return `${carName.replace(/ /g, '-').toLocaleLowerCase()}-${carId}`;
+    }
+
+    private getCarName(carMake: string, carModel: string): string {
+            return `${carMake} ${carModel}`;
     }
 }

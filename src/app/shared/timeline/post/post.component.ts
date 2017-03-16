@@ -1,7 +1,7 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ModalService, TimelineService, PostService, LikesService, CommentsService } from '../../../services/index';
+import { ModalService, TimelineService, PostService, LikesService, CommentsService, CarService } from '../../../services/index';
 import { ImageModalContentComponent } from '../../imageModal/imageModalContent.component';
 import { EditModalContentComponent } from '../editModal/editModalContent.component';
 
@@ -28,19 +28,20 @@ export class PostComponent {
     public likes: any[] = [];
     public isCurrentUserLike: boolean;
     public commentsCount: number;
+    public carRoute: string;
     private postId: string;
 
     constructor(
         private modalService: ModalService,
         private timelineService: TimelineService,
         private postService: PostService,
-        private likesService: LikesService
+        private likesService: LikesService,
+        private carService: CarService
     ) { }
 
     ngOnInit() {
         this.postId = this.post.activityData.id;
-        // @TODO remove this line / defensive code added for a BE bug
-        this.post.carData = this.post.carData || {};
+        this.carRoute = this.carService.getCarRoute(this.post.carData.make, this.post.carData.model, this.post.activityData.carInfoId);
 
         this.modalService.getModalClose().subscribe(() => {
             this.modal = '';
