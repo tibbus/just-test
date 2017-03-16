@@ -23,9 +23,10 @@ export class AddPostComponent {
     public postType: string = 'status';
     public topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
     public selectedTopics: string[] = [];
-    private allTopics: string[] = this.topics;
     public cars: any[];
     public carActiveIndex: number;
+    // clone topics
+    private allTopics: string[] = this.topics.slice();
 
     constructor(
         private carService: CarService,

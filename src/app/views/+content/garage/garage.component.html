@@ -36,8 +36,8 @@
 
 <alert [message]="alertMessage" [state]="requestState" (resetAlertMessage)="resetAlertMessage($event)"></alert>
 
-<modal *ngIf="modal === 'addCarModal'
-    "[contentComponent]="AddCarModalContent"
+<modal *ngIf="modal === 'addCarModal'"
+    [contentComponent]="AddCarModalContent"
     [title]="'Adding your car to Logbook'"
     [size]="'small'"
     [hideFooter]="true">
