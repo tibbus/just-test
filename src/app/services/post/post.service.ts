@@ -23,6 +23,10 @@ export class PostService {
     ) { }
 
     public addPost(files: any[], statusText: string, postType: string, car) {
+        this.topics.push(postType);
+        this.topics.push(car.info.car.make);
+        this.topics.push(car.info.car.model);
+
         if (postType === 'status') {
             return this.addStatus(statusText, car);
         }
