@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
@@ -16,6 +16,8 @@ import {
 })
 
 export class AddPostComponent {
+    @Input() cars: any[];
+
     public currentStatus: string = '';
     public loading: boolean = false;
     public uris: string[] = [];
@@ -23,24 +25,15 @@ export class AddPostComponent {
     public postType: string = 'status';
     public topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
     public selectedTopics: string[] = [];
-    public cars: any[];
-    public carActiveIndex: number;
+    public carActiveIndex: number = 0;
     // clone topics
     private allTopics: string[] = this.topics.slice();
 
     constructor(
         private carService: CarService,
         private timelineService: TimelineService,
-        private ref: ChangeDetectorRef,
         private postService: PostService
     ) { }
-
-    ngOnInit() {
-        this.carService.getCars(false).subscribe(cars => {
-            this.cars = cars;
-            this.carActiveIndex = 0;
-        })
-    }
 
     public clickUriRemove(index: number) {
         this.uris.splice(index, 1);

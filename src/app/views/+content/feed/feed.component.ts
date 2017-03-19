@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { TimelineService, ApiService } from '../../../services/index';
+import { TimelineService, ApiService, CarService } from '../../../services/index';
 
 @Component({
     selector: 'feed',
@@ -8,9 +8,12 @@ import { TimelineService, ApiService } from '../../../services/index';
 })
 
 export class FeedComponent {
+    public cars: any[] = [];
+
     constructor(
         private timelineService: TimelineService,
-        private apiService: ApiService
+        private apiService: ApiService,
+        private carService: CarService
     ) { }
 
     ngOnInit() {
@@ -18,5 +21,13 @@ export class FeedComponent {
             actorType: 'user',
             actorId: this.apiService.getUserId()
         };
+
+        this.carService.getCars(false).subscribe(
+            cars => {
+                this.cars = cars;
+            },
+            // @TODO If you don't catch the error it breaks the router (???)
+            error => console.log(error)
+        );
     }
 }
