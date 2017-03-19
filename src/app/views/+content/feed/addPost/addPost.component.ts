@@ -1,4 +1,4 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import { Component, ChangeDetectorRef, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
@@ -32,7 +32,8 @@ export class AddPostComponent {
     constructor(
         private carService: CarService,
         private timelineService: TimelineService,
-        private postService: PostService
+        private postService: PostService,
+        private ref: ChangeDetectorRef
     ) { }
 
     public clickUriRemove(index: number) {
