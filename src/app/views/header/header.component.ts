@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
 
         this.carService.getCars().subscribe(cars => {
             this.cars = cars;
-        })
+        }, error => console.log(error))
     }
 
     public search(term: string) {

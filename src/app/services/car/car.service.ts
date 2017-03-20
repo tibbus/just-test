@@ -1,11 +1,12 @@
-import { Injectable }     from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { ReplaySubject }    from 'rxjs/ReplaySubject';
+import { ReplaySubject, Subject } from 'rxjs';
 
 import { HttpService } from '../http/http.service';
 import { ApiService } from '../api/api.service';
 import { API } from '../api/api';
 import { Car, CarInfo, Mot, Tax } from './car.model';
+// @TODO remove lodash
 import * as _ from 'lodash';
 
 @Injectable()
@@ -13,6 +14,7 @@ export class CarService extends HttpService {
     private cars: any[];
     public selectedCarName;
     public selectedCar;
+    private addCar$: Subject<boolean> = new Subject();
 
     constructor(private http: Http, private apiService: ApiService) {
         super(http, apiService.getUserCarsUrl());
@@ -93,6 +95,14 @@ export class CarService extends HttpService {
         const carName = this.getCarName(carMake, carModel);
 
         return `${carName.replace(/ /g, '-').toLocaleLowerCase()}-${carId}`;
+    }
+
+    public getAddCar() {
+        return this.addCar$;
+    }
+
+    public setAddCar() {
+        this.addCar$.next(true);
     }
 
     private getCarName(carMake: string, carModel: string): string {

@@ -33,6 +33,10 @@ export class GarageComponent implements OnInit {
             // close modal
             this.modal = '';
         });
+
+        this.carService.getAddCar().subscribe(() => {
+            this.getCars(true);
+        });
     }
 
     private getCars(refreshRequest: boolean) {
@@ -49,7 +53,11 @@ export class GarageComponent implements OnInit {
                     });
                 });
             },
-            error => this.handleError(error)
+            error => {
+                this.cars = [];
+
+                this.handleError(error);
+            }
         );
     }
 
