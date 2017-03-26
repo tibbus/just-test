@@ -4,10 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { PostService, ModalService, TimelineService } from '../../../services/index';
 import { UploadFileDirective } from '../../uploadFile.directive';
 
-import * as _ from 'lodash';
-
 @Component({
-    //moduleId: module.id,
     selector: 'content',
     templateUrl: './editModalContent.component.html',
     styleUrls: ['./editModalContent.component.scss']
@@ -36,7 +33,7 @@ export class EditModalContentComponent implements OnInit, OnDestroy {
         this.postType = this.post.type;
 
         this.selectedTopics = this.post.activityData.topics;
-        this.topics = _.filter(this.topics, (topic): boolean => {
+        this.topics = this.topics.filter(topic => {
             return this.selectedTopics.indexOf(topic) === -1;
         });
 

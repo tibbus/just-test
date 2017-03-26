@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
-import * as _ from 'lodash';
 
 import { ApiService } from '../api/api.service';
 import { CarService } from '../car/car.service';
@@ -66,7 +65,7 @@ export class FollowService  {
     }
 
     public handleFollow() {
-        const isFollowing = _.find(this.followings, (following: any) => {
+        const isFollowing = this.followings.find(following => {
             return following.target_id.split('car:')[1] == this.carService.selectedCar.id;
         })
 

@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-//import { ApiService, API } from '../index';
 import { Subject } from 'rxjs/Subject';
 
 import { ApiService } from '../api/api.service';
 import { API } from '../api/api';
-
-import * as _ from 'lodash';
-
 import { Actor } from './stream.model';
 
 @Injectable()
@@ -85,13 +81,10 @@ export class StreamService  {
 
     private handlePostsRequest(data) {
         const posts = data.results.map(item => {
-            // format all Object keys to lowercase
-            const postObject: any = _.mapKeys(item.Target, (currentItem, currentKey: string) => {
-                return currentKey[0].toLowerCase() + currentKey.substr(1);
-            });
-            postObject.type = item.object;
+            const post = item.Target;
+            post.type = item.object;
 
-            return postObject;
+            return post;
         });
 
         this.posts$.next(posts);

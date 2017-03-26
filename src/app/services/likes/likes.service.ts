@@ -2,7 +2,6 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import * as _ from 'lodash';
 
 import { ApiService } from '../api/api.service';
 import { API } from '../api/api';
@@ -63,7 +62,7 @@ export class LikesService {
     }
 
     private getUserLike() {
-        return _.find(this.likes, (like: any) => {
+        return this.likes.find(like => {
             return like.userId == this.apiService.getUserId()
         });
     }

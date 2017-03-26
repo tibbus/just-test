@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
-import * as _ from 'lodash';
 
 import { StreamService } from '../stream/stream.service';
 import { Timeline, Post } from './timeline.model';
@@ -100,7 +99,7 @@ export class TimelineService {
     }
 
     public getPostById(id: string): any {
-        return _.find(this.posts, (post: any) => {
+        return this.posts.find(post => {
             return post.activityData.id == id;
         });
     }

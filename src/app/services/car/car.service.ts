@@ -6,8 +6,6 @@ import { HttpService } from '../http/http.service';
 import { ApiService } from '../api/api.service';
 import { API } from '../api/api';
 import { Car, CarInfo, Mot, Tax } from './car.model';
-// @TODO remove lodash
-import * as _ from 'lodash';
 
 @Injectable()
 export class CarService extends HttpService {
@@ -22,7 +20,7 @@ export class CarService extends HttpService {
 
     public getCars(forceRefresh?: boolean) {
         return this.getData(forceRefresh).map((res: Car[]) => {
-            this.cars = _.map(res, (carObject: Car) => {
+            this.cars = res.map((carObject: Car) => {
                 const carMake = carObject.carInfo.car.make;
                 const carModel = carObject.carInfo.car.model;
                 const carId = carObject.carInfo.id;
@@ -67,7 +65,7 @@ export class CarService extends HttpService {
     }
 
     public setCarByRoute(route: string, carInfoId: string): void {
-        const userSelectedCar = _.find(this.cars, (car) => {
+        const userSelectedCar = this.cars.find(car => {
             return route === car.route.toLowerCase();
         });
 
