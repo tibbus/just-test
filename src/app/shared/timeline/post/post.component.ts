@@ -47,9 +47,10 @@ export class PostComponent {
             this.modal = '';
         });
 
-        this.likesService.getLikes(this.postId, this.post.socialDataRequested).subscribe((likes: any[]) => {
-            this.likes = likes;
-        });
+        this.likesService.getLikes(this.postId, this.post.socialDataRequested, this.post.socialData.likesCount)
+            .subscribe((likes: any[]) => {
+                this.likes = likes;
+            });
     }
 
     // Comments Component @Output

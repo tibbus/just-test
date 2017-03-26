@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 
-//import { ApiService, CarService, API } from '../index';
 import { ApiService } from '../api/api.service';
 import { API } from '../api/api';
 import { CarService } from '../car/car.service';
@@ -11,12 +10,15 @@ import { CarService } from '../car/car.service';
 export class CommentsService {
     private selectedComment: any;
     private comments: any = [];
-    private $comments = new Subject<any>();
+    private comments$ = new Subject<any>();
 
     constructor(private http: Http, private apiService: ApiService) { }
 
-    public getComments(postId: string, dataRequested: boolean) {
-        if (!dataRequested) {
+    public getComments(postId: string, dataRequested: boolean, commentsCount: number) {
+        if (commentsCount === 0) {
+            this.comments = [];
+            setTimeout(() => this.comments$.next([]), 1);
+        } else if (!dataRequested) {
             this.http
                 .get(this.apiService.getCommentsUrl(postId))
                 .map(res => res.json())
@@ -24,11 +26,11 @@ export class CommentsService {
                     this.comments = data.map(comment => {
                         return comment;
                     });
-                    this.$comments.next(this.comments);
+                    this.comments$.next(this.comments);
                 });
         }
 
-        return this.$comments;
+        return this.comments$;
     }
 
     public addComment(postId: string, commentText: string) {
@@ -47,7 +49,7 @@ export class CommentsService {
                 comment.dataRequested = true;
                 this.comments.push(comment);
 
-                this.$comments.next(this.comments);
+                this.comments$.next(this.comments);
             });
     }
 
@@ -57,9 +59,9 @@ export class CommentsService {
             method: 'DELETE'
         })
             .do(data => {
-                this.comments = this.comments.filter(comment => comment.id !== commentId);
+                this.comments = this.comments.filter(comment => comment.id != commentId);
 
-                this.$comments.next(this.comments);
+                this.comments$.next(this.comments);
             });
     }
 
@@ -83,7 +85,7 @@ export class CommentsService {
                     return currentComment;
                 });
 
-                this.$comments.next(this.comments);
+                this.comments$.next(this.comments);
             });
     }
 

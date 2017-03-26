@@ -31,13 +31,14 @@ export class CommentsComponent implements OnInit {
         this.postId = this.post.activityData.id;
         this.loading = true;
 
-        this.commentsService.getComments(this.postId, this.post.socialDataRequested).subscribe(comments => {
-            this.loading = false;
+        this.commentsService.getComments(this.postId, this.post.socialDataRequested, this.post.socialData.commentsCount)
+            .subscribe(comments => {
+                this.loading = false;
 
-            this.commentsCount.emit(comments.length);
+                this.commentsCount.emit(comments.length);
 
-            this.comments = comments;
-        });
+                this.comments = comments;
+            });
 
         if (this.post.socialDataRequested) {
             this.loading = false;

@@ -1,7 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable, Subject } from 'rxjs';
 
 import { ApiService } from '../api/api.service';
 import { API } from '../api/api';
@@ -17,14 +16,16 @@ export class LikesService {
         @Inject('likesType') public likesType: string
     ) { }
 
-    public getLikes(postId: string, dataRequested = false) {
-        if (!dataRequested) {
+    public getLikes(postId: string, dataRequested = false, likesCount?) {
+        if (likesCount === 0) {
+            this.likes = [];
+            setTimeout(() => this.likes$.next([]), 1);
+        } else if (!dataRequested) {
             const likes$ = this.http.get(this.apiService.getLikesUrl(this.likesType, postId))
                 .map(res => res.json())
                 .catch(this.handleError)
                 .subscribe(data => {
                     this.likes = data;
-
                     this.likes$.next(this.likes);
                 })
         }
