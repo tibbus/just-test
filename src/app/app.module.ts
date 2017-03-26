@@ -6,9 +6,9 @@ import { CustomRequestOptions } from './services/http/baseRequest';
 import { routing } from './app.routes';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './views/header/header.component';
-import { ProfileComponent, NotFoundComponent } from './views/+content/index';
-import { GarageComponent } from './views/+content/garage/garage.component';
-import { AddCarModalComponent } from './views/+content/garage/addCarModal/addCarModal.component';
+import { ProfileComponent, NotFoundComponent } from './views/content/index';
+import { GarageComponent } from './views/content/garage/garage.component';
+import { AddCarModalComponent } from './views/content/garage/addCarModal/addCarModal.component';
 import { AuthComponent } from './views/auth/auth.component';
 import { StreamService } from './services/stream/stream.service';
 
@@ -24,7 +24,7 @@ import {
 } from './services/index';
 
 import { SharedModule } from './shared/shared.module';
-import { FeedModule } from './views/+content/feed/feed.module';
+import { FeedModule } from './views/content/feed/feed.module';
 import useFactory from './factory';
 
 @NgModule({

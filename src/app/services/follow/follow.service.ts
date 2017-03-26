@@ -12,7 +12,7 @@ import { StreamService } from '../stream/stream.service';
 export class FollowService  {
     private following$ = new Subject();
     private followState$ = new Subject();
-    private followings: any[];
+    private followings: any[] = [];
     private actor: Actor;
 
     constructor(

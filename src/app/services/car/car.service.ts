@@ -9,7 +9,7 @@ import { Car, CarInfo, Mot, Tax } from './car.model';
 
 @Injectable()
 export class CarService extends HttpService {
-    private cars: any[];
+    private cars: any[] = [];
     public selectedCarName;
     public selectedCar;
     private addCar$: Subject<boolean> = new Subject();
