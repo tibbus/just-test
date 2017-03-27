@@ -1,4 +1,13 @@
-﻿.cover {
+﻿:host {
+    width: 850px;
+    position: absolute;
+    height: 100%;
+    left: 50%;
+    margin-left: -425px;
+    background: #e9e8ee;
+}
+
+.cover {
     width: 100%;
     height: 250px;
     overflow: hidden;

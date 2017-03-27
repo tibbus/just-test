@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileComponent, NotFoundComponent, FeedComponent } from './views/content/index';
 import { GarageComponent } from './views/content/garage/garage.component';
-import { AuthComponent } from './views/auth/auth.component';
+import { AuthCallbackComponent } from './views/authCallback/authCallback.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'garage', pathMatch: 'full' },
@@ -11,7 +11,7 @@ const appRoutes: Routes = [
     { path: 'cars', loadChildren: './views/content/+car/car.module#CarModule' },
     { path: 'profile', component: ProfileComponent },
     { path: 'feed', component: FeedComponent },
-    { path: 'callback.html', component: AuthComponent },
+    { path: 'callback.html', component: AuthCallbackComponent },
     { path: '**', component: NotFoundComponent }
 ];
 

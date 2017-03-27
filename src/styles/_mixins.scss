@@ -1,10 +1,9 @@
-@mixin content-default {
-    position: relative;
-    width: 100%;
-    min-height: 100%;
-    background: #ffffff;
-    padding: 5px;
+@mixin content {
     display: block;
+    width: 500px;
+    position: relative;
+    margin: auto;
+    margin-top: 80px;
 }
 
 %center {

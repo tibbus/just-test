@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as Oidc from 'oidc-client';
+import { UserManager } from 'oidc-client';
 
 import { ApiService } from '../api/api.service';
 
@@ -15,9 +15,10 @@ export class AuthService {
             response_type: "id_token token",
             scope: "openid profile mycarbioapi",
             post_logout_redirect_uri: `${window.location.origin}`,
+            acr_values: 'idp:Facebook'
         };
 
-        this.mgr = new Oidc.UserManager(config);
+        this.mgr = new UserManager(config);
    }
 
    getUser() {

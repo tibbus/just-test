@@ -1,10 +1,9 @@
 ﻿import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { connect } from 'getstream';
+
 import { ApiService } from './services/api/api.service';
 import { AuthService } from './services/auth/auth.service';
-// @TODO add types for this
-const getStream = require('getstream');
-
-declare const jQuery: any;
 
 @Component({
     selector: 'car-app',
@@ -13,11 +12,21 @@ declare const jQuery: any;
 })
 
 export class AppComponent {
-    constructor(private apiService: ApiService, private authService: AuthService) { }
+    public showHeader: boolean = true;
+
+    constructor(private apiService: ApiService, private authService: AuthService, private router: Router) { }
 
     ngOnInit() {
-        const streamClient = getStream.connect('8r2y2gbevg9j', null, '15872');
+        const streamClient = connect('8r2y2gbevg9j', null, '15872');
 
         this.apiService.setStreamClient(streamClient);
+
+        this.router.events.subscribe((event: any) => {
+            if (event instanceof NavigationEnd === false) {
+                return;
+            }
+
+            event.url.indexOf('callback.html') > -1 ? this.showHeader = false : this.showHeader = true;
+        });
     }
 }

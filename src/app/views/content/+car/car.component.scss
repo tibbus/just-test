@@ -1,7 +1,5 @@
-﻿:host {
-    display: block;
-    width: 500px;
-    position: relative;
-    margin: auto;
-    margin-top: 80px;
+﻿@import "../../../../styles/mixins";
+
+:host {
+    @include content;
 }
