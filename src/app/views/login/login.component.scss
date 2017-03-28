@@ -1,1 +1,72 @@
-﻿
+﻿@import "../../../styles/mixins";
+
+:host {
+    background: linear-gradient(to bottom, rgba(25,0,250,1) 0%, rgba(247,202,77,1) 100%);
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.wrapper {
+    @extend %center;
+
+    &--disabled {
+        opacity: 0.5;
+    }
+}
+
+.top-info {
+    font-size: 29px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.bottom-info {
+    color: #ffffff;
+    opacity: 0.8;
+    font-size: 19px;
+    margin-top: 50px;
+}
+
+.button {
+    border-radius: 3px;
+    width: 295;
+    height: 50px;
+    cursor: pointer;
+    margin-bottom: 15px;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    .glyphicon-refresh {
+        margin-left: 5px;
+    }
+
+    &--facebook {
+        background: #3b5998;
+        color: white;
+    }
+
+    &--google {
+        background: white;
+        color: grey;
+    }
+
+    &__logo {
+        float: left;
+        height: 30px;
+        margin: 10px 0 0 10px;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    &__text {
+        line-height: 50px;
+        margin-left: 25px;
+        font-size: 18px;
+    }
+}

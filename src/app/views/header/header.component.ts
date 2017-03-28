@@ -89,8 +89,8 @@ export class HeaderComponent implements OnInit {
         this.authService.signOut();
     }
 
-    public clickLogin() {
-        this.authService.signIn();
+    public isUserLoggedIn(): boolean {
+        return !!this.authService.getUser();
     }
 
     private getProfile() {

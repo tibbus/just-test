@@ -1,1 +1,18 @@
-Login page
+<div class="wrapper" [class.wrapper--disabled]="loading">
+    <div class="top-info">
+        Something engaging <br/> Sign up
+    </div>
+    <div class="button button--facebook" (click)="clickSignIn('Facebook')">
+        <div class="button__logo"><img src="/src/assets/logo-facebook.png" /></div>
+        <span class="button__text">Continue with Facebook</span>
+        <span *ngIf="loading === 'Facebook'" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </div>
+    <div class="button button--google" (click)="clickSignIn('Google')">
+        <div class="button__logo"><img src="/src/assets/logo-google.png" /></div>
+        <span class="button__text">Continue with Google</span>
+         <span *ngIf="loading === 'Google'" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </div>
+    <div class="bottom-info">
+        A crafted experience made possible <br/> by connecting your social media account
+    </div>
+</div>

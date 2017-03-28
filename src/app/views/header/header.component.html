@@ -11,14 +11,16 @@
     <li *ngIf="!searchService.hasData" class="no-results">No results found</li>
 </ul>
 
+<div *ngIf="isUserLoggedIn()">
     <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="clickUnFollow()" [class.followActive]="!this.followState">
         Unfollow
     </a>
     <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="clickFollow()" [class.followActive]="this.followState">
         Folllow
     </a>
+</div>
 
-<div class="profile-dropdown">
+<div *ngIf="isUserLoggedIn()" class="profile-dropdown">
     <div data-target="#" class="profile-dropdown__img dropdown-toggle" data-toggle="dropdown">
         <img src="/assets/muj.JPG" />
     </div>
@@ -34,13 +36,10 @@
         <li class="profile-dropdown__list-delimiter">
             <a href="javascript:void(0)" class="profile-dropdown__link" [routerLink]="['/garage']">View Garage</a>
         </li>
-         <li>
-             <a href="javascript:void(0)" class="profile-dropdown__link">Settings</a>
-         </li>
-        <div class="divider"></div>
         <li>
-            <a href="javascript:void(0)" class="profile-dropdown__link profile-dropdown__link--auth" (click)="clickLogin()">Log in</a>
+            <a href="javascript:void(0)" class="profile-dropdown__link">Settings</a>
         </li>
+        <div class="divider"></div>
         <li>
             <a href="javascript:void(0)" class="profile-dropdown__link profile-dropdown__link--auth" (click)="clickSignOut()">Log out</a>
         </li>

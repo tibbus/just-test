@@ -1,12 +1,12 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProfileComponent, NotFoundComponent, FeedComponent } from './views/content/index';
-import { GarageComponent } from './views/content/garage/garage.component';
+import { ProfileComponent, NotFoundComponent, FeedComponent, GarageComponent } from './views/content/index';
 import { AuthCallbackComponent } from './views/authCallback/authCallback.component';
+import { LoginComponent } from './views/login/login.component';
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: 'garage', pathMatch: 'full' },
+    { path: '', component: LoginComponent },
     { path: 'garage', component: GarageComponent },
     { path: 'cars', loadChildren: './views/content/+car/car.module#CarModule' },
     { path: 'profile', component: ProfileComponent },

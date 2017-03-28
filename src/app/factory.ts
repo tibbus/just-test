@@ -1,5 +1,5 @@
 ﻿import { AuthService } from './services/index';
 
-const useFactory = (auth: AuthService) => () => auth.getUser();
+const useFactory = (auth: AuthService) => () => auth.setUser();
 
 export default useFactory;

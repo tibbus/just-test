@@ -26,7 +26,11 @@ export class AppComponent {
                 return;
             }
 
-            event.url.indexOf('callback.html') > -1 ? this.showHeader = false : this.showHeader = true;
+            if (event.url.includes('/callback') || event.url === '/') {
+                this.showHeader = false
+            } else {
+                this.showHeader = true;
+            }
         });
     }
 }

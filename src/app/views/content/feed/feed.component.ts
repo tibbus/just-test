@@ -1,5 +1,7 @@
 ﻿import { Component } from '@angular/core';
-import { TimelineService, ApiService, CarService } from '../../../services/index';
+import { Router } from '@angular/router';
+
+import { TimelineService, ApiService, CarService, AuthService } from '../../../services/index';
 
 @Component({
     selector: 'feed',
@@ -13,10 +15,16 @@ export class FeedComponent {
     constructor(
         private timelineService: TimelineService,
         private apiService: ApiService,
-        private carService: CarService
+        private carService: CarService,
+        private authService: AuthService,
+        private router: Router
     ) { }
 
     ngOnInit() {
+        if (!this.authService.getUser()) {
+            this.router.navigateByUrl('/');
+        }
+
         this.timelineService.actor = {
             actorType: 'user',
             actorId: this.apiService.getUserId()

@@ -10,6 +10,7 @@ import { ProfileComponent, NotFoundComponent } from './views/content/index';
 import { GarageComponent } from './views/content/garage/garage.component';
 import { AddCarModalComponent } from './views/content/garage/addCarModal/addCarModal.component';
 import { AuthCallbackComponent } from './views/authCallback/authCallback.component';
+import { LoginComponent } from './views/login/login.component';
 import { StreamService } from './services/stream/stream.service';
 
 import {
@@ -42,6 +43,7 @@ import useFactory from './factory';
         NotFoundComponent,
         GarageComponent,
         AuthCallbackComponent,
+        LoginComponent,
         AddCarModalComponent
     ],
     entryComponents: [

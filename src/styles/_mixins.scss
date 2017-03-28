@@ -6,11 +6,6 @@
     margin-top: 80px;
 }
 
-%center {
-    @extend %center--left;
-    @extend %center--top;
-}
-
 %center--left {
     position: absolute;
     left: 50%;
@@ -22,3 +17,11 @@
     top: 50%;
     transform: translateY(-50%);
 }
+
+%center {
+    @extend %center--left;
+    @extend %center--top;
+
+    transform: translate(-50%, -50%);
+}
+
