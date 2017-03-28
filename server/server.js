@@ -7,8 +7,7 @@ const basicAuth = require('basic-auth-connect');
 
 app.set('port', (process.env.PORT || 5000));
 
-// used for ts maps
-//app.use('/src', express.static(__dirname + '/src'));
+app.use('/src/assets', express.static('../src/assets'));
 
 // FAKE Service APIs :
 app.use('/api/v1/user/77', express.static('./fakeService/profile.json'));
