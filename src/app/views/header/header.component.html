@@ -22,7 +22,7 @@
 
 <div *ngIf="isUserLoggedIn()" class="profile-dropdown">
     <div data-target="#" class="profile-dropdown__img dropdown-toggle" data-toggle="dropdown">
-        <img src="/assets/muj.JPG" />
+        <img src="{{profile?.image}}" />
     </div>
     <!--<a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
     <strong>{{name}}</strong>

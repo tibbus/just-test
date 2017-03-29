@@ -28,6 +28,7 @@
         border-radius: 50%;
         overflow: hidden;
         float: left;
+        margin-left: 20px;
 
         img {
             height: 100%;
@@ -37,7 +38,10 @@
     &__car-name {
         float: left;
         font-weight: bold;
-        margin-left: 10px;
+        margin-left: 15px;
+        margin: 5px 0 0 15px;
+        color: black;
+        font-weight: bold;
     }
 
     &__topics {
@@ -54,7 +58,8 @@
     &__date {
         color: #b8b8b8;
         float: right;
-        margin: 10px 15px 10px 10px;
+        margin: 7px 15px 10px 10px;
+        font-size: 12px;
     }
 
     &__description {
@@ -85,7 +90,7 @@
 .social {
     float: right;
     clear: left;
-    margin-right: 20px;
+    margin: 0 24px 10px 0;
 
     a {
         padding: 5px;
@@ -132,7 +137,7 @@
         font-size: 14px;
         color: #b8b8b8;
         cursor: pointer;
-        margin: 10px;
+        margin: 10px 20px 0 5px;
         // overwrite bootstrap
         box-shadow: none !important;
 

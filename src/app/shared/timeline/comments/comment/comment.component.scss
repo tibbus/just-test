@@ -1,13 +1,18 @@
 ﻿:host {
     float: left;
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
 }
 
 .img {
     float: left;
-    height: 40px;
+    height: 24px;
+    width: 24px;
+    overflow: hidden;
+    border-radius: 12px;
     margin-right: 10px;
+    margin-top: 6px;
+    margin-left: 12px;
 
     img {
         height: 100%;
@@ -16,14 +21,15 @@
 
 .date {
     float: right;
-    margin-right: 10px;
-    color: grey;
+    margin: 13px 10px 0;
+    color: #cfcfcf;
+    font-size: 11px;
 }
 
 .edit-menu {
     cursor: pointer;
     float: right;
-    margin: 3px;
+    margin: 13px 3px 3px 3px;
     opacity: 0;
     transition: opacity 0.1s;
 
@@ -45,6 +51,7 @@
 
 .description {
     float: left;
+    font-size: 12px;
     width: 280px;
     margin: 10px 10px 10px;
 }

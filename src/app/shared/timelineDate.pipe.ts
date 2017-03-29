@@ -6,6 +6,6 @@ import * as moment from 'moment';
 })
 export class TimelineDatePipe implements PipeTransform {
     transform(value) {
-        return value ? moment(value).format('DD/MM/YYYY') : null;
+        return value ? moment(value).fromNow() : null;
     }
 }

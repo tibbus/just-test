@@ -2,7 +2,7 @@
     <img src="/assets/muj.JPG" />
 </div>
 
-<textarea class="text-input" rows="4" placeholder="What's up?'"
+<textarea class="text-input" rows="4" placeholder="What's up?"
     [(ngModel)]="currentStatus"
     [class.lineDisabled]="postType !== 'status'"
 >
@@ -73,12 +73,12 @@
     </div>
 </div>-->
 
-<div class="btn btn-raised btn-success post"
-   [class.disabled]="loading"
+<button class="btn post"
+   [disabled]="loading"
    (click)="clickAddPost()">
     <span class="save-text">Post</span>
     <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-</div>
+</button>
 
 <div class="car-images">
     <div *ngFor="let car of cars; let index=index"

@@ -70,21 +70,21 @@
 
         &--video {
             transition: 0.3s;
-            left: 0;
+            left: -20px;
             top: 32px;
             color: red;
         }
 
         &--image {
             transition: 0.3s;
-            left: 47px;
-            top: -5px;
+            left: 36px;
+            top: -12px;
             color: green;
         }
 
         &--document {
             transition: 0.3s;
-            left: 87px;
+            left: 82px;
             top: 32px;
             color: blue;
         }
@@ -203,16 +203,17 @@
 }
 
 .post {
-    padding: 0 10px;
+    padding: 0 12px;
     float: right;
     font-size: 13px;
-    margin: 0 10px 0 0;
+    margin: 10px 25px 0 0;
     color: white;
+    background: blue;
 }
 
 .car-images {
-    float: right;
-    margin-right: 15px;
+    float: left;
+    margin: 0 15px;
 
     &__image {
         height: 50px;
