@@ -4,13 +4,11 @@
     </div>
     <a class="content__car-name" [routerLink]="['/cars/' + carRoute]">{{post.carData.make}} {{post.carData.model}}</a>
 
-    <div class="line"></div>
-
     <div class="btn-group edit-menu">
-        <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
+        <span href="bootstrap-elements.html" data-target="#" class="dropdown-toggle glyphicon glyphicon-option-horizontal edit-menu__icon"
+            data-toggle="dropdown">
             <div class="ripple-container"></div>
-        </a>
+        </span>
         <ul class="dropdown-menu">
             <li><a (click)="clickEdit()">Edit</a></li>
             <li><a (click)="clickDelete()">Delete</a></li>
@@ -18,14 +16,11 @@
     </div>
     <span class="content__date">{{post.activityData.createdDate | timelineDate }}</span>
 
-    <div class="content__topics">
-        <span *ngFor="let topic of post.activityData?.topics">{{topic}} </span>
-    </div>
+    <div class="line"></div>
 
     <div class="media-wrapper">
         <div class="media-post" *ngFor="let uri of post.activityData.contentUris; let i=index">
-            <img *ngIf="post.type === 'Image'" class="content__image {{i}}" src="{{uri}}" (click)="clickImage(i)"
-            />
+            <img *ngIf="post.type === 'Image'" class="content__image {{i}}" src="{{uri}}" (click)="clickImage(i)" />
 
             <video *ngIf="post.type === 'Video'" width="320" controls>
                 <source src="{{uri}}" type="video/mp4">
@@ -45,9 +40,7 @@
 
 <div class="social">
     <span class="like__count">{{likes.length}}</span>
-    <span class="glyphicon glyphicon-heart like__button"
-        (click)="clickLike()"
-        [ngClass]="{'like__button--enabled': likesService.isCurrentUserLike()}">
+    <span class="glyphicon glyphicon-heart like__button" (click)="clickLike()" [ngClass]="{'like__button--enabled': likesService.isCurrentUserLike()}">
     </span>
     <!--<a (click)="clickShare(post.activityData.id)">Share</a>-->
 </div>
@@ -56,22 +49,12 @@
     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate show-comments-loading-spinner"></span>
 </div>
 
-<a class="btn show-comments" (click)="clickGetComments()" [class.disabled]="post.comments.loading">
-    <span class="comments-count">{{commentsCount}}</span> Comments
-</a>
-
 <div class="line"></div>
 
-<comments [post]="post" (commentsCount)="setCommentsCount($event)"></comments>
+<comments [post]="post" [showOptions]="showOptions" (commentsCount)="setCommentsCount($event)"></comments>
 
-<modal *ngIf="modal == 'imageModal'"
-    [contentComponent]="ImageModalComponent"
-    [title]="'Images'"
-    [size]="'large'">
+<modal *ngIf="modal == 'imageModal'" [contentComponent]="ImageModalComponent" [title]="'Images'" [size]="'large'">
 </modal>
 
-<modal *ngIf="modal == 'editModal'"
-    [contentComponent]="EditModalComponent"
-    [title]="'Edit post'"
-    [showSaveButton]="true">
+<modal *ngIf="modal == 'editModal'" [contentComponent]="EditModalComponent" [title]="'Edit post'" [showSaveButton]="true">
 </modal>

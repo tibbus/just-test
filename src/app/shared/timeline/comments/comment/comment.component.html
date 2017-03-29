@@ -1,15 +1,18 @@
-﻿<div class="img">
+﻿<div class="wrapper" [class.remove]="loadingRemove">
+<div class="img">
     <img src="/assets/profile01.png" />
 </div>
 <div class="description">
     <p> {{comment.comment}}</p>
 </div>
 
-<div class="btn-group edit-menu">
-    <a href="bootstrap-elements.html" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-        <span class="caret"></span>
+<div class="btn-group edit-menu" [class.edit-menu--show]="showOptions">
+    <span href="bootstrap-elements.html"
+         data-target="#"
+         class="dropdown-toggle glyphicon glyphicon-option-vertical edit-menu__icon"
+         data-toggle="dropdown">
         <div class="ripple-container"></div>
-    </a>
+    </span>
     <ul class="dropdown-menu">
         <li><a (click)="clickEdit()">Edit</a></li>
         <li><a (click)="clickRemove()">Delete</a></li>
@@ -17,17 +20,12 @@
 </div>
 
 <span class="date">{{comment.createdDate | timelineDate }}</span>
-
-<div class="social">
-    <span class="like__count">{{likes.length}}</span>
-    <span class="glyphicon glyphicon-heart like__button"
-        (click)="clickLike()"
-        [ngClass]="{'like__button--enabled': likesService.isCurrentUserLike()}">
-    </span>
 </div>
+<!--<div class="social">
+    <span class="like__count">{{likes.length}}</span>
+    <span class="glyphicon glyphicon-heart like__button" (click)="clickLike()" [ngClass]="{'like__button--enabled': likesService.isCurrentUserLike()}">
+    </span>
+</div>-->
 
-<modal *ngIf="modal == 'editComments'"
-    [contentComponent]="EditCommentsComponent"
-    [title]="'Edit'"
-    [showSaveButton]="true">
+<modal *ngIf="modal == 'editComments'" [contentComponent]="EditCommentsComponent" [title]="'Edit'" [showSaveButton]="true">
 </modal>

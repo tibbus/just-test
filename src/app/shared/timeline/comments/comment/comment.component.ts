@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef, Input, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { CommentsService, ModalService, TimelineService, LikesService } from '../../../../services/index';
@@ -20,14 +20,23 @@ declare const jQuery: any;
 export class CommentComponent implements OnInit {
     @Input() comment: any;
     @Input() postId: string;
+    @HostListener('mouseenter') mouseoverComment() {
+        clearTimeout(this.showOptionsTimeout);
+        this.showOptions = true;
+    };
+    @HostListener('mouseleave') mouseleaveComment() {
+        this.showOptionsTimeout = setTimeout(() => this.showOptions = false, 500);
+    };
 
     public loading: boolean;
-    public addLoading: boolean;
-    public removeLoading: string;
+    public loadingRemove: boolean;
+    public removeLoading: boolean;
     public newCommentText: string;
     public EditCommentsComponent: any = EditCommentsComponent;
     public modal: string;
     public likes: any = [];
+    public showOptions: boolean = false;
+    private showOptionsTimeout: any;
 
     constructor(
         private commentsService: CommentsService,
@@ -52,10 +61,10 @@ export class CommentComponent implements OnInit {
     }
 
     public clickRemove() {
-        this.removeLoading = this.comment.id;
+        this.loadingRemove = true;
+        this.showOptions = false;
 
         this.commentsService.removeComment(this.postId, this.comment.id).subscribe(comment => {
-            this.removeLoading = null;
             this.timelineService.updateCommentsCount(this.postId, -1);
         });
     }

@@ -1,5 +1,8 @@
 @import "_bootstrap-custom";
 @import "loading";
+@import "icons";
+
+
 
 html, body {
     margin: 0;
@@ -40,4 +43,20 @@ content {
 
 li:focus {
     outline: none;
+}
+
+button {
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+button:active, button:focus {
+    border: none;
+    outline: none;
+}
+
+[disabled] {
+    cursor: default !important;
+    opacity: 0.5 !important;
 }

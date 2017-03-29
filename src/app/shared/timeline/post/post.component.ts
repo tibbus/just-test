@@ -1,4 +1,4 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import { Component, Input, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ModalService, TimelineService, PostService, LikesService, CommentsService, CarService } from '../../../services/index';
@@ -20,6 +20,13 @@ declare var FB: any;
 
 export class PostComponent {
     @Input() post: any;
+    @HostListener('mouseenter') mouseoverComment() {
+        clearTimeout(this.showOptionsTimeout);
+        this.showOptions = true;
+    };
+    @HostListener('mouseleave') mouseleaveComment() {
+        this.showOptionsTimeout = setTimeout(() => this.showOptions = false, 500);
+    };
 
     public loading: boolean;
     public ImageModalComponent: any = ImageModalContentComponent;
@@ -29,7 +36,9 @@ export class PostComponent {
     public isCurrentUserLike: boolean;
     public commentsCount: number;
     public carRoute: string;
+    public showOptions: boolean = false;
     private postId: string;
+    private showOptionsTimeout;
 
     constructor(
         private modalService: ModalService,

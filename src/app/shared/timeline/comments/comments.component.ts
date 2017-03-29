@@ -12,13 +12,14 @@ import { EditCommentsComponent } from './editComments/editComments.component';
 
 export class CommentsComponent implements OnInit {
     @Input() post: any;
+    @Input() showOptions: boolean;
     @Output() commentsCount: EventEmitter<number> = new EventEmitter<number>();
 
     public comments = [];
     public loading: boolean;
     public addLoading: boolean;
     public removeLoading: string;
-    public newCommentText: string;
+    public newCommentText: string = null;
     private postId: string;
 
     constructor(
@@ -49,7 +50,7 @@ export class CommentsComponent implements OnInit {
         this.addLoading = true;
 
         this.commentsService.addComment(this.postId, this.newCommentText).subscribe(data => {
-            this.newCommentText = '';
+            this.newCommentText = null;
             this.addLoading = false;
 
             this.timelineService.updateCommentsCount(this.postId, 1);;

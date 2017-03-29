@@ -1,0 +1,20 @@
+@font-face {
+    font-family: logbook;
+    src: url(../fonts/logbook.woff);
+}
+
+// Catchall baseclass
+.logbookon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'logbook';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Individual icons
+.logbookon-send               { &:before { content: "\e900"; } }

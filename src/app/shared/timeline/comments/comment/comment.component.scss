@@ -21,10 +21,25 @@
 }
 
 .edit-menu {
+    cursor: pointer;
     float: right;
+    margin: 3px;
+    opacity: 0;
+    transition: opacity 0.1s;
 
-    a {
-        cursor: pointer;
+    &--show {
+        opacity: 1;
+    }
+
+    &__icon {
+        font-size: 14px;
+        color: #b8b8b8;
+        // overwrite bootstrap
+        box-shadow: none !important;
+
+        &:hover, &[aria-expanded="true"] {
+            color: grey;
+        }
     }
 }
 

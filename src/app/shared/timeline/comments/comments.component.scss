@@ -15,13 +15,39 @@
     }
 }
 
-.add-button {
+.btn-add {
     float: left;
     padding: 0px 8px;
     position: relative;
     margin: 10px 0 0 20px;
     text-transform: none;
     font-size: 12px;
+
+    &--show {
+       display: block;
+    }
+
+    &:hover{
+        opacity: 0.8;
+    }
+
+    &__icon {
+        font-size: 23px;
+        color: #0606dd;
+        margin-top: 3px;
+        opacity: 0;
+        transition: opacity 0.1s;
+
+        &--show {
+            opacity: 1;
+        }
+    }
+
+    &__loading {
+        margin-left: 10px;
+        top: -3px;
+        color: grey;
+    }
 }
 
 .loading {
