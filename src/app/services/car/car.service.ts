@@ -11,7 +11,7 @@ import { Car, CarInfo, Mot, Tax } from './car.model';
 export class CarService extends HttpService {
     private cars: any[] = [];
     public selectedCarName;
-    public selectedCar;
+    private selectedCar;
     private addCar$: Subject<boolean> = new Subject();
 
     constructor(private http: Http, private apiService: ApiService) {
@@ -78,6 +78,10 @@ export class CarService extends HttpService {
                 isUserCar: false
             };
         }
+    }
+
+    public getCar() {
+        return this.selectedCar;
     }
 
     public uploadProfileImage(car: any) {

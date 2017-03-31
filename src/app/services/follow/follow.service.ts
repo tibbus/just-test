@@ -45,7 +45,9 @@ export class FollowService  {
     }
 
     public followCar() {
-        return this.http.request(this.apiService.getFollowUrl(this.carService.selectedCar.id), {
+        const car = this.carService.getCar();
+
+        return this.http.request(this.apiService.getFollowUrl(car.id), {
             body: '',
             method: 'POST'
         }).do(data => {
@@ -55,7 +57,9 @@ export class FollowService  {
     }
 
     public unFollowCar() {
-        return this.http.request(this.apiService.getUnFollowUrl(this.carService.selectedCar.id), {
+        const car = this.carService.getCar();
+
+        return this.http.request(this.apiService.getUnFollowUrl(car.id), {
             body: '',
             method: 'POST'
         }).do(data => {
@@ -65,8 +69,10 @@ export class FollowService  {
     }
 
     public handleFollow() {
+        const car = this.carService.getCar();
+
         const isFollowing = this.followings.find(following => {
-            return following.target_id.split('car:')[1] == this.carService.selectedCar.id;
+            return following.target_id.split('car:')[1] == car.id;
         })
 
         this.following$.next(isFollowing ? true : false);

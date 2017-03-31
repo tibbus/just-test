@@ -1,0 +1,86 @@
+﻿:host {
+    float: left;
+}
+
+.car-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+
+    img {
+        height: 100%;
+    }
+}
+
+.info {
+    float: left;
+    margin: 30px 0 0 30px;
+    width: 315px;
+
+    &__car {
+        float: left;
+        width: 100%;
+    }
+
+    &__column {
+        float: left;
+        margin-left: 15px;
+    }
+
+    &__number {
+        float: right;
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    &__name {
+        float: right;
+        font-size: 11px;
+        clear: both;
+    }
+
+    &__follow {
+        float: right;
+        border: solid 1px blue;
+        border-radius: 4px;
+        padding: 4px 20px;
+        font-size: 11px;
+        color: #0000bf;
+        font-weight: bold;
+        margin: 10px;
+    }
+
+    &__car-name {
+        float: left;
+        clear: left;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 5px 0 0;
+    }
+
+    &__user {
+        float: left;
+        clear: left;
+    }
+
+    &__user-image {
+        float: left;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    &__user-name {
+        float: left;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 5px 0 0 20px;
+    }
+}

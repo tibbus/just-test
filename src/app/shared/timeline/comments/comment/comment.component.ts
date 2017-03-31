@@ -55,9 +55,10 @@ export class CommentComponent implements OnInit {
 
     ngOnInit() {
         // Request likes
-        this.likesService.getLikes(this.comment.id, this.comment.dataRequested).subscribe((likes: any[]) => {
-            this.likes = likes;
-        });
+        // @todo enable likes for comments ??
+        // this.likesService.getLikes(this.comment.id, this.comment.dataRequested).subscribe((likes: any[]) => {
+        //     this.likes = likes;
+        // });
     }
 
     public clickRemove() {

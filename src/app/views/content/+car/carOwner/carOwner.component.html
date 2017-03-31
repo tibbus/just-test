@@ -1,0 +1,35 @@
+<div *ngIf="user">
+    <div class="car-image">
+        <img src="{{car.info.image}}" />
+    </div>
+
+    <div class="info">
+        <div class="info__car">
+            <div class="info__column">
+                <span class="info__number">5</span>
+                <span class="info__name">Cars</span>
+            </div>
+            <div class="info__column">
+                <span class="info__number">96</span>
+                <span class="info__name">Followers</span>
+            </div>
+            <div class="info__column">
+                <span class="info__number">5</span>
+                <span class="info__name">Following</span>
+            </div>
+            <div class="info__follow">
+                Follow
+            </div>
+        </div>
+        <div class="info__car-name">
+            <span>FERRARI ENZO 2015</span>
+        </div>
+
+        <div class="info__user">
+            <div class="info__user-image">
+                <img src="{{car.info.image}}" />
+            </div>
+            <span class="info__user-name">Richard Hammond</span>
+        </div>
+    </div>
+</div>

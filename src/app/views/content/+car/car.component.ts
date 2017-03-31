@@ -33,7 +33,10 @@ export class CarComponent implements OnInit, OnDestroy {
             // used to re-render the component and all the sub-components
             this.ref.detectChanges();
 
-            this.getCars(params['id']);
+            // Need to get user Cars before handling the current Car
+            this.carService.getCars().subscribe(() => {
+                 this.getCar(params['id']);
+            });
         });
     }
 
@@ -43,7 +46,7 @@ export class CarComponent implements OnInit, OnDestroy {
         this.route$.unsubscribe();
     }
 
-    private getCars(carRoute: string) {
+    private getCar(carRoute: string) {
         const parsedRoute = carRoute.split('-');
         const carId = parsedRoute[parsedRoute.length - 1];
 

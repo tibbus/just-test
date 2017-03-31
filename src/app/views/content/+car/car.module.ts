@@ -7,6 +7,7 @@ import { CarComponent } from './car.component';
 import { CarNavigationComponent } from './carNavigation/carNavigation.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TechSpecComponent } from './techSpec/techSpec.component';
+import { CarOwnerComponent } from './carOwner/carOwner.component';
 
 @NgModule({
     imports: [routing, SharedModule],
@@ -14,7 +15,8 @@ import { TechSpecComponent } from './techSpec/techSpec.component';
         CarComponent,
         CarNavigationComponent,
         ShowcaseComponent,
-        TechSpecComponent
+        TechSpecComponent,
+        CarOwnerComponent
     ]
 })
 
