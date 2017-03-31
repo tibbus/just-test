@@ -18,6 +18,10 @@ export class ProfileService extends HttpService {
         return this.getData();
     }
 
+    public getUser(carInfoId: string): Observable<any> {
+        return this.http.get(`${API.root}/car/${carInfoId}/user`).map(res => res.json());
+    }
+
     public setProfile(profile: Profile) {
         const body = JSON.stringify(profile);
 

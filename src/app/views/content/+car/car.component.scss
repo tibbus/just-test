@@ -1,5 +1,17 @@
 ﻿@import "../../../../styles/mixins";
 
-:host {
+:host{
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.content-wrapper {
     @include content;
+}
+
+.top-wrapper {
+    background: #E4E4E4;
+    float: left;
+    width: 100%;
 }

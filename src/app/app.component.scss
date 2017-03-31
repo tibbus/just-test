@@ -24,3 +24,12 @@
     margin-left: -425px;
     background: #e9e8ee;
 }
+
+.header-wrapper {
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    height: 40px;
+    background: white;
+}

@@ -40,14 +40,6 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.getProfile();
 
-        this.followService.requestUserFollowing().subscribe();
-        this.followService.isUserFollowing$().subscribe((state: boolean) => {
-            this.followState = state;
-        })
-        this.followService.getFollowState$().subscribe((state: boolean) => {
-            this.isFollowEnabled = state;
-        })
-
         this.items$ = this.searchService.getSearchResult();
 
         this.carService.getCars().subscribe(cars => {
@@ -60,18 +52,6 @@ export class HeaderComponent implements OnInit {
 
         // Send the new search word to the service, will do a .next on the Observable
         this.searchService.searchFor(term);
-    }
-
-    public clickFollow() {
-        this.followService.followCar().subscribe(data => {
-            this.followState = true;
-        });
-    }
-
-    public clickUnFollow() {
-        this.followService.unFollowCar().subscribe(data => {
-            this.followState = false;
-        });
     }
 
     public clickOutside($event: EventListener) {

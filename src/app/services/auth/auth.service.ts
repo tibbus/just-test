@@ -11,7 +11,7 @@ export class AuthService {
 
    constructor(private apiService: ApiService) {
        this.config = {
-            authority: "http://mycarbioidentity.azurewebsites.net/",
+            authority: "http://logbookidentity.azurewebsites.net",
             client_id: "mycarbiowebapp",
             redirect_uri: `${window.location.origin}/callback.html`,
             response_type: "id_token token",

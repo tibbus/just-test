@@ -38,6 +38,10 @@ export class CarService extends HttpService {
         });
     }
 
+    public getUserCars(userId: string) {
+        return this.http.get(`${API.root}/user/${userId}/usercar/details=false`).map(res => res.json());
+    }
+
     public addCar(carInfoId: string) {
         const apiUrl: string = this.apiService.getUserAddCarUrl(carInfoId);
 

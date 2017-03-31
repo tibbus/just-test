@@ -1,7 +1,9 @@
-<div *ngIf="carLoaded">
+<div *ngIf="carLoaded" class="top-wrapper">
     <car-owner></car-owner>
-
     <car-navigation></car-navigation>
 </div>
 
-<router-outlet></router-outlet>
+<div class="content-wrapper">
+    <router-outlet></router-outlet>
+</div>
+

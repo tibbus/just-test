@@ -11,15 +11,6 @@
     <li *ngIf="!searchService.hasData" class="no-results">No results found</li>
 </ul>
 
-<div *ngIf="isUserLoggedIn()">
-    <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="clickUnFollow()" [class.followActive]="!this.followState">
-        Unfollow
-    </a>
-    <a href="javascript:void(0)" *ngIf="isFollowEnabled" (click)="clickFollow()" [class.followActive]="this.followState">
-        Folllow
-    </a>
-</div>
-
 <div *ngIf="isUserLoggedIn()" class="profile-dropdown">
     <div data-target="#" class="profile-dropdown__img dropdown-toggle" data-toggle="dropdown">
         <img src="{{profile?.image}}" />

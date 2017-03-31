@@ -1,35 +1,38 @@
-<div *ngIf="user">
+<div *ngIf="!carLoading && user">
     <div class="car-image">
         <img src="{{car.info.image}}" />
     </div>
 
     <div class="info">
         <div class="info__car">
-            <div class="info__column">
-                <span class="info__number">5</span>
+            <div class="info__column info__column--first">
+                <span class="info__number">{{user.carsCount}}</span>
                 <span class="info__name">Cars</span>
             </div>
             <div class="info__column">
-                <span class="info__number">96</span>
+                <span class="info__number">{{followers}}</span>
                 <span class="info__name">Followers</span>
             </div>
-            <div class="info__column">
+            <!--<div class="info__column">
                 <span class="info__number">5</span>
                 <span class="info__name">Following</span>
-            </div>
-            <div class="info__follow">
+            </div>-->
+            <div *ngIf="!isFollowing" (click)="clickFollow()" class="info__follow info__follow--on">
                 Follow
             </div>
+            <div *ngIf="isFollowing" (click)="clickUnFollow()" class="info__follow info__follow--off">
+                Following
+            </div>
         </div>
-        <div class="info__car-name">
-            <span>FERRARI ENZO 2015</span>
+        <div class="info__car-text">
+            <div class="info__car-text--name">{{car.name}}</div><span class="info__car-text--year"> {{car.info.car.yearOfManufacture}}</span>
         </div>
 
         <div class="info__user">
             <div class="info__user-image">
-                <img src="{{car.info.image}}" />
+                <img src="{{user.image || 'assets/profile01.png'}}" />
             </div>
-            <span class="info__user-name">Richard Hammond</span>
+            <span class="info__user-name">{{user.name}}</span>
         </div>
     </div>
 </div>

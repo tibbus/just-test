@@ -2,12 +2,10 @@
     display: block;
     left: 50%;
     transform: translateX(-50%);
-    position: fixed;
-    top: 0;
     width: 850px;
-    z-index: 2;
     padding: 4px 0;
-    background: #e9e8ee;
+    background: white;
+    position: relative;
 }
 
 .logo {
@@ -31,6 +29,7 @@
         width: 100%;
         height: 100%;
         padding-left: 40px;
+        background: #e9e8ee;
     }
 
     &__icon {
