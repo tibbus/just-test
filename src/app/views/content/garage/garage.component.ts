@@ -62,6 +62,12 @@ export class GarageComponent implements OnInit {
     }
 
     public clickRemove(userCarId) {
+        const confirm = window.confirm("Are you sure ? This will remove the car from your profile !");
+
+        if (!confirm) {
+            return;
+        }
+
         this.loading = true;
 
         this.carService.removeCar(userCarId)

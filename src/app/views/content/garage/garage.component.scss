@@ -27,10 +27,22 @@ a .glyphicon {
 
 .remove {
     float: right;
-    font-size: 25px;
-    margin-top: -8px;
-    padding: 0;
-    transition: none;
+    clear: both;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #8f8f8f;
+
+    &:hover {
+        color: red;
+    }
+
+    &__text {
+        font-size: 12px;
+    }
+
+    &__icon {
+        font-size: 10px;
+    }
 }
 
 .btn.remove:hover {

@@ -22,7 +22,7 @@
         <div class="media-post" *ngFor="let uri of post.activityData.contentUris; let i=index">
             <img *ngIf="post.type === 'Image'" class="content__image {{i}}" src="{{uri}}" (click)="clickImage(i)" />
 
-            <video *ngIf="post.type === 'Video'" width="320" controls>
+            <video *ngIf="post.type === 'Video'" width="490" controls>
                 <source src="{{uri}}" type="video/mp4">
             </video>
 
