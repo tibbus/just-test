@@ -8,7 +8,6 @@
     <div *ngFor="let car of cars; let i=index" class="profile">
         <div class="profile__image">
             <img src="{{ car.info.image || '/assets/default-car.jpg'}}">
-            <span class="change-picture" uploadFile (onFileSelect)="clickAddPicture($event, i)">Change picture</span>
         </div>
         <a *ngIf="car.pictureChanged" class="btn btn-raised btn-success upload" [class.disabled]="false" (click)="clickUploadPicture(car)">
             <span class="save">Upload</span>

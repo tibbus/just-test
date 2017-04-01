@@ -88,11 +88,11 @@ export class CarService extends HttpService {
         return this.selectedCar;
     }
 
-    public uploadProfileImage(car: any) {
-        const apiUrl: string = this.apiService.getCarImageUploadUrl(car.info.id);
+    public uploadProfileImage(carId: string, imageData: any) {
+        const apiUrl: string = this.apiService.getCarImageUploadUrl(carId);
         const formData = new FormData();
 
-        formData.append('image', car.info.pictureData);
+        formData.append('image', imageData);
 
         return this.http.post(apiUrl, formData);
     }

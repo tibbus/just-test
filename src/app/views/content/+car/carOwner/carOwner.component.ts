@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { CarService, ProfileService, FollowService } from '../../../../services';
 
@@ -15,7 +15,12 @@ export class CarOwnerComponent implements OnInit {
     public followers: number = 0;
     public isFollowing: boolean = false;
 
-    constructor(private carService: CarService, private profileService: ProfileService, private followService: FollowService) { }
+    constructor(
+        private carService: CarService,
+        private profileService: ProfileService,
+        private followService: FollowService,
+        private changeDetector: ChangeDetectorRef
+    ) { }
 
     ngOnInit() {
         this.car = this.carService.getCar();
@@ -37,6 +42,23 @@ export class CarOwnerComponent implements OnInit {
         this.followService.unFollowCar(this.car.id).subscribe(data => {
             this.isFollowing = false;
         });
+    }
+
+    public clickChangePhoto(file: any) {
+        if (!file) {
+            return false;
+        }
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+            this.carService.uploadProfileImage(this.car.id, file).subscribe(response => {
+                console.log('done');
+            });
+
+            this.car.info.image = e.target.result;
+
+            this.changeDetector.detectChanges();
+        }
+        reader.readAsDataURL(file);
     }
 
     private setCarInfos() {

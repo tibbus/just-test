@@ -99,29 +99,6 @@ export class GarageComponent implements OnInit {
         console.log(error);
     }
 
-    public clickAddPicture(file: any, index: number) {
-        if (!file) {
-            return false;
-        }
-
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-            this.cars[index].info.image = e.target.result;
-            this.cars[index].info.pictureData = file;
-            this.cars[index].pictureChanged = true;
-        }
-        reader.readAsDataURL(file);
-    }
-
-    public clickUploadPicture(car: any) {
-        car.loading = true;
-
-        this.carService.uploadProfileImage(car).subscribe(response => {
-            car.loading = false;
-            car.pictureChanged = false;
-        });
-    }
-
     public clickOpenCarModal() {
         // open Edit Modal
         this.modal = 'addCarModal';
