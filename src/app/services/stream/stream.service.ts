@@ -51,7 +51,7 @@ export class StreamService  {
 
     // @TODO merge this function with the following one
     public getCarFollowers(actor: Actor) {
-        let followers$ = new Subject();
+        let followers$: Subject<any[]> = new Subject();
 
         // get the token for getStream timeline call
         this.getToken(actor).subscribe(token => {

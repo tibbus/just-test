@@ -2,7 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { CarService, ModalService, TimelineService, PostService, FollowService } from '../../../services/index';
+import { CarService, ModalService, TimelineService, PostService } from '../../../services/index';
 import { Car, CarInfo, Mot, Tax } from '../../../services/car/car.model';
 declare const jQuery: any;
 
@@ -23,8 +23,7 @@ export class CarComponent implements OnInit, OnDestroy {
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
-        private route: ActivatedRoute,
-        private followService: FollowService
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
@@ -41,8 +40,6 @@ export class CarComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        // Hide follow button
-        this.followService.setFollowState(false);
         this.route$.unsubscribe();
     }
 
@@ -55,8 +52,6 @@ export class CarComponent implements OnInit, OnDestroy {
             actorType: 'car',
             actorId: carId
         };
-        this.followService.setFollowState(true);
-        this.followService.handleFollow()
 
         this.carLoaded = true;
     }

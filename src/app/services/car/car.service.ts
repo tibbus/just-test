@@ -45,7 +45,7 @@ export class CarService extends HttpService {
     public addCar(carInfoId: string) {
         const apiUrl: string = this.apiService.getUserAddCarUrl(carInfoId);
 
-        return this.http.post(apiUrl, null);
+        return this.http.post(apiUrl, null).map(res => res.json());
     }
 
     public searchCarByRegNumber(regNumber: string) {

@@ -19,32 +19,27 @@ export class CarOwnerComponent implements OnInit {
 
     ngOnInit() {
         this.car = this.carService.getCar();
-        console.log(this.car);
+        // Set all infos related to the Car
+        this.setCarInfos();
 
-        this.setUser();
-
-        this.followService.getCarFollowers(this.car.id).subscribe((followers: any[]) => this.followers = followers.length);
-
-        // @todo check why is this called ??
-        this.followService.requestUserFollowing().subscribe();
-        this.followService.isUserFollowing$().subscribe((state: boolean) => {
-            this.isFollowing = state;
-        })
+        // Set Follow info
+        this.followService.getCarFollowers(this.car.id).subscribe(followers => this.followers = followers.length);
+        this.followService.isUserFollowing(this.car.id).subscribe(isFollowing => this.isFollowing = isFollowing);
     }
 
     public clickFollow() {
-        this.followService.followCar().subscribe(data => {
+        this.followService.followCar(this.car.id).subscribe(data => {
             this.isFollowing = true;
         });
     }
 
     public clickUnFollow() {
-        this.followService.unFollowCar().subscribe(data => {
+        this.followService.unFollowCar(this.car.id).subscribe(data => {
             this.isFollowing = false;
         });
     }
 
-    private setUser() {
+    private setCarInfos() {
         if (this.car.isUserCar) {
             this.profileService.getProfile().subscribe(user => {
                 this.user = user;

@@ -2,7 +2,7 @@
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ModalService, TimelineService, PostService, FollowService } from '../../services/index';
+import { ModalService, TimelineService, PostService } from '../../services/index';
 import { Actor } from '../../services/stream/stream.model';
 
 declare var FB: any;
@@ -28,7 +28,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
-        private followService: FollowService,
         private route: ActivatedRoute
     ) { }
 
@@ -67,10 +66,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
         return this.timelineService.getPosts().subscribe(
             (posts: any[]) => {
                 this.posts = posts
-
-                if (!this.isFeed) {
-                    this.followService.handleFollow();
-                }
             }
         );
     }

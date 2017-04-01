@@ -17,7 +17,7 @@ export class AppComponent {
     constructor(private apiService: ApiService, private authService: AuthService, private router: Router) { }
 
     ngOnInit() {
-        const streamClient = connect('8r2y2gbevg9j', null, '15872');
+        const streamClient = connect('5b5hp2vh27ds', null, '15872');
 
         this.apiService.setStreamClient(streamClient);
 

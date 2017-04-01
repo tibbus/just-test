@@ -1,7 +1,7 @@
-﻿import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ModalService, CarService } from '../../../../services/index';
+import { ModalService, CarService, FollowService } from '../../../../services/index';
 
 @Component({
     selector: 'content',
@@ -9,7 +9,7 @@ import { ModalService, CarService } from '../../../../services/index';
     styleUrls: ['./addCarModal.component.scss']
 })
 
-export class AddCarModalComponent implements OnInit, OnDestroy {
+export class AddCarModalComponent {
     private modalSaveSub: Subscription;
     public carDetails;
     public regNumber: string;
@@ -22,20 +22,9 @@ export class AddCarModalComponent implements OnInit, OnDestroy {
     constructor(
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
-        private carService: CarService
+        private carService: CarService,
+        private followService: FollowService
     ) { }
-
-    ngOnInit() {
-        this.modalSaveSub = this.modalService.getModalSave().subscribe(
-            () => {
-                //this.savePost();
-            }
-        )
-    }
-
-    ngOnDestroy() {
-        this.modalSaveSub.unsubscribe();
-    }
 
     public clickSearchCar() {
         this.loading = true;
@@ -44,11 +33,11 @@ export class AddCarModalComponent implements OnInit, OnDestroy {
 
         this.carService.searchCarByRegNumber(this.regNumber)
             .subscribe(
-                car => {
-                    this.loading = false;
-                    this.carDetails = car;
-                },
-                error => this.handleError(error)
+            car => {
+                this.loading = false;
+                this.carDetails = car;
+            },
+            error => this.handleError(error)
             );
     }
 
@@ -57,7 +46,7 @@ export class AddCarModalComponent implements OnInit, OnDestroy {
         this.alertMessage = null;
 
         this.carService.addCar(this.carDetails.id).subscribe(
-            data => {
+            (car: any) => {
                 this.loading = false;
                 this.requestState = true;
                 this.alertMessage = `The car with the registration number: ${this.regNumber} was succesufully added to your garage !`;
@@ -68,6 +57,8 @@ export class AddCarModalComponent implements OnInit, OnDestroy {
                 this.carService.setAddCar();
 
                 this.carAdded = true;
+
+                this.followService.followCar(car.carInfo.id).subscribe();
             },
             error => this.handleError(error)
         );

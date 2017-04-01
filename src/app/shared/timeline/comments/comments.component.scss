@@ -10,8 +10,10 @@
     padding: 10px;
 
     textarea {
+        width: 100%;
         border: none;
         box-shadow: none;
+        resize: none;
     }
 }
 

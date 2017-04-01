@@ -41,6 +41,6 @@ export class HoverAddDirective {
 
     @HostListener('mouseleave') onMouseLeave() {
         clearTimeout(this.timer);
-        this.timer = setTimeout(this.hideElements.bind(this), 1000);
+        this.timer = setTimeout(this.hideElements.bind(this), 500);
     }
 }

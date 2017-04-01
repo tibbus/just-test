@@ -67,6 +67,9 @@ export class GarageComponent implements OnInit {
         this.carService.removeCar(userCarId)
             .subscribe(
             () => {
+                // @todo do not reload the page, update the data in SPA
+                location.reload();
+
                 this.loading = false;
                 this.requestState = true;
                 this.alertMessage = `The car was successfully removed from your garage !`;

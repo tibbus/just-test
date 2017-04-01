@@ -10,8 +10,7 @@ import { StreamService } from '../stream/stream.service';
 
 @Injectable()
 export class FollowService  {
-    private following$ = new Subject();
-    private followState$ = new Subject();
+    private following$: Subject<boolean> = new Subject();
     private followings: any[] = [];
     private actor: Actor;
 
@@ -22,20 +21,7 @@ export class FollowService  {
         private streamService: StreamService
     ) { }
 
-    public requestUserFollowing() {
-        const actor: Actor = {
-            actorType: 'user',
-            actorId: this.apiService.getUserId()
-        };
-
-        return this.streamService.getUserFollowing(actor).do((followings: any[]) => {
-            this.followings = followings;
-
-            this.handleFollow();
-        })
-    }
-
-    public getCarFollowers(carId: string) {
+    public getCarFollowers(carId: string): Subject<any[]> {
         const actor: Actor = {
             actorType: 'car',
             actorId: carId
@@ -44,49 +30,40 @@ export class FollowService  {
         return this.streamService.getCarFollowers(actor);
     }
 
-    public followCar() {
-        const car = this.carService.getCar();
-
-        return this.http.request(this.apiService.getFollowUrl(car.id), {
+    public followCar(carId: string) {
+        return this.http.request(this.apiService.getFollowUrl(carId), {
             body: '',
             method: 'POST'
-        }).do(data => {
-            // Update the followers list
-            this.requestUserFollowing().subscribe();
-        })
+        });
     }
 
-    public unFollowCar() {
-        const car = this.carService.getCar();
-
-        return this.http.request(this.apiService.getUnFollowUrl(car.id), {
+    public unFollowCar(carId: string) {
+        return this.http.request(this.apiService.getUnFollowUrl(carId), {
             body: '',
             method: 'POST'
-        }).do(data => {
-            // Update the followers list
-            this.requestUserFollowing().subscribe();
-        })
+        });
     }
 
-    public handleFollow() {
-        const car = this.carService.getCar();
+    public isUserFollowing(carId: string) {
+        this.requestUserFollowing(carId);
 
-        const isFollowing = this.followings.find(following => {
-            return following.target_id.split('car:')[1] == car.id;
-        })
-
-        this.following$.next(isFollowing ? true : false);
-    }
-
-    public isUserFollowing$() {
         return this.following$;
     }
 
-    public getFollowState$() {
-        return this.followState$;
+    private requestUserFollowing(carId: string) {
+        this.getUserFollowing().subscribe((followers: any[]) => {
+            const follower = followers.find(follower => follower.target_id.split(':')[1] == carId);
+
+            this.following$.next(!!follower);
+        })
     }
 
-    public setFollowState(state: boolean) {
-        this.followState$.next(state);
+    private getUserFollowing() {
+        const actor: Actor = {
+            actorType: 'user',
+            actorId: this.apiService.getUserId()
+        };
+
+        return this.streamService.getUserFollowing(actor);
     }
 }
