@@ -17,7 +17,7 @@
     <button class="btn btn-add"
         [disabled]="addLoading || !newCommentText"
         (click)="clickAddComment()">
-        <span class="logbookon logbookon-send btn-add__icon" [class.btn-add__icon--show]="showOptions"></span>
+        <span class="logbookon logbookon-send btn-add__icon" [class.btn-add__icon--show]="showOptions || newCommentText"></span>
         <span *ngIf="addLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate btn-add__loading"></span>
     </button>
 </div>

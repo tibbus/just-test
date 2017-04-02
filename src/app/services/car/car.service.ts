@@ -20,26 +20,16 @@ export class CarService extends HttpService {
 
     public getCars(forceRefresh?: boolean) {
         return this.getData(forceRefresh).map((res: Car[]) => {
-            this.cars = res.map((carObject: Car) => {
-                const carMake = carObject.carInfo.car.make;
-                const carModel = carObject.carInfo.car.model;
-                const carId = carObject.carInfo.id;
-
-                return {
-                    name: this.getCarName(carMake, carModel),
-                    route: this.getCarRoute(carMake, carModel, carId),
-                    id: carId,
-                    userCarId: carObject.id,
-                    info: carObject.carInfo
-                }
-            });
+            this.cars = res.map(this.formatCars);
 
             return this.cars;
         });
     }
 
     public getUserCars(userId: string) {
-        return this.http.get(`${API.root}/user/${userId}/usercar/details=false`).map(res => res.json());
+        return this.http.get(`${API.root}/user/${userId}/usercar/details=false`).map(res => {
+            return res.json().map(this.formatCars);
+        });
     }
 
     public addCar(carInfoId: string) {
@@ -112,6 +102,20 @@ export class CarService extends HttpService {
     }
 
     private getCarName(carMake: string, carModel: string): string {
-            return `${carMake} ${carModel}`;
+        return `${carMake} ${carModel}`;
+    }
+
+    private formatCars = (carObject: Car) => {
+        const carMake = carObject.carInfo.car.make;
+        const carModel = carObject.carInfo.car.model;
+        const carId = carObject.carInfo.id;
+
+        return {
+            name: this.getCarName(carMake, carModel),
+            route: this.getCarRoute(carMake, carModel, carId),
+            id: carId,
+            userCarId: carObject.id,
+            info: carObject.carInfo
+        }
     }
 }

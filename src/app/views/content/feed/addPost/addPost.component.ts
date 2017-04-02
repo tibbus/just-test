@@ -7,6 +7,7 @@ import {
     CarService,
     TimelineService,
     PostService,
+    ProfileService
 } from '../../../../services/index';
 
 @Component({
@@ -26,6 +27,7 @@ export class AddPostComponent {
     public topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
     public selectedTopics: string[] = [];
     public carActiveIndex: number = 0;
+    public user: any;
     // clone topics
     private allTopics: string[] = this.topics.slice();
 
@@ -33,8 +35,13 @@ export class AddPostComponent {
         private carService: CarService,
         private timelineService: TimelineService,
         private postService: PostService,
-        private ref: ChangeDetectorRef
+        private ref: ChangeDetectorRef,
+        private profileService: ProfileService
     ) { }
+
+    ngOnInit() {
+        this.profileService.getProfile().subscribe(user => this.user = user);
+    }
 
     public clickUriRemove(index: number) {
         this.uris.splice(index, 1);

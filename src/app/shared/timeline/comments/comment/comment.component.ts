@@ -21,11 +21,12 @@ export class CommentComponent implements OnInit {
     @Input() comment: any;
     @Input() postId: string;
     @HostListener('mouseenter') mouseoverComment() {
-        clearTimeout(this.showOptionsTimeout);
+        //clearTimeout(this.showOptionsTimeout);
         this.showOptions = true;
     };
     @HostListener('mouseleave') mouseleaveComment() {
-        this.showOptionsTimeout = setTimeout(() => this.showOptions = false, 500);
+        this.showOptions = false
+        //this.showOptionsTimeout = setTimeout(() => this.showOptions = false, 500);
     };
 
     public loading: boolean;

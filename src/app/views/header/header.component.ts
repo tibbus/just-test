@@ -38,10 +38,13 @@ export class HeaderComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getProfile();
-
         this.items$ = this.searchService.getSearchResult();
 
+        if (!this.authService.getUser()) {
+            return;
+        }
+
+        this.getProfile();
         this.carService.getCars().subscribe(cars => {
             this.cars = cars;
         }, error => console.log(error))

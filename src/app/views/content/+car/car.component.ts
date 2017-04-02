@@ -2,7 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { CarService, ModalService, TimelineService, PostService } from '../../../services/index';
+import { CarService, ModalService, TimelineService, PostService, AuthService } from '../../../services/index';
 import { Car, CarInfo, Mot, Tax } from '../../../services/car/car.model';
 declare const jQuery: any;
 
@@ -23,19 +23,22 @@ export class CarComponent implements OnInit, OnDestroy {
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private authService: AuthService
     ) { }
 
     ngOnInit() {
         this.route$ = this.route.params.subscribe(params => {
             this.carLoaded = false;
-            // used to re-render the component and all the sub-components
-            this.ref.detectChanges();
 
-            // Need to get user Cars before handling the current Car
-            this.carService.getCars().subscribe(() => {
-                 this.getCar(params['id']);
-            });
+            // if the user is not logged in then request the car as `getCars` will not trigger
+            if (!this.authService.getUser()) {
+                this.getCar(params['id']);
+
+                return;
+            }
+
+            this.carService.getCars().subscribe(cars => this.getCar(params['id']));
         });
     }
 
@@ -48,10 +51,6 @@ export class CarComponent implements OnInit, OnDestroy {
         const carId = parsedRoute[parsedRoute.length - 1];
 
         this.carService.setCarByRoute(carRoute, carId);
-        this.timelineService.actor = {
-            actorType: 'car',
-            actorId: carId
-        };
 
         this.carLoaded = true;
     }

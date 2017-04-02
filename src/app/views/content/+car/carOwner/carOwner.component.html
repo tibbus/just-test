@@ -1,9 +1,15 @@
 <div *ngIf="!carLoading && user">
-    <div class="image-wrapper" uploadFile (onFileSelect)="clickChangePhoto($event)">
+    <div *ngIf="car.isUserCar" class="image-wrapper image-wrapper--current-user" uploadFile (onFileSelect)="clickChangePhoto($event)">
         <div class="car-image">
             <img src="{{car.info.image}}" />
         </div>
         <div class="camera-icon"><span class="glyphicon glyphicon-camera"></span></div>
+    </div>
+
+    <div *ngIf="!car.isUserCar" class="image-wrapper">
+        <div class="car-image">
+            <img src="{{car.info.image}}" />
+        </div>
     </div>
 
     <div class="info">

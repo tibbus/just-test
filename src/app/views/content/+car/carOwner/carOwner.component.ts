@@ -25,6 +25,7 @@ export class CarOwnerComponent implements OnInit {
     ngOnInit() {
         this.car = this.carService.getCar();
         // Set all infos related to the Car
+
         this.setCarInfos();
 
         // Set Follow info
@@ -45,6 +46,10 @@ export class CarOwnerComponent implements OnInit {
     }
 
     public clickChangePhoto(file: any) {
+        if (!this.car.isUserCar) {
+            return;
+        }
+
         if (!file) {
             return false;
         }
@@ -69,7 +74,7 @@ export class CarOwnerComponent implements OnInit {
                 this.carService.getCars().subscribe(cars => {
                     this.user.carsCount = cars.length;
 
-                    this.setCar(cars);
+                    this.carLoading = false;
                 })
             });
         } else {
@@ -86,10 +91,8 @@ export class CarOwnerComponent implements OnInit {
     }
 
     private setCar(cars) {
-        const currentCar = cars.find(car => car.id == this.car.id);
-        !this.car.isUserCar ? this.car.info = currentCar.carInfo : null;
-
         this.carLoading = false;
+        this.car =  cars.find(car => car.id == this.car.id);
     }
 
 
