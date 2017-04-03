@@ -22,14 +22,10 @@
                 <span class="info__number">{{followers}}</span>
                 <span class="info__name">Followers</span>
             </div>
-            <!--<div class="info__column">
-                <span class="info__number">5</span>
-                <span class="info__name">Following</span>
-            </div>-->
-            <div *ngIf="!isFollowing" (click)="clickFollow()" class="info__follow info__follow--on">
+            <div *ngIf="!isFollowing && car.isUserCar" (click)="clickFollow()" class="info__follow info__follow--on">
                 Follow
             </div>
-            <div *ngIf="isFollowing" (click)="clickUnFollow()" class="info__follow info__follow--off">
+            <div *ngIf="isFollowing && car.isUserCar" (click)="clickUnFollow()" class="info__follow info__follow--off">
                 Following
             </div>
         </div>

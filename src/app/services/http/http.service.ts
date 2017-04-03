@@ -19,10 +19,7 @@ export abstract class HttpService {
 
         return this._http
             .get(this.url, options)
-            .map(res => res.json())
-            .do(data => {
-                console.log(data);
-            })
+            .map(res => res.json());
     }
 
     public getData(forceRefresh?: boolean) {

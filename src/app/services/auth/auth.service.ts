@@ -30,7 +30,7 @@ export class AuthService {
        promise.then( user => {
             if (user) {
                 this.user = user;
-                console.log("User logged in", this.user);
+                console.log("User logged in");
 
                 this.apiService.setUser(this.user.profile.id);
             }

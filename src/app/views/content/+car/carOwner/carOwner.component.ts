@@ -28,13 +28,15 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.route$ = this.route.params.subscribe(params => {
-            this.car = this.carService.getCarByRoute(params['id']);
+            const route = params['id'];
 
-            this.setCarInfos();
+            this.carLoading = true;
 
-            // Set Follow info
-            this.followService.getCarFollowers(this.car.id).subscribe(followers => this.followers = followers.length);
-            this.followService.isUserFollowing(this.car.id).subscribe(isFollowing => this.isFollowing = isFollowing);
+            // Can detect if userCar just after we get all the cars
+            this.carService.getCars().subscribe(
+                userCars => this.initCar(route, userCars),
+                error => this.initCar(route, null)
+            );
         });
     }
 
@@ -60,7 +62,7 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
         }
 
         if (!file) {
-            return false;
+            return;
         }
         const reader = new FileReader();
         reader.onload = (e: any) => {
@@ -73,16 +75,24 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
         reader.readAsDataURL(file);
     }
 
-    private setCarInfos() {
+    private initCar(route, userCars) {
+        this.car = this.carService.getCarByRoute(route);
+
+        this.setCarInfos(userCars);
+
+        // Set Follow info
+        this.followService.getCarFollowers(this.car.id).subscribe(followers => this.followers = followers.length);
+        this.followService.isUserFollowing(this.car.id).subscribe(isFollowing => this.isFollowing = isFollowing);
+    }
+
+    private setCarInfos(userCars) {
         if (this.car.isUserCar) {
             this.profileService.getProfile().subscribe(user => {
                 this.user = user;
 
-                this.carService.getCars().subscribe(cars => {
-                    this.user.carsCount = cars.length;
+                this.user.carsCount = userCars.length;
 
-                    this.carLoading = false;
-                })
+                this.carLoading = false;
             });
         } else {
             this.profileService.getUser(this.car.id).subscribe(user => {

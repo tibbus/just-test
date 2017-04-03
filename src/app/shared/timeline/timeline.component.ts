@@ -40,6 +40,8 @@ export class TimelineComponent implements OnInit, OnDestroy {
         }
 
         this.route$ = this.route.parent.params.subscribe(params => {
+            // refresh timeline on route change
+            this.posts = [];
             // @TODO remove this when ready
             // Angular doesn't re-render the views when the parent route is not changed
             // therefore the subscriptions cannot be removed on `ngOnDestroy`

@@ -18,10 +18,10 @@
 }
 
 .search {
-    width: 200px;
-    height: 25px;
-    margin-left: 200px;
-    margin-top: 5px;
+    width: 300px;
+    height: 20px;
+    margin-left: 100px;
+    margin-top: 7px;
     position: relative;
     float: left;
 
@@ -35,11 +35,11 @@
     &__icon {
         position: absolute;
         left: 14px;
-        top: 2px;
+        top: 6px;
 
         &:before {
             color: grey;
-            font-size: 15px;
+            font-size: 12px;
         }
     }
 
@@ -58,12 +58,37 @@
         padding: 6px 0 10px;
 
         li {
-            padding-left: 20px;
+            padding: 8px 15px;
+            float: left;
+            width: 100%;
 
             &:hover {
-                color: white;
+                background-color: #f2f2f2;
             }
         }
+    }
+
+    &__image {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        float: left;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    &__name {
+        float: left;
+        max-width: 212;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 15px;
+        font-weight: bold;
+        margin-left: 15px;
     }
 }
 
@@ -119,10 +144,6 @@ $timeLine: 90px;
 
 .navbar-form {
      margin-left: calc((100% + #{$timeLine} - #{$content} - #{$logo})/2);
-}
-
-li:hover {
-    background-color: #009184;
 }
 
 .form-group.is-focused .form-control {
