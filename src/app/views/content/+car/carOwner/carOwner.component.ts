@@ -1,4 +1,6 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { CarService, ProfileService, FollowService } from '../../../../services';
 
@@ -8,29 +10,36 @@ import { CarService, ProfileService, FollowService } from '../../../../services'
     templateUrl: './carOwner.component.html'
 })
 
-export class CarOwnerComponent implements OnInit {
+export class CarOwnerComponent implements OnInit, OnDestroy {
     public user;
     public car;
     public carLoading: boolean = true;
     public followers: number = 0;
     public isFollowing: boolean = false;
+    private route$: Subscription;
 
     constructor(
         private carService: CarService,
         private profileService: ProfileService,
         private followService: FollowService,
+        private route: ActivatedRoute,
         private changeDetector: ChangeDetectorRef
     ) { }
 
     ngOnInit() {
-        this.car = this.carService.getCar();
-        // Set all infos related to the Car
+        this.route$ = this.route.params.subscribe(params => {
+            this.car = this.carService.getCarByRoute(params['id']);
 
-        this.setCarInfos();
+            this.setCarInfos();
 
-        // Set Follow info
-        this.followService.getCarFollowers(this.car.id).subscribe(followers => this.followers = followers.length);
-        this.followService.isUserFollowing(this.car.id).subscribe(isFollowing => this.isFollowing = isFollowing);
+            // Set Follow info
+            this.followService.getCarFollowers(this.car.id).subscribe(followers => this.followers = followers.length);
+            this.followService.isUserFollowing(this.car.id).subscribe(isFollowing => this.isFollowing = isFollowing);
+        });
+    }
+
+    ngOnDestroy() {
+        this.route$.unsubscribe();
     }
 
     public clickFollow() {
@@ -55,9 +64,7 @@ export class CarOwnerComponent implements OnInit {
         }
         const reader = new FileReader();
         reader.onload = (e: any) => {
-            this.carService.uploadProfileImage(this.car.id, file).subscribe(response => {
-                console.log('done');
-            });
+            this.carService.uploadProfileImage(this.car.id, file).subscribe();
 
             this.car.info.image = e.target.result;
 
@@ -92,8 +99,6 @@ export class CarOwnerComponent implements OnInit {
 
     private setCar(cars) {
         this.carLoading = false;
-        this.car =  cars.find(car => car.id == this.car.id);
+        this.car = cars.find(car => car.id == this.car.id);
     }
-
-
 }

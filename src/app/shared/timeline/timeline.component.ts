@@ -2,7 +2,7 @@
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ModalService, TimelineService, PostService } from '../../services/index';
+import { ModalService, TimelineService, PostService, CarService } from '../../services/index';
 import { Actor } from '../../services/stream/stream.model';
 
 declare var FB: any;
@@ -28,7 +28,8 @@ export class TimelineComponent implements OnInit, OnDestroy {
         private modalService: ModalService,
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private carService: CarService
     ) { }
 
     ngOnInit() {
@@ -44,12 +45,10 @@ export class TimelineComponent implements OnInit, OnDestroy {
             // therefore the subscriptions cannot be removed on `ngOnDestroy`
             this.posts$ ? this.posts$.unsubscribe() : null;
 
-            const carRoute = params['id'];
-            const parsedRoute = carRoute.split('-');
-            const carId = parsedRoute[parsedRoute.length - 1];
+            const car = this.carService.getCarByRoute(params['id']);
 
             this.timelineService.actor = {
-                actorId: carId,
+                actorId: car.id,
                 actorType: 'car'
             };
 

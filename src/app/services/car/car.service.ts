@@ -10,8 +10,6 @@ import { Car, CarInfo, Mot, Tax } from './car.model';
 @Injectable()
 export class CarService extends HttpService {
     private cars: any[] = [];
-    public selectedCarName;
-    private selectedCar;
     private addCar$: Subject<boolean> = new Subject();
 
     constructor(private http: Http, private apiService: ApiService) {
@@ -58,24 +56,22 @@ export class CarService extends HttpService {
             .map(response => response.json());
     }
 
-    public setCarByRoute(route: string, carInfoId: string): void {
-        const userSelectedCar = this.cars.find(car => {
+    public getCarByRoute(route: string) {
+        const parsedRoute = route.split('-');
+        const carId = parsedRoute.slice(-1)[0];
+        const userCar = this.cars.find(car => {
             return route === car.route.toLowerCase();
         });
 
-        if (userSelectedCar) {
-            this.selectedCar = userSelectedCar;
-            this.selectedCar.isUserCar = true;
-        } else {
-            this.selectedCar = {
-                id: carInfoId,
-                isUserCar: false
-            };
+        if (userCar) {
+            userCar.isUserCar = true;
+            return userCar;
         }
-    }
 
-    public getCar() {
-        return this.selectedCar;
+        return {
+            id: carId,
+            isUserCar: false
+        };
     }
 
     public uploadProfileImage(carId: string, imageData: any) {
