@@ -15,11 +15,20 @@ export class ProfileService extends HttpService {
     }
 
     public getProfile() {
-        return this.getData();
+        return this.getData().map((profile: any) => {
+            profile.route = this.getRouteFromUser(profile.name, profile.id);
+
+            return profile;
+        });
     }
 
     public getUserByCar(carInfoId: string): Observable<any> {
-        return this.http.get(`${API.root}/car/${carInfoId}/user`).map(res => res.json());
+        return this.http.get(`${API.root}/car/${carInfoId}/user`).map(res => {
+            const profile = res.json();
+            profile.route = this.getRouteFromUser(profile.name, profile.userId);
+
+            return profile;
+        });
     }
 
     public getUserById(userId: string): Observable<any> {
@@ -38,5 +47,11 @@ export class ProfileService extends HttpService {
                 <Profile>res.json()
             })
             .do(data => console.log(data))
+    }
+
+    private getRouteFromUser(name: string, id: string) {
+        const formattedName: string = name.replace(/ /g, '');
+
+        return `${formattedName}-${id}`;
     }
 }

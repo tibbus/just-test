@@ -35,7 +35,8 @@ export class GarageComponent implements OnInit {
 
     ngOnInit() {
         this.route.params.subscribe(params => {
-            const userId = params.id;
+            // Id is the last char after -
+            const userId = params.id.split('-').slice(-1)[0];
 
             this.setData(userId);
         });

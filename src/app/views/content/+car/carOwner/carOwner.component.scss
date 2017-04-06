@@ -40,7 +40,7 @@
 .info {
     float: left;
     margin: 30px 0 0 40px;
-    width: 245px;
+    width: 265px;
 
     &__car {
         float: left;
@@ -70,14 +70,14 @@
     }
 
     &__follow {
-        float: right;
+        float: left;
         border: solid 1px #0000FF;
-        border-radius: 4px;
-        padding: 4px 22px;
+        border-radius: 3px;
+        padding: 3px 18px;
         font-size: 9px;
         color: #0000FF;
         font-weight: bold;
-        margin-top: 10px;
+        margin: 10px 0 0 40px;
         cursor: pointer;
 
         &:hover {
