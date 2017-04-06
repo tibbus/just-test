@@ -81,7 +81,7 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
         this.setCarInfos(userCars);
 
         // Set Follow info
-        this.followService.getCarFollowers(this.car.id).subscribe(followers => this.followers = followers.length);
+        this.followService.getActorFollowers('car', this.car.id).subscribe(followers => this.followers = followers.length);
         this.followService.isUserFollowing(this.car.id).subscribe(isFollowing => this.isFollowing = isFollowing);
     }
 
@@ -91,12 +91,16 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
                 this.user = user;
 
                 this.user.carsCount = userCars.length;
+                // @todo : talk with BE to make the API consistent
+                this.user.formattedId = this.user.id;
 
                 this.carLoading = false;
             });
         } else {
-            this.profileService.getUser(this.car.id).subscribe(user => {
+            this.profileService.getUserByCar(this.car.id).subscribe(user => {
                 this.user = user;
+                // @todo : talk with BE to make the API consistent
+                this.user.formattedId = this.user.userId;
 
                 this.carService.getUserCars(this.user.userId).subscribe(cars => {
                     this.user.carsCount = cars.length;

@@ -2,6 +2,37 @@
     <img src="/assets/cover.jpg">
 </div>
 
+<div class="owner">
+    <div *ngIf="user" class="owner__wrapper">
+        <div class="owner__image">
+            <div class="owner__profile-image">
+                <img src="{{user.image}}" />
+            </div>
+        </div>
+
+        <div class="owner__info">
+            <div class="owner__cars">
+                <div class="owner__column info__column--first">
+                    <span class="owner__info-number">{{cars.length}}</span>
+                    <span class="owner__info-name">Cars</span>
+                </div>
+                <div class="owner__column">
+                    <span class="owner__info-number">{{ownerFollowing}}</span>
+                    <span class="owner__info-name">Following</span>
+                </div>
+                <div class="owner__column">
+                </div>
+            </div>
+
+            <div class="owner__name">
+                <span class="info__user-name">{{user.name}}</span>
+            </div>
+        </div>
+
+        <div class="owner__line"></div>
+    </div>
+</div>
+
 <loading *ngIf="loading"></loading>
 
 <div class="cars-wrapper">
@@ -15,7 +46,7 @@
         </a>
 
         <div class="profile__info">
-            <a class="btn btn-primary profile__edit"  [routerLink]="['/cars/' + car.route]">
+            <a class="btn btn-primary profile__edit" [routerLink]="['/cars/' + car.route]">
                 <span>Edit profile</span>
             </a>
             <span class="profile__name">{{car.name}}</span>
@@ -36,9 +67,6 @@
 
 <alert [message]="alertMessage" [state]="requestState" (resetAlertMessage)="resetAlertMessage($event)"></alert>
 
-<modal *ngIf="modal === 'addCarModal'"
-    [contentComponent]="AddCarModalContent"
-    [title]="'Adding your car to Logbook'"
-    [size]="'small'"
+<modal *ngIf="modal === 'addCarModal'" [contentComponent]="AddCarModalContent" [title]="'Adding your car to Logbook'" [size]="'small'"
     [hideFooter]="true">
 </modal>

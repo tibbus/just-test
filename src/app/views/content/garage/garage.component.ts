@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { CarService, FollowService, ModalService } from '../../../services/index';
+import { CarService, FollowService, ModalService, ProfileService, AuthService } from '../../../services/index';
 import { AddCarModalComponent } from './addCarModal/addCarModal.component';
 
 @Component({
@@ -10,24 +11,34 @@ import { AddCarModalComponent } from './addCarModal/addCarModal.component';
 })
 
 export class GarageComponent implements OnInit {
-    public cars: any;
+    public cars: any[] = [];
     public loading: boolean = false;
     public requestState: boolean = false;
     public alertMessage: string;
+    public user;
 
     public AddCarModalContent: any = AddCarModalComponent;
     private modalSubscription;
     public modal;
     public followers = {};
+    public ownerFollowing: number = 0;
 
     constructor(
         private carService: CarService,
         private modalService: ModalService,
         private followService: FollowService,
-        private changeDetector: ChangeDetectorRef) { }
+        private changeDetector: ChangeDetectorRef,
+        private profileService: ProfileService,
+        private route: ActivatedRoute,
+        private authService: AuthService
+    ) { }
 
     ngOnInit() {
-        this.getCars(false);
+        this.route.params.subscribe(params => {
+            const userId = params.id;
+
+            this.setData(userId);
+        });
 
         this.modalService.getModalClose().subscribe(() => {
             // close modal
@@ -39,26 +50,44 @@ export class GarageComponent implements OnInit {
         });
     }
 
+    private setData(userId) {
+        const loggedUser = this.authService.getUser();
+
+        // Check if it's current user Garage
+        if (loggedUser && userId === loggedUser.profile.id) {
+            this.profileService.getProfile().subscribe(user => {
+                this.user = user;
+                this.getCars(false);
+            });
+        } else {
+            this.profileService.getUserById(userId).subscribe(user => {
+                this.user = user;
+                this.getUserCars(userId);
+            });
+        }
+
+        this.followService.getActorFollowing('user', userId).subscribe(following => this.ownerFollowing = following.length);
+    }
+
     private getCars(refreshRequest: boolean) {
-        this.carService.getCars(refreshRequest).subscribe(
-            cars => {
-                this.cars = cars;
+        this.carService.getCars(refreshRequest).subscribe(this.setCars);
+    }
 
-                //get the followers number for each car
-                this.cars.forEach(car => {
-                    const carFollowersObservable = this.followService.getCarFollowers(car.id);
+    private getUserCars(userId) {
+        this.carService.getUserCars(userId).subscribe(this.setCars);
+    }
 
-                    carFollowersObservable.subscribe((followers: any[]) => {
-                        this.followers[car.id] = followers.length;
-                    });
-                });
-            },
-            error => {
-                this.cars = [];
+    private setCars = cars => {
+        this.cars = cars;
 
-                this.handleError(error);
-            }
-        );
+        //get the followers number for each car
+        this.cars.forEach(car => {
+            const carFollowersObservable = this.followService.getActorFollowers('car', car.id);
+
+            carFollowersObservable.subscribe((followers: any[]) => {
+                this.followers[car.id] = followers.length;
+            });
+        });
     }
 
     public clickRemove(userCarId) {

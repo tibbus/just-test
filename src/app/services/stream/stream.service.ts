@@ -30,7 +30,7 @@ export class StreamService  {
         return this.posts$;
     }
 
-    public getUserFollowing(actor?: Actor) {
+    public getActorFollowing(actor?: Actor) {
         let follows$ = new Subject();
 
         // get the token for getStream timeline call

@@ -7,7 +7,7 @@ import { LoginComponent } from './views/login/login.component';
 
 const appRoutes: Routes = [
     { path: '', component: LoginComponent },
-    { path: 'garage', component: GarageComponent },
+    { path: 'garage/:id', component: GarageComponent },
     { path: 'cars', loadChildren: './views/content/+car/car.module#CarModule' },
     { path: 'profile', component: ProfileComponent },
     { path: 'feed', component: FeedComponent },

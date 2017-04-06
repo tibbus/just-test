@@ -33,7 +33,7 @@
             <div class="info__car-text--name">{{car.name}}</div><span class="info__car-text--year"> {{car.info.car.yearOfManufacture}}</span>
         </div>
 
-        <div class="info__user">
+        <div class="info__user"  [routerLink]="['/garage/' + user.formattedId]">
             <div class="info__user-image">
                 <img src="{{user.image || 'assets/profile01.png'}}" />
             </div>

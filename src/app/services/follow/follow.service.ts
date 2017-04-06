@@ -9,7 +9,7 @@ import { Actor } from '../stream/stream.model';
 import { StreamService } from '../stream/stream.service';
 
 @Injectable()
-export class FollowService  {
+export class FollowService {
     private following$: Subject<boolean> = new Subject();
     private followings: any[] = [];
     private actor: Actor;
@@ -21,13 +21,22 @@ export class FollowService  {
         private streamService: StreamService
     ) { }
 
-    public getCarFollowers(carId: string): Subject<any[]> {
+    public getActorFollowers(actorType: string, actorId: string): Subject<any[]> {
         const actor: Actor = {
-            actorType: 'car',
-            actorId: carId
+            actorType,
+            actorId
         };
 
         return this.streamService.getCarFollowers(actor);
+    }
+
+    public getActorFollowing(actorType: string, actorId: string): Subject<any[]> {
+        const actor: Actor = {
+            actorType,
+            actorId
+        };
+
+        return this.streamService.getActorFollowing(actor);
     }
 
     public followCar(carId: string) {
@@ -51,19 +60,12 @@ export class FollowService  {
     }
 
     private requestUserFollowing(carId: string) {
-        this.getUserFollowing().subscribe((followers: any[]) => {
+        const userId = this.apiService.getUserId();
+
+        this.getActorFollowing('user', userId).subscribe((followers: any[]) => {
             const follower = followers.find(follower => follower.target_id.split(':')[1] == carId);
 
             this.following$.next(!!follower);
         })
-    }
-
-    private getUserFollowing() {
-        const actor: Actor = {
-            actorType: 'user',
-            actorId: this.apiService.getUserId()
-        };
-
-        return this.streamService.getUserFollowing(actor);
     }
 }

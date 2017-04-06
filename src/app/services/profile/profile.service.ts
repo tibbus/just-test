@@ -1,5 +1,5 @@
-import {Injectable}     from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { HttpService } from '../http/http.service';
@@ -18,17 +18,21 @@ export class ProfileService extends HttpService {
         return this.getData();
     }
 
-    public getUser(carInfoId: string): Observable<any> {
+    public getUserByCar(carInfoId: string): Observable<any> {
         return this.http.get(`${API.root}/car/${carInfoId}/user`).map(res => res.json());
+    }
+
+    public getUserById(userId: string): Observable<any> {
+        return this.http.get(`${API.root}/user/${userId}`).map(res => res.json());
     }
 
     public setProfile(profile: Profile) {
         const body = JSON.stringify(profile);
 
         return this.http.request(this.apiService.getProfileUrl(), {
-                body: body,
-                method: 'PUT'
-            })
+            body: body,
+            method: 'PUT'
+        })
             .map((res) => {
                 console.log(res);
                 <Profile>res.json()
