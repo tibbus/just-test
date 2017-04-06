@@ -1,4 +1,6 @@
-﻿:host {
+﻿@import "mixins";
+
+:host {
     display: block;
     left: 50%;
     transform: translateX(-50%);
@@ -82,11 +84,10 @@
     }
 
     &__name {
+        @extend %truncate;
+
         float: left;
-        max-width: 212;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        max-width: 212px;
         font-size: 15px;
         font-weight: bold;
         margin-left: 15px;

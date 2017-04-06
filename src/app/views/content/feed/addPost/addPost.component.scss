@@ -1,4 +1,4 @@
-﻿@import '../../../../../styles/mixins';
+﻿@import 'mixins';
 
 :host {
     width: 100%;
@@ -116,12 +116,11 @@
         }
 
         .title {
+            @extend %truncate;
+
             display: block;
             margin-left: 18px;
             width: 100px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
             padding-right: 15px;
         }
     }

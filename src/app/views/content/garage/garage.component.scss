@@ -1,4 +1,6 @@
-﻿:host {
+﻿@import "mixins";
+
+:host {
     background: #e9e8ee;
 }
 
@@ -106,10 +108,9 @@ loading {
 }
 
 .name {
+    @extend %truncate;
+
     width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .change-picture {
@@ -239,10 +240,13 @@ loading {
         flex: 0.4;
         align-items: center;
 
-        span {
+        &-text {
+            @extend %truncate;
+
             font-weight: bold;
             font-size: 19px;
             margin-left: 20px;
+            width: 198px;
         }
     }
 

@@ -1,4 +1,6 @@
-﻿textarea.form-control  {
+﻿@import "mixins";
+
+textarea.form-control  {
     margin-bottom: 35px;
 }
 
@@ -171,12 +173,11 @@ loading {
         }
 
         .title {
+            @extend %truncate;
+
             display: block;
             margin-left: 18px;
             width: 100px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
             padding-right: 15px;
         }
     }
