@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { CarService, FollowService, ModalService, ProfileService, AuthService } from '../../../services/index';
 import { AddCarModalComponent } from './addCarModal/addCarModal.component';
@@ -30,13 +30,24 @@ export class GarageComponent implements OnInit {
         private changeDetector: ChangeDetectorRef,
         private profileService: ProfileService,
         private route: ActivatedRoute,
+        private router: Router,
         private authService: AuthService
     ) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
-            // Id is the last char after -
-            const userId = params.id.split('-').slice(-1)[0];
+            const routeId: string = params.id;
+
+            if (routeId === 'authentication') {
+                const user = this.authService.getUser();
+
+                this.router.navigateByUrl(`/garage/${user.route}`);
+
+                return;
+            }
+
+            // Id is the last char after `-`
+            const userId = routeId.split('-').slice(-1)[0];
 
             this.setData(userId);
         });
@@ -55,7 +66,7 @@ export class GarageComponent implements OnInit {
         const loggedUser = this.authService.getUser();
 
         // Check if it's current user Garage
-        if (loggedUser && userId === loggedUser.profile.id) {
+        if (loggedUser && userId === loggedUser.id) {
             this.profileService.getProfile().subscribe(user => {
                 this.user = user;
                 this.getCars(false);

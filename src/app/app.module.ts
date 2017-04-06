@@ -26,7 +26,8 @@ import {
 
 import { SharedModule } from './shared/shared.module';
 import { FeedModule } from './views/content/feed/feed.module';
-import useFactory from './factory';
+
+const authInitializer = (auth: AuthService) => () => auth.setUser();
 
 @NgModule({
     imports: [
@@ -64,7 +65,7 @@ import useFactory from './factory';
         // ]),
         {
             provide: APP_INITIALIZER,
-            useFactory: useFactory,
+            useFactory: authInitializer,
             deps: [AuthService],
             multi: true
         }

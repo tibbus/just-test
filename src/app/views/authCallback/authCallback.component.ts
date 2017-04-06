@@ -8,14 +8,15 @@ import { UserManager } from 'oidc-client';
 })
 
 export class AuthCallbackComponent implements OnInit {
-    constructor(
-    ) { }
+    constructor() { }
 
     ngOnInit() {
-        new UserManager({}).signinRedirectCallback().then(function () {
-            (window as any).location = "/garage";
-        }).catch(function (e) {
-            console.error(e);
-        });
+        new UserManager({}).signinRedirectCallback()
+            .then(() => {
+                // @todo Investigate if it's a better way to hande the route without id
+                (window as any).location = "/garage/authentication";
+            }).catch(function (e) {
+                console.error(e);
+            });
     }
 }

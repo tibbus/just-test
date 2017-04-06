@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { UserManager } from 'oidc-client';
 
-import { ApiService } from '../api/api.service';
-
 @Injectable()
 export class AuthService {
-   private mgr: any;
-   private user;
-   private config: any;
+    private mgr: any;
+    private user;
+    private config: any;
 
-   constructor(private apiService: ApiService) {
-       this.config = {
+    constructor() {
+        this.config = {
             authority: "http://logbookidentity.azurewebsites.net",
             client_id: "mycarbiowebapp",
             redirect_uri: `${window.location.origin}/callback.html`,
@@ -22,17 +20,19 @@ export class AuthService {
         };
 
         this.mgr = new UserManager(this.config);
-   }
+    }
 
-   public setUser() {
-       const promise = this.mgr.getUser();
+    public setUser() {
+        const promise = this.mgr.getUser();
 
-       promise.then( user => {
+        promise.then(user => {
             if (user) {
-                this.user = user;
-                console.log("User logged in");
+                console.log(user);
+                // @todo : Talk with the BE to make the user format the same as the Profile one
+                this.user = user.profile;
+                this.user.route = this.getRouteFromUser(this.user.name, this.user.id);
 
-                this.apiService.setUser(this.user.profile.id);
+                console.log("User logged in");
             }
             else {
                 console.log("User not logged in");
@@ -40,21 +40,28 @@ export class AuthService {
             }
         });
 
-       return promise;
-   }
+        return promise;
+    }
 
-   public getUser() {
-       return this.user;
-   }
+    public getUser() {
+        return this.user;
+    }
 
-   public signIn(socialMediaType: string) {
+    public signIn(socialMediaType: string) {
         this.config.acr_values = `idp:${socialMediaType}`;
         this.mgr = new UserManager(this.config);
 
-       return this.mgr.signinRedirect();
-   }
+        return this.mgr.signinRedirect();
+    }
 
-   public signOut() {
-       return this.mgr.signoutRedirect();
-   }
+    public signOut() {
+        return this.mgr.signoutRedirect();
+    }
+
+    // @todo Find a way to share this method with the Profile Service
+    private getRouteFromUser(name: string, id: string) {
+        const formattedName: string = name.replace(/ /g, '');
+
+        return `${formattedName}-${id}`;
+    }
 }

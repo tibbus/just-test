@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
 
+import { AuthService } from '../auth/auth.service';
 import { API } from './api';
 
 @Injectable()
 export class ApiService {
-    // Hardcoded user :
-    private userId: string = '6';
+    private userId: string;
     private streamClient: any;
+
+    constructor(private authService: AuthService) {
+        const loggedUser = this.authService.getUser();
+
+        if (loggedUser) {
+            this.userId = this.authService.getUser().id;
+        }
+    }
 
     private get user(): string {
         return `${API.user}${this.userId}`;
