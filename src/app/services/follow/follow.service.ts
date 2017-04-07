@@ -10,10 +10,6 @@ import { StreamService } from '../stream/stream.service';
 
 @Injectable()
 export class FollowService {
-    private following$: Subject<boolean> = new Subject();
-    private followings: any[] = [];
-    private actor: Actor;
-
     constructor(
         private http: Http,
         private apiService: ApiService,
@@ -54,18 +50,20 @@ export class FollowService {
     }
 
     public isUserFollowing(carId: string) {
-        this.requestUserFollowing(carId);
+        const following$: Subject<boolean> = new Subject();
 
-        return this.following$;
+        this.requestUserFollowing(carId, following$);
+
+        return following$;
     }
 
-    private requestUserFollowing(carId: string) {
+    private requestUserFollowing(carId: string, following$: Subject<boolean>) {
         const userId = this.apiService.getUserId();
 
         this.getActorFollowing('user', userId).subscribe((followers: any[]) => {
             const follower = followers.find(follower => follower.target_id.split(':')[1] == carId);
 
-            this.following$.next(!!follower);
+            following$.next(!!follower);
         })
     }
 }

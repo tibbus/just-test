@@ -2,71 +2,68 @@
     <img src="/assets/cover.jpg">
 </div>
 
-<div class="owner">
-    <div *ngIf="user" class="owner__wrapper">
-        <div class="owner__image">
-            <div class="owner__profile-image">
-                <img src="{{user.image}}" />
+<div *ngIf="!isLoading">
+    <div class="owner">
+        <div *ngIf="user" class="owner__wrapper">
+            <div class="owner__image">
+                <div class="owner__profile-image">
+                    <img src="{{user.image}}" />
+                </div>
             </div>
+
+            <div class="owner__info">
+                <div class="owner__cars">
+                    <div class="owner__column info__column--first">
+                        <span class="owner__info-number">{{cars.length}}</span>
+                        <span class="owner__info-name">Cars</span>
+                    </div>
+                    <div class="owner__column">
+                        <span class="owner__info-number">{{ownerFollowing}}</span>
+                        <span class="owner__info-name">Following</span>
+                    </div>
+                    <div class="owner__column">
+                    </div>
+                </div>
+
+                <div class="owner__name">
+                    <div class="owner__name-text">{{user.name}}</div>
+                </div>
+            </div>
+
+            <div class="owner__line"></div>
         </div>
-
-        <div class="owner__info">
-            <div class="owner__cars">
-                <div class="owner__column info__column--first">
-                    <span class="owner__info-number">{{cars.length}}</span>
-                    <span class="owner__info-name">Cars</span>
-                </div>
-                <div class="owner__column">
-                    <span class="owner__info-number">{{ownerFollowing}}</span>
-                    <span class="owner__info-name">Following</span>
-                </div>
-                <div class="owner__column">
-                </div>
-            </div>
-
-            <div class="owner__name">
-                <div class="owner__name-text">{{user.name}}</div>
-            </div>
-        </div>
-
-        <div class="owner__line"></div>
     </div>
+
+    <div class="cars-wrapper">
+        <div *ngFor="let car of cars; let i=index" class="profile">
+            <div class="profile__image" [routerLink]="['/cars/' + car.route]">
+                <img src="{{ car.info.image || '/assets/default-car.jpg'}}">
+            </div>
+
+            <div class="profile__info">
+                <div *ngIf="user.isMyProfile" class="profile__edit" [routerLink]="['/cars/' + car.route]">Edit profile</div>
+                <div *ngIf="showFollow(car.id)" class="profile__edit" (click)="clickFollow(car.id)">Follow</div>
+                <div *ngIf="showUnFollow(car.id)" class="profile__edit" (click)="clickUnFollow(car.id)">Following</div>
+
+                <div class="profile__name">{{car.name}}</div>
+                <span class="profile__followers">{{follow[car.id].followers}} Followers</span>
+            </div>
+            <div class="remove" (click)="clickRemove(car.userCarId)">
+                <span class="remove__text">remove</span>
+                <span class="glyphicon glyphicon-trash remove__icon"></span>
+            </div>
+        </div>
+        <div class="add" (click)="clickAddCar()">
+            <div class="add__buttons">
+                <span class="glyphicon glyphicon-plus add__plus"></span>
+                <span class="add__text">Add Car</span>
+            </div>
+        </div>
+    </div>
+
+    <alert [message]="alertMessage" [state]="requestState" (resetAlertMessage)="resetAlertMessage($event)"></alert>
+
 </div>
-
-<loading *ngIf="loading"></loading>
-
-<div class="cars-wrapper">
-    <div *ngFor="let car of cars; let i=index" class="profile">
-        <div class="profile__image">
-            <img src="{{ car.info.image || '/assets/default-car.jpg'}}">
-        </div>
-        <a *ngIf="car.pictureChanged" class="btn btn-raised btn-success upload" [class.disabled]="false" (click)="clickUploadPicture(car)">
-            <span class="save">Upload</span>
-            <span *ngIf="car.loading === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-        </a>
-
-        <div class="profile__info">
-            <a class="btn btn-primary profile__edit" [routerLink]="['/cars/' + car.route]">
-                <span>Edit profile</span>
-            </a>
-            <span class="profile__name">{{car.name}}</span>
-            <span class="profile__followers">{{followers[car.id]}} Followers</span>
-        </div>
-        <div class="remove" (click)="clickRemove(car.userCarId)">
-            <span class="remove__text">remove</span>
-            <span class="glyphicon glyphicon-trash remove__icon"></span>
-        </div>
-    </div>
-    <div class="add" (click)="clickOpenCarModal()">
-        <div class="add__buttons">
-            <span class="glyphicon glyphicon-plus add__plus"></span>
-            <span class="add__text">Add Car</span>
-        </div>
-    </div>
-</div>
-
-<alert [message]="alertMessage" [state]="requestState" (resetAlertMessage)="resetAlertMessage($event)"></alert>
-
 <modal *ngIf="modal === 'addCarModal'" [contentComponent]="AddCarModalContent" [title]="'Adding your car to Logbook'" [size]="'small'"
     [hideFooter]="true">
 </modal>

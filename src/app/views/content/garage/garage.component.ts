@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CarService, FollowService, ModalService, ProfileService, AuthService } from '../../../services/index';
@@ -11,23 +11,20 @@ import { AddCarModalComponent } from './addCarModal/addCarModal.component';
 })
 
 export class GarageComponent implements OnInit {
+    public AddCarModalContent: any = AddCarModalComponent;
+    public modal: string;
     public cars: any[] = [];
-    public loading: boolean = false;
+    public isLoading: boolean = true;
     public requestState: boolean = false;
     public alertMessage: string;
-    public user;
-
-    public AddCarModalContent: any = AddCarModalComponent;
-    private modalSubscription;
-    public modal;
-    public followers = {};
+    public user: any;
+    public follow = {};
     public ownerFollowing: number = 0;
 
     constructor(
         private carService: CarService,
         private modalService: ModalService,
         private followService: FollowService,
-        private changeDetector: ChangeDetectorRef,
         private profileService: ProfileService,
         private route: ActivatedRoute,
         private router: Router,
@@ -36,11 +33,11 @@ export class GarageComponent implements OnInit {
 
     ngOnInit() {
         this.route.params.subscribe(params => {
+            this.isLoading = true;
             const routeId: string = params.id;
 
             if (routeId === 'authentication') {
                 const user = this.authService.getUser();
-
                 this.router.navigateByUrl(`/garage/${user.route}`);
 
                 return;
@@ -48,7 +45,6 @@ export class GarageComponent implements OnInit {
 
             // Id is the last char after `-`
             const userId = routeId.split('-').slice(-1)[0];
-
             this.setData(userId);
         });
 
@@ -62,6 +58,48 @@ export class GarageComponent implements OnInit {
         });
     }
 
+    public clickFollow(carId: string) {
+        this.followService.followCar(carId).subscribe(() => this.follow[carId].isFollowing = true);
+    }
+
+    public clickUnFollow(carId: string) {
+        this.followService.unFollowCar(carId).subscribe(() => this.follow[carId].isFollowing = false);
+    }
+
+    public clickAddCar() {
+        this.modal = 'addCarModal';
+    }
+
+    public clickRemove(userCarId) {
+        const confirm = window.confirm("Are you sure ? This will remove the car from your profile !");
+
+        if (!confirm) {
+            return;
+        }
+
+        this.carService.removeCar(userCarId)
+            .subscribe(
+            () => {
+                // @todo do not reload the page, update the data in SPA
+                location.reload();
+
+                this.requestState = true;
+                this.alertMessage = `The car was successfully removed from your garage !`;
+
+                // update the car list (make a new server request in the service)
+                this.getCars(true);
+            },
+            error => this.handleError(error));
+    }
+
+    public showFollow(carId: string): boolean {
+        return !this.user.isMyProfile && !this.follow[carId].isFollowing && this.authService.isUserLoggedIn();
+    }
+
+    public showUnFollow(carId: string): boolean {
+        return !this.user.isMyProfile && this.follow[carId].isFollowing && this.authService.isUserLoggedIn();
+    }
+
     private setData(userId) {
         const loggedUser = this.authService.getUser();
 
@@ -69,12 +107,16 @@ export class GarageComponent implements OnInit {
         if (loggedUser && userId === loggedUser.id) {
             this.profileService.getProfile().subscribe(user => {
                 this.user = user;
+                this.user.isMyProfile = true;
+
                 this.getCars(false);
+                this.isLoading = false;
             });
         } else {
             this.profileService.getUserById(userId).subscribe(user => {
                 this.user = user;
                 this.getUserCars(userId);
+                this.isLoading = false;
             });
         }
 
@@ -94,37 +136,17 @@ export class GarageComponent implements OnInit {
 
         //get the followers number for each car
         this.cars.forEach(car => {
-            const carFollowersObservable = this.followService.getActorFollowers('car', car.id);
-
-            carFollowersObservable.subscribe((followers: any[]) => {
-                this.followers[car.id] = followers.length;
-            });
+            this.follow[car.id] = {
+                followers: 0,
+                isFollowing: false
+            };
+            this.followService.getActorFollowers('car', car.id)
+                .subscribe((followers: any[]) => this.follow[car.id].followers = followers.length);
+            this.followService.isUserFollowing(car.id)
+                .subscribe(isFollowing => {
+                    this.follow[car.id].isFollowing = isFollowing;
+                });
         });
-    }
-
-    public clickRemove(userCarId) {
-        const confirm = window.confirm("Are you sure ? This will remove the car from your profile !");
-
-        if (!confirm) {
-            return;
-        }
-
-        this.loading = true;
-
-        this.carService.removeCar(userCarId)
-            .subscribe(
-            () => {
-                // @todo do not reload the page, update the data in SPA
-                location.reload();
-
-                this.loading = false;
-                this.requestState = true;
-                this.alertMessage = `The car was successfully removed from your garage !`;
-
-                // update the car list (make a new server request in the service)
-                this.getCars(true);
-            },
-            error => this.handleError(error));
     }
 
     // @Output : reset the message on alert Close
@@ -134,20 +156,12 @@ export class GarageComponent implements OnInit {
 
     private handleError(error: any) {
         if (error.statusText === 'Not Found') {
-            this.loading = false;
-
             return;
         }
 
         this.requestState = false;
-        this.loading = false;
         this.alertMessage = 'Sorry, the request failed.';
 
         console.log(error);
-    }
-
-    public clickOpenCarModal() {
-        // open Edit Modal
-        this.modal = 'addCarModal';
     }
 }

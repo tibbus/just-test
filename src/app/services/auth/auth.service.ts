@@ -47,6 +47,10 @@ export class AuthService {
         return this.user;
     }
 
+    public isUserLoggedIn(): boolean {
+        return !!this.user;
+    }
+
     public signIn(socialMediaType: string) {
         this.config.acr_values = `idp:${socialMediaType}`;
         this.mgr = new UserManager(this.config);
