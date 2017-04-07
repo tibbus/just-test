@@ -71,6 +71,7 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
                 });
 
                 this.timelineService.setImages(this.posts.images);
+                this.timelineService.setSelectedPostId(posts[0].activityData.id);
             }
         );
     }

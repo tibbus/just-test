@@ -53,7 +53,7 @@
 
 <comments [post]="post" [showOptions]="showOptions" (commentsCount)="setCommentsCount($event)"></comments>
 
-<modal *ngIf="modal == 'imageModal'" [contentComponent]="ImageModalComponent" [title]="'Images'" [size]="'large'">
+<modal *ngIf="modal == 'imageModal'" [contentComponent]="ImageModalComponent" [title]="'Images'" [size]="'large'" [hideFooter]="true">
 </modal>
 
 <modal *ngIf="modal == 'editModal'" [contentComponent]="EditModalComponent" [title]="'Edit post'" [showSaveButton]="true">

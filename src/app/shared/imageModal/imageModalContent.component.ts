@@ -16,6 +16,8 @@ export class ImageModalContentComponent implements OnInit {
     currentImageIndex: number;
     imageListLength: number;
     createdDate: string;
+    public carName: string;
+    public description: string;
     private images: any[];
 
     constructor(
@@ -46,8 +48,10 @@ export class ImageModalContentComponent implements OnInit {
         this.imageListLength = this.images.length;
         this.image = this.images[this.currentImageIndex];
 
+        const post = this.timelineService.getSelectedPost();
+        this.carName = `${post.carData.make} ${post.carData.model}`;
         if (pageName !== 'showcase') {
-            this.createdDate = this.timelineService.getSelectedPost().activityData.createdDate;
+            this.createdDate = post.activityData.createdDate;
         }
     }
 }
