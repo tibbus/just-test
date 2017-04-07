@@ -6,12 +6,10 @@ import { CustomRequestOptions } from './services/http/baseRequest';
 import { routing } from './app.routes';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './views/header/header.component';
-import { ProfileComponent, NotFoundComponent } from './views/content/index';
-import { GarageComponent } from './views/content/garage/garage.component';
+import { ProfileComponent, NotFoundComponent, GarageComponent } from './views/content/';
 import { AddCarModalComponent } from './views/content/garage/addCarModal/addCarModal.component';
 import { AuthCallbackComponent } from './views/authCallback/authCallback.component';
 import { LoginComponent } from './views/login/login.component';
-import { StreamService } from './services/stream/stream.service';
 
 import {
     ApiService,
@@ -21,13 +19,13 @@ import {
     PostService,
     TimelineService,
     FollowService,
-    AuthService
-} from './services/index';
+    AuthService,
+    StreamService
+} from './services/';
+import AuthInitializer from './services/auth/authInitializer';
 
 import { SharedModule } from './shared/shared.module';
 import { FeedModule } from './views/content/feed/feed.module';
-
-const authInitializer = (auth: AuthService) => () => auth.setUser();
 
 @NgModule({
     imports: [
@@ -65,7 +63,7 @@ const authInitializer = (auth: AuthService) => () => auth.setUser();
         // ]),
         {
             provide: APP_INITIALIZER,
-            useFactory: authInitializer,
+            useFactory: AuthInitializer,
             deps: [AuthService],
             multi: true
         }
