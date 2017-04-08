@@ -1,59 +1,55 @@
+<span class="title">DVLA</span>
+
 <table class="table table-striped table-hover" *ngIf="car">
-    <thead>
-        <tr>
-            <th>Detail</th>
-            <th>Value</th>
-        </tr>
-    </thead>
     <tbody>
-        <tr class="active">
-            <td>Make</td>
-            <td>{{car.carInfo.car.make}}</td>
+        <tr class="row">
+            <td class="cell">Make</td>
+            <td class="cell">{{car.carInfo.car.make}}</td>
         </tr>
-        <tr>
-            <td>Model</td>
-            <td>{{car.carInfo.car.model}}</td>
+        <tr class="row">
+            <td class="cell">Model</td>
+            <td class="cell">{{car.carInfo.car.model}}</td>
         </tr>
-        <tr class="active">
-            <td>Year Of Manufacture</td>
-            <td>{{car.carInfo.car.yearOfManufacture}}</td>
+        <tr class="row">
+            <td class="cell">Year Of Manufacture</td>
+            <td class="cell">{{car.carInfo.car.yearOfManufacture}}</td>
         </tr>
-        <tr>
-            <td>Colour</td>
-            <td>{{car.carInfo.colour}}</td>
+        <tr class="row">
+            <td class="cell">Colour</td>
+            <td class="cell">{{car.carInfo.colour}}</td>
         </tr>
-        <tr class="active">
-            <td>Cylinder Capacity</td>
-            <td>{{car.carInfo.cylinderCapacity}}</td>
+        <tr class="row">
+            <td class="cell">Cylinder Capacity</td>
+            <td class="cell">{{car.carInfo.cylinderCapacity}}</td>
         </tr>
-        <tr>
-            <td>Fuel Type</td>
-            <td>{{car.carInfo.fuelType}}</td>
+        <tr class="row">
+            <td class="cell">Fuel Type</td>
+            <td class="cell">{{car.carInfo.fuelType}}</td>
         </tr>
-        <tr class="active">
-            <td>Registration Number</td>
-            <td>{{car.carInfo.registrationNumber}}</td>
+        <tr class="row">
+            <td class="cell">Registration Number</td>
+            <td class="cell">{{car.carInfo.registrationNumber}}</td>
         </tr>
-        <tr>
-            <td>Wheel Plan</td>
-            <td>{{car.carInfo.wheelPlan}}</td>
+        <tr class="row">
+            <td class="cell">Wheel Plan</td>
+            <td class="cell">{{car.carInfo.wheelPlan}}</td>
         </tr>
 
-        <tr class="active">
-            <td>CO2 Emission</td>
-            <td>{{car.carInfo.cO2Emission}}</td>
+        <tr class="row">
+            <td class="cell">CO2 Emission</td>
+            <td class="cell">{{car.carInfo.cO2Emission}}</td>
         </tr>
-        <tr>
-            <td>Weight</td>
-            <td>{{car.carInfo.weight}}</td>
+        <tr class="row">
+            <td class="cell">Weight</td>
+            <td class="cell">{{car.carInfo.weight}}</td>
         </tr>
-        <tr class="active" *ngIf="car.carInfo.Transmission">
-            <td>Transmission</td>
-            <td>{{car.carInfo.transmission}}</td>
+        <tr *ngIf="car.carInfo.Transmission">
+            <td class="cell">Transmission</td>
+            <td class="cell">{{car.carInfo.transmission}}</td>
         </tr>
         <tr *ngIf="car.carInfo.SixMonthsTaxRate">
-            <td>SixMonths Tax Rate</td>
-            <td>{{car.carInfo.sixMonthsTaxRate}}</td>
+            <td class="cell">SixMonths Tax Rate</td>
+            <td class="cell">{{car.carInfo.sixMonthsTaxRate}}</td>
         </tr>
     </tbody>
 </table>
