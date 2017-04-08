@@ -12,12 +12,11 @@
 
             <ng-template #dynamicComponent></ng-template>
 
-            <div class="modal-footer" *ngIf="!hideFooter">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-raised btn-success"
-                    *ngIf="showSaveButton"
+            <div class="modal-footer" *ngIf="showSaveButton">
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                <button type="button" class="btn save"
                     (click)="onClickSave()"
-                    [class.disabled]="loading"
+                    [disabled]="loading"
                 >
                     <span class="save-text">Save</span>
                     <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>

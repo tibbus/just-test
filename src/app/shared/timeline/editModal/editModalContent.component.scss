@@ -12,105 +12,19 @@ textarea.form-control  {
     padding-bottom: 5px;
 }
 
-.status-text {
-    width: 660px;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    display: inline-block;
-}
 
-.status-text input {
-    text-align: center;
-    font-weight: bold;
-}
-
-.btn {
-    text-transform: none;
-    color: #56517B;
-}
-
-.btn-group {
-    border-bottom: solid 1px #EDEDED;
+.text-input {
+    border: none;
+    width: 500px;
+    margin: 10px 0 10px 20px;
+    float: left;
+    resize: none;
 }
 
 .menu-glyphicon {
     top: 4px;
     font-size: 22px;
     margin-right: 10px;
-}
-
-.details {
-    margin-top: 2px;
-    float: right;
-}
-
-.reg-number {
-    float: left;
-    margin: 5px;
-    font-size: 20px;
-    color: black;
-    border-radius: 4px;
-    background-color: #FFD239;
-}
-
-.make {
-    margin: 10px;
-    margin-left: 30px;
-    float: left;
-    font-weight: bold;
-}
-
-.menu {
-    margin-bottom: 0;
-}
-
-.save {
-    display: inline-block;
-    padding: 4px 13px;
-    margin-left: 18px;
-}
-
-loading {
-    left: 220px;
-    position: relative;
-    top: -5px;
-}
-
-.writer-img {
-    margin: 0;
-    margin-left: 10px;
-    height: 77px;
-    padding: 3px;
-    position: absolute;
-    border: solid 2px #E6E6E6;
-    border-radius: 4px;
-    margin-top: 50px;
-
-    img {
-        height: 100%;
-    }
-}
-
-.form-group {
-    margin: 0;
-    margin-top: 5px;
-    padding: 0;
-    float: left;
-    width: 100%;
-    clear: both;
-    padding-top: 10px;
-
-    textarea {
-
-        &.lineDisabled {
-            background-image: none;
-        }
-    }
-}
-
-.help-block {
-    margin-left: 320px;
 }
 
 .post, .add-media {
@@ -137,17 +51,19 @@ loading {
 
 .add-photos {
     clear: left;
+    color: green;
+}
+
+.add-videos {
+    color: red;
+}
+
+.add-documents {
+    color: blue;
 }
 
 .car-info {
     float: left;
-}
-
-.vertical-line {
-    float: left;
-    height: 27px;
-    width: 1px;
-    background-color: #c3c3c3;
 }
 
 .media-wrapper {

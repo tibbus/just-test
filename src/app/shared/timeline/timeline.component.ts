@@ -12,7 +12,7 @@ declare const jQuery: any;
     selector: 'timeline',
     styleUrls: ['./timeline.component.scss'],
     templateUrl: './timeline.component.html',
-    providers: [ModalService, PostService]
+    providers: [ModalService]
 })
 
 export class TimelineComponent implements OnInit, OnDestroy {

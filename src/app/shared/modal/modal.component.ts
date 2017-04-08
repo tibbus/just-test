@@ -58,6 +58,7 @@ export class ModalComponent {
     }
 
     public onClickSave() {
+        this.loading = true;
         this.subModalSave = this.modalService.setModalSave();
     }
 

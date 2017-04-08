@@ -15,8 +15,7 @@ import { PostService } from '../../../services/';
         RegNumberPipe,
         HoverAddDirective,
         AddPostComponent
-    ],
-    providers: [PostService]
+    ]
 })
 
 export class FeedModule {}

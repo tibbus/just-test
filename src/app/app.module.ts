@@ -57,6 +57,7 @@ import { FeedModule } from './views/content/feed/feed.module';
         FollowService,
         AuthService,
         StreamService,
+        PostService,
         { provide: RequestOptions, useClass: CustomRequestOptions },
         // provideInterceptorService([
         //     ServerURLInterceptor

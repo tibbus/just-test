@@ -6,3 +6,16 @@
 .modal .small {
     width: 400px;
 }
+
+.save {
+    padding: 0 12px;
+    float: right;
+    font-size: 13px;
+    margin: 10px 25px 0 0;
+    color: white;
+    background: blue;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

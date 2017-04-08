@@ -1,11 +1,4 @@
-﻿<div class="form-group">
-    <label for="textArea" class="col-md-2 control-label">Status</label>
-
-    <div class="col-md-10">
-        <textarea class="form-control" rows="2" [(ngModel)]="postDescription"></textarea>
-        <!--<span class="help-block">Update the status</span>-->
-    </div>
-</div>
+﻿<textarea class="text-input" rows="4" [(ngModel)]="postDescription"></textarea>
 
 <div class="media-wrapper">
     <div class="img-wrapper" *ngFor="let uri of uris; let i=index">
@@ -36,7 +29,7 @@
      (onFileSelect)="clickAddMedia($event, 'image')"
 >
     <span class="glyphicon menu-glyphicon glyphicon-picture" aria-hidden="true"></span>
-    <span class="add-media-text">Add photo</span>
+    <span class="add-media-text">Add more photos</span>
 </div>
 
 <div class="btn add-media add-videos"
@@ -45,7 +38,7 @@
      (onFileSelect)="clickAddMedia($event, 'video')"
 >
     <span class="glyphicon menu-glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
-    <span class="add-media-text">Add video</span>
+    <span class="add-media-text">Add more videos</span>
 </div>
 <div class="btn add-media add-documents"
      uploadFile
@@ -53,7 +46,7 @@
      (onFileSelect)="clickAddMedia($event, 'document')"
 >
     <span class="glyphicon menu-glyphicon glyphicon-file" aria-hidden="true"></span>
-    <span class="add-media-text">Add document</span>
+    <span class="add-media-text">Add more documents</span>
 </div>
 
 <!--<div *ngIf="postType !== 'Status'" class="vertical-line"></div>
