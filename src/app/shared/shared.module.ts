@@ -11,6 +11,7 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { PostComponent } from './timeline/post/post.component';
 import { TimelineDatePipe } from './timelineDate.pipe';
 import { ImageModalContentComponent } from './imageModal/imageModalContent.component';
+import { VideoModalContentComponent } from './videoModal/videoModalContent.component';
 import { EditModalContentComponent } from './timeline/editModal/editModalContent.component';
 import { CommentsComponent } from './timeline/comments/comments.component';
 import { CommentComponent } from './timeline/comments/comment/comment.component';
@@ -27,6 +28,7 @@ import { EditCommentsComponent } from './timeline/comments/editComments/editComm
         PostComponent,
         TimelineDatePipe,
         ImageModalContentComponent,
+        VideoModalContentComponent,
         EditModalContentComponent,
         EditCommentsComponent,
         CommentsComponent,
@@ -34,6 +36,7 @@ import { EditCommentsComponent } from './timeline/comments/editComments/editComm
     ],
     entryComponents: [
         ImageModalContentComponent,
+        VideoModalContentComponent,
         EditModalContentComponent,
         EditCommentsComponent
     ],

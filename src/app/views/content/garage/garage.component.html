@@ -64,6 +64,8 @@
     <alert [message]="alertMessage" [state]="requestState" (resetAlertMessage)="resetAlertMessage($event)"></alert>
 
 </div>
-<modal *ngIf="modal === 'addCarModal'" [contentComponent]="AddCarModalContent" [title]="'Adding your car to Logbook'" [size]="'small'"
-    [hideFooter]="true">
+<modal *ngIf="modal === 'addCarModal'"
+    [contentComponent]="AddCarModalContent"
+    [title]="'Adding your car to Logbook'"
+    [size]="'small'">
 </modal>

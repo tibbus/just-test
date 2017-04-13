@@ -2,6 +2,7 @@
 import { ActivatedRoute } from '@angular/router';
 
 import { ImageModalContentComponent } from '../../../../shared/imageModal/imageModalContent.component';
+import { VideoModalContentComponent } from '../../../../shared/videoModal/videoModalContent.component';
 import { TimelineService, ModalService } from '../../../../services/index';
 
 @Component({
@@ -18,7 +19,8 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
     };
     public posts: any = this.emptyPosts;
     public modal: string;
-    public ImageModalComponent: any = ImageModalContentComponent;
+    public imageModalContent;
+    public videoModalContent;
     private route$: any;
 
     constructor(private route: ActivatedRoute, private timelineService: TimelineService, private modalService: ModalService) { }
@@ -47,10 +49,24 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
     }
 
     public clickImage(index: number) {
+        this.imageModalContent = {
+            component: ImageModalContentComponent,
+            data: null
+        };
         this.timelineService.setSelectedImage(index);
 
         // open modal
         this.modal = 'imageModal';
+    }
+
+    public clickVideo(index: number) {
+        this.videoModalContent = {
+            component: VideoModalContentComponent,
+            data: this.posts.videos[index]
+        };
+
+        // open modal
+        this.modal = 'videoModal';
     }
 
 

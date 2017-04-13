@@ -1,22 +1,30 @@
-<h5 *ngIf="posts.images.length">Images</h5>
-<div class="image">
+<div *ngIf="posts.images.length" class="image">
+    <div class="header">PHOTOS</div>
     <div *ngFor="let image of posts.images; let i=index" class="image__uri">
         <img src="{{image}}" (click)="clickImage(i)">
     </div>
-<div>
+</div>
 
-<h5 *ngIf="posts.videos.length">Videos</h5>
-<div class="video">
-    <div *ngFor="let video of posts.videos" class="video__uri">
-        <video width="490" controls>
+<div *ngIf="posts.images.length" class="image">
+    <div class="header">VIDEOS</div>
+    <div *ngFor="let video of posts.videos; let i=index" class="video__uri" (click)="clickVideo(i)">
+        <video height="100%">
             <source src="{{video}}" type="video/mp4">
         </video>
+        <div class="play"></div>
+        <div class="play__icon"><span class="glyphicon glyphicon-play"></span></div>
     </div>
 <div>
 
 <modal *ngIf="modal == 'imageModal'"
-    [contentComponent]="ImageModalComponent"
+    [content]="imageModalContent"
     [title]="'Images'"
-    [hideFooter]="true"
+    [size]="'large'">
+</modal>
+
+<modal *ngIf="modal == 'videoModal'"
+    [content]="videoModalContent"
+    [hideHeader]="true"
+    [title]="'Images'"
     [size]="'large'">
 </modal>

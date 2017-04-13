@@ -10,13 +10,15 @@ declare const jQuery: any;
     styleUrls: ['./modal.component.scss'],
     templateUrl: './modal.component.html'
 })
-
 export class ModalComponent {
+    // @todo replace contentComponent with the content @Input
     @Input() contentComponent: any;
+    @Input() content: any;
     @Input() title: string;
     @Input() size: string;
+    @Input() hideHeader: boolean;
     @Input() showSaveButton: boolean;
-    @Input() hideFooter: boolean;
+
     @ViewChild('dynamicComponent', { read: ViewContainerRef })
 
     dynamicComponent: any;
@@ -63,8 +65,10 @@ export class ModalComponent {
     }
 
     private renderModalContent() {
-        const factory = this.componentResolver.resolveComponentFactory(this.contentComponent);
-        this.dynamicComponent.createComponent(factory);
+        const factory = this.componentResolver.resolveComponentFactory(this.contentComponent || this.content.component);
+
+        let componentRef = this.dynamicComponent.createComponent(factory);
+        componentRef.instance.contentData = this.content ? this.content.data : null;
     }
 
     private onModalClose() {
