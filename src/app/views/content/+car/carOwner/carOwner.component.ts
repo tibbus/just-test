@@ -2,7 +2,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { CarService, ProfileService, FollowService } from '../../../../services';
+import { CarService, ProfileService, FollowService, TimelineService } from '../../../../services';
 
 @Component({
     selector: 'car-owner',
@@ -17,6 +17,7 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
     public followers: number = 0;
     public following: number = 0;
     public isFollowing: boolean = false;
+    public timeline: any = { postsCount: 0, mediaCount: 0 };
     private route$: Subscription;
 
     constructor(
@@ -24,7 +25,8 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
         private profileService: ProfileService,
         private followService: FollowService,
         private route: ActivatedRoute,
-        private changeDetector: ChangeDetectorRef
+        private changeDetector: ChangeDetectorRef,
+        private timelineService: TimelineService
     ) { }
 
     ngOnInit() {
@@ -38,6 +40,8 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
                 userCars => this.initCar(route, userCars),
                 error => this.initCar(route, null)
             );
+
+            this.timelineService.getTimelineData().subscribe(timeline => this.timeline = timeline);
         });
     }
 
@@ -90,29 +94,17 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
         if (this.car.isUserCar) {
             this.profileService.getProfile().subscribe(user => {
                 this.user = user;
-                this.user.carsCount = userCars.length;
-
                 this.carLoading = false;
-
-                this.followService.getActorFollowing('user', this.user.id).subscribe(following => this.following = following.length);
             });
         } else {
             this.profileService.getUserByCar(this.car.id).subscribe(user => {
                 this.user = user;
 
-                this.carService.getUserCars(this.user.userId).subscribe(cars => {
-                    this.user.carsCount = cars.length;
-
-                    this.setCar(cars);
+                this.carService.getCarById(this.car.id).subscribe(car => {
+                    this.car.info = car.carInfo;
+                    this.carLoading = false;
                 });
-
-                this.followService.getActorFollowing('user',  this.user.userId).subscribe(following => this.following = following.length);
             });
         }
-    }
-
-    private setCar(cars) {
-        this.carLoading = false;
-        this.car = cars.find(car => car.id == this.car.id);
     }
 }

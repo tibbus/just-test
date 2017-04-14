@@ -29,9 +29,7 @@ export class PostComponent {
     };
 
     public loading: boolean;
-    public ImageModalComponent: any = ImageModalContentComponent;
-    public EditModalComponent: any = EditModalContentComponent;
-    public modal: string;
+    public modal: any;
     public likes: any[] = [];
     public isCurrentUserLike: boolean;
     public commentsCount: number;
@@ -53,7 +51,7 @@ export class PostComponent {
         this.carRoute = this.carService.getCarRoute(this.post.carData.make, this.post.carData.model, this.post.activityData.carInfoId);
 
         this.modalService.getModalClose().subscribe(() => {
-            this.modal = '';
+            this.modal = null;
         });
 
         this.likesService.getLikes(this.postId, this.post.socialDataRequested, this.post.socialData.likesCount)
@@ -82,16 +80,26 @@ export class PostComponent {
         this.timelineService.setSelectedPostId(this.postId);
 
         // open modal
-        this.modal = 'editModal';
+        this.modal = {
+            name: 'editModal',
+            component: EditModalContentComponent,
+            data: null
+        }
     }
 
     public clickImage(index: number) {
-        this.timelineService.setSelectedPostId(this.postId);
-        this.timelineService.setImages(this.post.activityData.contentUris);
-        this.timelineService.setSelectedImage(index);
-
+        const carName = this.carService.getCarName(this.post.carData.make, this.post.carData.model);
         // open modal
-        this.modal = 'imageModal';
+        this.modal = {
+            name: 'imageModal',
+            component: ImageModalContentComponent,
+            data: {
+                images: this.post.activityData.contentUris,
+                index,
+                carName,
+                date: this.post.activityData.createdDate
+            }
+        }
     }
 
     public clickShare() {

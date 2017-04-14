@@ -1,7 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { PostService, ModalService, TimelineService } from '../../services/index';
+﻿import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'content',
@@ -10,28 +7,17 @@ import { PostService, ModalService, TimelineService } from '../../services/index
 })
 
 export class ImageModalContentComponent implements OnInit {
-    status: any;
-    image: any;
-    post: any;
-    currentImageIndex: number;
-    imageListLength: number;
-    createdDate: string;
-    public carName: string;
-    public description: string;
+    @Input() contentData: any;
+
+    public image: any;
+    public currentImageIndex: number;
+    public imageListLength: number;
     private images: any[];
 
-    constructor(
-        private postService: PostService,
-        private modalService: ModalService,
-        private timelineService: TimelineService,
-        private router: Router,
-        private route: ActivatedRoute
-    ) { }
+    constructor() { }
 
     ngOnInit() {
-        const route = this.route.snapshot.url[0].path;
-
-        this.setImages(route);
+        this.setImages();
     }
 
     public navigate(direction: number) {
@@ -41,17 +27,11 @@ export class ImageModalContentComponent implements OnInit {
         this.image = this.images[this.currentImageIndex];
     }
 
-    private setImages(pageName: string) {
-        this.images = this.timelineService.getImages();
+    private setImages() {
+        this.images = this.contentData.images;
 
-        this.currentImageIndex = this.timelineService.getSelectedImage();
+        this.currentImageIndex = this.contentData.index;
         this.imageListLength = this.images.length;
         this.image = this.images[this.currentImageIndex];
-
-        const post = this.timelineService.getSelectedPost();
-        this.carName = `${post.carData.make} ${post.carData.model}`;
-        if (pageName !== 'showcase') {
-            this.createdDate = post.activityData.createdDate;
-        }
     }
 }

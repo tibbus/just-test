@@ -1,13 +1,13 @@
-<div *ngIf="posts.images.length" class="image">
+<div *ngIf="timeline.images.length" class="image">
     <div class="header">PHOTOS</div>
-    <div *ngFor="let image of posts.images; let i=index" class="image__uri">
+    <div *ngFor="let image of timeline.images; let i=index" class="image__uri">
         <img src="{{image}}" (click)="clickImage(i)">
     </div>
 </div>
 
-<div *ngIf="posts.images.length" class="image">
+<div *ngIf="timeline.videos.length" class="image">
     <div class="header">VIDEOS</div>
-    <div *ngFor="let video of posts.videos; let i=index" class="video__uri" (click)="clickVideo(i)">
+    <div *ngFor="let video of timeline.videos; let i=index" class="video__uri" (click)="clickVideo(i)">
         <video height="100%">
             <source src="{{video}}" type="video/mp4">
         </video>

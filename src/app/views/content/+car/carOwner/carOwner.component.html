@@ -15,16 +15,16 @@
     <div class="info">
         <div class="info__car">
             <div class="info__column info__column--first">
-                <span class="info__number">{{user.carsCount}}</span>
-                <span class="info__name">Cars</span>
+                <span class="info__number">{{timeline.postsCount}}</span>
+                <span class="info__name">Posts</span>
+            </div>
+            <div class="info__column">
+                <span class="info__number">{{timeline.mediaCount}}</span>
+                <span class="info__name">Media</span>
             </div>
             <div class="info__column">
                 <span class="info__number">{{followers}}</span>
                 <span class="info__name">Followers</span>
-            </div>
-            <div class="info__column">
-                <span class="info__number">{{following}}</span>
-                <span class="info__name">Following</span>
             </div>
             <div *ngIf="!isFollowing" (click)="clickFollow()" class="info__follow info__follow--on">
                 Follow

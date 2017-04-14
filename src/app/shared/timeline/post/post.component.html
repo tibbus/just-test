@@ -45,16 +45,16 @@
     <!--<a (click)="clickShare(post.activityData.id)">Share</a>-->
 </div>
 
-<div *ngIf="post.comments.loading" class="loading show-comments-loading">
+<!--<div *ngIf="post" class="loading show-comments-loading">
     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate show-comments-loading-spinner"></span>
-</div>
+</div>-->
 
 <div class="line"></div>
 
 <comments [post]="post" [showOptions]="showOptions" (commentsCount)="setCommentsCount($event)"></comments>
 
-<modal *ngIf="modal == 'imageModal'" [contentComponent]="ImageModalComponent" [title]="'Images'" [size]="'large'">
+<modal *ngIf="modal?.name === 'imageModal'" [content]="modal" [title]="'Images'" [size]="'large'">
 </modal>
 
-<modal *ngIf="modal == 'editModal'" [contentComponent]="EditModalComponent" [title]="'Edit post'" [showSaveButton]="true">
+<modal *ngIf="modal?.name === 'editModal'" [content]="modal" [title]="'Edit post'" [showSaveButton]="true">
 </modal>

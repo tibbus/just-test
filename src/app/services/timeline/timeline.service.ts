@@ -30,20 +30,43 @@ export class TimelineService {
         }
 
         this.streamData$ = this.streamService.getData(this.actor, 'get').do((posts: any[]) => {
-            this.posts = posts.map(post => {
-                post.comments = {
-                    state: '+'
-                };
-
-                return post;
-            });
-
-            return this.posts;
+            return this.posts = posts;
         }).subscribe(posts => {
             this.posts$.next(posts);
         });
 
         return this.posts$;
+    }
+
+    public getTimelineData() {
+        const timelineData$ = new Subject();
+
+        this.getPosts().subscribe(posts => {
+            const carName = this.carService.getCarName(posts[0].carData.make, posts[0].carData.model);
+            const timelineData: any = {
+                postsCount: posts.length,
+                mediaCount: 0,
+                carName,
+                images: [],
+                videos: [],
+                docs: []
+            };
+
+            posts.forEach(item => {
+                if (item.type === 'Image') {
+                    timelineData.images = timelineData.images.concat(item.activityData.contentUris)
+                } else if (item.type === 'Video') {
+                    timelineData.videos = timelineData.videos.concat(item.activityData.contentUris)
+                } else if (item.type === 'Document') {
+                    timelineData.docs = timelineData.docs.concat(item.activityData.contentUris)
+                }
+            });
+            timelineData.mediaCount = timelineData.images.length + timelineData.videos.length;
+
+            timelineData$.next(timelineData);
+        });
+
+        return timelineData$;
     }
 
     public updateAfterDelete(postId: string) {
@@ -88,7 +111,7 @@ export class TimelineService {
         oldPost.socialDataRequested = true;
 
         this.posts = this.posts.map(post => {
-            if(newPost.id === post.activityData.id) {
+            if (newPost.id === post.activityData.id) {
                 return oldPost;
             }
 

@@ -12,12 +12,13 @@ import { TimelineService, ModalService } from '../../../../services/index';
 })
 
 export class ShowcaseComponent implements OnInit, OnDestroy {
-    private emptyPosts = {
+    public timeline: any = {
+        postsCount: 0,
+        mediaCount: 0,
         images: [],
         videos: [],
         docs: []
     };
-    public posts: any = this.emptyPosts;
     public modal: string;
     public imageModalContent;
     public videoModalContent;
@@ -51,7 +52,11 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
     public clickImage(index: number) {
         this.imageModalContent = {
             component: ImageModalContentComponent,
-            data: null
+            data: {
+                images: this.timeline.images,
+                index,
+                carName: this.timeline.carName
+            }
         };
         this.timelineService.setSelectedImage(index);
 
@@ -62,7 +67,7 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
     public clickVideo(index: number) {
         this.videoModalContent = {
             component: VideoModalContentComponent,
-            data: this.posts.videos[index]
+            data: this.timeline.videos[index]
         };
 
         // open modal
@@ -71,23 +76,9 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
 
 
     private getPosts() {
-        return this.timelineService.getPosts().subscribe(
-            (posts: any[]) => {
-                // create new Object
-                this.posts = Object.assign({}, this.emptyPosts);
-
-                posts.forEach(item => {
-                    if (item.type === 'Image') {
-                        this.posts.images = this.posts.images.concat(item.activityData.contentUris)
-                    } else if (item.type === 'Video') {
-                        this.posts.videos = this.posts.videos.concat(item.activityData.contentUris)
-                    } else if (item.type === 'Document') {
-                        this.posts.docs = this.posts.docs.concat(item.activityData.contentUris)
-                    }
-                });
-
-                this.timelineService.setImages(this.posts.images);
-                this.timelineService.setSelectedPostId(posts[0].activityData.id);
+        return this.timelineService.getTimelineData().subscribe(
+            timelineData => {
+                this.timeline = timelineData;
             }
         );
     }

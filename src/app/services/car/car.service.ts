@@ -97,7 +97,7 @@ export class CarService extends HttpService {
         this.addCar$.next(true);
     }
 
-    private getCarName(carMake: string, carModel: string): string {
+    public getCarName(carMake: string, carModel: string): string {
         return `${carMake} ${carModel}`;
     }
 
