@@ -49,7 +49,6 @@ export class AddCarModalComponent {
             (car: any) => {
                 this.loading = false;
                 this.requestState = true;
-                this.alertMessage = `The car with the registration number: ${this.regNumber} was succesufully added to your garage !`;
                 this.regNumber = null;
                 this.carDetails = null;
 
@@ -93,8 +92,6 @@ export class AddCarModalComponent {
 
         this.requestState = false;
         this.loading = false;
-        this.alertMessage = 'Sorry, the request failed.';
-
-        console.log(error);
+        this.alertMessage = `We couldn't find this car.`;
     }
 }

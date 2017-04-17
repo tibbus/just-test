@@ -1,50 +1,45 @@
 ﻿<div>
     <div *ngIf="!carAdded" class="search">
+        <div class="search__title">Adding your car to Logbook</div>
         <div class="search__text">What's your Vehicle Registration No.?</div>
         <div class="search__text search__text--secondary">"We'll just quickly verify your ownership of this car"</div>
+
         <input type="text" class="search__input" [(ngModel)]="regNumber" placeholder="e.g. LG68 OOK">
-        <!--<p class="help-block">You need to enter a valid <code>Registration Number</code> in order to add a car.</p>-->
-        <a class="btn btn-default search__btn-continue" [class.disabled]="loading" (click)="clickSearchCar()">
-            <span class="save-text">Search</span>
+
+        <button class="search__button-wrapper" [disabled]="loading" (click)="clickSearchCar()">
+            <span class="search__button">Search</span>
             <span *ngIf="loading === true && !carDetails" class="glyphicon glyphicon-refresh glyphicon-refresh-animate">
             </span>
-        </a>
+        </button>
     </div>
 
-    <div *ngIf="carDetails && !carAdded" class="add-car">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Are these details correct?</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Make</td>
-                    <td class="add-car__details-value">{{carDetails.car.make}}</td>
-                </tr>
-                <tr>
-                    <td>Model</td>
-                    <td class="add-car__details-value">{{carDetails.car.model}}</td>
-                </tr>
-                <tr>
-                    <td>Colour</td>
-                    <td class="add-car__details-value">{{carDetails.colour}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div *ngIf="carDetails && !carAdded" class="details">
+        <div class="details__title">Are these details correct?</div>
 
-        <a class="btn btn-default add-car__btn-add" [class.disabled]="loading" (click)="clickAddCar()">
-            <span class="save-text">Yes, add car</span>
+        <div class="details__content">
+            <span class="details__category">Make:</span>
+            <span class="details__value">{{carDetails?.car.make}}</span>
+            <span class="details__category">Model:</span>
+            <span class="details__value">{{carDetails?.car.model}}</span>
+            <span class="details__category">Colour:</span>
+            <span class="details__value">{{carDetails?.colour}}</span>
+        </div>
+
+        <button class="details__button" [class.disabled]="loading" (click)="clickAddCar()">
+            <span>Continue</span>
             <span *ngIf="loading === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-        </a>
+        </button>
     </div>
 </div>
 
 <alert [(message)]="alertMessage" [state]="requestState"></alert>
 
-<div *ngIf="carAdded" class="car-added">
-    <a class="btn btn-default search__btn-continue" [class.disabled]="loading" (click)="clickCarDone()">
+<div *ngIf="carAdded" class="added">
+    <div class="search__title">Added your car to Logbook!</div>
+    <div class="added__text">Complete!</div>
+    <div class="added__icon"><span class="glyphicon glyphicon-ok-circle"></span></div>
+
+    <button class="added__button" [disabled]="loading" (click)="clickCarDone()">
         <span class="save-text">Done!</span>
-    </a>
+    </button>
 </div>
