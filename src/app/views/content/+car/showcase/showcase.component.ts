@@ -32,12 +32,11 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
             const parsedRoute = carRoute.split('-');
             const carId = parsedRoute[parsedRoute.length - 1];
 
-            this.timelineService.actor = {
+            const actor = {
                 actorId: carId,
                 actorType: 'car'
             };
-
-            this.getPosts();
+            this.getPosts(actor);
         });
 
         this.modalService.getModalClose().subscribe(() => {
@@ -75,8 +74,8 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
     }
 
 
-    private getPosts() {
-        return this.timelineService.getTimelineData().subscribe(
+    private getPosts(actor) {
+        return this.timelineService.getTimelineData(actor).subscribe(
             timelineData => {
                 this.timeline = timelineData;
             }
