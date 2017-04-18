@@ -2,7 +2,7 @@
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ModalService, TimelineService, PostService, CarService } from '../../services/index';
+import { ModalService, TimelineService, PostService, CarService, AuthService } from '../../services/index';
 import { Actor } from '../../services/stream/stream.model';
 
 declare var FB: any;
@@ -29,12 +29,18 @@ export class TimelineComponent implements OnInit, OnDestroy {
         private ref: ChangeDetectorRef,
         private timelineService: TimelineService,
         private route: ActivatedRoute,
-        private carService: CarService
+        private carService: CarService,
+        private authService: AuthService
     ) { }
 
     ngOnInit() {
         if (this.isFeed) {
-            this.posts$ = this.getPosts();
+            const actor = {
+                actorId: this.authService.getUser().id,
+                actorType: 'user'
+            }
+
+            this.posts$ = this.getPosts(actor);
 
             return;
         }
@@ -48,13 +54,12 @@ export class TimelineComponent implements OnInit, OnDestroy {
             this.posts$ ? this.posts$.unsubscribe() : null;
 
             const car = this.carService.getCarByRoute(params['id']);
-
-            this.timelineService.actor = {
+            const actor = {
                 actorId: car.id,
                 actorType: 'car'
             };
 
-            this.posts$ = this.getPosts();
+            this.posts$ = this.getPosts(actor);
         });
     }
 
@@ -63,8 +68,8 @@ export class TimelineComponent implements OnInit, OnDestroy {
         this.posts$ ? this.posts$.unsubscribe() : null;
     }
 
-    private getPosts() {
-        return this.timelineService.getPosts().subscribe(
+    private getPosts(actor) {
+        return this.timelineService.getPosts(actor).subscribe(
             (posts: any[]) => {
                 this.posts = posts
             }

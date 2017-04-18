@@ -1,3 +1,7 @@
+<div *ngIf="carLoading" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+</div>
+
 <div *ngIf="!carLoading && user">
     <div *ngIf="car.isUserCar" class="image-wrapper image-wrapper--current-user" uploadFile (onFileSelect)="clickChangePhoto($event)">
         <div class="car-image">

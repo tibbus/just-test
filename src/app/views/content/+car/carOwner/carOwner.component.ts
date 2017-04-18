@@ -32,7 +32,7 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.route$ = this.route.params.subscribe(params => {
             const route = params['id'];
-
+            this.car = this.carService.getCarByRoute(route);
             this.carLoading = true;
 
             // Can detect if userCar just after we get all the cars
@@ -41,7 +41,11 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
                 error => this.initCar(route, null)
             );
 
-            this.timelineService.getTimelineData().subscribe(timeline => this.timeline = timeline);
+            const actor = {
+                actorId: this.car.id,
+                actorType: 'car'
+            };
+            this.timelineService.getTimelineData(actor).subscribe(timeline => this.timeline = timeline);
         });
     }
 
@@ -81,8 +85,6 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
     }
 
     private initCar(route, userCars) {
-        this.car = this.carService.getCarByRoute(route);
-
         this.setCarInfos(userCars);
 
         // Set Follow info
@@ -92,7 +94,7 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
 
     private setCarInfos(userCars) {
         if (this.car.isUserCar) {
-            this.profileService.getProfile().subscribe(user => {
+            this.profileService.getProfile().delay(200).subscribe(user => {
                 this.user = user;
                 this.carLoading = false;
             });

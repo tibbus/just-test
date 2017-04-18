@@ -23,13 +23,13 @@ export class TimelineService {
     private images: any[];
     private streamData$;
 
-    public getPosts() {
+    public getPosts(actor) {
         // Remove subscribtion to avoid sub loop
         if (this.streamData$) {
             this.streamData$.unsubscribe();
         }
 
-        this.streamData$ = this.streamService.getData(this.actor, 'get').do((posts: any[]) => {
+        this.streamData$ = this.streamService.getData(actor, 'get').do((posts: any[]) => {
             return this.posts = posts;
         }).subscribe(posts => {
             this.posts$.next(posts);
@@ -38,10 +38,10 @@ export class TimelineService {
         return this.posts$;
     }
 
-    public getTimelineData() {
+    public getTimelineData(actor) {
         const timelineData$ = new Subject();
 
-        this.getPosts().subscribe(posts => {
+        this.getPosts(actor).subscribe(posts => {
             const carName = this.carService.getCarName(posts[0].carData.make, posts[0].carData.model);
             const timelineData: any = {
                 postsCount: posts.length,

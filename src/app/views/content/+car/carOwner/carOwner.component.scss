@@ -136,3 +136,14 @@
         margin: 5px 0 0 20px;
     }
 }
+
+.loading {
+    opacity: 0.3;
+    display: block;
+    margin: 0 0 30px 205px;
+    float: left;
+
+    .glyphicon {
+        font-size: 100px;
+    }
+}
