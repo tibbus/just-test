@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Subject';
 import { ApiService } from '../api/api.service';
 import { API } from '../api/api';
 import { CarService } from '../car/car.service';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class CommentsService {
@@ -12,7 +13,7 @@ export class CommentsService {
     private comments: any = [];
     private comments$ = new Subject<any>();
 
-    constructor(private http: Http, private apiService: ApiService) { }
+    constructor(private http: Http, private apiService: ApiService, private authService: AuthService) { }
 
     public getComments(postId: string, dataRequested: boolean, commentsCount: number) {
         if (commentsCount === 0) {
@@ -95,5 +96,9 @@ export class CommentsService {
 
     public getSelectedComment() {
         return this.selectedComment;
+    }
+
+    public isUserComment(userId: string) {
+        return this.authService.getUser().id == userId;
     }
 }

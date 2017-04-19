@@ -53,7 +53,7 @@
                 <span class="glyphicon glyphicon-trash remove__icon"></span>
             </div>
         </div>
-        <div class="add" (click)="clickAddCar()">
+        <div *ngIf="isUserAuth()" class="add" (click)="clickAddCar()">
             <div class="add__buttons">
                 <span class="glyphicon glyphicon-plus add__plus"></span>
                 <span class="add__text">Add Car</span>

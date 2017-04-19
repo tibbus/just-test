@@ -6,7 +6,7 @@
     <p> {{comment.comment}}</p>
 </div>
 
-<div class="btn-group edit-menu" [class.edit-menu--show]="showOptions">
+<div *ngIf="isUserComment()" class="btn-group edit-menu" [class.edit-menu--show]="showOptions">
     <span href="bootstrap-elements.html"
          data-target="#"
          class="dropdown-toggle glyphicon glyphicon-option-vertical edit-menu__icon"

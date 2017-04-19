@@ -4,7 +4,7 @@
     </div>
     <a class="content__car-name" [routerLink]="['/cars/' + carRoute]">{{post.carData.make}} {{post.carData.model}}</a>
 
-    <div class="btn-group edit-menu">
+    <div *ngIf="isUserCar()" class="btn-group edit-menu">
         <span href="bootstrap-elements.html" data-target="#" class="dropdown-toggle glyphicon glyphicon-option-horizontal edit-menu__icon"
             data-toggle="dropdown">
             <div class="ripple-container"></div>

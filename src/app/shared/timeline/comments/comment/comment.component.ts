@@ -81,4 +81,8 @@ export class CommentComponent implements OnInit {
     public clickLike() {
         this.likesService.likePost(this.comment.id).subscribe();
     }
+
+    public isUserComment() {
+        return this.commentsService.isUserComment(this.comment.authorUserId);
+    }
 }

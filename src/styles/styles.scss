@@ -1,8 +1,8 @@
+// Used only for global styles
+
 @import "_bootstrap-custom";
 @import "loading";
 @import "icons";
-
-
 
 html, body {
     margin: 0;
@@ -75,4 +75,16 @@ video::-webkit-media-controls-panel {
 
 [tabindex]:focus {
     outline: none;
+}
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus {
+        text-decoration: none;
+    }
 }

@@ -36,6 +36,7 @@ export class GarageComponent implements OnInit {
             this.isLoading = true;
             const routeId: string = params.id;
 
+            // used only for `auth`
             if (routeId === 'authentication') {
                 const user = this.authService.getUser();
                 this.router.navigateByUrl(`/garage/${user.route}`);
@@ -98,6 +99,10 @@ export class GarageComponent implements OnInit {
 
     public showUnFollow(carId: string): boolean {
         return !this.user.isMyProfile && this.follow[carId].isFollowing && this.authService.isUserLoggedIn();
+    }
+
+    public isUserAuth() {
+        return this.authService.isUserAuth(this.user.id);
     }
 
     private setData(userId) {

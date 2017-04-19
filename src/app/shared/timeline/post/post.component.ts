@@ -133,4 +133,8 @@ export class PostComponent {
     public clickLike() {
         this.likesService.likePost(this.postId).subscribe();
     }
+
+    public isUserCar() {
+        return this.carService.isUserCar(this.post.activityData.carInfoId);
+    }
 }

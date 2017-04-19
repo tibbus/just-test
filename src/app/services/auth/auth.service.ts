@@ -62,6 +62,10 @@ export class AuthService {
         return this.mgr.signoutRedirect();
     }
 
+    public isUserAuth(userId: string) {
+        return this.user.id == userId;
+    }
+
     // @todo Find a way to share this method with the Profile Service
     private getRouteFromUser(name: string, id: string) {
         const formattedName: string = name.replace(/ /g, '');

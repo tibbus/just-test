@@ -74,6 +74,10 @@ export class CarService extends HttpService {
         };
     }
 
+    public isUserCar(carId: string) {
+        return !!this.cars.find(car => car.id == carId);
+    }
+
     public uploadProfileImage(carId: string, imageData: any) {
         const apiUrl: string = this.apiService.getCarImageUploadUrl(carId);
         const formData = new FormData();
