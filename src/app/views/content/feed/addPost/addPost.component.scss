@@ -13,8 +13,8 @@
 }
 
 .writer-img {
-    width: 32px;
-    height: 32px;
+    width: 37px;
+    height: 37px;
     overflow: hidden;
     border-radius: 50%;
     margin: 30px;
@@ -139,59 +139,6 @@
     button:hover ~ .documents {
         opacity: 0.5;
     }
-
-    .selected-topics {
-        float: left;
-        clear: left;
-        padding: 5px 0 10px 0;
-
-        .topic {
-            position: relative;
-            float: left;
-            font-weight: 500;
-            color: grey;
-            margin-left: 32px;
-        }
-
-        button {
-            top: -22px;
-            right: -22px;
-        }
-    }
-}
-
-.add-topics {
-    float: left;
-    clear: left;
-    margin: 4px 20px;
-    padding: 0;
-
-    .menu {
-        padding: 0;
-        margin: 0;
-
-
-        .dropdown-toggle {
-            cursor: pointer;
-            padding: 4px 8px;
-            color: white;
-        }
-
-        a {
-            cursor: pointer;
-        }
-
-        .caret {
-            border-top: 4px dashed;
-            border-right: 4px solid transparent;
-            border-left: 4px solid transparent;
-        }
-    }
-
-    .text {
-        color: #949494;
-        font-weight: 500;
-    }
 }
 
 .line {
@@ -206,7 +153,7 @@
     padding: 0 12px;
     float: right;
     font-size: 13px;
-    margin: 10px 25px 0 0;
+    margin: 5px 25px 0 0;
     color: white;
     background: blue;
 }
@@ -234,5 +181,117 @@
             height: 100%;
             float: left;
         }
+    }
+}
+
+.cars {
+    background-color: #e5e5e5;
+    cursor: pointer;
+    float: left;
+    padding: 20px 20px 20px 30px;
+    width: 100%;
+
+    &__image {
+        border-radius: 50%;
+        height: 32px;
+        float: left;
+        opacity: 0.3;
+        overflow: hidden;
+        width: 32px;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    &__text {
+        float: left;
+        font-weight: bold;
+        line-height: 32px;
+
+        &-posting {
+            font-size: 15px;
+            margin-left: 20px;
+            opacity: 0.3;
+        }
+
+        &-name {
+            @extend %truncate;
+
+            font-size: 17px;
+            margin-left: 20px;
+            max-width: 250px;
+        }
+    }
+
+    &__menu-icon {
+        font-size: 14px;
+        margin-left: 10px;
+        margin-top: 9px;
+    }
+
+    &__menu {
+        background-color: #e5e5e5;
+        border-radius: 0;
+        border: none;
+        margin-top: 75px;
+        width: 100%;
+
+        &-text {
+            padding: 20px 20px 10px 30px;
+            opacity: 0.4;
+        }
+
+        &-item {
+            clear: left;
+            cursor: pointer;
+            float: left;
+            width: 100%;
+            padding: 10px 20px 10px 30px;
+
+            &:hover {
+                background-color: #f2f2f2;
+            }
+        }
+
+        &-image {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            float: left;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        &-name {
+            @extend %truncate;
+
+            float: left;
+            max-width: 350px;
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 30px;
+            margin-left: 15px;
+        }
+    }
+}
+
+.topics {
+    &__title {
+        color: #c9c9c9;
+        float: left;
+        font-size: 13px;
+        margin: 5px 20px 0 20px;
+    }
+
+    &__item {
+        float: left;
+        padding: 0px 10px;
+        border: solid 1px #ececec;
+        margin: 5px 0 0 10px;
+        font-size: 13px;
     }
 }

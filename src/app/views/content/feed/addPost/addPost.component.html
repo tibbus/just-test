@@ -1,11 +1,27 @@
-<div class="writer-img" >
+<div class="cars dropdown-toggle" data-toggle="dropdown">
+    <div class="cars__image">
+        <img src="{{activeCar.info.image || '/assets/default-car.jpg'}}" />
+    </div>
+
+    <div class="cars__text cars__text-posting">Posting in:</div>
+    <div class="cars__text cars__text-name">{{activeCar.name}} {{activeCar.info.car.yearOfManufacture}}</div>
+    <div class="cars__menu-icon glyphicon glyphicon-menu-down "></div>
+</div>
+<ul class="dropdown-menu dropdown-menu-right cars__menu">
+    <div class="cars__menu-text">Pick a car to post to:</div>
+    <li *ngFor="let car of cars; let index=index" (click)="clickCar(index)" class="cars__menu-item">
+        <div class="cars__menu-image">
+            <img src="{{car.info.image}}" />
+        </div>
+        <div class="cars__menu-name">{{car.name}} {{car.info.car.yearOfManufacture}}</div>
+    </li>
+</ul>
+
+<div class="writer-img">
     <img src="{{user?.image}}" />
 </div>
 
-<textarea class="text-input" rows="4" placeholder="What's up?"
-    [(ngModel)]="currentStatus"
-    [class.lineDisabled]="postType !== 'status'"
->
+<textarea class="text-input" rows="4" placeholder="What's up?" [(ngModel)]="currentStatus" [class.lineDisabled]="postType !== 'status'">
 </textarea>
 
 <div class="add" hoverAdd>
@@ -13,22 +29,13 @@
         <span class="glyphicon glyphicon-plus-sign"></span>
     </div>
 
-    <div class="add__action add__action--video"
-        uploadFile
-        (onFileSelect)="clickAddMedia($event, 'video')"
-        [class.disabled]="postType !== 'status' && postType !== 'video'">
+    <div class="add__action add__action--video" uploadFile (onFileSelect)="clickAddMedia($event, 'video')" [class.disabled]="postType !== 'status' && postType !== 'video'">
         <span class="glyphicon glyphicon-facetime-video"></span>
     </div>
-    <div class="add__action add__action--image"
-        uploadFile
-        (onFileSelect)="clickAddMedia($event, 'image')"
-        [class.disabled]="postType !== 'status' && postType !== 'image'">
+    <div class="add__action add__action--image" uploadFile (onFileSelect)="clickAddMedia($event, 'image')" [class.disabled]="postType !== 'status' && postType !== 'image'">
         <span class="glyphicon glyphicon-picture"></span>
     </div>
-    <div class="add__action add__action--document"
-        uploadFile
-        (onFileSelect)="clickAddMedia($event, 'document')"
-        [class.disabled]="postType !== 'status' && postType !== 'document'">
+    <div class="add__action add__action--document" uploadFile (onFileSelect)="clickAddMedia($event, 'document')" [class.disabled]="postType !== 'status' && postType !== 'document'">
         <span class="glyphicon glyphicon-file"></span>
     </div>
 </div>
@@ -47,44 +54,14 @@
             <span class="glyphicon glyphicon-file document"></span>
         </div>
     </div>
-
-    <!--<div class="selected-topics">
-        <div *ngFor="let topic of selectedTopics" class="topic">
-            <button type="button" class="close" (click)="clickRemoveTopics(topic)">&#215;</button>
-            <span>{{topic}}</span>
-        </div>
-    </div>-->
 </div>
 
 <div class="line"></div>
 
-<!--<div class="add-topics">
-    <span class="text">Add Topics</span>
-    <div class="btn-group menu">
-        <a data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-            <div class="ripple-container"></div>
-        </a>
-        <ul class="dropdown-menu">
-            <li *ngFor="let topic of topics">
-                <a (click)="clickAddTopics(topic)">{{topic}}</a>
-            </li>
-        </ul>
-    </div>
-</div>-->
+<div class="topics__title">Tags:</div>
+<div *ngFor="let topic of topics" class="topics__item">{{topic}}</div>
 
-<button class="btn post"
-   [disabled]="loading"
-   (click)="clickAddPost()">
+<button class="btn post" [disabled]="loading" (click)="clickAddPost()">
     <span class="save-text">Post</span>
     <span *ngIf="loading == true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 </button>
-
-<div class="car-images">
-    <div *ngFor="let car of cars; let index=index"
-        class="car-images__image"
-        [class.car-images__image--active]="index === carActiveIndex"
-        (click)="clickCar(index)">
-        <img src="{{car.info.image || '/assets/default-car.jpg'}}">
-    </div>
-</div>

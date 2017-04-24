@@ -24,12 +24,12 @@ export class AddPostComponent {
     public uris: string[] = [];
     public files: any[] = [];
     public postType: string = 'status';
-    public topics: string[] = ['Video', 'Image', 'Document', 'Toyota', 'Yamaha', 'Volkswagen'];
+    public topics: string[];
     public selectedTopics: string[] = [];
-    public carActiveIndex: number = 0;
+    public activeCar;
     public user: any;
-    // clone topics
-    private allTopics: string[] = this.topics.slice();
+
+    private carActiveIndex: number = 0;
 
     constructor(
         private carService: CarService,
@@ -41,6 +41,9 @@ export class AddPostComponent {
 
     ngOnInit() {
         this.profileService.getProfile().subscribe(user => this.user = user);
+
+        this.activeCar = this.cars[this.carActiveIndex];
+        this.topics = this.getTopics(this.activeCar);
     }
 
     public clickUriRemove(index: number) {
@@ -80,24 +83,11 @@ export class AddPostComponent {
         }
     }
 
-    public clickAddTopics(topic: string) {
-        const currentTopicIndex = this.topics.indexOf(topic);
-
-        this.selectedTopics.push(topic);
-
-        this.topics.splice(currentTopicIndex, 1);
-    }
-
-    public clickRemoveTopics(topic: string) {
-        const currentTopicIndex = this.selectedTopics.indexOf(topic);
-
-        this.topics.push(topic);
-
-        this.selectedTopics.splice(currentTopicIndex, 1);
-    }
-
     public clickCar(index: number) {
         this.carActiveIndex = index;
+
+        this.activeCar = this.cars[index];
+        this.topics = this.getTopics(this.activeCar);
     }
 
     private addPostStatus() {
@@ -126,9 +116,6 @@ export class AddPostComponent {
         this.loading = false;
         this.postType = 'status';
 
-        this.topics = this.allTopics;
-        this.selectedTopics = [];
-
         // Refresh the TimeLine
         //this.timelineService.getPosts();
     }
@@ -137,5 +124,9 @@ export class AddPostComponent {
         this.loading = false;
 
         console.log(error);
+    }
+
+    private getTopics(car) {
+        return [car.info.car.make, car.info.car.model, car.info.car.yearOfManufacture];
     }
 }
