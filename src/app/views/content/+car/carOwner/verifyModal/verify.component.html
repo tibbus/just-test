@@ -1,0 +1,24 @@
+<div class="wrapper">
+    <div class="header1">Let's verify</div>
+    <div class="header2">It's how we roll</div>
+    <div class="header3">
+        To verify ownership we'd like the <br> following characters from your VIN NO.
+    </div>
+
+    <div class="letter letter--first">
+        <div class="letter__text">1st</div>
+        <input [(ngModel)]="letters.firstLetter" (keydown)="keydownLetter('firstLetter')" class="letter__input" />
+    </div>
+    <div class="letter">
+        <div class="letter__text">2nd</div>
+        <input [(ngModel)]="letters.secondLetter" (keydown)="keydownLetter('secondLetter')" class="letter__input" />
+    </div>
+    <div class="letter">
+        <div class="letter__text">last</div>
+        <input [(ngModel)]="letters.lastLetter" (keydown)="keydownLetter('lastLetter')" class="letter__input" />
+    </div>
+
+    <div *ngIf="verifyFailed" class="failed">Sorry, characters do not match !</div>
+
+    <button (click)="clickConfirm()" class="btn-confirm">Confirm</button>
+</div>

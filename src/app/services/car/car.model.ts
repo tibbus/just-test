@@ -4,7 +4,8 @@ export interface Car {
     carInfo: CarInfo,
     id: string,
     mot: Mot[],
-    tax: Tax
+    tax: Tax,
+    verified: boolean
 }
 
 export interface CarInfo extends RequestInterface {

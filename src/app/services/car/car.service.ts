@@ -115,7 +115,8 @@ export class CarService extends HttpService {
             route: this.getCarRoute(carMake, carModel, carId),
             id: carId,
             userCarId: carObject.id,
-            info: carObject.carInfo
+            info: carObject.carInfo,
+            verified: carObject.verified
         }
     }
 }

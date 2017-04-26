@@ -1,0 +1,85 @@
+﻿@import 'mixins';
+
+:host {
+    @extend %gradient;
+
+    display: block;
+    position: absolute;
+    width: 100%;
+}
+
+.wrapper {
+    position: relative;
+    margin: auto;
+    width: 300px;
+}
+
+.header1 {
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+.header2 {
+    color: silver;
+    font-size: 30px;
+}
+
+.header3 {
+    color: #e7e7e7;
+    font-size: 17px;
+    margin: 30px 0 70px;
+}
+
+.letter {
+    float: left;
+    margin-left: 60px;
+
+    &--first {
+        margin-left: 0;
+    }
+
+    &__text {
+        color: #d3c7c7;
+        font-size: 17px;
+        margin-left: 9px;
+    }
+
+    &__input {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid white;
+        color: white;
+        font-size: 40px;
+        margin-top: 10px;
+        padding-left: 12px;
+        text-transform: uppercase;
+        width: 50px;
+
+        &:focus {
+            border: none;
+            border-bottom: 1px solid white;
+            box-shadow: none;
+            outline: none;
+        }
+    }
+}
+
+.failed {
+    color: white;
+    float: left;
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 44px;
+}
+
+.btn-confirm {
+    background: black;
+    border-radius: 3px;
+    color: white;
+    font-size: 17px;
+    margin: 150px 0 50px;
+    padding: 10px 20px;
+    width: 100%;
+}

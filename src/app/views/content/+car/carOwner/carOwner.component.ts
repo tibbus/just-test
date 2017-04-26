@@ -2,12 +2,14 @@
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { CarService, ProfileService, FollowService, TimelineService } from '../../../../services';
+import { CarService, ProfileService, FollowService, TimelineService, ModalService, VerifyService } from '../../../../services';
+import { VerifyComponent } from './verifyModal/verify.component';
 
 @Component({
     selector: 'car-owner',
     styleUrls: ['./carOwner.component.scss'],
-    templateUrl: './carOwner.component.html'
+    templateUrl: './carOwner.component.html',
+    providers: [VerifyService]
 })
 
 export class CarOwnerComponent implements OnInit, OnDestroy {
@@ -18,6 +20,8 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
     public following: number = 0;
     public isFollowing: boolean = false;
     public timeline: any = { postsCount: 0, mediaCount: 0 };
+    public modal: any = {};
+
     private route$: Subscription;
 
     constructor(
@@ -26,13 +30,15 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
         private followService: FollowService,
         private route: ActivatedRoute,
         private changeDetector: ChangeDetectorRef,
-        private timelineService: TimelineService
+        private timelineService: TimelineService,
+        private modalService: ModalService,
+        private verifyService: VerifyService
     ) { }
 
     ngOnInit() {
         this.route$ = this.route.params.subscribe(params => {
             const route = params['id'];
-            this.car = this.carService.getCarByRoute(route);
+            const car = this.carService.getCarByRoute(route);
             this.carLoading = true;
 
             // Can detect if userCar just after we get all the cars
@@ -42,15 +48,35 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
             );
 
             const actor = {
-                actorId: this.car.id,
+                actorId: car.id,
                 actorType: 'car'
             };
             this.timelineService.getTimelineData(actor).subscribe(timeline => this.timeline = timeline);
         });
+
+        this.modalService.getModalClose().subscribe(() => {
+            this.modal = {};
+        });
+
+        this.verifyService.getVerify().subscribe(() => {
+            this.car.verified = true;
+        })
     }
 
     ngOnDestroy() {
         this.route$.unsubscribe();
+    }
+
+    public clickVerify() { console.log(this.car, this.user);
+        // open modal
+        this.modal = {
+            name: 'verifyModal',
+            component: VerifyComponent,
+            data: {
+                carInfoId: this.car.id,
+                userId: this.user.id
+            }
+        };
     }
 
     public clickFollow() {
@@ -85,6 +111,8 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
     }
 
     private initCar(route, userCars) {
+        this.car = this.carService.getCarByRoute(route);
+
         this.setCarInfos(userCars);
 
         // Set Follow info

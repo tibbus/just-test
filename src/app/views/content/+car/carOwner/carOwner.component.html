@@ -30,12 +30,14 @@
                 <span class="info__number">{{followers}}</span>
                 <span class="info__name">Followers</span>
             </div>
-            <div *ngIf="!isFollowing" (click)="clickFollow()" class="info__follow info__follow--on">
+            <div *ngIf="!isFollowing && !car.isUserCar" (click)="clickFollow()" class="info__follow info__follow--on">
                 Follow
             </div>
-            <div *ngIf="isFollowing" (click)="clickUnFollow()" class="info__follow info__follow--off">
+            <div *ngIf="isFollowing && !car.isUserCar" (click)="clickUnFollow()" class="info__follow info__follow--off">
                 Following
             </div>
+            <div *ngIf="car.isUserCar && !car.verified" (click)="clickVerify()" class="info__verify">Verify</div>
+            <div *ngIf="car.verified" class="info__verified">Verified !</div>
         </div>
         <div class="info__car-text">
             <div class="info__car-text--name">{{car.name}}</div><span class="info__car-text--year"> {{car.info.car.yearOfManufacture}}</span>
@@ -49,3 +51,9 @@
         </div>
     </div>
 </div>
+
+<modal *ngIf="modal.name === 'verifyModal'"
+    [content]="modal"
+    [size]="small"
+    [hideHeader]="true">
+</modal>

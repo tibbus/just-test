@@ -40,3 +40,7 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+%gradient {
+    background: linear-gradient(to bottom, rgba(25,0,250,1) 0%, rgba(247,202,77,1) 100%);
+}
