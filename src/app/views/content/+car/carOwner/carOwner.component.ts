@@ -51,7 +51,7 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
                 actorId: car.id,
                 actorType: 'car'
             };
-            this.timelineService.getTimelineData(actor).subscribe(timeline => this.timeline = timeline);
+            this.timelineService.getTimeline(actor).subscribe(timeline => this.timeline = timeline);
         });
 
         this.modalService.getModalClose().subscribe(() => {
@@ -67,7 +67,7 @@ export class CarOwnerComponent implements OnInit, OnDestroy {
         this.route$.unsubscribe();
     }
 
-    public clickVerify() { console.log(this.car, this.user);
+    public clickVerify() {
         // open modal
         this.modal = {
             name: 'verifyModal',

@@ -1,0 +1,23 @@
+<div class="highlights">
+    <div class="highlights__title">FEATURED</div>
+    <div class="highlights__navigation" [routerLink]="['/cars/' + car.route + '/showcase']">View Showcase &nbsp; ></div>
+</div>
+
+<div *ngIf="!loading" class="featured">
+    <div *ngFor="let video of videos" class="video__uri">
+        <video height="100%">
+            <source src="{{video}}" type="video/mp4">
+        </video>
+        <div class="play"></div>
+        <div class="play__icon"><span class="glyphicon glyphicon-play"></span></div>
+    </div>
+    <div *ngFor="let photo of photos" class="image__uri">
+        <img src="{{photo}}">
+    </div>
+</div>
+
+<div class="highlights">
+    <div class="highlights__title">HIGHLIGHTS</div>
+    <button class="highlights__navigation" [routerLink]="['/cars/' + car.route + '/timeline']">View Timeline &nbsp; ></button>
+</div>
+<post *ngFor="let post of posts; trackBy:post?.activityData.id" class="post" [post]="post"></post>

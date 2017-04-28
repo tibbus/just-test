@@ -81,11 +81,12 @@
         cursor: pointer;
 
         &:hover {
-           opacity: 0.8;
+            opacity: 0.8;
         }
     }
 
-    &__verify, &__verified {
+    &__verify,
+    &__verified {
         float: right;
         background: #ffc880;
         font-size: 12px;

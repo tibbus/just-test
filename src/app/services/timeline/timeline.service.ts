@@ -38,18 +38,19 @@ export class TimelineService {
         return this.posts$;
     }
 
-    public getTimelineData(actor) {
+    public getTimeline(actor) {
         const timelineData$ = new Subject();
 
         this.getPosts(actor).subscribe(posts => {
             const carName = this.carService.getCarName(posts[0].carData.make, posts[0].carData.model);
             const timelineData: any = {
                 postsCount: posts.length,
-                mediaCount: 0,
+                mediaCount: null,
                 carName,
                 images: [],
                 videos: [],
-                docs: []
+                docs: [],
+                posts: posts
             };
 
             posts.forEach(item => {
@@ -67,6 +68,53 @@ export class TimelineService {
         });
 
         return timelineData$;
+    }
+
+    public getOverview(actor) {
+        const timeline$ = new Subject();
+
+        this.getPosts(actor).subscribe(posts => {
+            const overview: any = {
+                images: [],
+                videos: [],
+                posts: posts.slice(0, 2)
+            };
+
+            const featuredPosts = posts.sort((current, next) => {
+                const currentSocialScore = current.socialData.commentsCount + current.socialData.likesCount;
+                const nextSocialScore = next.socialData.commentsCount + next.socialData.likesCount;
+
+                return currentSocialScore < nextSocialScore;
+            });
+
+            for (let post of featuredPosts) {
+                if (overview.images.length + overview.videos.length >= 4) {
+                    break;
+                }
+
+                if (post.type === 'Image') {
+                    overview.images = overview.images.concat(post.activityData.contentUris);
+
+                    const featuredCount = overview.images.length + overview.videos.length;
+                    if (featuredCount > 4) {
+                        const overFeaturedCount = featuredCount - 4;
+                        overview.images = overview.images.slice(0, -overFeaturedCount);
+                    }
+                } else if (post.type === 'Video') {
+                    overview.videos = overview.videos.concat(post.activityData.contentUris)
+
+                    const featuredCount = overview.images.length + overview.videos.length;
+                    if (featuredCount > 4) {
+                        const overFeaturedCount = featuredCount - 4;
+                        overview.videos = overview.videos.slice(0, -overFeaturedCount);
+                    }
+                }
+            }
+
+            timeline$.next(overview);
+        });
+
+        return timeline$;
     }
 
     public updateAfterDelete(postId: string) {

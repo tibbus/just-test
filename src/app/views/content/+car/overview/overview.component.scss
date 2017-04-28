@@ -1,0 +1,76 @@
+@import 'mixins';
+
+:host {
+    width: 100%;
+    float: left;
+}
+
+.highlights {
+    background: white;
+    border: solid 1px #EFECEC;
+    border-radius: 3px;
+    float: left;
+    margin: 20px 0 2px;
+    padding: 10px 35px 10px 25px;
+    width: 100%;
+
+    &__title {
+        float: left;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    &__navigation {
+        color: #b8b8b8;
+        cursor: pointer;
+        float: right;
+        margin-top: 3px;
+    }
+}
+
+.featured {
+    background: white;
+    float: left;
+    padding: 20px;
+    width: 100%;
+}
+
+.image, .video {
+    margin-top: 20px;
+    float: left;
+    clear: left;
+    width: 100%;
+    background: white;
+    padding: 20px;
+
+    &__uri {
+        position: relative;
+        float: left;
+        width: 25%;
+        height: 115px;
+        border: solid 3px white;
+        overflow: hidden;
+
+        img, video {
+            height: 100%;
+        }
+    }
+}
+
+.play {
+    @extend %center;
+
+    height: 70px;
+    width: 70px;
+    background: white;
+    opacity: 0.3;
+    border-radius: 3px;
+
+    &__icon {
+         @extend %center;
+
+        font-size: 35px;
+        color: black;
+        margin-top: -2px;
+    }
+}

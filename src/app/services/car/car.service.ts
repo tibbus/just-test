@@ -69,6 +69,7 @@ export class CarService extends HttpService {
         }
 
         return {
+            route: route,
             id: carId,
             isUserCar: false
         };

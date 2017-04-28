@@ -75,7 +75,7 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
 
 
     private getPosts(actor) {
-        return this.timelineService.getTimelineData(actor).subscribe(
+        return this.timelineService.getTimeline(actor).subscribe(
             timelineData => {
                 this.timeline = timelineData;
             }

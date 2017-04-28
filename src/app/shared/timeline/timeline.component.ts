@@ -70,8 +70,8 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
     private getPosts(actor) {
         return this.timelineService.getPosts(actor).subscribe(
-            (posts: any[]) => {
-                this.posts = posts
+            posts => {
+                this.posts = posts;
             }
         );
     }
