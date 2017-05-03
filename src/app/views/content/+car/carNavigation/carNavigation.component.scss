@@ -1,7 +1,9 @@
 ﻿@import "../../../../../styles/mixins";
 
 :host {
-    @include content;
+    display: inline-block;
+    margin-top: 15px;
+    position: relative;
 }
 
 ul {

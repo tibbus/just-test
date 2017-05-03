@@ -1,7 +1,8 @@
 ﻿@import "mixins";
 
 :host {
-    @include content;
+    display: inline-block;
+    position: relative;
 }
 
 .image-wrapper {

@@ -1,4 +1,6 @@
-﻿<add-post *ngIf="cars.length" [cars]="cars"></add-post>
-<h3 *ngIf="!cars.length">You need a car to add posts</h3>
+﻿<div class="top-wrapper">
+    <add-post *ngIf="cars.length" [cars]="cars"></add-post>
+    <h3 *ngIf="!cars.length">You need a car to add posts</h3>
+</div>
 
 <timeline isFeed="true"></timeline>

@@ -1,17 +1,23 @@
 ﻿@import "mixins";
 
-:host{
+:host {
     display: block;
-    float: left;
-    width: 100%;
-}
-
-.content-wrapper {
-    @include content;
+    margin-top: 41px;
 }
 
 .top-wrapper {
-    background: #E4E4E4;
-    float: left;
-    width: 100%;
+    background: #e7e7e7;
+    padding-top: 30px;
+
+    &__content {
+        display: block;
+        margin: auto;
+        width: 500px;
+    }
+}
+
+.content-wrapper {
+    display: block;
+    width: 500px;
+    margin: auto;
 }
