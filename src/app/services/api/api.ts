@@ -4,7 +4,7 @@ const fakeServiceEnabled = false;
 const API = {
     fakeServiceEnabled,
     /* **DEV** Enviroment */
-    root: 'http://mycarbioservice.azurewebsites.net/api/v1',
+    root: 'http://logbookapi.azurewebsites.net/api/v1',
 
     userCars: '/usercar/details=true',
     carInfo: '/car/{id}/details',
