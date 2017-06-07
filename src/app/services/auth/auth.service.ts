@@ -6,6 +6,7 @@ export class AuthService {
     private mgr: any;
     private user;
     private config: any;
+    private authData;
 
     constructor() {
         this.config = {
@@ -25,11 +26,12 @@ export class AuthService {
     public setUser() {
         const promise = this.mgr.getUser();
 
-        promise.then(user => {
-            if (user) {
-                console.log(user);
+        promise.then(authData => {
+            if (authData) {
+                console.log(authData);
                 // @todo : Talk with the BE to make the user format the same as the Profile one
-                this.user = user.profile;
+                this.authData = authData;
+                this.user = authData.profile;
                 this.user.route = this.getRouteFromUser(this.user.name, this.user.id);
 
                 console.log("User logged in");
@@ -41,6 +43,10 @@ export class AuthService {
         });
 
         return promise;
+    }
+
+    public getAuthData() {
+        return this.authData;
     }
 
     public getUser() {

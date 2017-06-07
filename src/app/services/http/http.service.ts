@@ -12,11 +12,8 @@ export abstract class HttpService {
     public dataObject;
 
     private getDataFromHttp() {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers, body: '' });
-
         return this._http
-            .get(this.url, options)
+            .get(this.url)
             .map(res => res.json());
     }
 
